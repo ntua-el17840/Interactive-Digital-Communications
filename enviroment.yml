@@ -1,10 +1,11 @@
-name: dcenv # The name of your enviroment
+name: dcenv # The name of the enviroment
 channels:
   - conda-forge
   - anaconda
   - defaults
-dependencies:
+dependencies: # All the libraries used
   - python=3.8  
+  - pip
   - notebook
   - nb_conda_kernels
   - scipy
@@ -14,5 +15,5 @@ dependencies:
   - plotly
   - dash
   - dash-bootstrap-components
-  - pip:
-    - jupyter-book  # Installed via pip
+  - pip: # Libraries installed via pip
+    - jupyter-book 
