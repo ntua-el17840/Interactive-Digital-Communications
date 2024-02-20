@@ -3,7 +3,17 @@
 
 format: jb-book
 root: intro
-chapters:
-- file: markdown
-- file: notebooks
-- file: markdown-notebooks
+parts:
+- caption: Beginning Files
+  chapters:
+  - file: markdown
+  - file: notebooks
+  - file: markdown-notebooks
+- caption: Digital Communications
+  chapters:
+  - file: content/Digcom_Lab1
+  - file: content/Digcom_Lab2
+  - file: content/Digcom_Lab3
+  - file: content/Digcom_Lab4
+  - file: content/Digcom_Lab5
+  - file: content/Digcom_Lab6

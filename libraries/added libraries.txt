@@ -7,4 +7,4 @@ conda install anaconda::pandas
 conda install -c plotly plotly
 conda install -c conda-forge dash
 conda install -c conda-forge dash-bootstrap-components
-conda install -c conda-forge jupyter-book
+pip install -U jupyter-book
