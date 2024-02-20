@@ -686,7 +686,11 @@ document.write(`
 <h2>Μέρος 2:  Δειγματοληψία - Ψηφιοποίηση<a class="headerlink" href="#id3" title="Link to this heading">#</a></h2>
 <p>Τα πρωτογενή σήματα είναι κυρίως αναλογικά (συνεχούς χρόνου). Για να τα παραστήσουμε και επεξεργαστούμε στον υπολογιστή μας (ή άλλη ψηφιακή μηχανή) θα πρέπει πρώτα να τα ψηφιοποιήσουμε. Υποθέστε ένα σήμα συνεχούς χρόνου <span class="math notranslate nohighlight">\(x(t)\)</span> με μετασχηματισμό Fourier (Continuous Time Fourier Transform – CTFT):</p>
 <div class="math notranslate nohighlight">
-\[X(f)=\int_{-\infty}^{\infty} x(t)e^{-j2\pi ft} dt\]</div>
+\[
+ 
+X(f)=\int_{-\infty}^{\infty} x(t)e^{-j2\pi ft} dt
+ 
+\]</div>
 <div class="cell tag_hide-input docutils container">
 <details class="hide above-input">
 <summary aria-label="Toggle hidden content">
@@ -790,7 +794,7 @@ document.write(`
     
 
 <span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
-    <span class="n">app1</span><span class="o">.</span><span class="n">run_server</span><span class="p">(</span><span class="n">debug</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">port</span><span class="o">=</span><span class="mi">8055</span><span class="p">)</span>
+    <span class="n">app1</span><span class="o">.</span><span class="n">run_server</span><span class="p">(</span><span class="n">debug</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">port</span><span class="o">=</span><span class="mi">8050</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -801,7 +805,7 @@ document.write(`
 <span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">15</span><span class="p">],</span> <span class="n">line</span> <span class="mi">97</span>
 <span class="g g-Whitespace">     </span><span class="mi">92</span>     <span class="k">return</span> <span class="n">original_signal_figure</span><span class="p">,</span> <span class="n">fourier_transform_figure</span>
 <span class="g g-Whitespace">     </span><span class="mi">96</span> <span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
-<span class="ne">---&gt; </span><span class="mi">97</span>     <span class="n">app1</span><span class="o">.</span><span class="n">run_server</span><span class="p">(</span><span class="n">debug</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">port</span><span class="o">=</span><span class="mi">8055</span><span class="p">)</span>
+<span class="ne">---&gt; </span><span class="mi">97</span>     <span class="n">app1</span><span class="o">.</span><span class="n">run_server</span><span class="p">(</span><span class="n">debug</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">port</span><span class="o">=</span><span class="mi">8050</span><span class="p">)</span>
 
 <span class="nn">File ~\anaconda3\Lib\site-packages\dash\dash.py:2175,</span> in <span class="ni">Dash.run_server</span><span class="nt">(self, *args, **kwargs)</span>
 <span class="g g-Whitespace">   </span><span class="mi">2169</span> <span class="k">def</span> <span class="nf">run_server</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
@@ -883,16 +887,26 @@ document.write(`
 <span class="g g-Whitespace">    </span><span class="mi">381</span> <span class="k">except</span> <span class="n">requests</span><span class="o">.</span><span class="n">ConnectionError</span> <span class="k">as</span> <span class="n">err</span><span class="p">:</span>
 <span class="g g-Whitespace">    </span><span class="mi">382</span>     <span class="n">_get_error</span><span class="p">()</span>
 
-<span class="ne">OSError</span>: Address &#39;http://127.0.0.1:8055&#39; already in use.
+<span class="ne">OSError</span>: Address &#39;http://127.0.0.1:8050&#39; already in use.
     <span class="n">Try</span> <span class="n">passing</span> <span class="n">a</span> <span class="n">different</span> <span class="n">port</span> <span class="n">to</span> <span class="n">run_server</span><span class="o">.</span>
 </pre></div>
 </div>
 </div>
 </div>
 <p>Λαμβάνοντας δείγματα του <span class="math notranslate nohighlight">\(x(t)\)</span> με ρυθμό <span class="math notranslate nohighlight">\(f_s=1/T_s\)</span> παράγεται σήμα διακριτού χρόνου <span class="math notranslate nohighlight">\(x(nT_s)\)</span>. Μαθηματικά το αναπαριστάνουμε ως σειρά συναρτήσεων δέλτα</p>
-<p><span class="math notranslate nohighlight">\(x_\delta (t)=\sum_{n=-\infty}^{\infty}x(nT_s)\delta(t-nT_s)=x(t)\sum_{n=-\infty}^{\infty}\delta(t-nT_s)\)</span></p>
+<div class="math notranslate nohighlight">
+\[
+ 
+x_\delta (t)=\sum_{n=-\infty}^{\infty}x(nT_s)\delta(t-nT_s)=x(t)\sum_{n=-\infty}^{\infty}\delta(t-nT_s)
+ 
+\]</div>
 <p>με μετασχηματισμό Fourier</p>
-<p><span class="math notranslate nohighlight">\(X_\delta (f)=\sum_{n=-\infty}^{\infty}x(nT_s)e^{-j2\pi fnT_s}=X(f)*1/T_s\sum_{n=-\infty}^{\infty}\delta(f-k/T_s)=1/T_s\sum_{n=-\infty}^{\infty}X(f-k/T_s)\)</span></p>
+<div class="math notranslate nohighlight">
+\[
+ 
+X_\delta (f)=\sum_{n=-\infty}^{\infty}x(nT_s)e^{-j2\pi fnT_s}=X(f)*1/T_s\sum_{n=-\infty}^{\infty}\delta(f-k/T_s)=1/T_s\sum_{n=-\infty}^{\infty}X(f-k/T_s)
+ 
+\]</div>
 <p>που είναι περιοδική συνάρτηση.</p>
 <div class="cell tag_hide-input docutils container">
 <details class="hide above-input">
@@ -1078,7 +1092,12 @@ document.write(`
 Η δειγματοληψία στο πεδίο του χρόνου αποτελεί τη βάση για τον ορισμό του μετασχηματισμού
 Fourier διακριτού χρόνου (Discrete Time Fourier Transform – DTFT). Για μια σειρά διακριτών
 αριθμών <span class="math notranslate nohighlight">\(x[n]\)</span>, ο μετασχηματισμός Fourier διακριτού χρόνου ορίζεται ως:</p>
-<p><span class="math notranslate nohighlight">\(X_d(\phi) \triangleq \sum_{n=-\infty}^{\infty} x[n] \exp (-j 2 \pi n \phi)\)</span></p>
+<div class="math notranslate nohighlight">
+\[ 
+ 
+X_d(\phi) \triangleq \sum_{n=-\infty}^{\infty} x[n] \exp (-j 2 \pi n \phi)
+ 
+\]</div>
 <p>O DTFT είναι περιοδική συνάρτηση με περίοδο <span class="math notranslate nohighlight">\(1\)</span>, επομένως, αρκεί ο υπολογισμός του στο
 διάστημα συχνοτήτων <span class="math notranslate nohighlight">\([0,1]\)</span> ή ισοδύναμα <span class="math notranslate nohighlight">\([-½,½]\)</span>. Να σημειωθεί ότι ο DTFT, παρότι προκύπτει από
 μια σειρά διακριτών αριθμών <span class="math notranslate nohighlight">\(x[n]\)</span>, είναι συνεχής συνάρτηση της μεταβλητής <span class="math notranslate nohighlight">\(\phi\)</span> όπως παραστατικά
@@ -1275,9 +1294,19 @@ DTFT και ο μετασχηματισμός Fourier <span class="math notransl
 πεδίο της συχνότητας λαμβάνοντας διακριτές τιμές <span class="math notranslate nohighlight">\(X(kf_o)\)</span> του μετασχηματισμού Fourier που
 αντιστοιχούν σε ανάλυση συχνότητας <span class="math notranslate nohighlight">\(f_o=1/T_o\)</span>. Αυτό ισοδυναμεί με περιοδική επανάληψη του
 σήματος συνεχούς χρόνου <span class="math notranslate nohighlight">\(x(t)\)</span> κάθε <span class="math notranslate nohighlight">\(Τ_ο\)</span>, αφού το περιοδικό σήμα</p>
-<p><span class="math notranslate nohighlight">\(x_p(t)=\sum_{n=-\infty}^{\infty} x\left(t-n T_{o}\right)\)</span></p>
+<div class="math notranslate nohighlight">
+\[
+ 
+x_p(t)=\sum_{n=-\infty}^{\infty} x\left(t-n T_{o}\right)
+ 
+\]</div>
 <p>έχει μετασχηματισμό Fourier</p>
-<p><span class="math notranslate nohighlight">\( X(f) \sum_{n=-\infty}^{\infty} \exp \left(-j 2 \pi f n T_{o}\right)=X(f) \frac{1}{T_{o}} \sum_{k=-\infty}^{\infty} \delta\left(f-k / T_{o}\right)=\frac{1}{T_{o}} \sum_{k=-\infty}^{\infty} X\left(k / T_{o}\right) \delta\left(f-k / T_{o}\right) \)</span></p>
+<div class="math notranslate nohighlight">
+\[
+ 
+X(f) \sum_{n=-\infty}^{\infty} \exp \left(-j 2 \pi f n T_{o}\right)=X(f) \frac{1}{T_{o}} \sum_{k=-\infty}^{\infty} \delta\left(f-k / T_{o}\right)=\frac{1}{T_{o}} \sum_{k=-\infty}^{\infty} X\left(k / T_{o}\right) \delta\left(f-k / T_{o}\right)
+ 
+\]</div>
 <p>Επομένως, <span class="math notranslate nohighlight">\(X[k] = X(kf_o)/Τ_o\)</span> είναι οι συντελεστές του αναπτύγματος σε σειρά Fourier.του περιοδικού
 σήματος <span class="math notranslate nohighlight">\(x_p(t)\)</span>. Προφανώς, για σήματα <span class="math notranslate nohighlight">\(x(t)\)</span> πεπερασμένης διάρκειας, όπου <span class="math notranslate nohighlight">\(x(t)=0\)</span> για <span class="math notranslate nohighlight">\(|t| ≥ T\)</span>, με την
 υπόθεση ότι η περίοδος <span class="math notranslate nohighlight">\(T_o ≥ 2T\)</span>, ισχύει ότι <span class="math notranslate nohighlight">\(x(t) = x_p(t)\)</span> για <span class="math notranslate nohighlight">\(|t| ≤ T\)</span>.
@@ -1286,13 +1315,33 @@ DTFT και ο μετασχηματισμός Fourier <span class="math notransl
 το πιο σημαντικό τους μέρος για το διάστημα παρατήρησης και <span class="math notranslate nohighlight">\(x(t)= 0\)</span>, αλλού. Κατά τον
 υπολογισμό του DTFT <span class="math notranslate nohighlight">\(X_d(\phi)\)</span> ενός τέτοιου ακρωτηριασμένου σήματος, αντί του απείρου
 αθροίσματος, περιοριζόμαστε σε μια πεπερασμένου μήκους <span class="math notranslate nohighlight">\(L\)</span> σειρά αριθμών <span class="math notranslate nohighlight">\(x[n]\)</span>, οπότε</p>
-<p><span class="math notranslate nohighlight">\(X_d(\phi)=\sum_{n=0}^{L-1} x[n] \exp (-j 2 \pi n \phi) \)</span></p>
+<div class="math notranslate nohighlight">
+\[ 
+ 
+X_d(\phi)=\sum_{n=0}^{L-1} x[n] \exp (-j 2 \pi n \phi)
+ 
+\]</div>
 <p>H δειγματοληψία του <span class="math notranslate nohighlight">\(X_d(\phi)\)</span> στο πεδίο συχνότητας σε <span class="math notranslate nohighlight">\(Ν\)</span> ισαπέχουσες κανονικοποιημένες συχνότητες <span class="math notranslate nohighlight">\(0\)</span>, <span class="math notranslate nohighlight">\(1/Ν\)</span>, <span class="math notranslate nohighlight">\(2/Ν\)</span>, <span class="math notranslate nohighlight">\(…\)</span>, <span class="math notranslate nohighlight">\((Ν-1)/Ν\)</span>, δίνει</p>
-<p><span class="math notranslate nohighlight">\(X[k]=X_{d}\left(\frac{k}{N}\right)=\sum_{n=0}^{N-1} x[n] \exp \left(-j 2 \pi n \frac{k}{N}\right), \quad 0 \leq k \leq N-1\)</span></p>
+<div class="math notranslate nohighlight">
+\[ 
+ 
+X[k]=X_{d}\left(\frac{k}{N}\right)=\sum_{n=0}^{N-1} x[n] \exp \left(-j 2 \pi n \frac{k}{N}\right), \quad 0 \leq k \leq N-1
+ 
+\]</div>
 <p>όπου, εάν <span class="math notranslate nohighlight">\(N≥L\)</span>, θέτουμε <span class="math notranslate nohighlight">\(x[n]=0\)</span> για <span class="math notranslate nohighlight">\(n≥L\)</span>. Η τελευταία σχέση αναγνωρίζεται ως ο διακριτός μετασχηματισμός Fourier (Discrete Fourier Transform – DFT), ο οποίος για μια πεπερασμένη σειρά <span class="math notranslate nohighlight">\(xn\)</span>, <span class="math notranslate nohighlight">\(n=0\)</span>, <span class="math notranslate nohighlight">\(1\)</span>, <span class="math notranslate nohighlight">\(…\)</span>, <span class="math notranslate nohighlight">\(N-1\)</span>, ορίζεται ως:</p>
-<p><span class="math notranslate nohighlight">\(X_{k} \triangleq \sum_{n=0}^{N-1} x_{n} \exp \left(-j 2 \pi n \frac{k}{N}\right), \quad 0 \leq k \leq N-1\)</span></p>
+<div class="math notranslate nohighlight">
+\[ 
+ 
+X_{k} \triangleq \sum_{n=0}^{N-1} x_{n} \exp \left(-j 2 \pi n \frac{k}{N}\right), \quad 0 \leq k \leq N-1
+ 
+\]</div>
 <p>και ο αντίστροφός του είναι</p>
-<p><span class="math notranslate nohighlight">\(x_{n}=\frac{1}{N} \sum_{k=0}^{N-1} X_{k} \exp \left(j 2 \pi n \frac{k}{N}\right), \quad 0 \leq n \leq N-1\)</span></p>
+<div class="math notranslate nohighlight">
+\[ 
+ 
+x_{n}=\frac{1}{N} \sum_{k=0}^{N-1} X_{k} \exp \left(j 2 \pi n \frac{k}{N}\right), \quad 0 \leq n \leq N-1
+ 
+\]</div>
 <p>Η <span class="math notranslate nohighlight">\(X_d(\phi)\)</span> ως DTFT είναι περιοδική συνάρτηση και εάν η αρχική σειρά xn ήταν περιοδική (και δεν
 εφαρμόζαμε το παράθυρο), τότε η <span class="math notranslate nohighlight">\(X_d(\phi)\)</span> θα ήταν μηδέν παντού εκτός των σημείων της
 δειγματοληψίας <span class="math notranslate nohighlight">\(k/Ν\)</span>. Δηλαδή, εάν θεωρήσουμε μια πεπερασμένου μήκους σειρά αριθμών που
@@ -1562,31 +1611,81 @@ DTFT και ο μετασχηματισμός Fourier <span class="math notransl
 <h3>Φασματική Ανάλυση<a class="headerlink" href="#id4" title="Link to this heading">#</a></h3>
 <p>Για τον υπολογισμό της ενέργειας ή ισχύος της κυματομορφής <span class="math notranslate nohighlight">\(x(t)\)</span>, ανάλογα με την περίπτωση
 σήματος, ισχύει</p>
-<p><span class="math notranslate nohighlight">\(E_{X}=\int_{-\infty}^{\infty} x^{2}(t) d t=\int_{-\infty}^{\infty}|X(f)|^{2} d f\)</span></p>
-<p><span class="math notranslate nohighlight">\(P_{X}=\lim _{T \rightarrow \infty} \frac{1}{T} \int_{-T / 2}^{T / 2} x^{2}(t) d t=\int_{-\infty}^{\infty} S_{X}(f) d f\)</span></p>
+<div class="math notranslate nohighlight">
+\[
+ 
+E_{X}=\int_{-\infty}^{\infty} x^{2}(t) d t=\int_{-\infty}^{\infty}|X(f)|^{2} d f
+ 
+\]</div>
+<div class="math notranslate nohighlight">
+\[ 
+ 
+P_{X}=\lim _{T \rightarrow \infty} \frac{1}{T} \int_{-T / 2}^{T / 2} x^{2}(t) d t=\int_{-\infty}^{\infty} S_{X}(f) d f
+ 
+\]</div>
 <p>όπου για σήματα ισχύος <span class="math notranslate nohighlight">\(S_Χ(f)\)</span> είναι η πυκνότητα φάσματος ισχύος (Power Spectral Density – PSD)
 της <span class="math notranslate nohighlight">\(x(t)\)</span>. Για σήματα διακριτού χρόνου που προκύπτουν από δειγματοληψία της <span class="math notranslate nohighlight">\(x(t)\)</span> με περίοδο <span class="math notranslate nohighlight">\(T_s\)</span>,
 οι αντίστοιχες σχέσεις υπολογισμό της ενέργειας ή ισχύος γίνονται</p>
-<p><span class="math notranslate nohighlight">\(E_{X}=T_{s} \sum_{n=-\infty}^{\infty} x^{2}[n]\)</span></p>
-<p><span class="math notranslate nohighlight">\(P_{X}=\lim _{N \rightarrow \infty} \frac{1}{2 N+1} \sum_{n=-N}^{N} x^{2}[n]\)</span></p>
+<div class="math notranslate nohighlight">
+\[ 
+ 
+E_{X}=T_{s} \sum_{n=-\infty}^{\infty} x^{2}[n]
+ 
+\]</div>
+<div class="math notranslate nohighlight">
+\[ 
+ 
+P_{X}=\lim _{N \rightarrow \infty} \frac{1}{2 N+1} \sum_{n=-N}^{N} x^{2}[n]
+ 
+\]</div>
 <p>Ένας απλός τρόπος να εκτιμηθεί η πυκνότητα φάσματος ισχύος της κυματομορφής <span class="math notranslate nohighlight">\(x(t)\)</span> είναι να
 ληφθεί ο DTFT των δειγμάτων του σήματος και μετά να υψωθεί στο τετράγωνο το μέτρο του
 αποτελέσματος. Αυτός ο εκτιμητής αποκαλείται περιοδόγραμμα (periodogram). Το περιοδόγραμμα
 ενός πεπερασμένου μήκους <span class="math notranslate nohighlight">\(L\)</span> σήματος <span class="math notranslate nohighlight">\(x[n]\)</span> ορίζεται ως</p>
-<p><span class="math notranslate nohighlight">\(P_{x x}(f) \triangleq \frac{\left|X_{d}\left(f / f_{s}\right)\right|^{2}}{f_{s} L}\)</span></p>
+<div class="math notranslate nohighlight">
+\[ 
+ 
+P_{x x}(f) \triangleq \frac{\left|X_{d}\left(f / f_{s}\right)\right|^{2}}{f_{s} L}
+ 
+\]</div>
 <p>όπου <span class="math notranslate nohighlight">\(X_d(\phi)\)</span> o DTFT του σήματος. Με το μήκος <span class="math notranslate nohighlight">\(L\)</span> να τείνει στο άπειρο, το περιοδόγραμμα <span class="math notranslate nohighlight">\(P_{xx}(f)\)</span>
 τείνει στην πυκνότητα φάσματος ισχύος <span class="math notranslate nohighlight">\(S_Χ(f)\)</span>. Ο υπολογισμός του περιοδογράμματος σε
 πεπερασμένο πλήθος συχνοτήτων <span class="math notranslate nohighlight">\(kf_s/Ν\)</span>, <span class="math notranslate nohighlight">\(k=0\)</span>, <span class="math notranslate nohighlight">\(1\)</span>, <span class="math notranslate nohighlight">\(…\)</span> , <span class="math notranslate nohighlight">\(Ν\)</span> δίνει</p>
-<p><span class="math notranslate nohighlight">\(P_{x x}[k]=\frac{\left|X_{k}\right|^{2}}{f_{s} L}, \quad k=0,1, \ldots, N-1\)</span></p>
+<div class="math notranslate nohighlight">
+\[ 
+ 
+P_{x x}[k]=\frac{\left|X_{k}\right|^{2}}{f_{s} L}, \quad k=0,1, \ldots, N-1
+ 
+\]</div>
 <p>όπου <span class="math notranslate nohighlight">\(X_k\)</span> και ο DFT της πεπερασμένου μήκους <span class="math notranslate nohighlight">\(L\)</span> σειράς δειγμάτων του σήματος. Η ισχύς του
 σήματος είναι τότε</p>
-<p><span class="math notranslate nohighlight">\(P_{X}=\frac{1}{f_{s} L} \sum_{k=0}^{N-1}\left|X_{k}\right|^{2} f_{o}=\frac{1}{N L} \sum_{k=0}^{N-1}\left|X_{k}\right|^{2}=\frac{1}{L} \sum_{n=0}^{L-1}\left|x_{n}\right|^{2}\)</span></p>
+<div class="math notranslate nohighlight">
+\[ 
+ 
+P_{X}=\frac{1}{f_{s} L} \sum_{k=0}^{N-1}\left|X_{k}\right|^{2} f_{o}=\frac{1}{N L} \sum_{k=0}^{N-1}\left|X_{k}\right|^{2}=\frac{1}{L} \sum_{n=0}^{L-1}\left|x_{n}\right|^{2}
+ 
+\]</div>
 <p>όπου η τελευταία ισότητα προκύπτει από το θεώρημα Parseval, που για την περίπτωση του DFT
 εκφράζεται ως:</p>
-<p><span class="math notranslate nohighlight">\(\sum_{n=0}^{N-1}\left|x_{n}\right|^{2}=\frac{1}{N} \sum_{k=0}^{N-1}\left|X_{k}\right|^{2}\)</span></p>
+<div class="math notranslate nohighlight">
+\[ 
+ 
+\sum_{n=0}^{N-1}\left|x_{n}\right|^{2}=\frac{1}{N} \sum_{k=0}^{N-1}\left|X_{k}\right|^{2}
+ 
+\]</div>
 <p>Στην ειδική περίπτωση περιοδικών σημάτων έχουμε</p>
-<p><span class="math notranslate nohighlight">\(S_x(f) = \sum_{k=-\infty}^{\infty} |X[k]|^2 \delta(f - k/T_0)\)</span></p>
-<p><span class="math notranslate nohighlight">\(P_x = \sum_{k=-\infty}^{\infty} |X[k]|^2\)</span></p>
+<div class="math notranslate nohighlight">
+\[ 
+ 
+S_x(f) = \sum_{k=-\infty}^{\infty} |X[k]|^2 \delta(f - k/T_0)
+ 
+\]</div>
+<div class="math notranslate nohighlight">
+\[ 
+ 
+P_x = \sum_{k=-\infty}^{\infty} |X[k]|^2
+ 
+\]</div>
 <p>όπου <span class="math notranslate nohighlight">\(X[k]\)</span> οι συντελεστές του αναπτύγματος σε σειρά Fourier και <span class="math notranslate nohighlight">\(T_o\)</span> η περίοδος του σήματος.</p>
 </section>
 </section>
