@@ -8,8 +8,8 @@ logo: logo.png
 # Force re-execution of notebooks on each build.
 # See https://jupyterbook.org/content/execute.html
 execute:
-  execute_notebooks: force
-  kernel_name: digital_communications
+  execute_notebooks: cache
+
 
 # Define the name of the latex output file for PDF builds
 latex:
@@ -31,3 +31,8 @@ repository:
 html:
   use_issues_button: true
   use_repository_button: true
+
+
+sphinx:
+  config:
+    nb_execution_show_tb: True
