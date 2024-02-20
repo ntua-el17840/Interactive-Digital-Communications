@@ -114,7 +114,7 @@ def update_graph(selected_frequencies):
     
 
 if __name__ == '__main__':
-    app1.run_server(debug=True, port=8050)
+    app1.run_server(debug=True, port=8055)
 
 ------------------
 
@@ -124,7 +124,7 @@ if __name__ == '__main__':
 Cell [1;32mIn[15], line 97[0m
 [0;32m     92[0m     [38;5;28;01mreturn[39;00m original_signal_figure, fourier_transform_figure
 [0;32m     96[0m [38;5;28;01mif[39;00m [38;5;18m__name__[39m [38;5;241m==[39m [38;5;124m'[39m[38;5;124m__main__[39m[38;5;124m'[39m:
-[1;32m---> 97[0m     [43mapp1[49m[38;5;241;43m.[39;49m[43mrun_server[49m[43m([49m[43mdebug[49m[38;5;241;43m=[39;49m[38;5;28;43;01mTrue[39;49;00m[43m,[49m[43m [49m[43mport[49m[38;5;241;43m=[39;49m[38;5;241;43m8050[39;49m[43m)[49m
+[1;32m---> 97[0m     [43mapp1[49m[38;5;241;43m.[39;49m[43mrun_server[49m[43m([49m[43mdebug[49m[38;5;241;43m=[39;49m[38;5;28;43;01mTrue[39;49;00m[43m,[49m[43m [49m[43mport[49m[38;5;241;43m=[39;49m[38;5;241;43m8055[39;49m[43m)[49m
 
 File [1;32m~\anaconda3\Lib\site-packages\dash\dash.py:2175[0m, in [0;36mDash.run_server[1;34m(self, *args, **kwargs)[0m
 [0;32m   2169[0m [38;5;28;01mdef[39;00m [38;5;21mrun_server[39m([38;5;28mself[39m, [38;5;241m*[39margs, [38;5;241m*[39m[38;5;241m*[39mkwargs):
@@ -206,6 +206,6 @@ File [1;32m~\anaconda3\Lib\site-packages\dash\_jupyter.py:377[0m, in [0;36mJu
 [0;32m    381[0m [38;5;28;01mexcept[39;00m requests[38;5;241m.[39mConnectionError [38;5;28;01mas[39;00m err:
 [0;32m    382[0m     _get_error()
 
-[1;31mOSError[0m: Address 'http://127.0.0.1:8050' already in use.
+[1;31mOSError[0m: Address 'http://127.0.0.1:8055' already in use.
     Try passing a different port to run_server.
 

@@ -410,7 +410,31 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <div class="cell tag_hide-input docutils container">
+  <section class="tex2jax_ignore mathjax_ignore" id="id1">
+<h1>Εργαστηριακή Άσκηση 1<a class="headerlink" href="#id1" title="Link to this heading">#</a></h1>
+<p>Σκοπός της πρώτης σειράς ασκήσεων είναι, αφ’ ενός η εξοικείωση με το προγραμματιστικό περιβάλλον της Python, αφ’ ετέρου, η εισαγωγή στους τρόπους παράστασης και επεξεργασίας τηλεπικοινωνιακών σημάτων στη συγκεκριμένη γλώσσα προγραμματισμού.</p>
+<section id="python">
+<h2>Μέρος 1: Εξοικείωση με το προγραμματιστικό περιβάλλον της Python<a class="headerlink" href="#python" title="Link to this heading">#</a></h2>
+<p>Λίγα λόγια για τον interactive python interpreter [ipython] και το jupyter notebook</p>
+<section id="interactive-python-interpreter-ipython-notebook">
+<h3>Interactive python interpreter (IPython) notebook<a class="headerlink" href="#interactive-python-interpreter-ipython-notebook" title="Link to this heading">#</a></h3>
+<p>Το IPython (Interactive Python) (<a class="reference external" href="https://ipython.org/">https://ipython.org/</a>) είναι  ένα διαδραστικό κέλυφος γραμμής εντολών σχεδιασμένο για τη γλώσσα προγραμματισμού Python.Υπερβαίνει τον παραδοσιακό διερμηνέα Python και προσφέρει βελτιωμένες δυνατότητες (REPL):</p>
+<p>1)Ανάγνωσης (Read)<br />
+2)Aξιολόγησης (Evaluate)<br />
+3)Eκτύπωσης (Print)<br />
+4)Επαναλάψης (Loop)</p>
+<p>Μην ξεχνάτε ότι η IPython μας δίνει τη δυνατότητα να ‘εξερευνήσουμε’ το περιεχόμενο ενός package, χρησιμοποιώντας τη δυνατότητα του tab-completion, ή τη χρήση του ? για help/documentation:
+Π.χ., για να δούμε όλα τα περιεχόμενα του signal namespace δίνουμε:</p>
+<p>In [3]: signal?</p>
+<p>και για να καλέσουμε την ενσωμετωμένη τεκμηρίωση της numpy, δίνουμε:</p>
+<p>In [4]: np?</p>
+<p>Περισσότερες πληροφορίες μπορείτε να πάρετε από το <a class="reference external" href="http://www.numpy.org">http://www.numpy.org</a>.</p>
+</section>
+<section id="jupyter-notebook">
+<h3>Jupyter notebook<a class="headerlink" href="#jupyter-notebook" title="Link to this heading">#</a></h3>
+<p>To Project Jupyter είναι ένας μη κερδοσκοπικός οργανισμός με αποστολή τη συγγραφή ανοικτού λογισμικού για διαδραστικές εφαρμογές. Ξεκίνησε από ipython, ωστόσο σήμερα προσφέρει προγράμματα σε πολλές γλώσσες προγραμματισμού.</p>
+<p>Το jupyter notebook (<a class="reference external" href="https://jupyter.org/">https://jupyter.org/</a>) είναι μια πλατφόρμα web ανοικτού λογισμικού για την ανάπτυξη διαδραστικών εφαρμογών, κυρίως για επεξεργασία (επιστημονικών) δεδομένων και μηχανικής μάθησης.</p>
+<div class="cell tag_hide-input docutils container">
 <details class="hide above-input">
 <summary aria-label="Toggle hidden content">
 <span class="collapsed">Show code cell source</span>
@@ -445,12 +469,9 @@ document.write(`
 </div>
 </div>
 </div>
-<p>Μην ξεχνάτε ότι η IPython μας δίνει τη δυνατότητα να ‘εξερευνήσουμε’ το περιεχόμενο ενός package, χρησιμοποιώντας τη δυνατότητα του tab-completion, ή τη χρήση του ? για help/documentation:
-Π.χ., για να δούμε όλα τα περιεχόμενα του signal namespace δίνουμε:</p>
-<p>In [3]: signal?</p>
-<p>και για να καλέσουμε την ενσωμετωμένη τεκμηρίωση της numpy, δίνουμε:</p>
-<p>In [4]: np?</p>
-<p>Περισσότερες πληροφορίες μπορείτε να πάρετε από το <a class="reference external" href="http://www.numpy.org">http://www.numpy.org</a>.</p>
+</section>
+<section id="id2">
+<h3>Εξάσκηση<a class="headerlink" href="#id2" title="Link to this heading">#</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Δημιουργήστε ένα βαθμωτό (μονοδιάστατο) μέγεθος</span>
@@ -466,27 +487,6 @@ document.write(`
 </div>
 </div>
 </div>
-<section class="tex2jax_ignore mathjax_ignore" id="id1">
-<h1>Εργαστηριακή Άσκηση 1<a class="headerlink" href="#id1" title="Link to this heading">#</a></h1>
-<p>Σκοπός της πρώτης σειράς ασκήσεων είναι, αφ’ ενός η εξοικείωση με το προγραμματιστικό περιβάλλον της Python, αφ’ ετέρου, η εισαγωγή στους τρόπους παράστασης και επεξεργασίας τηλεπικοινωνιακών σημάτων στη συγκεκριμένη γλώσσα προγραμματισμού.</p>
-<section id="python">
-<h2>Μέρος 1: Εξοικείωση με το προγραμματιστικό περιβάλλον της Python<a class="headerlink" href="#python" title="Link to this heading">#</a></h2>
-<p>Λίγα λόγια για τον interactive python interpreter [ipython] και το jupyter notebook</p>
-<section id="interactive-python-interpreter-ipython-notebook">
-<h3>Interactive python interpreter (IPython) notebook<a class="headerlink" href="#interactive-python-interpreter-ipython-notebook" title="Link to this heading">#</a></h3>
-<p>Το IPython (Interactive Python) (<a class="reference external" href="https://ipython.org/">https://ipython.org/</a>) είναι  ένα διαδραστικό κέλυφος γραμμής εντολών σχεδιασμένο για τη γλώσσα προγραμματισμού Python.Υπερβαίνει τον παραδοσιακό διερμηνέα Python και προσφέρει βελτιωμένες δυνατότητες (REPL):</p>
-<p>1)Ανάγνωσης (Read)<br />
-2)Aξιολόγησης (Evaluate)<br />
-3)Eκτύπωσης (Print)<br />
-4)Επαναλάψης (Loop)</p>
-</section>
-<section id="jupyter-notebook">
-<h3>Jupyter notebook<a class="headerlink" href="#jupyter-notebook" title="Link to this heading">#</a></h3>
-<p>To Project Jupyter είναι ένας μη κερδοσκοπικός οργανισμός με αποστολή τη συγγραφή ανοικτού λογισμικού για διαδραστικές εφαρμογές. Ξεκίνησε από ipython, ωστόσο σήμερα προσφέρει προγράμματα σε πολλές γλώσσες προγραμματισμού.</p>
-<p>Το jupyter notebook (<a class="reference external" href="https://jupyter.org/">https://jupyter.org/</a>) είναι μια πλατφόρμα web ανοικτού λογισμικού για την ανάπτυξη διαδραστικών εφαρμογών, κυρίως για επεξεργασία (επιστημονικών) δεδομένων και μηχανικής μάθησης.</p>
-</section>
-<section id="id2">
-<h3>Εξάσκηση<a class="headerlink" href="#id2" title="Link to this heading">#</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Δημιουργείστε ένα διάνυσμα πραγματικών τιμών:</span>
@@ -685,7 +685,8 @@ document.write(`
 <section id="id3">
 <h2>Μέρος 2:  Δειγματοληψία - Ψηφιοποίηση<a class="headerlink" href="#id3" title="Link to this heading">#</a></h2>
 <p>Τα πρωτογενή σήματα είναι κυρίως αναλογικά (συνεχούς χρόνου). Για να τα παραστήσουμε και επεξεργαστούμε στον υπολογιστή μας (ή άλλη ψηφιακή μηχανή) θα πρέπει πρώτα να τα ψηφιοποιήσουμε. Υποθέστε ένα σήμα συνεχούς χρόνου <span class="math notranslate nohighlight">\(x(t)\)</span> με μετασχηματισμό Fourier (Continuous Time Fourier Transform – CTFT):</p>
-<p><span class="math notranslate nohighlight">\(X(f)=\int_{-\infty}^{\infty} x(t)e^{-j2\pi ft} dt\)</span></p>
+<div class="math notranslate nohighlight">
+\[X(f)=\int_{-\infty}^{\infty} x(t)e^{-j2\pi ft} dt\]</div>
 <div class="cell tag_hide-input docutils container">
 <details class="hide above-input">
 <summary aria-label="Toggle hidden content">
@@ -789,7 +790,7 @@ document.write(`
     
 
 <span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
-    <span class="n">app1</span><span class="o">.</span><span class="n">run_server</span><span class="p">(</span><span class="n">debug</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">port</span><span class="o">=</span><span class="mi">8050</span><span class="p">)</span>
+    <span class="n">app1</span><span class="o">.</span><span class="n">run_server</span><span class="p">(</span><span class="n">debug</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">port</span><span class="o">=</span><span class="mi">8055</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -800,7 +801,7 @@ document.write(`
 <span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">15</span><span class="p">],</span> <span class="n">line</span> <span class="mi">97</span>
 <span class="g g-Whitespace">     </span><span class="mi">92</span>     <span class="k">return</span> <span class="n">original_signal_figure</span><span class="p">,</span> <span class="n">fourier_transform_figure</span>
 <span class="g g-Whitespace">     </span><span class="mi">96</span> <span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
-<span class="ne">---&gt; </span><span class="mi">97</span>     <span class="n">app1</span><span class="o">.</span><span class="n">run_server</span><span class="p">(</span><span class="n">debug</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">port</span><span class="o">=</span><span class="mi">8050</span><span class="p">)</span>
+<span class="ne">---&gt; </span><span class="mi">97</span>     <span class="n">app1</span><span class="o">.</span><span class="n">run_server</span><span class="p">(</span><span class="n">debug</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">port</span><span class="o">=</span><span class="mi">8055</span><span class="p">)</span>
 
 <span class="nn">File ~\anaconda3\Lib\site-packages\dash\dash.py:2175,</span> in <span class="ni">Dash.run_server</span><span class="nt">(self, *args, **kwargs)</span>
 <span class="g g-Whitespace">   </span><span class="mi">2169</span> <span class="k">def</span> <span class="nf">run_server</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
@@ -882,17 +883,17 @@ document.write(`
 <span class="g g-Whitespace">    </span><span class="mi">381</span> <span class="k">except</span> <span class="n">requests</span><span class="o">.</span><span class="n">ConnectionError</span> <span class="k">as</span> <span class="n">err</span><span class="p">:</span>
 <span class="g g-Whitespace">    </span><span class="mi">382</span>     <span class="n">_get_error</span><span class="p">()</span>
 
-<span class="ne">OSError</span>: Address &#39;http://127.0.0.1:8050&#39; already in use.
+<span class="ne">OSError</span>: Address &#39;http://127.0.0.1:8055&#39; already in use.
     <span class="n">Try</span> <span class="n">passing</span> <span class="n">a</span> <span class="n">different</span> <span class="n">port</span> <span class="n">to</span> <span class="n">run_server</span><span class="o">.</span>
 </pre></div>
 </div>
 </div>
 </div>
-<p>Λαμβάνοντας δείγματα του <span class="math notranslate nohighlight">\(x(t)\)</span> με ρυθμό <span class="math notranslate nohighlight">\(f_s=1/T_s\)</span> παράγεται σήμα διακριτού χρόνου <span class="math notranslate nohighlight">\(x(nT_s)\)</span>. Μαθηματικά το αναπαριστάνουμε ως σειρά συναρτήσεων δέλτα
-$<span class="math notranslate nohighlight">\(x_\delta (t)=\sum_{n=-\infty}^{\infty}x(nT_s)\delta(t-nT_s)=x(t)\sum_{n=-\infty}^{\infty}\delta(t-nT_s)\)</span><span class="math notranslate nohighlight">\(
-με μετασχηματισμό Fourier
-\)</span><span class="math notranslate nohighlight">\(X_\delta (f)=\sum_{n=-\infty}^{\infty}x(nT_s)e^{-j2\pi fnT_s}=X(f)*1/T_s\sum_{n=-\infty}^{\infty}\delta(f-k/T_s)=1/T_s\sum_{n=-\infty}^{\infty}X(f-k/T_s)\)</span>$
-που είναι περιοδική συνάρτηση.</p>
+<p>Λαμβάνοντας δείγματα του <span class="math notranslate nohighlight">\(x(t)\)</span> με ρυθμό <span class="math notranslate nohighlight">\(f_s=1/T_s\)</span> παράγεται σήμα διακριτού χρόνου <span class="math notranslate nohighlight">\(x(nT_s)\)</span>. Μαθηματικά το αναπαριστάνουμε ως σειρά συναρτήσεων δέλτα</p>
+<p><span class="math notranslate nohighlight">\(x_\delta (t)=\sum_{n=-\infty}^{\infty}x(nT_s)\delta(t-nT_s)=x(t)\sum_{n=-\infty}^{\infty}\delta(t-nT_s)\)</span></p>
+<p>με μετασχηματισμό Fourier</p>
+<p><span class="math notranslate nohighlight">\(X_\delta (f)=\sum_{n=-\infty}^{\infty}x(nT_s)e^{-j2\pi fnT_s}=X(f)*1/T_s\sum_{n=-\infty}^{\infty}\delta(f-k/T_s)=1/T_s\sum_{n=-\infty}^{\infty}X(f-k/T_s)\)</span></p>
+<p>που είναι περιοδική συνάρτηση.</p>
 <div class="cell tag_hide-input docutils container">
 <details class="hide above-input">
 <summary aria-label="Toggle hidden content">
