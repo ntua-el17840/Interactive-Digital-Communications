@@ -28,7 +28,7 @@
 <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.1/webfonts/fa-brands-400.woff2" />
 <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.1/webfonts/fa-regular-400.woff2" />
 
-    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b76e3c8a" />
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=fa44fd50" />
     <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=384b581d" />
     <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
@@ -60,7 +60,7 @@
     <script>DOCUMENTATION_OPTIONS.pagename = 'content/Digcom_Lab5';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Εργαστηριακή Άσκηση 6 FSK-MSK" href="Digcom_Lab6.html" />
+    <link rel="next" title="Εργαστηριακή Άσκηση 6" href="Digcom_Lab6.html" />
     <link rel="prev" title="Εργαστηριακή Άσκηση 4" href="Digcom_Lab4.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
@@ -189,7 +189,7 @@
 <li class="toctree-l1"><a class="reference internal" href="Digcom_Lab3.html">Εργαστηριακή Άσκηση 3</a></li>
 <li class="toctree-l1"><a class="reference internal" href="Digcom_Lab4.html">Εργαστηριακή Άσκηση 4</a></li>
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">Εργαστηριακή Άσκηση 5</a></li>
-<li class="toctree-l1"><a class="reference internal" href="Digcom_Lab6.html">Εργαστηριακή Άσκηση 6 FSK-MSK</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Digcom_Lab6.html">Εργαστηριακή Άσκηση 6</a></li>
 </ul>
 
     </div>
@@ -642,7 +642,25 @@ Pb&lt;–&gt;Eb/No. Η συχνότητα δειγματοληψίας πρέπ�
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/88aea2756d5e077d130a804772f97a40b41beb670b73b3b688c5d285a6c5e765.png" src="../_images/88aea2756d5e077d130a804772f97a40b41beb670b73b3b688c5d285a6c5e765.png" />
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">KeyboardInterrupt</span><span class="g g-Whitespace">                         </span>Traceback (most recent call last)
+<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">5</span><span class="p">],</span> <span class="n">line</span> <span class="mi">125</span>
+<span class="g g-Whitespace">    </span><span class="mi">123</span> <span class="n">ber_th</span><span class="o">=</span><span class="p">[]</span>
+<span class="g g-Whitespace">    </span><span class="mi">124</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">15</span><span class="p">):</span>
+<span class="ne">--&gt; </span><span class="mi">125</span>     <span class="n">ber_exp</span><span class="o">=</span><span class="n">ber_exp</span><span class="o">+</span><span class="p">[</span><span class="n">ber_64qam</span><span class="p">(</span><span class="n">i</span><span class="p">)]</span>
+<span class="g g-Whitespace">    </span><span class="mi">126</span>     <span class="n">ber_th</span> <span class="o">=</span> <span class="n">ber_th</span> <span class="o">+</span><span class="p">[((</span><span class="n">L</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span> <span class="o">/</span><span class="p">(</span><span class="n">L</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">log2</span><span class="p">(</span><span class="n">L</span><span class="p">))</span> <span class="o">*</span> <span class="n">scipy</span><span class="o">.</span><span class="n">special</span><span class="o">.</span><span class="n">erfc</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mi">3</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">log2</span><span class="p">(</span><span class="n">L</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="n">L</span> <span class="o">*</span> <span class="n">L</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span> <span class="o">*</span> <span class="mi">10</span><span class="o">**</span><span class="p">(</span><span class="n">i</span><span class="o">/</span><span class="mi">10</span><span class="p">))))]</span>
+<span class="g g-Whitespace">    </span><span class="mi">128</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">18</span><span class="p">,</span> <span class="mi">16</span><span class="p">))</span>
+
+<span class="nn">Cell In[5], line 64,</span> in <span class="ni">ber_64qam</span><span class="nt">(EbNo)</span>
+<span class="g g-Whitespace">     </span><span class="mi">62</span> <span class="n">my_str</span><span class="o">=</span><span class="s1">&#39;&#39;</span>
+<span class="g g-Whitespace">     </span><span class="mi">63</span> <span class="n">y</span><span class="o">=</span><span class="n">x_temp</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+<span class="ne">---&gt; </span><span class="mi">64</span> <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="nb">int</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">log2</span><span class="p">(</span><span class="n">M</span><span class="p">))):</span>
+<span class="g g-Whitespace">     </span><span class="mi">65</span>     <span class="n">my_str</span><span class="o">=</span><span class="n">my_str</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">y</span><span class="p">[</span><span class="n">j</span><span class="p">]))</span>
+<span class="g g-Whitespace">     </span><span class="mi">66</span> <span class="n">a</span><span class="o">=</span><span class="nb">int</span><span class="p">(</span><span class="n">my_str</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+
+<span class="ne">KeyboardInterrupt</span>: 
+</pre></div>
+</div>
 </div>
 </div>
 <p><font size="3">  3) Αν ο μέγιστος ανηγμένος σηματοθορυβικός λόγος, Eb/No, που μπορείτε να
@@ -744,7 +762,7 @@ Pb&lt;–&gt;Eb/No. Η συχνότητα δειγματοληψίας πρέπ�
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/3376c3fb66e883b755d6262b0f2624d11bdf274af49b61d21849bf725f282503.png" src="../_images/3376c3fb66e883b755d6262b0f2624d11bdf274af49b61d21849bf725f282503.png" />
+<img alt="../_images/0a1ec7fefd4dde8940c58e400c9b656a1a2b295b8c527f77973b55e2566a2474.png" src="../_images/0a1ec7fefd4dde8940c58e400c9b656a1a2b295b8c527f77973b55e2566a2474.png" />
 </div>
 </div>
 <p><font size="3">4. Πόσο μπορεί να αυξηθεί ο ρυθμός μετάδοσης στο ερώτημα 3, αν μπορεί να
@@ -812,7 +830,7 @@ Pb&lt;–&gt;Eb/No. Η συχνότητα δειγματοληψίας πρέπ�
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Εργαστηριακή Άσκηση 6 FSK-MSK</p>
+        <p class="prev-next-title">Εργαστηριακή Άσκηση 6</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
