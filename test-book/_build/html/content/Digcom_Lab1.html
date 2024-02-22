@@ -1691,7 +1691,12 @@ P_x = \sum_{k=-\infty}^{\infty} |X[k]|^2
 </section>
 <section id="id5">
 <h2>Μέρος 3:  Εφαρμογή Α<a class="headerlink" href="#id5" title="Link to this heading">#</a></h2>
-<div class="cell docutils container">
+<div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">app10</span> <span class="o">=</span> <span class="n">Dash</span><span class="p">(</span><span class="vm">__name__</span><span class="p">,</span> <span class="n">external_stylesheets</span><span class="o">=</span><span class="p">[</span><span class="n">dbc</span><span class="o">.</span><span class="n">themes</span><span class="o">.</span><span class="n">BOOTSTRAP</span><span class="p">])</span>
 
@@ -1857,6 +1862,7 @@ P_x = \sum_{k=-\infty}^{\infty} |X[k]|^2
 </pre></div>
 </div>
 </div>
+</details>
 <div class="cell_output docutils container">
 <div class="output text_html">
         <iframe
@@ -1869,7 +1875,12 @@ P_x = \sum_{k=-\infty}^{\infty} |X[k]|^2
         ></iframe>
         </div></div>
 </div>
-<div class="cell docutils container">
+<div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Part 2 Προσθέστε θόρυβο στο σήμα</span>
 
@@ -2027,6 +2038,7 @@ P_x = \sum_{k=-\infty}^{\infty} |X[k]|^2
 </pre></div>
 </div>
 </div>
+</details>
 <div class="cell_output docutils container">
 <div class="output text_html">
         <iframe
@@ -2039,7 +2051,12 @@ P_x = \sum_{k=-\infty}^{\infty} |X[k]|^2
         ></iframe>
         </div></div>
 </div>
-<div class="cell docutils container">
+<div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Part 3. Πολλαπλασιασμός σημάτων</span>
 
@@ -2159,6 +2176,7 @@ P_x = \sum_{k=-\infty}^{\infty} |X[k]|^2
 </pre></div>
 </div>
 </div>
+</details>
 <div class="cell_output docutils container">
 <div class="output text_html">
         <iframe
@@ -2175,7 +2193,12 @@ P_x = \sum_{k=-\infty}^{\infty} |X[k]|^2
 <section id="id6">
 <h2>Μέρος 4:  Εφαρμογή Β<a class="headerlink" href="#id6" title="Link to this heading">#</a></h2>
 <p>Να γραφεί σε Python συνάρτηση φασματικής ανάλυσης, παρόμοια με την <code class="docutils literal notranslate"><span class="pre">signal.welch()</span></code>: θα δέχεται ως είσοδο διάνυσμα πραγματικού σήματος καθώς και τη συχνότητα δειγματοληψίας, <span class="math notranslate nohighlight">\(F_s\)</span>, και θα σχεδιάζει τη μονόπλευρη φασματική πυκνότητα του σήματος στην περιοχή <span class="math notranslate nohighlight">\([0-F_s/2)\)</span>. Το σήμα θα τεμαχίζεται σε τμήματα μήκους ίσου με τη δύναμη του <span class="math notranslate nohighlight">\(2\)</span> την πλησιέστερη στο <span class="math notranslate nohighlight">\(1/8\)</span> του συνολικού του μήκους, αλλά όχι μικρότερου από 256. Τα τμήματα θα είναι επικαλυπτόμενα κατά <span class="math notranslate nohighlight">\(50\%\)</span>. Το τελευταίο τμήμα, εάν υπολείπεται σε μήκος των άλλων, θα αγνοείται. Θα υπολογίζεται με FFT το φάσμα κάθε τμήματος και θα λαμβάνεται η μέση τιμή όλων των τμημάτων. Η συνάρτηση να δοκιμαστεί με το σήμα του παραδείγματος 1.1 και να συγκριθεί το αποτέλεσμα με το αντίστοιχο της <code class="docutils literal notranslate"><span class="pre">signal.welch()</span></code>.</p>
-<div class="cell docutils container">
+<div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">pwelch</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">Fs</span><span class="p">):</span>                    
     <span class="n">Ts</span><span class="o">=</span><span class="mi">1</span><span class="o">/</span><span class="n">Fs</span>                    
@@ -2217,8 +2240,14 @@ P_x = \sum_{k=-\infty}^{\infty} |X[k]|^2
 </pre></div>
 </div>
 </div>
+</details>
 </div>
-<div class="cell docutils container">
+<div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">Fs</span><span class="o">=</span><span class="mi">500</span>
 <span class="n">f1</span><span class="p">,</span><span class="n">Pxx1</span> <span class="o">=</span> <span class="n">pwelch</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">Fs</span><span class="p">)</span>
@@ -2234,6 +2263,7 @@ P_x = \sum_{k=-\infty}^{\infty} |X[k]|^2
 </pre></div>
 </div>
 </div>
+</details>
 <div class="cell_output docutils container">
 </div>
 </div>
