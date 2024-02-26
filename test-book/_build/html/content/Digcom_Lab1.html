@@ -28,7 +28,7 @@
 <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.1/webfonts/fa-brands-400.woff2" />
 <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.1/webfonts/fa-regular-400.woff2" />
 
-    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b76e3c8a" />
     <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=384b581d" />
     <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
@@ -390,15 +390,30 @@ document.write(`
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#python">Μέρος 1: Εξοικείωση με το προγραμματιστικό περιβάλλον της Python</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#interactive-python-interpreter-ipython-notebook">Interactive python interpreter (IPython) notebook</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#jupyter-notebook">Jupyter notebook</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">Εξάσκηση</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">Εξάσκηση</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">Δημιουργήστε ένα βαθμωτό (μονοδιάστατο) μέγεθος</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">Δημιουργείστε ένα διάνυσμα πραγματικών τιμών:</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">Δημιουργείστε έναν πίνακα πραγματικών τιμών:</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">Αθροίστε</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id7">Πολλαπλασιάστε</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#elementwise">Πολλαπλασιάστε στοιχείο-προς-στοιχείο (elementwise)</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id8">Ελέγξτε το μήκος ενός διανύσματος</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id9">Ελέγξτε το μέγεθος ενός πίνακα</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id10">Προσπελάστε συγκεκριμένα στοιχεία ενός πίνακα</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id11">Προσπελάστε συγκεκριμένα στοιχεία ενός πίνακα (συνέχεια)</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id12">Προσπελάστε συγκεκριμένο τμήμα ενός διανύσματος</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id13">Προσπελάστε συγκεκριμένα τμήματα ενός πίνακα</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id14">Δημιουργήστε ένα διάνυσμα με στοιχεία από το 0 έως το 0.5 και βήμα 0.1</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">Μέρος 2:  Δειγματοληψία - Ψηφιοποίηση</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">Φασματική Ανάλυση</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">Μέρος 3:  Εφαρμογή Α</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">Μέρος 4:  Εφαρμογή Β</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id15">Μέρος 2:  Δειγματοληψία - Ψηφιοποίηση</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id16">Φασματική Ανάλυση</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id17">Μέρος 3:  Εφαρμογή Α</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id18">Μέρος 4:  Εφαρμογή Β</a></li>
 </ul>
             </nav>
         </div>
@@ -434,6 +449,9 @@ document.write(`
 <h3>Jupyter notebook<a class="headerlink" href="#jupyter-notebook" title="Link to this heading">#</a></h3>
 <p>To Project Jupyter είναι ένας μη κερδοσκοπικός οργανισμός με αποστολή τη συγγραφή ανοικτού λογισμικού για διαδραστικές εφαρμογές. Ξεκίνησε από ipython, ωστόσο σήμερα προσφέρει προγράμματα σε πολλές γλώσσες προγραμματισμού.</p>
 <p>Το jupyter notebook (<a class="reference external" href="https://jupyter.org/">https://jupyter.org/</a>) είναι μια πλατφόρμα web ανοικτού λογισμικού για την ανάπτυξη διαδραστικών εφαρμογών, κυρίως για επεξεργασία (επιστημονικών) δεδομένων και μηχανικής μάθησης.</p>
+</section>
+<section id="id2">
+<h3>Εξάσκηση<a class="headerlink" href="#id2" title="Link to this heading">#</a></h3>
 <div class="cell tag_hide-input docutils container">
 <details class="hide above-input">
 <summary aria-label="Toggle hidden content">
@@ -445,6 +463,7 @@ document.write(`
 <span class="c1"># Ανατρέξτε στην τεκμηρίωση της βιβλιοθήκης scipy.signal</span>
 <span class="c1"># https://docs.scipy.org/doc/scipy/reference/signal.html</span>
 <span class="kn">from</span> <span class="nn">scipy.fft</span> <span class="kn">import</span> <span class="n">fft</span><span class="p">,</span> <span class="n">fftfreq</span>
+<span class="kn">import</span> <span class="nn">dash</span>
 <span class="kn">from</span> <span class="nn">dash</span> <span class="kn">import</span> <span class="n">Dash</span><span class="p">,</span> <span class="n">dcc</span><span class="p">,</span> <span class="n">html</span><span class="p">,</span> <span class="n">Input</span><span class="p">,</span> <span class="n">Output</span>
 <span class="kn">import</span> <span class="nn">matplotlib</span>
 <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
@@ -454,7 +473,6 @@ document.write(`
 <span class="kn">import</span> <span class="nn">plotly</span>
 <span class="kn">import</span> <span class="nn">plotly.express</span> <span class="k">as</span> <span class="nn">px</span>
 <span class="kn">import</span> <span class="nn">plotly.graph_objs</span> <span class="k">as</span> <span class="nn">go</span>
-<span class="c1"># Δείτε την έκδοση της αριθμητικής βιβλιοθήκης numpy</span>
 <span class="kn">import</span> <span class="nn">dash_bootstrap_components</span> <span class="k">as</span> <span class="nn">dbc</span>
 <span class="kn">import</span> <span class="nn">warnings</span>
 <span class="n">warnings</span><span class="o">.</span><span class="n">filterwarnings</span><span class="p">(</span><span class="s1">&#39;ignore&#39;</span><span class="p">)</span>
@@ -464,67 +482,76 @@ document.write(`
 </div>
 </details>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Libraries added successfully!
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">ModuleNotFoundError</span><span class="g g-Whitespace">                       </span>Traceback (most recent call last)
+<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">line</span> <span class="mi">5</span>
+<span class="g g-Whitespace">      </span><span class="mi">2</span> <span class="c1"># Ανατρέξτε στην τεκμηρίωση της βιβλιοθήκης scipy.signal</span>
+<span class="g g-Whitespace">      </span><span class="mi">3</span> <span class="c1"># https://docs.scipy.org/doc/scipy/reference/signal.html</span>
+<span class="g g-Whitespace">      </span><span class="mi">4</span> <span class="kn">from</span> <span class="nn">scipy.fft</span> <span class="kn">import</span> <span class="n">fft</span><span class="p">,</span> <span class="n">fftfreq</span>
+<span class="ne">----&gt; </span><span class="mi">5</span> <span class="kn">import</span> <span class="nn">dash</span>
+<span class="g g-Whitespace">      </span><span class="mi">6</span> <span class="kn">from</span> <span class="nn">dash</span> <span class="kn">import</span> <span class="n">Dash</span><span class="p">,</span> <span class="n">dcc</span><span class="p">,</span> <span class="n">html</span><span class="p">,</span> <span class="n">Input</span><span class="p">,</span> <span class="n">Output</span>
+<span class="g g-Whitespace">      </span><span class="mi">7</span> <span class="kn">import</span> <span class="nn">matplotlib</span>
+
+<span class="ne">ModuleNotFoundError</span>: No module named &#39;dash&#39;
+</pre></div>
+</div>
+</div>
+</div>
+<section id="id3">
+<h4>Δημιουργήστε ένα βαθμωτό (μονοδιάστατο) μέγεθος<a class="headerlink" href="#id3" title="Link to this heading">#</a></h4>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">s</span><span class="o">=</span><span class="mi">2</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;s =&#39;</span><span class="p">,</span><span class="n">s</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>s = 2
 </pre></div>
 </div>
 </div>
 </div>
 </section>
-<section id="id2">
-<h3>Εξάσκηση<a class="headerlink" href="#id2" title="Link to this heading">#</a></h3>
+<section id="id4">
+<h4>Δημιουργείστε ένα διάνυσμα πραγματικών τιμών:<a class="headerlink" href="#id4" title="Link to this heading">#</a></h4>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Δημιουργήστε ένα βαθμωτό (μονοδιάστατο) μέγεθος</span>
-
-<span class="n">s</span><span class="o">=</span><span class="mi">2</span>
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;s=&#39;</span><span class="p">,</span><span class="n">s</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">v</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">9</span><span class="p">])</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;v =&#39;</span><span class="p">,</span><span class="n">v</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>s= 2
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>v = [1 5 9]
 </pre></div>
 </div>
 </div>
 </div>
+</section>
+<section id="id5">
+<h4>Δημιουργείστε έναν πίνακα πραγματικών τιμών:<a class="headerlink" href="#id5" title="Link to this heading">#</a></h4>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Δημιουργείστε ένα διάνυσμα πραγματικών τιμών:</span>
-<span class="c1"># Στο MATLAB: v = [1,5,9] ή v = [1 5 9]</span>
-
-<span class="n">v</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">9</span><span class="p">])</span>
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;v=&#39;</span><span class="p">,</span><span class="n">v</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">a</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">],[</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">6</span><span class="p">],[</span><span class="mi">7</span><span class="p">,</span><span class="mi">8</span><span class="p">,</span><span class="mi">9</span><span class="p">]])</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;a =&#39;</span><span class="p">,</span><span class="n">a</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>v= [1 5 9]
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Δημιουργείστε έναν πίνακα πραγματικών τιμών:</span>
-<span class="c1"># Στο MATLAB: a = a=[[1,2,3];[4,5,6];[7,8,9]] ή a=[1,2,3;4,5,6;7,8,9]</span>
-<span class="n">a</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">],[</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">6</span><span class="p">],[</span><span class="mi">7</span><span class="p">,</span><span class="mi">8</span><span class="p">,</span><span class="mi">9</span><span class="p">]])</span>
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;a=&#39;</span><span class="p">,</span><span class="n">a</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>a= [[1 2 3]
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>a = [[1 2 3]
  [4 5 6]
  [7 8 9]]
 </pre></div>
 </div>
 </div>
 </div>
+</section>
+<section id="id6">
+<h4>Αθροίστε<a class="headerlink" href="#id6" title="Link to this heading">#</a></h4>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Αθροίστε</span>
-
-<span class="n">a</span><span class="o">+</span><span class="mi">5</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">a</span><span class="o">+</span><span class="mi">5</span>
 </pre></div>
 </div>
 </div>
@@ -536,11 +563,12 @@ document.write(`
 </div>
 </div>
 </div>
+</section>
+<section id="id7">
+<h4>Πολλαπλασιάστε<a class="headerlink" href="#id7" title="Link to this heading">#</a></h4>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#Πολλαπλασιάστε</span>
-
-<span class="n">b</span><span class="o">=</span><span class="n">s</span><span class="o">*</span><span class="n">v</span><span class="o">*</span><span class="mi">2</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">b</span><span class="o">=</span><span class="n">s</span><span class="o">*</span><span class="n">v</span><span class="o">*</span><span class="mi">2</span>
 <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;b=&#39;</span><span class="p">,</span><span class="n">b</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -551,12 +579,12 @@ document.write(`
 </div>
 </div>
 </div>
+</section>
+<section id="elementwise">
+<h4>Πολλαπλασιάστε στοιχείο-προς-στοιχείο (elementwise)<a class="headerlink" href="#elementwise" title="Link to this heading">#</a></h4>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Πολλαπλασιάστε στοιχείο-προς-στοιχείο (elementwise)</span>
-<span class="c1"># MATLAB: v.*b</span>
-
-<span class="n">np</span><span class="o">.</span><span class="n">multiply</span><span class="p">(</span><span class="n">v</span><span class="p">,</span><span class="n">b</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">np</span><span class="o">.</span><span class="n">multiply</span><span class="p">(</span><span class="n">v</span><span class="p">,</span><span class="n">b</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -566,12 +594,12 @@ document.write(`
 </div>
 </div>
 </div>
+</section>
+<section id="id8">
+<h4>Ελέγξτε το μήκος ενός διανύσματος<a class="headerlink" href="#id8" title="Link to this heading">#</a></h4>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#Ελέγξτε το μήκος ενός διανύσματος</span>
-<span class="c1"># MATLAB: length(v)</span>
-
-<span class="nb">len</span><span class="p">(</span><span class="n">v</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">len</span><span class="p">(</span><span class="n">v</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -581,12 +609,12 @@ document.write(`
 </div>
 </div>
 </div>
+</section>
+<section id="id9">
+<h4>Ελέγξτε το μέγεθος ενός πίνακα<a class="headerlink" href="#id9" title="Link to this heading">#</a></h4>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Ελέγξτε το μέγεθος ενός πίνακα</span>
-<span class="c1"># MATLAB: size(a)</span>
-
-<span class="n">a</span><span class="o">.</span><span class="n">shape</span>   <span class="c1"># για array: np.array(a.shape)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">a</span><span class="o">.</span><span class="n">shape</span>   <span class="c1"># για array: np.array(a.shape)</span>
 </pre></div>
 </div>
 </div>
@@ -596,14 +624,15 @@ document.write(`
 </div>
 </div>
 </div>
+</section>
+<section id="id10">
+<h4>Προσπελάστε συγκεκριμένα στοιχεία ενός πίνακα<a class="headerlink" href="#id10" title="Link to this heading">#</a></h4>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>Η δεικτοδότηση αρχίζει από το 0. 
+</pre></div>
+</div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Προσπελάστε συγκεκριμένα στοιχεία ενός πίνακα</span>
-<span class="c1"># Η δεικτοδότηση αρχίζει από το 0. </span>
-<span class="c1"># MATLAB: a(1,2)  </span>
-<span class="c1"># --- ΠΡΟΣΟΧΗ, στο MATLAB η δεικτοδ΄ότηση αρχ΄ίζει από το 1!</span>
-
-<span class="n">a</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">]</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">a</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">]</span>
 </pre></div>
 </div>
 </div>
@@ -613,13 +642,15 @@ document.write(`
 </div>
 </div>
 </div>
+</section>
+<section id="id11">
+<h4>Προσπελάστε συγκεκριμένα στοιχεία ενός πίνακα (συνέχεια)<a class="headerlink" href="#id11" title="Link to this heading">#</a></h4>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>Αρνητικές τιμές μετρούν από το τέλος, π.χ. το -1 αναφέρεται στο τελευταίο στοιχείο.
+</pre></div>
+</div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Προσπελάστε συγκεκριμένα στοιχεία ενός πίνακα (συνέχεια)</span>
-<span class="c1"># Αρνητικές τιμές μετρούν από το τέλος, π.χ. το -1 </span>
-<span class="c1"># αναφέρεται στο τελευταίο στοιχείο)</span>
-
-<span class="n">a</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">a</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
 </pre></div>
 </div>
 </div>
@@ -629,31 +660,37 @@ document.write(`
 </div>
 </div>
 </div>
+</section>
+<section id="id12">
+<h4>Προσπελάστε συγκεκριμένο τμήμα ενός διανύσματος<a class="headerlink" href="#id12" title="Link to this heading">#</a></h4>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>ΠΡΟΣΟΧΗ: τα στοιχεία [2ο,3ο] δίνονται ως 1:3 και όχι ως 1:2
+</pre></div>
+</div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Προσπελάστε συγκεκριμένο τμήμα ενός διανύσματος</span>
-<span class="c1"># MATLAB: v(1:9)</span>
-
-<span class="n">v</span><span class="p">[</span><span class="mi">1</span><span class="p">:</span><span class="mi">3</span><span class="p">]</span>
-
-<span class="c1"># ΠΡΟΣΟΧΗ: τα στοιχεία [2ο,3ο] δίνονται ως 1:3 και όχι ως 1:2</span>
-<span class="c1"># Δοκιμάστε το v[1:2]...</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">v1</span> <span class="o">=</span> <span class="n">v</span><span class="p">[</span><span class="mi">1</span><span class="p">:</span><span class="mi">3</span><span class="p">]</span>
+<span class="n">v2</span> <span class="o">=</span> <span class="n">v</span><span class="p">[</span><span class="mi">1</span><span class="p">:</span><span class="mi">2</span><span class="p">]</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;v1 =&#39;</span><span class="p">,</span><span class="n">v1</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;v2 =&#39;</span><span class="p">,</span><span class="n">v2</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([5, 9])
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>v1 = [5 9]
+v2 = [5]
 </pre></div>
 </div>
 </div>
 </div>
+</section>
+<section id="id13">
+<h4>Προσπελάστε συγκεκριμένα τμήματα ενός πίνακα<a class="headerlink" href="#id13" title="Link to this heading">#</a></h4>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>Ομοίως: οι γραμμές 1 &amp; 2 δίνονται ως 0:2 και όχι ως 0:1
+</pre></div>
+</div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Προσπελάστε συγκεκριμένα τμήματα ενός πίνακα</span>
-
-<span class="n">a</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">2</span><span class="p">,:]</span>
-
-<span class="c1"># Ομοίως: οι γραμμές 1 &amp; 2 δίνονται ως 0:2 και όχι ως 0:1</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">a</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">2</span><span class="p">,:]</span>
 </pre></div>
 </div>
 </div>
@@ -664,12 +701,12 @@ document.write(`
 </div>
 </div>
 </div>
+</section>
+<section id="id14">
+<h4>Δημιουργήστε ένα διάνυσμα με στοιχεία από το 0 έως το 0.5 και βήμα 0.1<a class="headerlink" href="#id14" title="Link to this heading">#</a></h4>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Δημιουργήστε ένα διάνυσμα με στοιχεία από το 0 έως το 0.5 και βήμα 0.1</span>
-<span class="c1"># MATLAB: t=(0:0.1:0.4)</span>
-
-<span class="n">t</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mf">0.5</span><span class="p">,</span><span class="mf">0.1</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">t</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mf">0.5</span><span class="p">,</span><span class="mf">0.1</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;t=&#39;</span><span class="p">,</span><span class="n">t</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -682,8 +719,9 @@ document.write(`
 </div>
 </section>
 </section>
-<section id="id3">
-<h2>Μέρος 2:  Δειγματοληψία - Ψηφιοποίηση<a class="headerlink" href="#id3" title="Link to this heading">#</a></h2>
+</section>
+<section id="id15">
+<h2>Μέρος 2:  Δειγματοληψία - Ψηφιοποίηση<a class="headerlink" href="#id15" title="Link to this heading">#</a></h2>
 <p>Τα πρωτογενή σήματα είναι κυρίως αναλογικά (συνεχούς χρόνου). Για να τα παραστήσουμε και επεξεργαστούμε στον υπολογιστή μας (ή άλλη ψηφιακή μηχανή) θα πρέπει πρώτα να τα ψηφιοποιήσουμε. Υποθέστε ένα σήμα συνεχούς χρόνου <span class="math notranslate nohighlight">\(x(t)\)</span> με μετασχηματισμό Fourier (Continuous Time Fourier Transform – CTFT):</p>
 <div class="math notranslate nohighlight">
 \[
@@ -1525,8 +1563,8 @@ x_{n}=\frac{1}{N} \sum_{k=0}^{N-1} X_{k} \exp \left(j 2 \pi n \frac{k}{N}\right)
         ></iframe>
         </div></div>
 </div>
-<section id="id4">
-<h3>Φασματική Ανάλυση<a class="headerlink" href="#id4" title="Link to this heading">#</a></h3>
+<section id="id16">
+<h3>Φασματική Ανάλυση<a class="headerlink" href="#id16" title="Link to this heading">#</a></h3>
 <p>Για τον υπολογισμό της ενέργειας ή ισχύος της κυματομορφής <span class="math notranslate nohighlight">\(x(t)\)</span>, ανάλογα με την περίπτωση
 σήματος, ισχύει</p>
 <div class="math notranslate nohighlight">
@@ -1607,8 +1645,8 @@ P_x = \sum_{k=-\infty}^{\infty} |X[k]|^2
 <p>όπου <span class="math notranslate nohighlight">\(X[k]\)</span> οι συντελεστές του αναπτύγματος σε σειρά Fourier και <span class="math notranslate nohighlight">\(T_o\)</span> η περίοδος του σήματος.</p>
 </section>
 </section>
-<section id="id5">
-<h2>Μέρος 3:  Εφαρμογή Α<a class="headerlink" href="#id5" title="Link to this heading">#</a></h2>
+<section id="id17">
+<h2>Μέρος 3:  Εφαρμογή Α<a class="headerlink" href="#id17" title="Link to this heading">#</a></h2>
 <div class="cell tag_hide-input docutils container">
 <details class="hide above-input">
 <summary aria-label="Toggle hidden content">
@@ -1622,14 +1660,14 @@ P_x = \sum_{k=-\infty}^{\infty} |X[k]|^2
 <span class="c1"># Layout of the Dash app</span>
 <span class="n">app10</span><span class="o">.</span><span class="n">layout</span> <span class="o">=</span> <span class="n">html</span><span class="o">.</span><span class="n">Div</span><span class="p">(</span>
     <span class="n">children</span><span class="o">=</span><span class="p">[</span>
-        <span class="n">html</span><span class="o">.</span><span class="n">H2</span><span class="p">(</span><span class="s1">&#39;Interactive Signal&#39;</span><span class="p">),</span>
+        <span class="n">html</span><span class="o">.</span><span class="n">H2</span><span class="p">(</span><span class="s1">&#39;Frequency and Frequency sampling selector&#39;</span><span class="p">),</span>
         <span class="n">dcc</span><span class="o">.</span><span class="n">Slider</span><span class="p">(</span>
             <span class="nb">id</span><span class="o">=</span><span class="s1">&#39;Fs_slider&#39;</span><span class="p">,</span>
             <span class="nb">min</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span>
             <span class="nb">max</span><span class="o">=</span><span class="mi">2000</span><span class="p">,</span>
             <span class="n">step</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span>
             <span class="n">value</span><span class="o">=</span><span class="mi">1000</span><span class="p">,</span> 
-            <span class="n">marks</span><span class="o">=</span><span class="p">{</span><span class="n">i</span><span class="p">:</span> <span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s1"> Fs&#39;</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">100</span><span class="p">,</span> <span class="mi">2000</span><span class="p">,</span> <span class="mi">100</span><span class="p">)},</span>
+            <span class="n">marks</span><span class="o">=</span><span class="p">{</span><span class="n">i</span><span class="p">:</span> <span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s1"> Hz&#39;</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">100</span><span class="p">,</span> <span class="mi">2000</span><span class="p">,</span> <span class="mi">100</span><span class="p">)},</span>
             <span class="n">included</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>  <span class="c1"># To remove the color fill</span>
             <span class="n">updatemode</span><span class="o">=</span><span class="s1">&#39;drag&#39;</span><span class="p">,</span>  <span class="c1"># Update slider continuously while dragging</span>
             <span class="n">tooltip</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;placement&#39;</span><span class="p">:</span> <span class="s1">&#39;bottom&#39;</span><span class="p">}</span>  <span class="c1"># Show tooltip at the bottom</span>
@@ -1640,7 +1678,7 @@ P_x = \sum_{k=-\infty}^{\infty} |X[k]|^2
             <span class="nb">max</span><span class="o">=</span><span class="mi">400</span><span class="p">,</span>
             <span class="n">step</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span>
             <span class="n">value</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> 
-            <span class="n">marks</span><span class="o">=</span><span class="p">{</span><span class="n">i</span><span class="p">:</span> <span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s1"> Fs&#39;</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">40</span><span class="p">,</span> <span class="mi">400</span><span class="p">,</span> <span class="mi">20</span><span class="p">)},</span>
+            <span class="n">marks</span><span class="o">=</span><span class="p">{</span><span class="n">i</span><span class="p">:</span> <span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s1"> Hz&#39;</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">40</span><span class="p">,</span> <span class="mi">400</span><span class="p">,</span> <span class="mi">20</span><span class="p">)},</span>
             <span class="n">included</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>  <span class="c1"># To remove the color fill</span>
             <span class="n">updatemode</span><span class="o">=</span><span class="s1">&#39;drag&#39;</span><span class="p">,</span>  <span class="c1"># Update slider continuously while dragging</span>
             <span class="n">tooltip</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;placement&#39;</span><span class="p">:</span> <span class="s1">&#39;bottom&#39;</span><span class="p">}</span>  <span class="c1"># Show tooltip at the bottom</span>
@@ -1678,7 +1716,7 @@ P_x = \sum_{k=-\infty}^{\infty} |X[k]|^2
     <span class="p">[</span><span class="n">Input</span><span class="p">(</span><span class="s1">&#39;Fs_slider&#39;</span><span class="p">,</span> <span class="s1">&#39;value&#39;</span><span class="p">),</span>
      <span class="n">Input</span><span class="p">(</span><span class="s1">&#39;Fo_slider&#39;</span><span class="p">,</span> <span class="s1">&#39;value&#39;</span><span class="p">)]</span>
 <span class="p">)</span>
-<span class="k">def</span> <span class="nf">update_graph</span><span class="p">(</span><span class="n">selected_frequencies</span><span class="p">,</span><span class="n">Fo</span><span class="p">):</span>
+<span class="k">def</span> <span class="nf">update_graph</span><span class="p">(</span><span class="n">selected_frequencies</span><span class="p">,</span><span class="n">selected_Fo</span><span class="p">):</span>
     <span class="c1"># Part 1: Create the signal</span>
     <span class="n">Fs</span> <span class="o">=</span> <span class="n">selected_frequencies</span>        <span class="c1"># Sampling frequency 1000 Hz</span>
     <span class="n">Ts</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">/</span> <span class="n">Fs</span>                      <span class="c1"># Sampling period</span>
@@ -1686,9 +1724,10 @@ P_x = \sum_{k=-\infty}^{\infty} |X[k]|^2
     <span class="n">T</span> <span class="o">=</span> <span class="n">L</span> <span class="o">*</span> <span class="n">Ts</span>                       <span class="c1"># Duration of signal</span>
     <span class="n">t</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="p">(</span><span class="n">L</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span> <span class="o">*</span> <span class="n">Ts</span><span class="p">,</span> <span class="n">Ts</span><span class="p">)</span>  <span class="c1"># Time vector</span>
 
-    <span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span> <span class="o">*</span> <span class="p">(</span><span class="n">Fo</span><span class="o">-</span><span class="mi">30</span><span class="p">)</span> <span class="o">*</span> <span class="n">t</span><span class="p">)</span> \
-        <span class="o">+</span> <span class="mf">0.8</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span> <span class="o">*</span> <span class="p">(</span><span class="n">Fo</span><span class="o">+</span><span class="mi">20</span><span class="p">)</span> <span class="o">*</span> <span class="p">(</span><span class="n">t</span> <span class="o">-</span> <span class="mi">2</span><span class="p">))</span> \
-        <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span> <span class="o">*</span> <span class="n">Fo</span> <span class="o">*</span> <span class="n">t</span><span class="p">)</span>  <span class="c1"># 60 Hz component</span>
+    <span class="k">global</span> <span class="n">x</span> 
+    <span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span> <span class="o">*</span> <span class="p">(</span><span class="n">selected_Fo</span><span class="o">-</span><span class="mi">30</span><span class="p">)</span> <span class="o">*</span> <span class="n">t</span><span class="p">)</span> \
+        <span class="o">+</span> <span class="mf">0.8</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span> <span class="o">*</span> <span class="p">(</span><span class="n">selected_Fo</span><span class="o">+</span><span class="mi">20</span><span class="p">)</span> <span class="o">*</span> <span class="p">(</span><span class="n">t</span> <span class="o">-</span> <span class="mi">2</span><span class="p">))</span> \
+        <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span> <span class="o">*</span> <span class="n">selected_Fo</span> <span class="o">*</span> <span class="n">t</span><span class="p">)</span>  <span class="c1"># 60 Hz component</span>
 
     <span class="c1"># Original signal graph</span>
     <span class="n">signal</span> <span class="o">=</span> <span class="p">{</span>
@@ -1816,7 +1855,7 @@ P_x = \sum_{k=-\infty}^{\infty} |X[k]|^2
 <span class="c1"># Layout of the Dash app</span>
 <span class="n">app11</span><span class="o">.</span><span class="n">layout</span> <span class="o">=</span> <span class="n">html</span><span class="o">.</span><span class="n">Div</span><span class="p">(</span>
     <span class="n">children</span><span class="o">=</span><span class="p">[</span>
-        <span class="n">html</span><span class="o">.</span><span class="n">H2</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">),</span>
+        <span class="n">html</span><span class="o">.</span><span class="n">H2</span><span class="p">(</span><span class="s1">&#39;Frequency sampling selector&#39;</span><span class="p">),</span>
         <span class="n">dcc</span><span class="o">.</span><span class="n">Slider</span><span class="p">(</span>
             <span class="nb">id</span><span class="o">=</span><span class="s1">&#39;Fs_slider&#39;</span><span class="p">,</span>
             <span class="nb">min</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span>
@@ -1864,7 +1903,6 @@ P_x = \sum_{k=-\infty}^{\infty} |X[k]|^2
 
     <span class="n">rand_n</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">size</span><span class="p">(</span><span class="n">x</span><span class="p">))</span>
     <span class="n">Fs</span><span class="o">=</span><span class="n">selected_frequencies</span>
-    
     <span class="c1"># Original signal graph</span>
     <span class="n">domain_n</span> <span class="o">=</span> <span class="p">{</span>
         <span class="s1">&#39;data&#39;</span><span class="p">:</span> <span class="p">[</span><span class="n">go</span><span class="o">.</span><span class="n">Scatter</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">t</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="n">rand_n</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="s1">&#39;lines&#39;</span><span class="p">,</span> <span class="n">line</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">color</span><span class="o">=</span><span class="s1">&#39;#00CC96&#39;</span><span class="p">))],</span>
@@ -1891,7 +1929,7 @@ P_x = \sum_{k=-\infty}^{\infty} |X[k]|^2
 
     <span class="c1"># Correction for N calculation using bitwise operator</span>
     <span class="n">N</span> <span class="o">=</span> <span class="mi">2</span><span class="o">^</span><span class="n">nextpow2</span><span class="p">(</span><span class="n">L</span><span class="p">)</span>
-    <span class="n">Fo</span><span class="o">=</span><span class="n">Fs</span><span class="o">/</span><span class="n">N</span> 
+    <span class="n">Fo</span> <span class="o">=</span> <span class="n">Fs</span> <span class="o">/</span> <span class="n">N</span>   
     <span class="n">f</span> <span class="o">=</span> <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">N</span><span class="p">))</span> <span class="o">*</span> <span class="n">Fo</span>
     <span class="n">f_shifted</span> <span class="o">=</span> <span class="n">f</span> <span class="o">-</span> <span class="n">Fs</span><span class="o">/</span><span class="mi">2</span>
     <span class="n">rand_N</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">fft</span><span class="o">.</span><span class="n">fft</span><span class="p">(</span><span class="n">rand_n</span><span class="p">,</span> <span class="n">N</span><span class="p">)</span>
@@ -1911,6 +1949,7 @@ P_x = \sum_{k=-\infty}^{\infty} |X[k]|^2
             <span class="n">template</span><span class="o">=</span><span class="s1">&#39;plotly_white&#39;</span>
         <span class="p">)</span>
     <span class="p">}</span>
+    
 
     <span class="n">s</span> <span class="o">=</span> <span class="n">x</span> <span class="o">+</span> <span class="n">rand_n</span>
     <span class="n">spectrum</span> <span class="o">=</span> <span class="p">{</span>
@@ -1992,7 +2031,7 @@ P_x = \sum_{k=-\infty}^{\infty} |X[k]|^2
 <span class="c1"># Layout of the Dash app</span>
 <span class="n">app12</span><span class="o">.</span><span class="n">layout</span> <span class="o">=</span> <span class="n">html</span><span class="o">.</span><span class="n">Div</span><span class="p">(</span>
     <span class="n">children</span><span class="o">=</span><span class="p">[</span>
-        <span class="n">html</span><span class="o">.</span><span class="n">H2</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">),</span>
+        <span class="n">html</span><span class="o">.</span><span class="n">H2</span><span class="p">(</span><span class="s1">&#39;Frequency resolution selector&#39;</span><span class="p">),</span>
         <span class="n">dcc</span><span class="o">.</span><span class="n">Slider</span><span class="p">(</span>
             <span class="nb">id</span><span class="o">=</span><span class="s1">&#39;Fο_slider&#39;</span><span class="p">,</span>
             <span class="nb">min</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span>
@@ -2063,6 +2102,7 @@ P_x = \sum_{k=-\infty}^{\infty} |X[k]|^2
         <span class="k">return</span> <span class="n">n</span>
             
     <span class="n">N</span> <span class="o">=</span> <span class="mi">2</span><span class="o">^</span><span class="n">nextpow2</span><span class="p">(</span><span class="n">L</span><span class="p">)</span>
+    <span class="n">Fo</span> <span class="o">=</span> <span class="n">Fs</span> <span class="o">/</span> <span class="n">N</span>   
     <span class="n">f</span> <span class="o">=</span> <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">N</span><span class="p">))</span> <span class="o">*</span> <span class="n">Fo</span>
     <span class="n">Y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">fft</span><span class="o">.</span><span class="n">fft</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">N</span><span class="p">)</span>
     <span class="n">f</span><span class="o">=</span><span class="n">f</span><span class="o">-</span><span class="n">Fs</span><span class="o">/</span><span class="mi">2</span>   
@@ -2108,8 +2148,8 @@ P_x = \sum_{k=-\infty}^{\infty} |X[k]|^2
         </div></div>
 </div>
 </section>
-<section id="id6">
-<h2>Μέρος 4:  Εφαρμογή Β<a class="headerlink" href="#id6" title="Link to this heading">#</a></h2>
+<section id="id18">
+<h2>Μέρος 4:  Εφαρμογή Β<a class="headerlink" href="#id18" title="Link to this heading">#</a></h2>
 <p>Να γραφεί σε Python συνάρτηση φασματικής ανάλυσης, παρόμοια με την <code class="docutils literal notranslate"><span class="pre">signal.welch()</span></code>: θα δέχεται ως είσοδο διάνυσμα πραγματικού σήματος καθώς και τη συχνότητα δειγματοληψίας, <span class="math notranslate nohighlight">\(F_s\)</span>, και θα σχεδιάζει τη μονόπλευρη φασματική πυκνότητα του σήματος στην περιοχή <span class="math notranslate nohighlight">\([0-F_s/2)\)</span>. Το σήμα θα τεμαχίζεται σε τμήματα μήκους ίσου με τη δύναμη του <span class="math notranslate nohighlight">\(2\)</span> την πλησιέστερη στο <span class="math notranslate nohighlight">\(1/8\)</span> του συνολικού του μήκους, αλλά όχι μικρότερου από 256. Τα τμήματα θα είναι επικαλυπτόμενα κατά <span class="math notranslate nohighlight">\(50\%\)</span>. Το τελευταίο τμήμα, εάν υπολείπεται σε μήκος των άλλων, θα αγνοείται. Θα υπολογίζεται με FFT το φάσμα κάθε τμήματος και θα λαμβάνεται η μέση τιμή όλων των τμημάτων. Η συνάρτηση να δοκιμαστεί με το σήμα του παραδείγματος 1.1 και να συγκριθεί το αποτέλεσμα με το αντίστοιχο της <code class="docutils literal notranslate"><span class="pre">signal.welch()</span></code>.</p>
 <div class="cell tag_hide-input docutils container">
 <details class="hide above-input">
@@ -2118,7 +2158,14 @@ P_x = \sum_{k=-\infty}^{\infty} |X[k]|^2
 <span class="expanded">Hide code cell source</span>
 </summary>
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">pwelch</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">Fs</span><span class="p">):</span>                    
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Fourier transform</span>
+<span class="k">def</span> <span class="nf">nextpow2</span><span class="p">(</span><span class="n">i</span><span class="p">):</span>
+        <span class="n">n</span> <span class="o">=</span> <span class="mi">1</span>
+        <span class="k">while</span> <span class="n">n</span> <span class="o">&lt;</span> <span class="n">i</span><span class="p">:</span>
+            <span class="n">n</span> <span class="o">*=</span> <span class="mi">2</span>
+        <span class="k">return</span> <span class="n">n</span>
+
+<span class="k">def</span> <span class="nf">pwelch</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">Fs</span><span class="p">):</span>                    
     <span class="n">Ts</span><span class="o">=</span><span class="mi">1</span><span class="o">/</span><span class="n">Fs</span>                    
     <span class="n">L</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">size</span><span class="p">(</span><span class="n">x</span><span class="p">)</span><span class="o">+</span><span class="mi">1</span>                 
     <span class="n">T</span><span class="o">=</span><span class="n">L</span><span class="o">*</span><span class="n">Ts</span>                     
@@ -2266,15 +2313,30 @@ P_x = \sum_{k=-\infty}^{\infty} |X[k]|^2
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#python">Μέρος 1: Εξοικείωση με το προγραμματιστικό περιβάλλον της Python</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#interactive-python-interpreter-ipython-notebook">Interactive python interpreter (IPython) notebook</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#jupyter-notebook">Jupyter notebook</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">Εξάσκηση</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">Εξάσκηση</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">Δημιουργήστε ένα βαθμωτό (μονοδιάστατο) μέγεθος</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">Δημιουργείστε ένα διάνυσμα πραγματικών τιμών:</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">Δημιουργείστε έναν πίνακα πραγματικών τιμών:</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">Αθροίστε</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id7">Πολλαπλασιάστε</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#elementwise">Πολλαπλασιάστε στοιχείο-προς-στοιχείο (elementwise)</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id8">Ελέγξτε το μήκος ενός διανύσματος</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id9">Ελέγξτε το μέγεθος ενός πίνακα</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id10">Προσπελάστε συγκεκριμένα στοιχεία ενός πίνακα</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id11">Προσπελάστε συγκεκριμένα στοιχεία ενός πίνακα (συνέχεια)</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id12">Προσπελάστε συγκεκριμένο τμήμα ενός διανύσματος</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id13">Προσπελάστε συγκεκριμένα τμήματα ενός πίνακα</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id14">Δημιουργήστε ένα διάνυσμα με στοιχεία από το 0 έως το 0.5 και βήμα 0.1</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">Μέρος 2:  Δειγματοληψία - Ψηφιοποίηση</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">Φασματική Ανάλυση</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">Μέρος 3:  Εφαρμογή Α</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">Μέρος 4:  Εφαρμογή Β</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id15">Μέρος 2:  Δειγματοληψία - Ψηφιοποίηση</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id16">Φασματική Ανάλυση</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id17">Μέρος 3:  Εφαρμογή Α</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id18">Μέρος 4:  Εφαρμογή Β</a></li>
 </ul>
   </nav></div>
 
