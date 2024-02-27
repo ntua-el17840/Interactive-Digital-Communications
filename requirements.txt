@@ -74,7 +74,6 @@ kiwisolver==1.4.4
 kombu==5.2.4
 latexcodec==2.0.1
 libclang==14.0.6
-libwebp==1.2.2
 linkify-it-py==2.0.3
 lz4-c==1.9.4
 markdown-it-py==2.2.0
