@@ -89,7 +89,6 @@ mkl_random==1.2.2
 munkres==1.1.4
 myst-nb==0.17.2
 myst-parser==0.18.1
-nb_conda_kernels==2.3.1
 nbclient==0.7.4
 nbconvert==7.10.0
 nbformat==5.9.2
