@@ -55,7 +55,6 @@ ipywidgets==8.0.4
 itsdangerous==2.0.1
 jedi==0.18.1
 jinja2==3.1.3
-jpeg==9e
 json5==0.9.6
 jsonschema==4.19.2
 jsonschema-specifications==2023.7.1
