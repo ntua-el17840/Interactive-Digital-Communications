@@ -73,7 +73,6 @@ jupyterlab_widgets==3.0.9
 kiwisolver==1.4.4
 kombu==5.2.4
 latexcodec==2.0.1
-libbrotlicommon==1.0.9
 libbrotlidec==1.0.9
 libbrotlienc==1.0.9
 libclang==14.0.6
