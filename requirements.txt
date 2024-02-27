@@ -97,7 +97,6 @@ notebook==7.1.0
 notebook-shim==0.2.3
 numexpr==2.8.4
 numpy==1.24.3
-openssl==3.0.13
 overrides==7.4.0
 packaging==23.1
 pandas==1.5.3
