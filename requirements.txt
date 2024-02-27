@@ -74,7 +74,6 @@ kiwisolver==1.4.4
 kombu==5.2.4
 latexcodec==2.0.1
 libclang==14.0.6
-libpq==12.15
 libsodium==1.0.18
 libtiff==4.0.8
 libwebp==1.2.2
