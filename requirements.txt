@@ -36,7 +36,6 @@ exceptiongroup==1.0.4
 executing==0.8.3
 flask==2.2.5
 fonttools==4.25.0
-freetype==2.12.1
 greenlet==3.0.3
 h11==0.14.0
 h2==4.0.0
