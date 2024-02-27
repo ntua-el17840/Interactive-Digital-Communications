@@ -121,7 +121,6 @@ pydata-sphinx-theme==0.14.4
 pygments==2.15.1
 pyopenssl==23.2.0
 pyparsing==3.0.9
-pyqt==5.15.10
 pyqt5-sip==12.13.0
 pysocks==1.7.1
 python-dateutil==2.8.2
