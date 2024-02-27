@@ -1,0 +1,46 @@
+Traceback (most recent call last):
+  File "C:\Users\Sotiris\anaconda3\envs\digital_communications\lib\site-packages\jupyter_cache\executors\utils.py", line 58, in single_nb_execution
+    executenb(
+  File "C:\Users\Sotiris\anaconda3\envs\digital_communications\lib\site-packages\nbclient\client.py", line 1305, in execute
+    return NotebookClient(nb=nb, resources=resources, km=km, **kwargs).execute()
+  File "C:\Users\Sotiris\anaconda3\envs\digital_communications\lib\site-packages\jupyter_core\utils\__init__.py", line 173, in wrapped
+    return loop.run_until_complete(inner)
+  File "C:\Users\Sotiris\anaconda3\envs\digital_communications\lib\asyncio\base_events.py", line 616, in run_until_complete
+    return future.result()
+  File "C:\Users\Sotiris\anaconda3\envs\digital_communications\lib\site-packages\nbclient\client.py", line 705, in async_execute
+    await self.async_execute_cell(
+  File "C:\Users\Sotiris\anaconda3\envs\digital_communications\lib\site-packages\nbclient\client.py", line 1058, in async_execute_cell
+    await self._check_raise_for_error(cell, cell_index, exec_reply)
+  File "C:\Users\Sotiris\anaconda3\envs\digital_communications\lib\site-packages\nbclient\client.py", line 914, in _check_raise_for_error
+    raise CellExecutionError.from_cell_and_msg(cell, exec_reply_content)
+nbclient.exceptions.CellExecutionError: An error occurred while executing the following cell:
+------------------
+# Πρέπει να έχουμε εγκατεστημένη τη βιβλιοθήκη sounddevice
+import sounddevice as sd
+import ipywidgets as widgets
+from IPython.display import display
+
+def play_sound(b):
+    sd.play(20*s,Fs)
+
+# Create a button widget
+play_button = widgets.Button(description="Play Sound")
+
+# Link the button to the function that plays the sound
+play_button.on_click(play_sound)
+
+# Display the button
+display(play_button)
+------------------
+
+
+[1;31m---------------------------------------------------------------------------[0m
+[1;31mModuleNotFoundError[0m                       Traceback (most recent call last)
+Cell [1;32mIn[4], line 2[0m
+[0;32m      1[0m [38;5;66;03m# Πρέπει να έχουμε εγκατεστημένη τη βιβλιοθήκη sounddevice[39;00m
+[1;32m----> 2[0m [38;5;28;01mimport[39;00m [38;5;21;01msounddevice[39;00m [38;5;28;01mas[39;00m [38;5;21;01msd[39;00m
+[0;32m      3[0m [38;5;28;01mimport[39;00m [38;5;21;01mipywidgets[39;00m [38;5;28;01mas[39;00m [38;5;21;01mwidgets[39;00m
+[0;32m      4[0m [38;5;28;01mfrom[39;00m [38;5;21;01mIPython[39;00m[38;5;21;01m.[39;00m[38;5;21;01mdisplay[39;00m [38;5;28;01mimport[39;00m display
+
+[1;31mModuleNotFoundError[0m: No module named 'sounddevice'
+

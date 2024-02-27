@@ -36,3 +36,18 @@ html:
 sphinx:
   config:
     nb_execution_show_tb: True
+
+launch_buttons:
+  thebe: true
+  binder:
+    # Specify the BinderHub URL
+    url: "https://mybinder.org"
+    # Specify the repository where your book content is stored
+    repo: "org/repo"
+    # Specify the branch, tag, or commit in the above repository to use
+    ref: "master"
+    # Specify the path to a notebook file (relative to the repository root)
+    # that you want to open when Binder launches.
+    path_to_docs: "path/to/your/notebooks/"
+    # Any configuration for your BinderHub server (e.g., CPU/memory limits)
+    binder_config: ...
