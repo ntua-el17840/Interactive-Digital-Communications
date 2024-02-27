@@ -43,7 +43,6 @@ hpack==4.0.0
 httpcore==1.0.2
 httpx==0.26.0
 hyperframe==6.0.1
-icc_rt==2022.1.0
 icu==73.1
 idna==3.4
 imagesize==1.4.1
