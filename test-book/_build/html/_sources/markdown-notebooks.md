@@ -22,12 +22,8 @@ This page shows off a notebook written in MyST Markdown.
 
 With MyST Markdown, you can define code cells with a directive like so:
 
-```.. container:: thebe
-   .. code-block:: r
-      print("hi")
-
-   .. container:: output
-      "hi"
+```{code-cell}
+print(2 + 2)
 ```
 
 When your book is built, the contents of any `{code-cell}` blocks will be
