@@ -5,10 +5,6 @@ document.addEventListener('DOMContentLoaded', (event) => {
         repo: "ntua-el17840/Interactive-Digital-Communications",
         branch: "main",
         path_to_book: "test-book/",
-        kernelOptions: {
-          kernelName: "python3",
-          path: "content/Digcom_Lab1.ipynb"  // Adjust the path as necessary
-        },
         selectors: {
           cellSelector: 'div.cell',
           codeCellSelector: 'div.cell.code_cell',
