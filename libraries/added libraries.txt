@@ -10,3 +10,5 @@ conda install -c conda-forge dash-bootstrap-components
 pip install -U jupyter-book
 conda install conda-forge::python-sounddevice
 conda install nbconvert
+python -m pip install matlab_kernel
+python -m matlab_kernel install --user
