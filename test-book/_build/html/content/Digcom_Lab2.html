@@ -810,7 +810,7 @@ ylabel('xb');
 </div>
 </details>
 <div class="cell_output docutils container">
-<script type="application/vnd.jupyter.widget-view+json">{"model_id": "8535b53059074d2695eadc04d6146eca", "version_major": 2, "version_minor": 0}</script></div>
+<script type="application/vnd.jupyter.widget-view+json">{"model_id": "ac8b76f3c9374282bf65946969f7cd71", "version_major": 2, "version_minor": 0}</script></div>
 </div>
 </section>
 <section id="spectrum">
@@ -945,7 +945,7 @@ ylabel('xb');
 </div>
 </details>
 <div class="cell_output docutils container">
-<script type="application/vnd.jupyter.widget-view+json">{"model_id": "6ac4f0dfe14d4d4695118680eef2bb30", "version_major": 2, "version_minor": 0}</script></div>
+<script type="application/vnd.jupyter.widget-view+json">{"model_id": "f14dfd04663e4036ad1ce786a2a08632", "version_major": 2, "version_minor": 0}</script></div>
 </div>
 </section>
 <section id="spectrum-spectorgram">
@@ -1079,84 +1079,130 @@ ylabel('xb');
 </section>
 <section id="h">
 <h4><em>Ορθογωνικό παράθυρο (απλή περικοπή της h)</em><a class="headerlink" href="#h" title="Link to this heading">#</a></h4>
-<div class="cell tag_hide-input docutils container">
-<details class="hide above-input">
-<summary aria-label="Toggle hidden content">
-<span class="collapsed">Show code cell source</span>
-<span class="expanded">Hide code cell source</span>
-</summary>
+<div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">h</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">real</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">fft</span><span class="o">.</span><span class="n">ifft</span><span class="p">(</span><span class="n">H</span><span class="p">))</span>
-<span class="n">middle</span><span class="o">=</span><span class="nb">int</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">h</span><span class="p">)</span><span class="o">/</span><span class="mi">2</span><span class="p">)</span>
-<span class="n">h</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">hstack</span><span class="p">((</span><span class="n">h</span><span class="p">[</span><span class="n">middle</span><span class="p">:],</span><span class="n">h</span><span class="p">[:</span><span class="n">middle</span><span class="p">]))</span>
-<span class="n">h32</span><span class="o">=</span><span class="n">h</span><span class="p">[</span><span class="n">middle</span><span class="o">-</span><span class="mi">16</span><span class="p">:</span><span class="n">middle</span><span class="o">+</span><span class="mi">16</span><span class="p">]</span>
-<span class="n">h128</span><span class="o">=</span><span class="n">h</span><span class="p">[</span><span class="n">middle</span><span class="o">-</span><span class="mi">64</span><span class="p">:</span><span class="n">middle</span><span class="o">+</span><span class="mi">64</span><span class="p">]</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Perform the necessary signal processing to obtain h and its variants</span>
+<span class="n">h</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">real</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">fft</span><span class="o">.</span><span class="n">ifft</span><span class="p">(</span><span class="n">H</span><span class="p">))</span>
+<span class="n">middle</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">h</span><span class="p">)</span><span class="o">/</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">h</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">hstack</span><span class="p">((</span><span class="n">h</span><span class="p">[</span><span class="n">middle</span><span class="p">:],</span> <span class="n">h</span><span class="p">[:</span><span class="n">middle</span><span class="p">]))</span>
+<span class="n">h32</span> <span class="o">=</span> <span class="n">h</span><span class="p">[</span><span class="n">middle</span><span class="o">-</span><span class="mi">16</span><span class="p">:</span><span class="n">middle</span><span class="o">+</span><span class="mi">16</span><span class="p">]</span>
+<span class="n">h64</span> <span class="o">=</span> <span class="n">h</span><span class="p">[</span><span class="n">middle</span><span class="o">-</span><span class="mi">32</span><span class="p">:</span><span class="n">middle</span><span class="o">+</span><span class="mi">32</span><span class="p">]</span>
+<span class="n">h128</span> <span class="o">=</span> <span class="n">h</span><span class="p">[</span><span class="n">middle</span><span class="o">-</span><span class="mi">64</span><span class="p">:</span><span class="n">middle</span><span class="o">+</span><span class="mi">64</span><span class="p">]</span>
+<span class="n">h160</span> <span class="o">=</span> <span class="n">h</span><span class="p">[</span><span class="n">middle</span><span class="o">-</span><span class="mi">80</span><span class="p">:</span><span class="n">middle</span><span class="o">+</span><span class="mi">80</span><span class="p">]</span>
+<span class="n">h256</span> <span class="o">=</span> <span class="n">h</span><span class="p">[</span><span class="n">middle</span><span class="o">-</span><span class="mi">128</span><span class="p">:</span><span class="n">middle</span><span class="o">+</span><span class="mi">128</span><span class="p">]</span>
 
-<span class="n">x_values_h32</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">h32</span><span class="p">))</span>
+<span class="c1"># Function to create and update the stem plot based on selected filter</span>
+<span class="k">def</span> <span class="nf">create_update_stem_plot</span><span class="p">(</span><span class="n">h_data</span><span class="p">):</span>
+    <span class="n">x_values</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">h_data</span><span class="p">))</span>
+    <span class="n">fig</span> <span class="o">=</span> <span class="n">go</span><span class="o">.</span><span class="n">Figure</span><span class="p">()</span>
+    
+    <span class="c1"># Add stems</span>
+    <span class="k">for</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">x_values</span><span class="p">,</span> <span class="n">h_data</span><span class="p">):</span>
+        <span class="n">fig</span><span class="o">.</span><span class="n">add_trace</span><span class="p">(</span><span class="n">go</span><span class="o">.</span><span class="n">Scatter</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="p">[</span><span class="n">x</span><span class="p">,</span> <span class="n">x</span><span class="p">],</span> <span class="n">y</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="n">y</span><span class="p">],</span> <span class="n">mode</span><span class="o">=</span><span class="s1">&#39;lines&#39;</span><span class="p">,</span> <span class="n">line</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">color</span><span class="o">=</span><span class="s1">&#39;#1F77B4&#39;</span><span class="p">)))</span>
+    
+    <span class="c1"># Add markers</span>
+    <span class="n">fig</span><span class="o">.</span><span class="n">add_trace</span><span class="p">(</span><span class="n">go</span><span class="o">.</span><span class="n">Scatter</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">x_values</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="n">h_data</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="s1">&#39;markers&#39;</span><span class="p">,</span> <span class="n">marker</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">color</span><span class="o">=</span><span class="s1">&#39;#1F77B4&#39;</span><span class="p">)))</span>
+    
+    <span class="c1"># Update layout</span>
+    <span class="n">fig</span><span class="o">.</span><span class="n">update_layout</span><span class="p">(</span>
+        <span class="n">title</span><span class="o">=</span><span class="s1">&#39;Stem plot of selected filter&#39;</span><span class="p">,</span>
+        <span class="n">xaxis_title</span><span class="o">=</span><span class="s1">&#39;Index&#39;</span><span class="p">,</span>
+        <span class="n">yaxis_title</span><span class="o">=</span><span class="s1">&#39;Amplitude&#39;</span><span class="p">,</span>
+        <span class="n">template</span><span class="o">=</span><span class="s1">&#39;plotly_white&#39;</span>
+    <span class="p">)</span>
+    <span class="k">return</span> <span class="n">fig</span>
 
-<span class="c1"># Create Plotly figure for h32</span>
-<span class="n">fig_h32</span> <span class="o">=</span> <span class="n">go</span><span class="o">.</span><span class="n">Figure</span><span class="p">()</span>
+<span class="c1"># Dropdown for selecting the filter</span>
+<span class="n">dropdown</span> <span class="o">=</span> <span class="n">widgets</span><span class="o">.</span><span class="n">Dropdown</span><span class="p">(</span>
+    <span class="n">options</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;h32&#39;</span><span class="p">,</span> <span class="s1">&#39;h64&#39;</span><span class="p">,</span> <span class="s1">&#39;h128&#39;</span><span class="p">,</span> <span class="s1">&#39;h160&#39;</span><span class="p">,</span> <span class="s1">&#39;h256&#39;</span><span class="p">],</span>
+    <span class="n">value</span><span class="o">=</span><span class="s1">&#39;h32&#39;</span><span class="p">,</span>  <span class="c1"># Default value</span>
+    <span class="n">description</span><span class="o">=</span><span class="s1">&#39;Filter:&#39;</span><span class="p">,</span>
+<span class="p">)</span>
 
-<span class="c1"># Add stems for h32</span>
-<span class="k">for</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">x_values_h32</span><span class="p">,</span> <span class="n">h32</span><span class="p">):</span>
-    <span class="n">fig_h32</span><span class="o">.</span><span class="n">add_trace</span><span class="p">(</span><span class="n">go</span><span class="o">.</span><span class="n">Scatter</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="p">[</span><span class="n">x</span><span class="p">,</span> <span class="n">x</span><span class="p">],</span> <span class="n">y</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="n">y</span><span class="p">],</span> <span class="n">mode</span><span class="o">=</span><span class="s1">&#39;lines&#39;</span><span class="p">,</span> <span class="n">line</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">color</span><span class="o">=</span><span class="s1">&#39;#1F77B4&#39;</span><span class="p">)))</span>
+<span class="c1"># Plotly figure widget to display the selected filter&#39;s stem plot</span>
+<span class="n">plotly_fig_widget</span> <span class="o">=</span> <span class="n">go</span><span class="o">.</span><span class="n">FigureWidget</span><span class="p">(</span><span class="n">create_update_stem_plot</span><span class="p">(</span><span class="n">h32</span><span class="p">))</span>  <span class="c1"># Initialize with h32</span>
 
-<span class="c1"># Add markers for h32</span>
-<span class="n">fig_h32</span><span class="o">.</span><span class="n">add_trace</span><span class="p">(</span><span class="n">go</span><span class="o">.</span><span class="n">Scatter</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">x_values_h32</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="n">h32</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="s1">&#39;markers&#39;</span><span class="p">,</span> <span class="n">marker</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">color</span><span class="o">=</span><span class="s1">&#39;#1F77B4&#39;</span><span class="p">)))</span>
+<span class="c1"># Function to handle Dropdown change</span>
+<span class="k">def</span> <span class="nf">on_dropdown_change</span><span class="p">(</span><span class="n">change</span><span class="p">):</span>
+    <span class="n">h_selected</span> <span class="o">=</span> <span class="nb">globals</span><span class="p">()[</span><span class="n">change</span><span class="p">[</span><span class="s1">&#39;new&#39;</span><span class="p">]]</span>  <span class="c1"># Access the selected filter using its name</span>
+    <span class="n">plotly_fig_widget</span><span class="o">.</span><span class="n">data</span> <span class="o">=</span> <span class="p">[]</span>  <span class="c1"># Clear existing data</span>
+    <span class="n">new_fig_data</span> <span class="o">=</span> <span class="n">create_update_stem_plot</span><span class="p">(</span><span class="n">h_selected</span><span class="p">)</span><span class="o">.</span><span class="n">data</span>
+    <span class="n">plotly_fig_widget</span><span class="o">.</span><span class="n">add_traces</span><span class="p">(</span><span class="n">new_fig_data</span><span class="p">)</span>
+    <span class="n">plotly_fig_widget</span><span class="o">.</span><span class="n">layout</span><span class="o">.</span><span class="n">title</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;Stem plot of </span><span class="si">{</span><span class="n">change</span><span class="p">[</span><span class="s2">&quot;new&quot;</span><span class="p">]</span><span class="si">}</span><span class="s1">&#39;</span>
 
-<span class="c1"># Update layout for h32</span>
-<span class="n">fig_h32</span><span class="o">.</span><span class="n">update_layout</span><span class="p">(</span>
-    <span class="n">title</span><span class="o">=</span><span class="s1">&#39;Stem plot of h32&#39;</span><span class="p">,</span> <span class="n">title_x</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span><span class="n">title_font</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">size</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;black&#39;</span><span class="p">,</span> <span class="n">family</span><span class="o">=</span><span class="s2">&quot;Arial, sans-serif&quot;</span><span class="p">),</span>
-    <span class="n">xaxis_title</span><span class="o">=</span><span class="s1">&#39;Index&#39;</span><span class="p">,</span>
-    <span class="n">yaxis_title</span><span class="o">=</span><span class="s1">&#39;Amplitude&#39;</span><span class="p">,</span>
+<span class="c1"># Observe changes in the Dropdown widget</span>
+<span class="n">dropdown</span><span class="o">.</span><span class="n">observe</span><span class="p">(</span><span class="n">on_dropdown_change</span><span class="p">,</span> <span class="n">names</span><span class="o">=</span><span class="s1">&#39;value&#39;</span><span class="p">)</span>
+
+<span class="c1"># Display widgets</span>
+<span class="n">display</span><span class="p">(</span><span class="n">dropdown</span><span class="p">)</span>
+<span class="n">display</span><span class="p">(</span><span class="n">plotly_fig_widget</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<script type="application/vnd.jupyter.widget-view+json">{"model_id": "ff984fc8b3c34c66bd3f34f3a26dc424", "version_major": 2, "version_minor": 0}</script><script type="application/vnd.jupyter.widget-view+json">{"model_id": "beec5e6fde2b47929f5ceeff477b2746", "version_major": 2, "version_minor": 0}</script></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">ipywidgets</span> <span class="k">as</span> <span class="nn">widgets</span>
+<span class="kn">from</span> <span class="nn">IPython.display</span> <span class="kn">import</span> <span class="n">display</span>
+<span class="kn">import</span> <span class="nn">plotly.graph_objs</span> <span class="k">as</span> <span class="nn">go</span>
+<span class="kn">from</span> <span class="nn">scipy</span> <span class="kn">import</span> <span class="n">signal</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
+<span class="c1"># Compute frequency responses</span>
+<span class="n">freq32</span><span class="p">,</span> <span class="n">resp32</span> <span class="o">=</span> <span class="n">signal</span><span class="o">.</span><span class="n">freqz</span><span class="p">(</span><span class="n">h32</span><span class="p">)</span>
+<span class="n">freq64</span><span class="p">,</span> <span class="n">resp64</span> <span class="o">=</span> <span class="n">signal</span><span class="o">.</span><span class="n">freqz</span><span class="p">(</span><span class="n">h64</span><span class="p">)</span>
+<span class="n">freq128</span><span class="p">,</span> <span class="n">resp128</span> <span class="o">=</span> <span class="n">signal</span><span class="o">.</span><span class="n">freqz</span><span class="p">(</span><span class="n">h128</span><span class="p">)</span>
+<span class="n">freq160</span><span class="p">,</span> <span class="n">resp160</span> <span class="o">=</span> <span class="n">signal</span><span class="o">.</span><span class="n">freqz</span><span class="p">(</span><span class="n">h160</span><span class="p">)</span>
+<span class="n">freq256</span><span class="p">,</span> <span class="n">resp256</span> <span class="o">=</span> <span class="n">signal</span><span class="o">.</span><span class="n">freqz</span><span class="p">(</span><span class="n">h256</span><span class="p">)</span>
+
+<span class="c1"># Initial Plotly figure setup</span>
+<span class="n">fig</span> <span class="o">=</span> <span class="n">go</span><span class="o">.</span><span class="n">FigureWidget</span><span class="p">()</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">add_trace</span><span class="p">(</span><span class="n">go</span><span class="o">.</span><span class="n">Scatter</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="mf">0.5</span> <span class="o">*</span> <span class="n">Fs</span> <span class="o">*</span> <span class="n">freq32</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">resp32</span><span class="p">),</span> <span class="n">mode</span><span class="o">=</span><span class="s1">&#39;lines&#39;</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;h32&#39;</span><span class="p">,</span> <span class="n">visible</span><span class="o">=</span><span class="kc">False</span><span class="p">))</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">add_trace</span><span class="p">(</span><span class="n">go</span><span class="o">.</span><span class="n">Scatter</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="mf">0.5</span> <span class="o">*</span> <span class="n">Fs</span> <span class="o">*</span> <span class="n">freq64</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">resp64</span><span class="p">),</span> <span class="n">mode</span><span class="o">=</span><span class="s1">&#39;lines&#39;</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;h64&#39;</span><span class="p">,</span> <span class="n">visible</span><span class="o">=</span><span class="kc">False</span><span class="p">))</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">add_trace</span><span class="p">(</span><span class="n">go</span><span class="o">.</span><span class="n">Scatter</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="mf">0.5</span> <span class="o">*</span> <span class="n">Fs</span> <span class="o">*</span> <span class="n">freq128</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">resp128</span><span class="p">),</span> <span class="n">mode</span><span class="o">=</span><span class="s1">&#39;lines&#39;</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;h128&#39;</span><span class="p">,</span> <span class="n">visible</span><span class="o">=</span><span class="kc">False</span><span class="p">))</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">add_trace</span><span class="p">(</span><span class="n">go</span><span class="o">.</span><span class="n">Scatter</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="mf">0.5</span> <span class="o">*</span> <span class="n">Fs</span> <span class="o">*</span> <span class="n">freq160</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">resp160</span><span class="p">),</span> <span class="n">mode</span><span class="o">=</span><span class="s1">&#39;lines&#39;</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;h160&#39;</span><span class="p">,</span> <span class="n">visible</span><span class="o">=</span><span class="kc">False</span><span class="p">))</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">add_trace</span><span class="p">(</span><span class="n">go</span><span class="o">.</span><span class="n">Scatter</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="mf">0.5</span> <span class="o">*</span> <span class="n">Fs</span> <span class="o">*</span> <span class="n">freq256</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">resp256</span><span class="p">),</span> <span class="n">mode</span><span class="o">=</span><span class="s1">&#39;lines&#39;</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;h256&#39;</span><span class="p">,</span> <span class="n">visible</span><span class="o">=</span><span class="kc">False</span><span class="p">))</span>
+
+
+<span class="n">fig</span><span class="o">.</span><span class="n">update_layout</span><span class="p">(</span>
+    <span class="n">title</span><span class="o">=</span><span class="s1">&#39;Απόκριση συχνότητας βαθυπερατού φίλτρου (με ορθογωνικά παράθυρα)&#39;</span><span class="p">,</span>
+    <span class="n">xaxis_title</span><span class="o">=</span><span class="s1">&#39;Frequency (Hz)&#39;</span><span class="p">,</span>
+    <span class="n">yaxis_title</span><span class="o">=</span><span class="s1">&#39;Gain&#39;</span><span class="p">,</span>
+    <span class="n">yaxis_type</span><span class="o">=</span><span class="s1">&#39;log&#39;</span><span class="p">,</span>
+    
     <span class="n">template</span><span class="o">=</span><span class="s1">&#39;plotly_white&#39;</span>
 <span class="p">)</span>
 
-<span class="c1"># Show figure for h32</span>
-<span class="n">fig_h32</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+<span class="c1"># Function to update visibility based on checkboxes</span>
+<span class="k">def</span> <span class="nf">update_visibility</span><span class="p">(</span><span class="n">change</span><span class="p">):</span>
+    <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">checkbox</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">checkboxes</span><span class="p">):</span>
+        <span class="n">fig</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">visible</span> <span class="o">=</span> <span class="n">checkbox</span><span class="o">.</span><span class="n">value</span>
+
+        
+<span class="c1"># Create an HTML title with bigger font size for the checkboxes, using ipywidgets.HTML</span>
+<span class="n">checkbox_title_html</span> <span class="o">=</span> <span class="n">widgets</span><span class="o">.</span><span class="n">HTML</span><span class="p">(</span><span class="s1">&#39;&lt;h4 style=&quot;font-size: 20px; margin-bottom: 3px;&quot;&gt;Διάλεξε μέγεθος βαθυπερατού φίλτρου:&lt;/h4&gt;&#39;</span><span class="p">)</span>
+
+
+<span class="c1"># Create checkboxes with improved styling</span>
+<span class="n">checkboxes</span> <span class="o">=</span> <span class="p">[</span><span class="n">widgets</span><span class="o">.</span><span class="n">Checkbox</span><span class="p">(</span><span class="n">value</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="sa">f</span><span class="s1">&#39;h</span><span class="si">{</span><span class="n">filt</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">indent</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span> <span class="k">for</span> <span class="n">filt</span> <span class="ow">in</span> <span class="p">[</span><span class="mi">32</span><span class="p">,</span> <span class="mi">64</span><span class="p">,</span> <span class="mi">128</span><span class="p">,</span> <span class="mi">160</span><span class="p">,</span> <span class="mi">256</span><span class="p">]]</span>
+<span class="n">checkbox_container</span> <span class="o">=</span> <span class="n">widgets</span><span class="o">.</span><span class="n">HBox</span><span class="p">(</span><span class="n">checkboxes</span><span class="p">,</span> <span class="n">layout</span><span class="o">=</span><span class="n">widgets</span><span class="o">.</span><span class="n">Layout</span><span class="p">(</span><span class="n">display</span><span class="o">=</span><span class="s1">&#39;flex&#39;</span><span class="p">,</span> <span class="n">flex_flow</span><span class="o">=</span><span class="s1">&#39;row&#39;</span><span class="p">,</span> <span class="n">justify_content</span><span class="o">=</span><span class="s1">&#39;space-between&#39;</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="s1">&#39;100%&#39;</span><span class="p">))</span>
+
+<span class="k">for</span> <span class="n">checkbox</span> <span class="ow">in</span> <span class="n">checkboxes</span><span class="p">:</span>
+    <span class="n">checkbox</span><span class="o">.</span><span class="n">observe</span><span class="p">(</span><span class="n">update_visibility</span><span class="p">,</span> <span class="s1">&#39;value&#39;</span><span class="p">)</span>
+
+<span class="c1"># Use VBox to stack the title and the checkboxes vertically</span>
+<span class="n">vbox_layout</span> <span class="o">=</span> <span class="n">widgets</span><span class="o">.</span><span class="n">VBox</span><span class="p">([</span><span class="n">checkbox_title_html</span><span class="p">,</span> <span class="n">checkbox_container</span><span class="p">])</span>
+
+<span class="c1"># Display the title and checkboxes above the figure</span>
+<span class="n">display</span><span class="p">(</span><span class="n">vbox_layout</span><span class="p">)</span>
+<span class="n">display</span><span class="p">(</span><span class="n">fig</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
-</details>
 <div class="cell_output docutils container">
-</div>
-</div>
-<div class="cell tag_hide-input docutils container">
-<details class="hide above-input">
-<summary aria-label="Toggle hidden content">
-<span class="collapsed">Show code cell source</span>
-<span class="expanded">Hide code cell source</span>
-</summary>
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">freq</span><span class="p">,</span><span class="n">resp32</span> <span class="o">=</span> <span class="n">signal</span><span class="o">.</span><span class="n">freqz</span><span class="p">(</span><span class="n">h32</span><span class="p">)</span>
-<span class="n">freq</span><span class="p">,</span><span class="n">resp128</span> <span class="o">=</span> <span class="n">signal</span><span class="o">.</span><span class="n">freqz</span><span class="p">(</span><span class="n">h128</span><span class="p">)</span>
-
-<span class="c1"># Create Plotly figure</span>
-<span class="n">fig</span> <span class="o">=</span> <span class="n">go</span><span class="o">.</span><span class="n">Figure</span><span class="p">()</span>
-
-<span class="c1"># Add traces for h32 and h128 frequency responses</span>
-<span class="n">fig</span><span class="o">.</span><span class="n">add_trace</span><span class="p">(</span><span class="n">go</span><span class="o">.</span><span class="n">Scatter</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="mf">0.5</span> <span class="o">*</span> <span class="n">Fs</span> <span class="o">*</span> <span class="n">freq</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">resp32</span><span class="p">),</span> <span class="n">mode</span><span class="o">=</span><span class="s1">&#39;lines&#39;</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;h32&#39;</span><span class="p">,</span> <span class="n">line</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">color</span><span class="o">=</span><span class="s1">&#39;#1F77B4&#39;</span><span class="p">)))</span>
-<span class="n">fig</span><span class="o">.</span><span class="n">add_trace</span><span class="p">(</span><span class="n">go</span><span class="o">.</span><span class="n">Scatter</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="mf">0.5</span> <span class="o">*</span> <span class="n">Fs</span> <span class="o">*</span> <span class="n">freq</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">resp128</span><span class="p">),</span> <span class="n">mode</span><span class="o">=</span><span class="s1">&#39;lines&#39;</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;h128&#39;</span><span class="p">,</span> <span class="n">line</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">color</span><span class="o">=</span><span class="s1">&#39;green&#39;</span><span class="p">)))</span>
-
-<span class="c1"># Update layout for a semilog plot</span>
-<span class="n">fig</span><span class="o">.</span><span class="n">update_layout</span><span class="p">(</span>
-    <span class="n">title</span><span class="o">=</span><span class="s1">&#39;Απόκριση συχνότητας βαθυπερατού φίλτρου&lt;br&gt;(με ορθογωνικά παράθυρα)&#39;</span><span class="p">,</span> <span class="n">title_x</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span><span class="n">title_font</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">size</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;black&#39;</span><span class="p">,</span> <span class="n">family</span><span class="o">=</span><span class="s2">&quot;Arial, sans-serif&quot;</span><span class="p">),</span>
-    <span class="n">xaxis_title</span><span class="o">=</span><span class="s1">&#39;Συχνότητα (Hz)&#39;</span><span class="p">,</span>
-    <span class="n">yaxis_title</span><span class="o">=</span><span class="s1">&#39;Κέρδος&#39;</span><span class="p">,</span>
-    <span class="n">yaxis_type</span><span class="o">=</span><span class="s1">&#39;log&#39;</span><span class="p">,</span>  <span class="c1"># Set y-axis to logarithmic scale</span>
-    <span class="n">template</span><span class="o">=</span><span class="s1">&#39;plotly_white&#39;</span><span class="p">,</span>
-    <span class="n">xaxis</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">showgrid</span><span class="o">=</span><span class="kc">True</span><span class="p">),</span>
-    <span class="n">yaxis</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">showgrid</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-<span class="p">)</span>
-
-<span class="c1"># Show figure</span>
-<span class="n">fig</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
-</pre></div>
-</div>
-</div>
-</details>
-<div class="cell_output docutils container">
-</div>
+<script type="application/vnd.jupyter.widget-view+json">{"model_id": "2aed612903bc4120a701bf9baaea61a9", "version_major": 2, "version_minor": 0}</script><script type="application/vnd.jupyter.widget-view+json">{"model_id": "8c88991e8ccd49e490b4eb252bc2ce2f", "version_major": 2, "version_minor": 0}</script></div>
 </div>
 </section>
 <section id="hamming-kaiser">
@@ -1168,9 +1214,7 @@ ylabel('xb');
 <span class="expanded">Hide code cell source</span>
 </summary>
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">h64</span><span class="o">=</span><span class="n">h</span><span class="p">[</span><span class="n">middle</span><span class="o">-</span><span class="mi">32</span><span class="p">:</span><span class="n">middle</span><span class="o">+</span><span class="mi">32</span><span class="p">]</span>
-<span class="n">freq</span><span class="p">,</span><span class="n">resp64</span> <span class="o">=</span> <span class="n">signal</span><span class="o">.</span><span class="n">freqz</span><span class="p">(</span><span class="n">h64</span><span class="p">)</span>
-<span class="n">w_hamming</span><span class="o">=</span><span class="n">signal</span><span class="o">.</span><span class="n">hamming</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">h64</span><span class="p">))</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">w_hamming</span><span class="o">=</span><span class="n">signal</span><span class="o">.</span><span class="n">hamming</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">h64</span><span class="p">))</span>
 <span class="n">h64_hamming</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">multiply</span><span class="p">(</span><span class="n">h64</span><span class="p">,</span><span class="n">w_hamming</span><span class="p">)</span>
 <span class="n">w_kaiser</span><span class="o">=</span><span class="n">signal</span><span class="o">.</span><span class="n">kaiser</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">h64</span><span class="p">),</span><span class="mi">5</span><span class="p">)</span>
 <span class="n">h64_kaiser</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">multiply</span><span class="p">(</span><span class="n">h64</span><span class="p">,</span><span class="n">w_kaiser</span><span class="p">)</span>
@@ -1212,84 +1256,128 @@ ylabel('xb');
 </section>
 <section id="id11">
 <h4>Φίλτρα ισοϋψών κυματώσεων<a class="headerlink" href="#id11" title="Link to this heading">#</a></h4>
-<div class="cell tag_hide-input docutils container">
-<details class="hide above-input">
-<summary aria-label="Toggle hidden content">
-<span class="collapsed">Show code cell source</span>
-<span class="expanded">Hide code cell source</span>
-</summary>
+<div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">lpass</span> <span class="o">=</span> <span class="n">signal</span><span class="o">.</span><span class="n">remez</span><span class="p">(</span><span class="mi">64</span><span class="p">,</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1000</span><span class="p">,</span> <span class="mi">1300</span><span class="p">,</span> <span class="n">Fs</span><span class="o">/</span><span class="mi">2</span><span class="p">],</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">fs</span><span class="o">=</span><span class="n">Fs</span><span class="p">)</span>
-<span class="n">freq</span><span class="p">,</span><span class="n">resp_pm</span> <span class="o">=</span> <span class="n">signal</span><span class="o">.</span><span class="n">freqz</span><span class="p">(</span><span class="n">lpass</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Defining the filters using the Remez algorithm</span>
+<span class="n">lpass32</span> <span class="o">=</span> <span class="n">signal</span><span class="o">.</span><span class="n">remez</span><span class="p">(</span><span class="mi">32</span><span class="p">,</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1000</span><span class="p">,</span> <span class="mi">1300</span><span class="p">,</span> <span class="n">Fs</span><span class="o">/</span><span class="mi">2</span><span class="p">],</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">fs</span><span class="o">=</span><span class="n">Fs</span><span class="p">)</span>
+<span class="n">lpass64</span> <span class="o">=</span> <span class="n">signal</span><span class="o">.</span><span class="n">remez</span><span class="p">(</span><span class="mi">64</span><span class="p">,</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1000</span><span class="p">,</span> <span class="mi">1300</span><span class="p">,</span> <span class="n">Fs</span><span class="o">/</span><span class="mi">2</span><span class="p">],</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">fs</span><span class="o">=</span><span class="n">Fs</span><span class="p">)</span>
+<span class="n">lpass128</span> <span class="o">=</span> <span class="n">signal</span><span class="o">.</span><span class="n">remez</span><span class="p">(</span><span class="mi">128</span><span class="p">,</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1000</span><span class="p">,</span> <span class="mi">1300</span><span class="p">,</span> <span class="n">Fs</span><span class="o">/</span><span class="mi">2</span><span class="p">],</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">fs</span><span class="o">=</span><span class="n">Fs</span><span class="p">)</span>
+<span class="n">lpass160</span> <span class="o">=</span> <span class="n">signal</span><span class="o">.</span><span class="n">remez</span><span class="p">(</span><span class="mi">160</span><span class="p">,</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1000</span><span class="p">,</span> <span class="mi">1300</span><span class="p">,</span> <span class="n">Fs</span><span class="o">/</span><span class="mi">2</span><span class="p">],</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">fs</span><span class="o">=</span><span class="n">Fs</span><span class="p">)</span>
+<span class="n">lpass256</span> <span class="o">=</span> <span class="n">signal</span><span class="o">.</span><span class="n">remez</span><span class="p">(</span><span class="mi">256</span><span class="p">,</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1000</span><span class="p">,</span> <span class="mi">1300</span><span class="p">,</span> <span class="n">Fs</span><span class="o">/</span><span class="mi">2</span><span class="p">],</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">fs</span><span class="o">=</span><span class="n">Fs</span><span class="p">)</span>
 
-<span class="c1"># Compute frequency response for the equiripple (Remez) filter</span>
-<span class="n">freq_pm</span><span class="p">,</span> <span class="n">resp_pm</span> <span class="o">=</span> <span class="n">signal</span><span class="o">.</span><span class="n">freqz</span><span class="p">(</span><span class="n">lpass</span><span class="p">)</span>
+<span class="c1"># Compute frequency responses for the Remez filters</span>
+<span class="n">freq_pm32</span><span class="p">,</span> <span class="n">resp_pm32</span> <span class="o">=</span> <span class="n">signal</span><span class="o">.</span><span class="n">freqz</span><span class="p">(</span><span class="n">lpass32</span><span class="p">,</span> <span class="n">fs</span><span class="o">=</span><span class="n">Fs</span><span class="p">)</span>
+<span class="n">freq_pm64</span><span class="p">,</span> <span class="n">resp_pm64</span> <span class="o">=</span> <span class="n">signal</span><span class="o">.</span><span class="n">freqz</span><span class="p">(</span><span class="n">lpass64</span><span class="p">,</span> <span class="n">fs</span><span class="o">=</span><span class="n">Fs</span><span class="p">)</span>
+<span class="n">freq_pm128</span><span class="p">,</span> <span class="n">resp_pm128</span> <span class="o">=</span> <span class="n">signal</span><span class="o">.</span><span class="n">freqz</span><span class="p">(</span><span class="n">lpass128</span><span class="p">,</span> <span class="n">fs</span><span class="o">=</span><span class="n">Fs</span><span class="p">)</span>
+<span class="n">freq_pm160</span><span class="p">,</span> <span class="n">resp_pm160</span> <span class="o">=</span> <span class="n">signal</span><span class="o">.</span><span class="n">freqz</span><span class="p">(</span><span class="n">lpass160</span><span class="p">,</span> <span class="n">fs</span><span class="o">=</span><span class="n">Fs</span><span class="p">)</span>
+<span class="n">freq_pm256</span><span class="p">,</span> <span class="n">resp_pm256</span> <span class="o">=</span> <span class="n">signal</span><span class="o">.</span><span class="n">freqz</span><span class="p">(</span><span class="n">lpass256</span><span class="p">,</span> <span class="n">fs</span><span class="o">=</span><span class="n">Fs</span><span class="p">)</span>
 
-<span class="c1"># Create Plotly figure</span>
-<span class="n">fig</span> <span class="o">=</span> <span class="n">go</span><span class="o">.</span><span class="n">Figure</span><span class="p">()</span>
+<span class="c1"># Initial Plotly figure setup</span>
+<span class="n">fig</span> <span class="o">=</span> <span class="n">go</span><span class="o">.</span><span class="n">FigureWidget</span><span class="p">()</span>
 
-<span class="c1"># Add trace for rectangular window response</span>
-<span class="n">fig</span><span class="o">.</span><span class="n">add_trace</span><span class="p">(</span><span class="n">go</span><span class="o">.</span><span class="n">Scatter</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="mf">0.5</span> <span class="o">*</span> <span class="n">Fs</span> <span class="o">*</span> <span class="n">freq</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">resp64</span><span class="p">),</span> <span class="n">mode</span><span class="o">=</span><span class="s1">&#39;lines&#39;</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;Rectangular Window&#39;</span><span class="p">,</span> <span class="n">line</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">color</span><span class="o">=</span><span class="s1">&#39;#1F77B4&#39;</span><span class="p">)))</span>
+<span class="c1"># Function to update the figure based on checkbox states</span>
+<span class="k">def</span> <span class="nf">update_figure</span><span class="p">(</span><span class="n">change</span><span class="p">):</span>
+    <span class="n">visible_traces</span> <span class="o">=</span> <span class="p">[</span><span class="n">checkbox</span><span class="o">.</span><span class="n">description</span> <span class="k">for</span> <span class="n">checkbox</span> <span class="ow">in</span> <span class="n">checkboxes</span> <span class="k">if</span> <span class="n">checkbox</span><span class="o">.</span><span class="n">value</span><span class="p">]</span>
+    <span class="k">for</span> <span class="n">trace</span> <span class="ow">in</span> <span class="n">fig</span><span class="o">.</span><span class="n">data</span><span class="p">:</span>
+        <span class="n">trace</span><span class="o">.</span><span class="n">visible</span> <span class="o">=</span> <span class="n">trace</span><span class="o">.</span><span class="n">name</span> <span class="ow">in</span> <span class="n">visible_traces</span>
 
-<span class="c1"># Add trace for equiripple filter response</span>
-<span class="n">fig</span><span class="o">.</span><span class="n">add_trace</span><span class="p">(</span><span class="n">go</span><span class="o">.</span><span class="n">Scatter</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="mf">0.5</span> <span class="o">*</span> <span class="n">Fs</span> <span class="o">*</span> <span class="n">freq_pm</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">resp_pm</span><span class="p">),</span> <span class="n">mode</span><span class="o">=</span><span class="s1">&#39;lines&#39;</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;Equiripple Filter&#39;</span><span class="p">,</span> <span class="n">line</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">color</span><span class="o">=</span><span class="s1">&#39;green&#39;</span><span class="p">)))</span>
+<span class="c1"># Create checkboxes for each filter response</span>
+<span class="n">checkboxes</span> <span class="o">=</span> <span class="p">[</span><span class="n">widgets</span><span class="o">.</span><span class="n">Checkbox</span><span class="p">(</span><span class="n">description</span><span class="o">=</span><span class="sa">f</span><span class="s1">&#39;Equiripple Filter </span><span class="si">{</span><span class="n">n</span><span class="si">}</span><span class="s1">+1&#39;</span><span class="p">,</span> <span class="n">value</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">indent</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span> <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="p">[</span><span class="mi">32</span><span class="p">,</span> <span class="mi">64</span><span class="p">,</span> <span class="mi">128</span><span class="p">,</span> <span class="mi">160</span><span class="p">,</span> <span class="mi">256</span><span class="p">]]</span>
+<span class="k">for</span> <span class="n">checkbox</span> <span class="ow">in</span> <span class="n">checkboxes</span><span class="p">:</span>
+    <span class="n">checkbox</span><span class="o">.</span><span class="n">observe</span><span class="p">(</span><span class="n">update_figure</span><span class="p">,</span> <span class="n">names</span><span class="o">=</span><span class="s1">&#39;value&#39;</span><span class="p">)</span>
 
-<span class="c1"># Update layout for a semilog plot</span>
+<span class="c1"># Add traces for each filter response</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">add_trace</span><span class="p">(</span><span class="n">go</span><span class="o">.</span><span class="n">Scatter</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">freq_pm32</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">resp_pm32</span><span class="p">),</span> <span class="n">mode</span><span class="o">=</span><span class="s1">&#39;lines&#39;</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;Equiripple Filter 32+1&#39;</span><span class="p">,</span> <span class="n">visible</span><span class="o">=</span><span class="kc">False</span><span class="p">))</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">add_trace</span><span class="p">(</span><span class="n">go</span><span class="o">.</span><span class="n">Scatter</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">freq_pm64</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">resp_pm64</span><span class="p">),</span> <span class="n">mode</span><span class="o">=</span><span class="s1">&#39;lines&#39;</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;Equiripple Filter 64+1&#39;</span><span class="p">,</span> <span class="n">visible</span><span class="o">=</span><span class="kc">False</span><span class="p">))</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">add_trace</span><span class="p">(</span><span class="n">go</span><span class="o">.</span><span class="n">Scatter</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">freq_pm128</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">resp_pm128</span><span class="p">),</span> <span class="n">mode</span><span class="o">=</span><span class="s1">&#39;lines&#39;</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;Equiripple Filter 128+1&#39;</span><span class="p">,</span> <span class="n">visible</span><span class="o">=</span><span class="kc">False</span><span class="p">))</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">add_trace</span><span class="p">(</span><span class="n">go</span><span class="o">.</span><span class="n">Scatter</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">freq_pm160</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">resp_pm160</span><span class="p">),</span> <span class="n">mode</span><span class="o">=</span><span class="s1">&#39;lines&#39;</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;Equiripple Filter 160+1&#39;</span><span class="p">,</span> <span class="n">visible</span><span class="o">=</span><span class="kc">False</span><span class="p">))</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">add_trace</span><span class="p">(</span><span class="n">go</span><span class="o">.</span><span class="n">Scatter</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">freq_pm256</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">resp_pm256</span><span class="p">),</span> <span class="n">mode</span><span class="o">=</span><span class="s1">&#39;lines&#39;</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;Equiripple Filter 256+1&#39;</span><span class="p">,</span> <span class="n">visible</span><span class="o">=</span><span class="kc">False</span><span class="p">))</span>
+
+<span class="c1"># Update layout for the figure</span>
 <span class="n">fig</span><span class="o">.</span><span class="n">update_layout</span><span class="p">(</span>
-    <span class="n">title</span><span class="o">=</span><span class="s1">&#39;Απόκριση συχνότητας βαθυπερατού φίλτρου equirriple (πράσινο)&lt;br&gt;(το αντίστοιχο με ορθογωνικό παραθυρο σε μπλε)&#39;</span><span class="p">,</span> <span class="n">title_x</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span><span class="n">title_font</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">size</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;black&#39;</span><span class="p">,</span> <span class="n">family</span><span class="o">=</span><span class="s2">&quot;Arial, sans-serif&quot;</span><span class="p">),</span>
-    <span class="n">xaxis_title</span><span class="o">=</span><span class="s1">&#39;Συχνότητα (Hz)&#39;</span><span class="p">,</span>
-    <span class="n">yaxis_title</span><span class="o">=</span><span class="s1">&#39;Κέρδος&#39;</span><span class="p">,</span>
-    <span class="n">yaxis_type</span><span class="o">=</span><span class="s1">&#39;log&#39;</span><span class="p">,</span>  <span class="c1"># Set y-axis to logarithmic scale</span>
-    <span class="n">template</span><span class="o">=</span><span class="s1">&#39;plotly_white&#39;</span><span class="p">,</span>
-    <span class="n">xaxis</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">showgrid</span><span class="o">=</span><span class="kc">True</span><span class="p">),</span>
-    <span class="n">yaxis</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">showgrid</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="n">title</span><span class="o">=</span><span class="s1">&#39;Frequency Response of Equiripple Filters&#39;</span><span class="p">,</span>
+    <span class="n">xaxis_title</span><span class="o">=</span><span class="s1">&#39;Frequency (Hz)&#39;</span><span class="p">,</span>
+    <span class="n">yaxis_title</span><span class="o">=</span><span class="s1">&#39;Gain&#39;</span><span class="p">,</span>
+    <span class="n">yaxis_type</span><span class="o">=</span><span class="s1">&#39;log&#39;</span><span class="p">,</span>
+    <span class="n">template</span><span class="o">=</span><span class="s1">&#39;plotly_white&#39;</span>
 <span class="p">)</span>
 
-<span class="c1"># Show figure</span>
-<span class="n">fig</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+
+    
+<span class="c1"># Create an HTML title with bigger font size for the checkboxes, using ipywidgets.HTML</span>
+<span class="n">checkbox_title_html</span> <span class="o">=</span> <span class="n">widgets</span><span class="o">.</span><span class="n">HTML</span><span class="p">(</span><span class="s1">&#39;&lt;h4 style=&quot;font-size: 20px; margin-bottom: 3px;&quot;&gt;Φίλτρο Parks-McClellan μήκους:&lt;/h4&gt;&#39;</span><span class="p">)</span>
+
+
+<span class="c1"># Create checkboxes with improved styling</span>
+<span class="n">checkboxes</span> <span class="o">=</span> <span class="p">[</span><span class="n">widgets</span><span class="o">.</span><span class="n">Checkbox</span><span class="p">(</span><span class="n">value</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="sa">f</span><span class="s1">&#39;h</span><span class="si">{</span><span class="n">filt</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">indent</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span> <span class="k">for</span> <span class="n">filt</span> <span class="ow">in</span> <span class="p">[</span><span class="mi">32</span><span class="p">,</span> <span class="mi">64</span><span class="p">,</span> <span class="mi">128</span><span class="p">,</span> <span class="mi">160</span><span class="p">,</span> <span class="mi">256</span><span class="p">]]</span>
+<span class="n">checkbox_container</span> <span class="o">=</span> <span class="n">widgets</span><span class="o">.</span><span class="n">HBox</span><span class="p">(</span><span class="n">checkboxes</span><span class="p">,</span> <span class="n">layout</span><span class="o">=</span><span class="n">widgets</span><span class="o">.</span><span class="n">Layout</span><span class="p">(</span><span class="n">display</span><span class="o">=</span><span class="s1">&#39;flex&#39;</span><span class="p">,</span> <span class="n">flex_flow</span><span class="o">=</span><span class="s1">&#39;row&#39;</span><span class="p">,</span> <span class="n">justify_content</span><span class="o">=</span><span class="s1">&#39;space-between&#39;</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="s1">&#39;100%&#39;</span><span class="p">))</span>
+
+<span class="k">for</span> <span class="n">checkbox</span> <span class="ow">in</span> <span class="n">checkboxes</span><span class="p">:</span>
+    <span class="n">checkbox</span><span class="o">.</span><span class="n">observe</span><span class="p">(</span><span class="n">update_visibility</span><span class="p">,</span> <span class="s1">&#39;value&#39;</span><span class="p">)</span>
+
+<span class="c1"># Use VBox to stack the title and the checkboxes vertically</span>
+<span class="n">vbox_layout</span> <span class="o">=</span> <span class="n">widgets</span><span class="o">.</span><span class="n">VBox</span><span class="p">([</span><span class="n">checkbox_title_html</span><span class="p">,</span> <span class="n">checkbox_container</span><span class="p">])</span>
+
+<span class="c1"># Display the title and checkboxes above the figure</span>
+<span class="n">display</span><span class="p">(</span><span class="n">vbox_layout</span><span class="p">)</span>
+<span class="n">display</span><span class="p">(</span><span class="n">fig</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
-</details>
 <div class="cell_output docutils container">
-</div>
+<script type="application/vnd.jupyter.widget-view+json">{"model_id": "4b6a978f0a9047fea31b270eecef9136", "version_major": 2, "version_minor": 0}</script><script type="application/vnd.jupyter.widget-view+json">{"model_id": "009947c4f03c4c00aa25a2462afda05d", "version_major": 2, "version_minor": 0}</script></div>
 </div>
 </section>
 <section id="id12">
 <h4>Εφαρμογή του φίλτρου<a class="headerlink" href="#id12" title="Link to this heading">#</a></h4>
-<div class="cell tag_hide-input docutils container">
-<details class="hide above-input">
-<summary aria-label="Toggle hidden content">
-<span class="collapsed">Show code cell source</span>
-<span class="expanded">Hide code cell source</span>
-</summary>
+<div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">s_pm</span> <span class="o">=</span> <span class="n">signal</span><span class="o">.</span><span class="n">convolve</span><span class="p">(</span><span class="n">s</span><span class="p">,</span><span class="n">lpass</span><span class="p">,</span><span class="n">mode</span><span class="o">=</span><span class="s1">&#39;same&#39;</span><span class="p">)</span><span class="o">/</span><span class="nb">sum</span><span class="p">(</span><span class="n">lpass</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Design the filters</span>
+<span class="n">filters</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">&#39;lpass32&#39;</span><span class="p">:</span> <span class="n">signal</span><span class="o">.</span><span class="n">remez</span><span class="p">(</span><span class="mi">32</span><span class="p">,</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1000</span><span class="p">,</span> <span class="mi">1300</span><span class="p">,</span> <span class="n">Fs</span><span class="o">/</span><span class="mi">2</span><span class="p">],</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">fs</span><span class="o">=</span><span class="n">Fs</span><span class="p">),</span>
+    <span class="s1">&#39;lpass64&#39;</span><span class="p">:</span> <span class="n">signal</span><span class="o">.</span><span class="n">remez</span><span class="p">(</span><span class="mi">64</span><span class="p">,</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1000</span><span class="p">,</span> <span class="mi">1300</span><span class="p">,</span> <span class="n">Fs</span><span class="o">/</span><span class="mi">2</span><span class="p">],</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">fs</span><span class="o">=</span><span class="n">Fs</span><span class="p">),</span>
+    <span class="s1">&#39;lpass128&#39;</span><span class="p">:</span> <span class="n">signal</span><span class="o">.</span><span class="n">remez</span><span class="p">(</span><span class="mi">128</span><span class="p">,</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1000</span><span class="p">,</span> <span class="mi">1300</span><span class="p">,</span> <span class="n">Fs</span><span class="o">/</span><span class="mi">2</span><span class="p">],</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">fs</span><span class="o">=</span><span class="n">Fs</span><span class="p">),</span>
+    <span class="s1">&#39;lpass160&#39;</span><span class="p">:</span> <span class="n">signal</span><span class="o">.</span><span class="n">remez</span><span class="p">(</span><span class="mi">160</span><span class="p">,</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1000</span><span class="p">,</span> <span class="mi">1300</span><span class="p">,</span> <span class="n">Fs</span><span class="o">/</span><span class="mi">2</span><span class="p">],</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">fs</span><span class="o">=</span><span class="n">Fs</span><span class="p">),</span>
+    <span class="s1">&#39;lpass256&#39;</span><span class="p">:</span> <span class="n">signal</span><span class="o">.</span><span class="n">remez</span><span class="p">(</span><span class="mi">256</span><span class="p">,</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1000</span><span class="p">,</span> <span class="mi">1300</span><span class="p">,</span> <span class="n">Fs</span><span class="o">/</span><span class="mi">2</span><span class="p">],</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">fs</span><span class="o">=</span><span class="n">Fs</span><span class="p">)</span>
+<span class="p">}</span>
 
-<span class="n">f</span><span class="p">,</span> <span class="n">Pxx_den</span> <span class="o">=</span> <span class="n">signal</span><span class="o">.</span><span class="n">welch</span><span class="p">(</span><span class="n">s_pm</span><span class="p">,</span> <span class="n">Fs</span><span class="p">,</span> <span class="n">noverlap</span><span class="o">=</span><span class="mi">128</span><span class="p">,</span> <span class="n">nperseg</span><span class="o">=</span><span class="mi">256</span><span class="p">)</span>
-
-<span class="c1"># Create Plotly figure</span>
-<span class="n">fig</span> <span class="o">=</span> <span class="n">go</span><span class="o">.</span><span class="n">Figure</span><span class="p">()</span>
-
-<span class="c1"># Add trace for the power spectral density of the filtered signal</span>
-<span class="n">fig</span><span class="o">.</span><span class="n">add_trace</span><span class="p">(</span><span class="n">go</span><span class="o">.</span><span class="n">Scatter</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">f</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="n">Pxx_den</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="s1">&#39;lines&#39;</span><span class="p">,</span> <span class="n">line</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">color</span><span class="o">=</span><span class="s1">&#39;#1F77B4&#39;</span><span class="p">)))</span>
-
-<span class="c1"># Update layout for a semilog plot</span>
-<span class="n">fig</span><span class="o">.</span><span class="n">update_layout</span><span class="p">(</span>
-    <span class="n">title</span><span class="o">=</span><span class="s1">&#39;Φάσμα φιλτραρισμένου σήματος sonar&#39;</span><span class="p">,</span><span class="n">title_x</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span><span class="n">title_font</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">size</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;black&#39;</span><span class="p">,</span> <span class="n">family</span><span class="o">=</span><span class="s2">&quot;Arial, sans-serif&quot;</span><span class="p">),</span>
-    <span class="n">xaxis_title</span><span class="o">=</span><span class="s1">&#39;Συχνότητα (Hz)&#39;</span><span class="p">,</span>
-    <span class="n">yaxis_title</span><span class="o">=</span><span class="s1">&#39;Πυκνότητα φάσματος ισχύος&#39;</span><span class="p">,</span>
-    <span class="n">yaxis_type</span><span class="o">=</span><span class="s1">&#39;log&#39;</span><span class="p">,</span>  <span class="c1"># Set y-axis to logarithmic scale</span>
-    <span class="n">template</span><span class="o">=</span><span class="s1">&#39;plotly_white&#39;</span><span class="p">,</span>
-    <span class="n">xaxis</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">showgrid</span><span class="o">=</span><span class="kc">True</span><span class="p">),</span>
-    <span class="n">yaxis</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">showgrid</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="nb">range</span><span class="o">=</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">log10</span><span class="p">(</span><span class="mf">1e-15</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">log10</span><span class="p">(</span><span class="mf">1e-7</span><span class="p">)])</span>  <span class="c1"># Adjust y-axis range</span>
+<span class="c1"># Dropdown for selecting the filter</span>
+<span class="n">dropdown</span> <span class="o">=</span> <span class="n">widgets</span><span class="o">.</span><span class="n">Dropdown</span><span class="p">(</span>
+    <span class="n">options</span><span class="o">=</span><span class="nb">list</span><span class="p">(</span><span class="n">filters</span><span class="o">.</span><span class="n">keys</span><span class="p">()),</span>
+    <span class="n">value</span><span class="o">=</span><span class="s1">&#39;lpass64&#39;</span><span class="p">,</span>
+    <span class="n">description</span><span class="o">=</span><span class="s1">&#39;Filter:&#39;</span><span class="p">,</span>
 <span class="p">)</span>
 
-<span class="c1"># Show figure</span>
-<span class="n">fig</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+<span class="c1"># Plotly figure widget for displaying the PSD</span>
+<span class="n">fig</span> <span class="o">=</span> <span class="n">go</span><span class="o">.</span><span class="n">FigureWidget</span><span class="p">()</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">update_layout</span><span class="p">(</span>
+    <span class="n">title</span><span class="o">=</span><span class="s1">&#39;Φάσμα φιλτραρισμένου σήματος&#39;</span><span class="p">,</span>
+    <span class="n">xaxis_title</span><span class="o">=</span><span class="s1">&#39;Συχνότητα (Hz)&#39;</span><span class="p">,</span>
+    <span class="n">yaxis_title</span><span class="o">=</span><span class="s1">&#39;Πυκνότητα φάσματος ισχύος&#39;</span><span class="p">,</span>
+    <span class="n">yaxis_type</span><span class="o">=</span><span class="s1">&#39;log&#39;</span><span class="p">,</span>
+    <span class="n">template</span><span class="o">=</span><span class="s1">&#39;plotly_white&#39;</span>
+<span class="p">)</span>
 
+<span class="c1"># Function to update the plot and play sound based on the selected filter</span>
+<span class="k">def</span> <span class="nf">update_plot_and_sound</span><span class="p">(</span><span class="n">change</span><span class="p">):</span>
+    <span class="n">selected_filter</span> <span class="o">=</span> <span class="n">filters</span><span class="p">[</span><span class="n">change</span><span class="p">[</span><span class="s1">&#39;new&#39;</span><span class="p">]]</span>
+    <span class="n">s_filtered</span> <span class="o">=</span> <span class="n">signal</span><span class="o">.</span><span class="n">convolve</span><span class="p">(</span><span class="n">s</span><span class="p">,</span> <span class="n">selected_filter</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="s1">&#39;same&#39;</span><span class="p">)</span> <span class="o">/</span> <span class="nb">sum</span><span class="p">(</span><span class="n">selected_filter</span><span class="p">)</span>
+    
+    <span class="n">f</span><span class="p">,</span> <span class="n">Pxx_den</span> <span class="o">=</span> <span class="n">signal</span><span class="o">.</span><span class="n">welch</span><span class="p">(</span><span class="n">s_filtered</span><span class="p">,</span> <span class="n">Fs</span><span class="p">,</span> <span class="n">noverlap</span><span class="o">=</span><span class="mi">128</span><span class="p">,</span> <span class="n">nperseg</span><span class="o">=</span><span class="mi">256</span><span class="p">)</span>
+    
+    <span class="k">with</span> <span class="n">fig</span><span class="o">.</span><span class="n">batch_update</span><span class="p">():</span>
+        <span class="n">fig</span><span class="o">.</span><span class="n">data</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="n">fig</span><span class="o">.</span><span class="n">add_trace</span><span class="p">(</span><span class="n">go</span><span class="o">.</span><span class="n">Scatter</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">f</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="n">Pxx_den</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="s1">&#39;lines&#39;</span><span class="p">,</span> <span class="n">line</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">color</span><span class="o">=</span><span class="s1">&#39;#1F77B4&#39;</span><span class="p">)))</span>
+        <span class="n">fig</span><span class="o">.</span><span class="n">layout</span><span class="o">.</span><span class="n">title</span><span class="o">.</span><span class="n">text</span> <span class="o">=</span> <span class="s1">&#39;Φάσμα φιλτραρισμένου σήματος: &#39;</span> <span class="o">+</span> <span class="n">change</span><span class="p">[</span><span class="s1">&#39;new&#39;</span><span class="p">]</span>
+
+<span class="c1"># Observe dropdown for changes</span>
+<span class="n">dropdown</span><span class="o">.</span><span class="n">observe</span><span class="p">(</span><span class="n">update_plot_and_sound</span><span class="p">,</span> <span class="n">names</span><span class="o">=</span><span class="s1">&#39;value&#39;</span><span class="p">)</span>
+
+<span class="c1"># Function to play the sound of the filtered signal</span>
 <span class="k">def</span> <span class="nf">play_sound</span><span class="p">(</span><span class="n">b</span><span class="p">):</span>
-    <span class="n">sd</span><span class="o">.</span><span class="n">play</span><span class="p">(</span><span class="n">s_pm</span><span class="p">,</span> <span class="n">Fs</span><span class="p">)</span>
+    <span class="n">selected_filter</span> <span class="o">=</span> <span class="n">filters</span><span class="p">[</span><span class="n">dropdown</span><span class="o">.</span><span class="n">value</span><span class="p">]</span>
+    <span class="n">s_filtered</span> <span class="o">=</span> <span class="n">signal</span><span class="o">.</span><span class="n">convolve</span><span class="p">(</span><span class="n">s</span><span class="p">,</span> <span class="n">selected_filter</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="s1">&#39;same&#39;</span><span class="p">)</span> <span class="o">/</span> <span class="nb">sum</span><span class="p">(</span><span class="n">selected_filter</span><span class="p">)</span>
+    <span class="n">sd</span><span class="o">.</span><span class="n">play</span><span class="p">(</span><span class="n">s_filtered</span><span class="p">,</span> <span class="n">Fs</span><span class="p">)</span>
 
 <span class="c1"># Create a button widget</span>
 <span class="n">play_button</span> <span class="o">=</span> <span class="n">widgets</span><span class="o">.</span><span class="n">Button</span><span class="p">(</span><span class="n">description</span><span class="o">=</span><span class="s2">&quot;Play Sound&quot;</span><span class="p">)</span>
@@ -1297,14 +1385,79 @@ ylabel('xb');
 <span class="c1"># Link the button to the function that plays the sound</span>
 <span class="n">play_button</span><span class="o">.</span><span class="n">on_click</span><span class="p">(</span><span class="n">play_sound</span><span class="p">)</span>
 
-<span class="c1"># Display the button</span>
+<span class="c1"># Display the widgets</span>
+<span class="n">display</span><span class="p">(</span><span class="n">dropdown</span><span class="p">)</span>
+<span class="n">display</span><span class="p">(</span><span class="n">fig</span><span class="p">)</span>
 <span class="n">display</span><span class="p">(</span><span class="n">play_button</span><span class="p">)</span>
+
+<span class="c1"># Initialize</span>
+<span class="n">update_plot_and_sound</span><span class="p">({</span><span class="s1">&#39;new&#39;</span><span class="p">:</span> <span class="n">dropdown</span><span class="o">.</span><span class="n">value</span><span class="p">})</span>
 </pre></div>
 </div>
 </div>
-</details>
 <div class="cell_output docutils container">
-<script type="application/vnd.jupyter.widget-view+json">{"model_id": "82ed1df6887847c68f6e3af3488beee8", "version_major": 2, "version_minor": 0}</script></div>
+<script type="application/vnd.jupyter.widget-view+json">{"model_id": "ba54940fce6c437eb58f6a78d8559395", "version_major": 2, "version_minor": 0}</script><script type="application/vnd.jupyter.widget-view+json">{"model_id": "caf0cf14145b495c867cae7f75fb1666", "version_major": 2, "version_minor": 0}</script><script type="application/vnd.jupyter.widget-view+json">{"model_id": "a40d4aeb7ffc4937930f9f1cf137fc63", "version_major": 2, "version_minor": 0}</script></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Παράμετροι σήματος</span>
+<span class="n">Fs</span> <span class="o">=</span> <span class="mi">8192</span>  <span class="c1"># Συχνότητα δειγματοληψίας</span>
+<span class="n">t</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">,</span> <span class="mi">1</span><span class="o">/</span><span class="n">Fs</span><span class="p">)</span>  <span class="c1"># Διάρκεια σήματος 1 δευτερόλεπτο</span>
+
+<span class="c1"># Δημιουργία του σήματος</span>
+<span class="n">s</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">*</span><span class="mi">700</span><span class="o">*</span><span class="n">t</span><span class="p">)</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">*</span><span class="mi">900</span><span class="o">*</span><span class="n">t</span><span class="p">)</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">*</span><span class="mi">1400</span><span class="o">*</span><span class="n">t</span><span class="p">)</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">*</span><span class="mi">2500</span><span class="o">*</span><span class="n">t</span><span class="p">)</span>
+
+<span class="c1"># Σχεδιασμός των φίλτρων Parks-McClellan</span>
+<span class="n">lpass32</span> <span class="o">=</span> <span class="n">signal</span><span class="o">.</span><span class="n">remez</span><span class="p">(</span><span class="mi">32</span><span class="p">,</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1000</span><span class="p">,</span> <span class="mi">1300</span><span class="p">,</span> <span class="n">Fs</span><span class="o">/</span><span class="mi">2</span><span class="p">],</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">fs</span><span class="o">=</span><span class="n">Fs</span><span class="p">)</span>
+<span class="n">lpass64</span> <span class="o">=</span> <span class="n">signal</span><span class="o">.</span><span class="n">remez</span><span class="p">(</span><span class="mi">64</span><span class="p">,</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1000</span><span class="p">,</span> <span class="mi">1300</span><span class="p">,</span> <span class="n">Fs</span><span class="o">/</span><span class="mi">2</span><span class="p">],</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">fs</span><span class="o">=</span><span class="n">Fs</span><span class="p">)</span>
+<span class="n">lpass128</span> <span class="o">=</span> <span class="n">signal</span><span class="o">.</span><span class="n">remez</span><span class="p">(</span><span class="mi">128</span><span class="p">,</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1000</span><span class="p">,</span> <span class="mi">1300</span><span class="p">,</span> <span class="n">Fs</span><span class="o">/</span><span class="mi">2</span><span class="p">],</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">fs</span><span class="o">=</span><span class="n">Fs</span><span class="p">)</span>
+<span class="n">lpass160</span> <span class="o">=</span> <span class="n">signal</span><span class="o">.</span><span class="n">remez</span><span class="p">(</span><span class="mi">160</span><span class="p">,</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1000</span><span class="p">,</span> <span class="mi">1300</span><span class="p">,</span> <span class="n">Fs</span><span class="o">/</span><span class="mi">2</span><span class="p">],</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">fs</span><span class="o">=</span><span class="n">Fs</span><span class="p">)</span>
+<span class="n">lpass256</span> <span class="o">=</span> <span class="n">signal</span><span class="o">.</span><span class="n">remez</span><span class="p">(</span><span class="mi">256</span><span class="p">,</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1000</span><span class="p">,</span> <span class="mi">1300</span><span class="p">,</span> <span class="n">Fs</span><span class="o">/</span><span class="mi">2</span><span class="p">],</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">fs</span><span class="o">=</span><span class="n">Fs</span><span class="p">)</span>
+
+<span class="c1"># Φιλτράρισμα του σήματος</span>
+<span class="n">s_filtered32</span> <span class="o">=</span> <span class="n">signal</span><span class="o">.</span><span class="n">lfilter</span><span class="p">(</span><span class="n">lpass32</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">,</span> <span class="n">s</span><span class="p">)</span>
+<span class="n">s_filtered64</span> <span class="o">=</span> <span class="n">signal</span><span class="o">.</span><span class="n">lfilter</span><span class="p">(</span><span class="n">lpass64</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">,</span> <span class="n">s</span><span class="p">)</span>
+<span class="n">s_filtered128</span> <span class="o">=</span> <span class="n">signal</span><span class="o">.</span><span class="n">lfilter</span><span class="p">(</span><span class="n">lpass128</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">,</span> <span class="n">s</span><span class="p">)</span>
+<span class="n">s_filtered160</span> <span class="o">=</span> <span class="n">signal</span><span class="o">.</span><span class="n">lfilter</span><span class="p">(</span><span class="n">lpass160</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">,</span> <span class="n">s</span><span class="p">)</span>
+<span class="n">s_filtered256</span> <span class="o">=</span> <span class="n">signal</span><span class="o">.</span><span class="n">lfilter</span><span class="p">(</span><span class="n">lpass256</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">,</span> <span class="n">s</span><span class="p">)</span>
+
+<span class="c1"># Φασματική πυκνότητα των φιλτραρισμένων σημάτων</span>
+<span class="n">f32</span><span class="p">,</span> <span class="n">Pxx_den32</span> <span class="o">=</span> <span class="n">signal</span><span class="o">.</span><span class="n">welch</span><span class="p">(</span><span class="n">s_filtered32</span><span class="p">,</span> <span class="n">Fs</span><span class="p">,</span> <span class="n">nperseg</span><span class="o">=</span><span class="mi">1024</span><span class="p">)</span>
+<span class="n">f64</span><span class="p">,</span> <span class="n">Pxx_den64</span> <span class="o">=</span> <span class="n">signal</span><span class="o">.</span><span class="n">welch</span><span class="p">(</span><span class="n">s_filtered64</span><span class="p">,</span> <span class="n">Fs</span><span class="p">,</span> <span class="n">nperseg</span><span class="o">=</span><span class="mi">1024</span><span class="p">)</span>
+<span class="n">f128</span><span class="p">,</span> <span class="n">Pxx_den128</span> <span class="o">=</span> <span class="n">signal</span><span class="o">.</span><span class="n">welch</span><span class="p">(</span><span class="n">s_filtered128</span><span class="p">,</span> <span class="n">Fs</span><span class="p">,</span> <span class="n">nperseg</span><span class="o">=</span><span class="mi">1024</span><span class="p">)</span>
+<span class="n">f160</span><span class="p">,</span> <span class="n">Pxx_den160</span> <span class="o">=</span> <span class="n">signal</span><span class="o">.</span><span class="n">welch</span><span class="p">(</span><span class="n">s_filtered160</span><span class="p">,</span> <span class="n">Fs</span><span class="p">,</span> <span class="n">nperseg</span><span class="o">=</span><span class="mi">1024</span><span class="p">)</span>
+<span class="n">f256</span><span class="p">,</span> <span class="n">Pxx_den256</span> <span class="o">=</span> <span class="n">signal</span><span class="o">.</span><span class="n">welch</span><span class="p">(</span><span class="n">s_filtered256</span><span class="p">,</span> <span class="n">Fs</span><span class="p">,</span> <span class="n">nperseg</span><span class="o">=</span><span class="mi">1024</span><span class="p">)</span>
+
+<span class="c1"># Σχεδίαση των φασματικών πυκνοτήτων σε Plotly</span>
+<span class="n">fig</span> <span class="o">=</span> <span class="n">go</span><span class="o">.</span><span class="n">Figure</span><span class="p">()</span>
+
+<span class="c1"># Αρχικό σήμα</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">add_trace</span><span class="p">(</span><span class="n">go</span><span class="o">.</span><span class="n">Scatter</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">f</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="mi">10</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">log10</span><span class="p">(</span><span class="n">Pxx_den</span><span class="p">),</span> <span class="n">mode</span><span class="o">=</span><span class="s1">&#39;lines&#39;</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;Original Signal&#39;</span><span class="p">))</span>
+
+<span class="c1"># Φιλτραρισμένο σήμα 32</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">add_trace</span><span class="p">(</span><span class="n">go</span><span class="o">.</span><span class="n">Scatter</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">f32</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="mi">10</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">log10</span><span class="p">(</span><span class="n">Pxx_den32</span><span class="p">),</span> <span class="n">mode</span><span class="o">=</span><span class="s1">&#39;lines&#39;</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;Filtered Signal 32&#39;</span><span class="p">))</span>
+
+<span class="c1"># Φιλτραρισμένο σήμα 64</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">add_trace</span><span class="p">(</span><span class="n">go</span><span class="o">.</span><span class="n">Scatter</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">f64</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="mi">10</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">log10</span><span class="p">(</span><span class="n">Pxx_den64</span><span class="p">),</span> <span class="n">mode</span><span class="o">=</span><span class="s1">&#39;lines&#39;</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;Filtered Signal 64&#39;</span><span class="p">))</span>
+
+<span class="c1"># Φιλτραρισμένο σήμα 128</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">add_trace</span><span class="p">(</span><span class="n">go</span><span class="o">.</span><span class="n">Scatter</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">f128</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="mi">10</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">log10</span><span class="p">(</span><span class="n">Pxx_den128</span><span class="p">),</span> <span class="n">mode</span><span class="o">=</span><span class="s1">&#39;lines&#39;</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;Filtered Signal 128&#39;</span><span class="p">))</span>
+
+<span class="c1"># Φιλτραρισμένο σήμα 160</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">add_trace</span><span class="p">(</span><span class="n">go</span><span class="o">.</span><span class="n">Scatter</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">f160</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="mi">10</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">log10</span><span class="p">(</span><span class="n">Pxx_den160</span><span class="p">),</span> <span class="n">mode</span><span class="o">=</span><span class="s1">&#39;lines&#39;</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;Filtered Signal 256&#39;</span><span class="p">))</span>
+
+<span class="c1"># Ενημέρωση layout</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">update_layout</span><span class="p">(</span><span class="n">title</span><span class="o">=</span><span class="s1">&#39;Φασματική Πυκνότητα Ισχύος&#39;</span><span class="p">,</span>
+                  <span class="n">xaxis_title</span><span class="o">=</span><span class="s1">&#39;Συχνότητα (Hz)&#39;</span><span class="p">,</span>
+                  <span class="n">yaxis_title</span><span class="o">=</span><span class="s1">&#39;Πυκνότητα Ισχύος (dB)&#39;</span><span class="p">,</span>
+                  <span class="n">template</span><span class="o">=</span><span class="s1">&#39;plotly_white&#39;</span><span class="p">)</span>
+
+<span class="n">fig</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+</div>
 </div>
 </section>
 </section>
@@ -1320,7 +1473,7 @@ ylabel('xb');
 </summary>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Με αναλυτικό υπολογισμό της κρουστικής απόκρισης και παράθυρο kaiser</span>
-<span class="n">f1</span><span class="o">=</span><span class="mi">800</span><span class="p">;</span> <span class="n">f2</span><span class="o">=</span><span class="mi">1600</span><span class="p">;</span>  
+<span class="n">f1</span><span class="o">=</span><span class="mi">700</span><span class="p">;</span> <span class="n">f2</span><span class="o">=</span><span class="mi">1500</span><span class="p">;</span>  
 <span class="n">Ts</span><span class="o">=</span><span class="mi">1</span><span class="o">/</span><span class="n">Fs</span>
 <span class="n">f2m1</span><span class="o">=</span><span class="p">(</span><span class="n">f2</span><span class="o">-</span><span class="n">f1</span><span class="p">);</span> <span class="n">f2p1</span><span class="o">=</span><span class="p">(</span><span class="n">f2</span><span class="o">+</span><span class="n">f1</span><span class="p">)</span><span class="o">/</span><span class="mi">2</span><span class="p">;</span> <span class="n">N</span><span class="o">=</span><span class="mi">256</span>
 <span class="n">t</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="o">-</span><span class="p">(</span><span class="n">N</span><span class="o">-</span><span class="mi">1</span><span class="p">),</span><span class="n">N</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span><span class="o">*</span><span class="n">Ts</span><span class="o">/</span><span class="mi">2</span>
@@ -1378,7 +1531,7 @@ ylabel('xb');
 </div>
 </details>
 <div class="cell_output docutils container">
-<script type="application/vnd.jupyter.widget-view+json">{"model_id": "21d1966d8d83468a95a64e2fc7cd9189", "version_major": 2, "version_minor": 0}</script></div>
+<script type="application/vnd.jupyter.widget-view+json">{"model_id": "1718f3da20e149218851c9279fdd11bd", "version_major": 2, "version_minor": 0}</script></div>
 </div>
 </section>
 <section id="id15">
@@ -1390,7 +1543,7 @@ ylabel('xb');
 <span class="expanded">Hide code cell source</span>
 </summary>
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">bpass</span> <span class="o">=</span> <span class="n">signal</span><span class="o">.</span><span class="n">remez</span><span class="p">(</span><span class="mi">128</span><span class="p">,</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="n">f1</span><span class="o">*</span><span class="mf">0.9</span><span class="p">,</span> <span class="n">f1</span><span class="o">*</span><span class="mf">1.1</span><span class="p">,</span> <span class="n">f2</span><span class="o">*</span><span class="mf">0.95</span><span class="p">,</span> <span class="n">f2</span><span class="o">*</span><span class="mf">1.05</span><span class="p">,</span> <span class="n">Fs</span><span class="o">/</span><span class="mi">2</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">fs</span><span class="o">=</span><span class="n">Fs</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">bpass</span> <span class="o">=</span> <span class="n">signal</span><span class="o">.</span><span class="n">remez</span><span class="p">(</span><span class="mi">128</span><span class="p">,</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="n">f1</span><span class="o">*</span><span class="mf">0.95</span><span class="p">,</span> <span class="n">f1</span><span class="o">*</span><span class="mf">1.1</span><span class="p">,</span> <span class="n">f2</span><span class="o">*</span><span class="mf">0.95</span><span class="p">,</span> <span class="n">f2</span><span class="o">*</span><span class="mf">1.05</span><span class="p">,</span> <span class="n">Fs</span><span class="o">/</span><span class="mi">2</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">fs</span><span class="o">=</span><span class="n">Fs</span><span class="p">)</span>
 <span class="n">freq</span><span class="p">,</span><span class="n">resp_pm</span> <span class="o">=</span> <span class="n">signal</span><span class="o">.</span><span class="n">freqz</span><span class="p">(</span><span class="n">bpass</span><span class="p">)</span>
 
 <span class="c1"># Compute frequency response for the equiripple bandpass filter</span>
