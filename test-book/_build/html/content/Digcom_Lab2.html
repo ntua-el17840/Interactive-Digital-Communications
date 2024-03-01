@@ -1,0 +1,1579 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Εργαστηριακή Άσκηση 2 &#8212; Interactive Digital Communtications</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+
+  
+  <link href="../_static/vendor/fontawesome/6.5.1/css/all.min.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.1/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.1/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.1/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=384b581d" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css?v=0a3b3ea7" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae" />
+  <script src="../_static/vendor/fontawesome/6.5.1/js/all.min.js?digest=8d27b9dea8ad943066ae"></script>
+
+    <script src="../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../_static/doctools.js?v=888ff710"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=efea14e4"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js?v=36754332"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'content/Digcom_Lab2';</script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Εργαστηριακή Άσκηση 3" href="Digcom_Lab3.html" />
+    <link rel="prev" title="Εργαστηριακή Άσκηση 1" href="Digcom_Lab1.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a id="pst-skip-link" class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>
+    Back to top
+  </button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+
+<a class="navbar-brand logo" href="../intro.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../_static/logo.png" class="logo__image only-light" alt="Interactive Digital Communtications - Home"/>
+    <script>document.write(`<img src="../_static/logo.png" class="logo__image only-dark" alt="Interactive Digital Communtications - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn navbar-btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../intro.html">
+                    Welcome to your Jupyter Book
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Beginning Files</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../markdown.html">Markdown Files</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../notebooks.html">Content with notebooks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../markdown-notebooks.html">Notebooks with MyST Markdown</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Digital Communications</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="Digcom_Lab1.html">Εργαστηριακή Άσκηση 1</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Εργαστηριακή Άσκηση 2</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Digcom_Lab3.html">Εργαστηριακή Άσκηση 3</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Digcom_Lab4.html">Εργαστηριακή Άσκηση 4</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Digcom_Lab5.html">Εργαστηριακή Άσκηση 5</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Digcom_Lab6.html">Εργαστηριακή Άσκηση 6</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-launch-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Launch interactive content">
+    <i class="fas fa-rocket"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li>
+<button onclick="initThebeSBT()"
+  class="btn btn-sm btn-launch-thebe dropdown-item"
+  title="Launch Thebe"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-play"></i>
+  </span>
+<span class="btn__text-container">Live Code</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/ntua-el17840/Interactive-Digital-Communications" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/ntua-el17840/Interactive-Digital-Communications/issues/new?title=Issue%20on%20page%20%2Fcontent/Digcom_Lab2.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/content/Digcom_Lab2.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Εργαστηριακή Άσκηση 2</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">Μέρος 1: Εισαγωγή</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">Εξάσκηση</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">Μέρος 2: Σχεδιασμός και υλοποίηση φίλτρων</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#sonar">Σήμα sonar</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">Στο πεδίο του χρόνου</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">Ακούμε το σήμα</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#spectrum">Φάσμα (spectrum)</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id7">Σήμα βιολιού</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id8">Στο πεδίο του χρόνου</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#spectrum-spectorgram">Φάσμα (spectrum) και Φασματόγραμμα  (spectorgram)</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id9">Βαθυπερατά φίλτρα</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id10">Η μέθοδος των παραθύρων</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#h"><em>Ορθογωνικό παράθυρο (απλή περικοπή της h)</em></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#hamming-kaiser"><em>Παράθυρα Hamming και Kaiser</em></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id11">Φίλτρα ισοϋψών κυματώσεων</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id12">Εφαρμογή του φίλτρου</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id13">Ζωνοπερατά φίλτρα</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id14"><em>Με αναλυτικό υπολογισμό της κρουστικής απόκρισης και παράθυρο</em></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id15"><em>Ζωνοπερατό ισουψών κυματώσεων</em></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="id1">
+<h1>Εργαστηριακή Άσκηση 2<a class="headerlink" href="#id1" title="Link to this heading">#</a></h1>
+<p>Σκοπός της δεύτερης σειράς ασκήσεων είναι η εξοικείωση με τις συναρτήσεις σχεδιασμού φίλτρων πεπερασμένης κρουστικής απόκρισης (FIR) και την υλοποίησή τους στο MATLAB. <strong>Προτού ξεκινήσετε την άσκηση θα πρέπει να μελετήσετε με προσοχή το Κεφάλαιο 1 και, ειδικότερα, την παράγραφο 1.3 του τεύχους του μαθήματος.</strong> Το MATLAB (<a class="reference external" href="http://www.mathworks.com">www.mathworks.com</a>) είναι ένα διαδραστικό εμπορικό πρόγραμμα (Windows, Linux, Unix) με το οποίο μπορείτε να κάνετε εύκολα αριθμητικές πράξεις με πίνακες. Μπορεί να το έχετε εγκατεστημένο τοπικά, στον προσωπικό σας υπολογιστή ή να εργάζεστε σε κάποιο Εργαστήριο Προσωπικών Υπολογιστών (ΕΠΥ) της Σχολής σας που διαθέτει το συγκεκριμένο λογισμικό.</p>
+<section id="id2">
+<h2>Μέρος 1: Εισαγωγή<a class="headerlink" href="#id2" title="Link to this heading">#</a></h2>
+<p>Στο MATLAB οι συναρτήσεις <span class="math notranslate nohighlight">\(fft\)</span> και <span class="math notranslate nohighlight">\(ifft\)</span> υποθέτουν ζεύγος μετασχηματισμού Fourier <span class="math notranslate nohighlight">\(x(t)\)</span> και <span class="math notranslate nohighlight">\(X(f)\)</span> υπολογισμένων σε μη αρνητικά διαστήματα
+<span class="math notranslate nohighlight">\( t=[0:N-1]ts \)</span> και <span class="math notranslate nohighlight">\( f=[0:N-1]fo. \)</span> Όπως έχετε ήδη δει στην Εργαστηριακή άσκηση 1, το άνω μισό μέρος του διαστήματος συχνοτήτων αντιστοιχεί στις αρνητικές συχνότητες του σήματος, όταν υπολογίζουμε το <span class="math notranslate nohighlight">\(X(f)\)</span> με τη βοήθεια της συνάρτησης <span class="math notranslate nohighlight">\(fft\)</span> (για σήματα πραγματικών τιμών, αυτά τα δυο μισά είναι κατοπτρικά ως προς το μέσο του διαστήματος). Ακριβώς το ίδιο ισχύει και για το άνω μισό μέρος του χρονικού διαστήματος, όταν το σήμα <span class="math notranslate nohighlight">\(x(t)\)</span> προκύπτει από τον αντίστροφο μετασχηματισμό Fourier μέσω της <span class="math notranslate nohighlight">\(ifft\)</span>.</p>
+<p>Το MATLAB διαθέτει τη συνάρτηση <span class="math notranslate nohighlight">\(fftshift\)</span> για να ολισθήσει κυκλικά τις τιμές του σήματος ή του μετασχηματισμού Fourier, ώστε να αντιστοιχούν σε κεντραρισμένα στο μηδέν αμφίπλευρα διαστήματα, δηλαδή, στις χρονικές στιγμές <span class="math notranslate nohighlight">\(tb=[-ceil((N-1)/2): floor((N-1)/2)]ts\)</span> ή στις συχνότητες <span class="math notranslate nohighlight">\(fb=[–ceil((N-1)/2): floor((N-1)/2)]fo\)</span>. Με τον τρόπο αυτό μπορούμε να παράγουμε τα <span class="math notranslate nohighlight">\(xb(t)\)</span> και <span class="math notranslate nohighlight">\(Xb(f)\)</span> που αντιστοιχούν στην αμφίπλευρη αναπαράσταση του σήματος και του μετασχηματισμού Fourier.</p>
+<p>Για να κατανοήσετε τα ανωτέρω θεωρείστε το διάνυσμα <span class="math notranslate nohighlight">\([1 2 3 4]\)</span> ως το αποτέλεσμα του <span class="math notranslate nohighlight">\(FFT\)</span> μήκους 4. Τότε, το πρώτο στοιχείο (1) είναι ο όρος dc, το τρίτο στοιχείο (3) είναι το σημείο στο μισό της συχνότητας δειγματοληψίας <span class="math notranslate nohighlight">\(fs/2\)</span>, που μπορεί να εκληφθεί ότι αντιστοιχεί είτε στην <span class="math notranslate nohighlight">\(–fs/2\)</span> είτε στην <span class="math notranslate nohighlight">\(+fs/2\)</span>. Τα στοιχεία 2 και 4 αντιστοιχούν στις συχνότητες <span class="math notranslate nohighlight">\(+fs/4\)</span> και <span class="math notranslate nohighlight">\(–fs/4\)</span>. Εφαρμόζοντας την <span class="math notranslate nohighlight">\(fftshift\)</span>, το στοιχείο 3 εμφανίζεται πρώτο, που σημαίνει ότι στο MATLAB αντιστοιχεί στην αρνητική συχνότητα <span class="math notranslate nohighlight">\(–fs/2\)</span>, το επόμενο στοιχείο 4 αντιστοιχεί στη συχνότητα <span class="math notranslate nohighlight">\(–fs/4\)</span> ακολουθούμενο από το dc και τη συχνότητα <span class="math notranslate nohighlight">\(+fs/4\)</span>. Για ένα μετασχηματισμό περιττού μήκους, δεν υφίσταται σημείο για το <span class="math notranslate nohighlight">\(±fs/2\)</span>. Έτσι για το διάνυσμα <span class="math notranslate nohighlight">\([1 2 3]\)</span>, η εφαρμογή της <span class="math notranslate nohighlight">\(fftshift\)</span> θα δώσει τα στοιχεία που αντιστοιχούν στις συχνότητες <span class="math notranslate nohighlight">\(–fs/3, 0, +fs/3\)</span>.</p>
+<p>Εκτός του ότι παράγουν εξόδους με τις αρνητικές συχνότητες ή χρόνους στο άνω μισό του διανύσματος, αμφότερες οι συναρτήσεις <span class="math notranslate nohighlight">\(fft\)</span> και <span class="math notranslate nohighlight">\(ifft\)</span> αναμένουν ως είσοδο διάνυσμα με την ίδια μορφή, αφού προφανώς ισχύουν οι ταυτότητες</p>
+<center>
+<p><span class="math notranslate nohighlight">\(h == \text{ifft}(\text{fft}(h))\)</span> και <span class="math notranslate nohighlight">\(H == \text{fft}(\text{ifft}(H))\)</span></p>
+</center>
+<p>Η πρώτη υποδεικνύει ότι η είσοδος της <span class="math notranslate nohighlight">\(ifft\)</span> πρέπει να είναι αντεστραμμένη, όπως την παράγει η <span class="math notranslate nohighlight">\(fft\)</span>, και η δεύτερη ότι η είσοδος της <span class="math notranslate nohighlight">\(fft\)</span> πρέπει να είναι αντεστραμμένη, όπως την παράγει η <span class="math notranslate nohighlight">\(ifft\)</span>.</p>
+<p>Στο επόμενο σχήμα βλέπετε παραστατικά ένα ημιτονικό σήμα που έχει πολλαπλασιασθεί με παράθυρο Blackman τόσο στην αμφίπλευρη, όσο και την μονόπλευρη αναπαράστασή του.</p>
+<div style="text-align: center;">
+    <img src="../content/images/lab2_1.png" alt="lab2_1">
+</div><p>Οι αντίστοιχοι μετασχηματισμοί Fourier, σε αμφίπλευρη και μονόπλευρη αναπαράσταση, φαίνονται στο επόμενο σχήμα:</p>
+<div style="text-align: center;">
+    <img src="../content/images/lab2_2.png" alt="lab2_2">
+</div><p>Όταν τα <span class="math notranslate nohighlight">\(x(t)\)</span> και <span class="math notranslate nohighlight">\(X(f)\)</span> παράγονται από το MATLAB, δεν χρειάζεται κάποια ιδιαίτερη προσοχή, πλην της κυκλικής ολίσθησης σε περίπτωση που θέλουμε π.χ. να σχεδιάσουμε το αμφίπλευρο φάσμα ή σήμα. Όταν όμως ένα εκ των <span class="math notranslate nohighlight">\(x(t)\)</span> ή <span class="math notranslate nohighlight">\(X(f)\)</span> ορίζεται από τον χρήστη απαιτείται περισσότερη προσοχή, διότι, συνήθως χρησιμοποιούνται τα αμφίπλευρα σήματα ή φάσματα. Μπορείτε να μεταβείτε από τη μία αναπαράσταση στην άλλη ως εξής:</p>
+<p><span class="math notranslate nohighlight">\(x = ifftshift(xb)\)</span>, <span class="math notranslate nohighlight">\(X = fft(x)\)</span>, <span class="math notranslate nohighlight">\(Xb = fftshift(X)\)</span>, εάν ξεκινάτε από αμφίπλευρο σήμα και θέλετε να καταλήξετε σε αμφίπλευρο φάσμα, και</p>
+<p><span class="math notranslate nohighlight">\(X = ifftshift(Xb)\)</span>, <span class="math notranslate nohighlight">\(x = ifft(X)\)</span>, <span class="math notranslate nohighlight">\(xb = fftshift(x)\)</span>, εάν ξεκινάτε από αμφίπλευρο φάσμα και θέλετε να καταλήξετε σε αμφίπλευρο σήμα,</p>
+<p>όπου η συνάρτηση <span class="math notranslate nohighlight">\(ifftshift\)</span> του MATLAB εκτελεί την αντίστροφη λειτουργία της <span class="math notranslate nohighlight">\(fftshift\)</span>. Όταν το <span class="math notranslate nohighlight">\(N\)</span> είναι άρτιο, οι <span class="math notranslate nohighlight">\(fftshift\)</span> και <span class="math notranslate nohighlight">\(ifftshift\)</span> δίνουν το ίδιο αποτέλεσμα. Όταν όμως το <span class="math notranslate nohighlight">\(N\)</span> είναι περιττό αυτό δεν ισχύει και χρειάζεται προσοχή στη χρήση τους. Στην πράξη, η προσεκτική εφαρμογή των ανωτέρω έχει σημασία όταν υπολογίζεται η φάση του φάσματος. Το πλάτος του φάσματος δεν επηρεάζεται από την κυκλική ολίσθηση των στοιχείων που προκαλούν οι <span class="math notranslate nohighlight">\(fftshift\)</span> και <span class="math notranslate nohighlight">\(ifftshift\)</span> (δείτε ιδιότητες DFT).</p>
+<section id="id3">
+<h3>Εξάσκηση<a class="headerlink" href="#id3" title="Link to this heading">#</a></h3>
+<p>Δοκιμάστε στο παράθυρο εντολών τα ακόλουθα προκειμένου να εμπεδώσετε τη χρήση των συναρτήσεων <span class="math notranslate nohighlight">\(fftshift\)</span> και <span class="math notranslate nohighlight">\(ifftshift\)</span>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
+<span class="c1"># Create the array X</span>
+<span class="n">X</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="o">-</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>  <span class="c1"># equivalent to MATLAB&#39;s -2:2</span>
+
+<span class="c1"># Apply fftshift and ifftshift</span>
+<span class="n">fftshifted_X</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">fft</span><span class="o">.</span><span class="n">fftshift</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
+<span class="n">ifftshifted_X</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">fft</span><span class="o">.</span><span class="n">ifftshift</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
+
+<span class="c1"># Double fftshift and a combination of fftshift and ifftshift</span>
+<span class="n">Y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">fft</span><span class="o">.</span><span class="n">fftshift</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">fft</span><span class="o">.</span><span class="n">fftshift</span><span class="p">(</span><span class="n">X</span><span class="p">))</span>
+<span class="n">Z</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">fft</span><span class="o">.</span><span class="n">ifftshift</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">fft</span><span class="o">.</span><span class="n">fftshift</span><span class="p">(</span><span class="n">X</span><span class="p">))</span>
+
+<span class="c1"># Check if arrays are equal</span>
+<span class="n">X_equals_Y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array_equal</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">Y</span><span class="p">)</span>
+<span class="n">X_equals_Z</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array_equal</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">Z</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;X equals Y: </span><span class="si">{</span><span class="n">X_equals_Y</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;X equals Z: </span><span class="si">{</span><span class="n">X_equals_Z</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>X equals Y: False
+X equals Z: True
+</pre></div>
+</div>
+</div>
+</div>
+<details>
+    <summary style="background-color: #3383FF; color: white; cursor: pointer; padding: 2px; border-radius: 5px;"><strong>Αντίστοιχος κώδικας MatLab</strong></summary>
+    <div >
+        <pre>
+X = [-2:2]
+fftshift(X)
+ifftshift(X)
+Y = fftshift(fftshift(X));
+Z = ifftshift(fftshift(X));
+isequal(X,Y)
+isequal(X,Z)
+        </pre>
+    </div>
+</details>
+<p>Ερώτηση 1: Ποιο εκ των διανυσμάτων Υ και Ζ ισούται με το X; Γράψτε την απάντησή σας σε ένα αρχείο κειμένου lab2_nnnnn.txt, όπου nnnnn τα πέντε τελευταία νούμερα του αριθμού μητρώου σας, χρησιμοποιώντας το Notepad από το μενού των Windows (Start → Programs → Accessories → Notepad) και αποθηκεύστε το στον φάκελο My Documents. Θα υποβάλετε το αρχείο αυτό ηλεκτρονικά στο τέλος, αφού απαντήσετε και τις επόμενες ερωτήσεις, οπότε μπορείτε να τα αφήσετε ανοικτό.
+Ερώτηση 2: Επαναλάβατε με <span class="math notranslate nohighlight">\(X=[-1:2]\)</span>. Τι παρατηρείτε; Γράψτε την απάντησή σας στο αρχείο κειμένου lab2_nnnnn.txt.
+Δοκιμάστε στο παράθυρο εντολών τα ακόλουθα δύο παραδείγματα για να εμπεδώσετε τη χρήση των συναρτήσεων <span class="math notranslate nohighlight">\(fftshift\)</span> και <span class="math notranslate nohighlight">\(ifftshift\)</span> σε συνδυασμό με τις <span class="math notranslate nohighlight">\(fft\)</span> και <span class="math notranslate nohighlight">\(ifft\)</span>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">scipy.fft</span> <span class="kn">import</span> <span class="n">fft</span><span class="p">,</span> <span class="n">ifft</span><span class="p">,</span> <span class="n">fftshift</span><span class="p">,</span> <span class="n">ifftshift</span>
+<span class="kn">import</span> <span class="nn">dash</span>
+<span class="kn">from</span> <span class="nn">dash</span> <span class="kn">import</span> <span class="n">Dash</span><span class="p">,</span> <span class="n">dcc</span><span class="p">,</span> <span class="n">html</span>
+<span class="kn">import</span> <span class="nn">plotly.graph_objs</span> <span class="k">as</span> <span class="nn">go</span>
+<span class="kn">import</span> <span class="nn">dash_bootstrap_components</span> <span class="k">as</span> <span class="nn">dbc</span>
+
+<span class="c1"># First part: Original signal and its FFT</span>
+<span class="n">xb</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">])</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">ifftshift</span><span class="p">(</span><span class="n">xb</span><span class="p">)</span>
+<span class="n">X</span> <span class="o">=</span> <span class="n">fft</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+<span class="n">Xb</span> <span class="o">=</span> <span class="n">fftshift</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>  <span class="c1"># Spectrum with DC component in the center</span>
+
+<span class="c1"># Second part: Low-pass filter effect</span>
+<span class="n">Xb_low_pass</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">])</span>
+<span class="n">X_low_pass</span> <span class="o">=</span> <span class="n">ifftshift</span><span class="p">(</span><span class="n">Xb_low_pass</span><span class="p">)</span>
+<span class="n">x_low_pass</span> <span class="o">=</span> <span class="n">ifft</span><span class="p">(</span><span class="n">X_low_pass</span><span class="p">)</span>
+<span class="n">xb_low_pass</span> <span class="o">=</span> <span class="n">fftshift</span><span class="p">(</span><span class="n">x_low_pass</span><span class="p">)</span>
+
+<span class="n">app11</span> <span class="o">=</span> <span class="n">Dash</span><span class="p">(</span><span class="vm">__name__</span><span class="p">,</span> <span class="n">external_stylesheets</span><span class="o">=</span><span class="p">[</span><span class="n">dbc</span><span class="o">.</span><span class="n">themes</span><span class="o">.</span><span class="n">BOOTSTRAP</span><span class="p">])</span>
+
+<span class="c1"># Directly define the figures for plotting</span>
+<span class="n">Original_Signal</span> <span class="o">=</span> <span class="n">go</span><span class="o">.</span><span class="n">Figure</span><span class="p">(</span><span class="n">go</span><span class="o">.</span><span class="n">Scatter</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="o">-</span><span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">),</span> <span class="n">y</span><span class="o">=</span><span class="n">xb</span><span class="p">,</span><span class="n">line</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">color</span><span class="o">=</span><span class="s1">&#39;blue&#39;</span><span class="p">),</span> <span class="n">mode</span><span class="o">=</span><span class="s1">&#39;lines+markers&#39;</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;Original Signal&#39;</span><span class="p">))</span>
+<span class="n">Original_Signal</span><span class="o">.</span><span class="n">update_layout</span><span class="p">(</span>
+    <span class="n">title</span><span class="o">=</span><span class="s1">&#39;Original Signal&#39;</span><span class="p">,</span>
+    <span class="n">xaxis</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;title&#39;</span><span class="p">:</span> <span class="s1">&#39;Time (s)&#39;</span><span class="p">,</span> <span class="s1">&#39;showgrid&#39;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span> <span class="s1">&#39;gridcolor&#39;</span><span class="p">:</span> <span class="s1">&#39;LightGrey&#39;</span><span class="p">},</span>
+    <span class="n">yaxis</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;title&#39;</span><span class="p">:</span> <span class="s1">&#39;Amplitude&#39;</span><span class="p">,</span> <span class="s1">&#39;showgrid&#39;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span> <span class="s1">&#39;gridcolor&#39;</span><span class="p">:</span> <span class="s1">&#39;LightGrey&#39;</span><span class="p">},</span>
+    <span class="n">margin</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;l&#39;</span><span class="p">:</span> <span class="mi">40</span><span class="p">,</span> <span class="s1">&#39;b&#39;</span><span class="p">:</span> <span class="mi">40</span><span class="p">,</span> <span class="s1">&#39;t&#39;</span><span class="p">:</span> <span class="mi">40</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">:</span> <span class="mi">40</span><span class="p">},</span>
+    <span class="n">hovermode</span><span class="o">=</span><span class="s1">&#39;closest&#39;</span><span class="p">,</span>
+    <span class="n">paper_bgcolor</span><span class="o">=</span><span class="s1">&#39;white&#39;</span><span class="p">,</span>
+    <span class="n">plot_bgcolor</span><span class="o">=</span><span class="s1">&#39;white&#39;</span><span class="p">,</span>
+    <span class="n">template</span><span class="o">=</span><span class="s1">&#39;plotly_white&#39;</span>
+<span class="p">)</span>
+
+<span class="n">Magnitude_Spectrum</span> <span class="o">=</span> <span class="n">go</span><span class="o">.</span><span class="n">Figure</span><span class="p">(</span><span class="n">go</span><span class="o">.</span><span class="n">Scatter</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="o">-</span><span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">),</span> <span class="n">y</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">Xb</span><span class="p">),</span><span class="n">line</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">color</span><span class="o">=</span><span class="s1">&#39;red&#39;</span><span class="p">),</span> <span class="n">mode</span><span class="o">=</span><span class="s1">&#39;lines+markers&#39;</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;Magnitude Spectrum&#39;</span><span class="p">))</span>
+<span class="n">Magnitude_Spectrum</span><span class="o">.</span><span class="n">update_layout</span><span class="p">(</span>
+    <span class="n">title</span><span class="o">=</span><span class="s1">&#39;Magnitude Spectrum&#39;</span><span class="p">,</span>
+    <span class="n">xaxis</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;title&#39;</span><span class="p">:</span> <span class="s1">&#39;Frequency (Hz)&#39;</span><span class="p">,</span> <span class="s1">&#39;showgrid&#39;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span> <span class="s1">&#39;gridcolor&#39;</span><span class="p">:</span> <span class="s1">&#39;LightGrey&#39;</span><span class="p">},</span>
+    <span class="n">yaxis</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;title&#39;</span><span class="p">:</span> <span class="s1">&#39;Amplitude&#39;</span><span class="p">,</span> <span class="s1">&#39;showgrid&#39;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span> <span class="s1">&#39;gridcolor&#39;</span><span class="p">:</span> <span class="s1">&#39;LightGrey&#39;</span><span class="p">},</span>
+    <span class="n">margin</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;l&#39;</span><span class="p">:</span> <span class="mi">40</span><span class="p">,</span> <span class="s1">&#39;b&#39;</span><span class="p">:</span> <span class="mi">40</span><span class="p">,</span> <span class="s1">&#39;t&#39;</span><span class="p">:</span> <span class="mi">40</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">:</span> <span class="mi">40</span><span class="p">},</span>
+    <span class="n">hovermode</span><span class="o">=</span><span class="s1">&#39;closest&#39;</span><span class="p">,</span>
+    <span class="n">paper_bgcolor</span><span class="o">=</span><span class="s1">&#39;white&#39;</span><span class="p">,</span>
+    <span class="n">plot_bgcolor</span><span class="o">=</span><span class="s1">&#39;white&#39;</span><span class="p">,</span>
+    <span class="n">template</span><span class="o">=</span><span class="s1">&#39;plotly_white&#39;</span>
+<span class="p">)</span>
+
+<span class="n">Low_pass_Spectrum</span> <span class="o">=</span> <span class="n">go</span><span class="o">.</span><span class="n">Figure</span><span class="p">(</span><span class="n">go</span><span class="o">.</span><span class="n">Scatter</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="o">-</span><span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">),</span> <span class="n">y</span><span class="o">=</span><span class="n">Xb_low_pass</span><span class="p">,</span><span class="n">line</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">color</span><span class="o">=</span><span class="s1">&#39;green&#39;</span><span class="p">),</span> <span class="n">mode</span><span class="o">=</span><span class="s1">&#39;lines+markers&#39;</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;Low-pass Spectrum&#39;</span><span class="p">))</span>
+<span class="n">Low_pass_Spectrum</span><span class="o">.</span><span class="n">update_layout</span><span class="p">(</span>
+    <span class="n">title</span><span class="o">=</span><span class="s1">&#39;Low-pass Spectrum&#39;</span><span class="p">,</span>
+    <span class="n">xaxis</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;title&#39;</span><span class="p">:</span> <span class="s1">&#39;Time (s)&#39;</span><span class="p">,</span> <span class="s1">&#39;showgrid&#39;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span> <span class="s1">&#39;gridcolor&#39;</span><span class="p">:</span> <span class="s1">&#39;LightGrey&#39;</span><span class="p">},</span>
+    <span class="n">yaxis</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;title&#39;</span><span class="p">:</span> <span class="s1">&#39;Amplitude&#39;</span><span class="p">,</span> <span class="s1">&#39;showgrid&#39;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span> <span class="s1">&#39;gridcolor&#39;</span><span class="p">:</span> <span class="s1">&#39;LightGrey&#39;</span><span class="p">},</span>
+    <span class="n">margin</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;l&#39;</span><span class="p">:</span> <span class="mi">40</span><span class="p">,</span> <span class="s1">&#39;b&#39;</span><span class="p">:</span> <span class="mi">40</span><span class="p">,</span> <span class="s1">&#39;t&#39;</span><span class="p">:</span> <span class="mi">40</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">:</span> <span class="mi">40</span><span class="p">},</span>
+    <span class="n">hovermode</span><span class="o">=</span><span class="s1">&#39;closest&#39;</span><span class="p">,</span>
+    <span class="n">paper_bgcolor</span><span class="o">=</span><span class="s1">&#39;white&#39;</span><span class="p">,</span>
+    <span class="n">plot_bgcolor</span><span class="o">=</span><span class="s1">&#39;white&#39;</span><span class="p">,</span>
+    <span class="n">template</span><span class="o">=</span><span class="s1">&#39;plotly_white&#39;</span>
+<span class="p">)</span>
+
+<span class="n">Reconstructed_Signal</span> <span class="o">=</span> <span class="n">go</span><span class="o">.</span><span class="n">Figure</span><span class="p">(</span><span class="n">go</span><span class="o">.</span><span class="n">Scatter</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="o">-</span><span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">),</span> <span class="n">y</span><span class="o">=</span><span class="n">xb_low_pass</span><span class="o">.</span><span class="n">real</span><span class="p">,</span><span class="n">line</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">color</span><span class="o">=</span><span class="s1">&#39;purple&#39;</span><span class="p">),</span> <span class="n">mode</span><span class="o">=</span><span class="s1">&#39;lines+markers&#39;</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;Reconstructed Signal&#39;</span><span class="p">))</span>
+<span class="n">Reconstructed_Signal</span><span class="o">.</span><span class="n">update_layout</span><span class="p">(</span>
+    <span class="n">title</span><span class="o">=</span><span class="s1">&#39;Reconstructed Signal&#39;</span><span class="p">,</span>
+    <span class="n">xaxis</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;title&#39;</span><span class="p">:</span> <span class="s1">&#39;Frequency (Hz)&#39;</span><span class="p">,</span> <span class="s1">&#39;showgrid&#39;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span> <span class="s1">&#39;gridcolor&#39;</span><span class="p">:</span> <span class="s1">&#39;LightGrey&#39;</span><span class="p">},</span>
+    <span class="n">yaxis</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;title&#39;</span><span class="p">:</span> <span class="s1">&#39;Amplitude&#39;</span><span class="p">,</span> <span class="s1">&#39;showgrid&#39;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span> <span class="s1">&#39;gridcolor&#39;</span><span class="p">:</span> <span class="s1">&#39;LightGrey&#39;</span><span class="p">},</span>
+    <span class="n">margin</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;l&#39;</span><span class="p">:</span> <span class="mi">40</span><span class="p">,</span> <span class="s1">&#39;b&#39;</span><span class="p">:</span> <span class="mi">40</span><span class="p">,</span> <span class="s1">&#39;t&#39;</span><span class="p">:</span> <span class="mi">40</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">:</span> <span class="mi">40</span><span class="p">},</span>
+    <span class="n">hovermode</span><span class="o">=</span><span class="s1">&#39;closest&#39;</span><span class="p">,</span>
+    <span class="n">paper_bgcolor</span><span class="o">=</span><span class="s1">&#39;white&#39;</span><span class="p">,</span>
+    <span class="n">plot_bgcolor</span><span class="o">=</span><span class="s1">&#39;white&#39;</span><span class="p">,</span>
+    <span class="n">template</span><span class="o">=</span><span class="s1">&#39;plotly_white&#39;</span>
+<span class="p">)</span>
+
+<span class="c1"># Layout of the Dash app</span>
+<span class="n">app11</span><span class="o">.</span><span class="n">layout</span> <span class="o">=</span> <span class="n">html</span><span class="o">.</span><span class="n">Div</span><span class="p">(</span>
+    <span class="n">children</span><span class="o">=</span><span class="p">[</span>
+        <span class="n">html</span><span class="o">.</span><span class="n">H2</span><span class="p">(</span><span class="s1">&#39;Signal Analysis&#39;</span><span class="p">),</span>
+        <span class="n">dbc</span><span class="o">.</span><span class="n">Row</span><span class="p">(</span>
+            <span class="n">children</span><span class="o">=</span><span class="p">[</span>
+                <span class="n">dbc</span><span class="o">.</span><span class="n">Col</span><span class="p">(</span><span class="n">dcc</span><span class="o">.</span><span class="n">Graph</span><span class="p">(</span><span class="n">figure</span><span class="o">=</span><span class="n">Original_Signal</span><span class="p">),</span> <span class="n">width</span><span class="o">=</span><span class="mi">6</span><span class="p">),</span>
+                <span class="n">dbc</span><span class="o">.</span><span class="n">Col</span><span class="p">(</span><span class="n">dcc</span><span class="o">.</span><span class="n">Graph</span><span class="p">(</span><span class="n">figure</span><span class="o">=</span><span class="n">Magnitude_Spectrum</span><span class="p">),</span> <span class="n">width</span><span class="o">=</span><span class="mi">6</span><span class="p">)</span>
+            <span class="p">]</span>
+        <span class="p">),</span>
+        <span class="n">dbc</span><span class="o">.</span><span class="n">Row</span><span class="p">(</span>
+            <span class="n">children</span><span class="o">=</span><span class="p">[</span>
+                <span class="n">dbc</span><span class="o">.</span><span class="n">Col</span><span class="p">(</span><span class="n">dcc</span><span class="o">.</span><span class="n">Graph</span><span class="p">(</span><span class="n">figure</span><span class="o">=</span><span class="n">Low_pass_Spectrum</span><span class="p">),</span> <span class="n">width</span><span class="o">=</span><span class="mi">6</span><span class="p">),</span>
+                <span class="n">dbc</span><span class="o">.</span><span class="n">Col</span><span class="p">(</span><span class="n">dcc</span><span class="o">.</span><span class="n">Graph</span><span class="p">(</span><span class="n">figure</span><span class="o">=</span><span class="n">Reconstructed_Signal</span><span class="p">),</span> <span class="n">width</span><span class="o">=</span><span class="mi">6</span><span class="p">)</span>
+            <span class="p">]</span>
+        <span class="p">)</span>
+    <span class="p">],</span>
+    <span class="n">style</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;backgroundColor&#39;</span><span class="p">:</span> <span class="s1">&#39;white&#39;</span><span class="p">,</span> <span class="s1">&#39;padding&#39;</span><span class="p">:</span> <span class="s1">&#39;20px&#39;</span><span class="p">}</span>
+<span class="p">)</span>
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
+    <span class="n">app11</span><span class="o">.</span><span class="n">run_server</span><span class="p">(</span><span class="n">debug</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">port</span><span class="o">=</span><span class="mi">8070</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html">
+        <iframe
+            width="100%"
+            height="650"
+            src="http://127.0.0.1:8070/"
+            frameborder="0"
+            allowfullscreen
+            
+        ></iframe>
+        </div></div>
+</div>
+<details>
+    <summary style="background-color: #3383FF; color: white; cursor: pointer; padding: 2px; border-radius: 5px;"><strong>Αντίστοιχος κώδικας MatLab</strong></summary>
+    <div>
+        <pre>
+close all;
+clear all;
+clc;
+xb=[1 2 3 4 5 4 3 2 1]                          % πραγματικό σήμα με άρτια συμμετρία
+figure;
+subplot (2,1,1);
+plot([-4:4],xb);
+ylabel('xb');
+x=ifftshift(xb)                                 % το σήμα με τις αρνητικές συνιστώσες στο άνω μέρος
+X=fft(x)                                        % FFT
+Xb=fftshift(X)                                  % το φάσμα με τη dc συνιστώσα στο κέντρο, πραγματικές
+                                                % τιμές με άρτια συμμετρία όπως αναμένεται
+subplot (2,1,2);
+plot([-4:4],Xb);
+ylabel('Xb');
+close all;
+clear all;
+clc;
+Xb=[0 0 1 1 1 1 1 0 0]                          % φάσμα βαθυπερατού σήματος με άρτια συμμετρία
+figure;
+subplot (2,1,1);
+plot([-4:4],Xb);
+ylabel('Xb');
+X=ifftshift(Xb)                                 % το φάσμα με τις αρνητικές συνιστώσες στο άνω μέρος
+x=ifft(X)                                       % IFFT
+xb=fftshift(x)                                  % πραγματικό σήμα με άρτια συμμετρία όπως αναμένεται
+subplot (2,1,2);
+plot([-4:4],xb);
+ylabel('xb');
+        </pre>
+    </div>
+</details>
+<p>Ερώτηση 3: Τροποποιείστε το προηγούμενο παράδειγμα ώστε να ξεκινήσετε απευθείας με τον ορισμό του φάσματος του βαθυπερατού σήματος <span class="math notranslate nohighlight">\(X\)</span> όπως το αναμένει η <span class="math notranslate nohighlight">\(ifft\)</span>. Γράψτε την απάντησή σας στο αρχείο κειμένου lab2_nnnnn.txt.</p>
+<div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">scipy</span> <span class="kn">import</span> <span class="n">signal</span>
+<span class="kn">import</span> <span class="nn">scipy.io.wavfile</span>
+<span class="c1"># Ανατρέξτε στην τεκμηρίωση της βιβλιοθήκης scipy.signal</span>
+<span class="c1"># https://docs.scipy.org/doc/scipy/reference/signal.html</span>
+<span class="kn">from</span> <span class="nn">scipy.fft</span> <span class="kn">import</span> <span class="n">fft</span><span class="p">,</span> <span class="n">fftfreq</span>
+<span class="kn">from</span> <span class="nn">dash</span> <span class="kn">import</span> <span class="n">Dash</span><span class="p">,</span> <span class="n">dcc</span><span class="p">,</span> <span class="n">html</span><span class="p">,</span> <span class="n">Input</span><span class="p">,</span> <span class="n">Output</span>
+<span class="kn">import</span> <span class="nn">matplotlib</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">numpy</span> <span class="kn">import</span> <span class="n">random</span>
+<span class="kn">import</span> <span class="nn">pandas</span>
+<span class="kn">import</span> <span class="nn">plotly</span>
+<span class="kn">import</span> <span class="nn">plotly.express</span> <span class="k">as</span> <span class="nn">px</span>
+<span class="kn">import</span> <span class="nn">plotly.graph_objs</span> <span class="k">as</span> <span class="nn">go</span>
+<span class="kn">import</span> <span class="nn">dash_bootstrap_components</span> <span class="k">as</span> <span class="nn">dbc</span>
+<span class="kn">import</span> <span class="nn">warnings</span>
+<span class="n">warnings</span><span class="o">.</span><span class="n">filterwarnings</span><span class="p">(</span><span class="s1">&#39;ignore&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Libraries added successfully!&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</details>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Libraries added successfully!
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="id4">
+<h2>Μέρος 2: Σχεδιασμός και υλοποίηση φίλτρων<a class="headerlink" href="#id4" title="Link to this heading">#</a></h2>
+<p>Θα ασχοληθούμε με το Παράδειγμα 1.2 της παραγράφου 1.5 του τεύχους Μαθήματος. Το παράδειγμα αυτό παρουσιάζει δύο εναλλακτικές μεθόδους σχεδιασμού FIR φίλτρων:
+α) τη μέθοδο των παραθύρων και
+β) τη μέθοδο των ισοϋψών κυματώσεων
+τις οποίες εφαρμόζει στην περίπτωση βαθυπερατών φίλτρων.</p>
+<p>Στο παράδειγμα, τα φίλτρα δοκιμάζονται σε ένα πραγματικό σήμα, s, το οποίο είναι αποθηκευμένο  στο αρχείο sima.mat (binary αρχείο MATLAB). Πρόκειται για ένα σήμα sonar με φάσμα που εκτείνεται μέχρι περίπου τα 4 KHz και συχνότητα δειγματοληψίας Fs=8192 (είναι και αυτή αποθηκευμένη στο αρχείο sima.mat, μαζί με το σήμα).</p>
+<p>Εδώ θα πειραματιστούμε με δύο σήματα: (i) το sonar του παραδείγματος, το οποίο εδώ διαβάζεται από ένα .txt αρχείο (έχει προέλθει με εξαγωγή του s από το MATLAB) και (ii) ένα σήμα μουσικής, το violin.wav (σήμα από μουσική βιολιού), το οποίο περιέχει υψηλότερες συχνότητες και έχει προέλθει με δειγματοληψία στα Fs_viol=44100 Hz.</p>
+<section id="sonar">
+<h3>Σήμα sonar<a class="headerlink" href="#sonar" title="Link to this heading">#</a></h3>
+<div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Ανάγνωση δειγμάτων σήματος από txt file</span>
+<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;files/sima.txt&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+    <span class="n">s</span> <span class="o">=</span> <span class="p">[</span><span class="nb">float</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">f</span><span class="p">]</span>
+<span class="n">s</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">s</span><span class="p">)</span>   
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;μέγεθος σήματος=&#39;</span><span class="p">,</span> <span class="n">s</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+<span class="n">Fs</span><span class="o">=</span><span class="mi">8192</span>
+</pre></div>
+</div>
+</div>
+</details>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>μέγεθος σήματος= (6565,)
+</pre></div>
+</div>
+</div>
+</div>
+<section id="id5">
+<h4>Στο πεδίο του χρόνου<a class="headerlink" href="#id5" title="Link to this heading">#</a></h4>
+<p>…</p>
+<div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">t</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="nb">len</span><span class="p">(</span><span class="n">s</span><span class="p">))</span><span class="o">/</span><span class="n">Fs</span>
+<span class="c1"># Time domain plot of x</span>
+<span class="n">fig</span> <span class="o">=</span> <span class="n">go</span><span class="o">.</span><span class="n">Figure</span><span class="p">()</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">add_trace</span><span class="p">(</span><span class="n">go</span><span class="o">.</span><span class="n">Scatter</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">t</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="n">s</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="s1">&#39;lines&#39;</span><span class="p">,</span> <span class="n">line</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">color</span><span class="o">=</span><span class="s1">&#39;#00CC96&#39;</span><span class="p">)))</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">update_layout</span><span class="p">(</span><span class="n">title</span><span class="o">=</span><span class="s1">&#39;Time domain plot of x&#39;</span><span class="p">,</span> <span class="n">title_x</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">title_font</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">size</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;black&#39;</span><span class="p">,</span> <span class="n">family</span><span class="o">=</span><span class="s2">&quot;Arial, sans-serif&quot;</span><span class="p">),</span>
+                  <span class="n">xaxis_title</span><span class="o">=</span><span class="s1">&#39;t (sec)&#39;</span><span class="p">,</span>
+                  <span class="n">yaxis_title</span><span class="o">=</span><span class="s1">&#39;Amplitude&#39;</span><span class="p">,</span>
+                  <span class="n">template</span><span class="o">=</span><span class="s1">&#39;plotly_white&#39;</span><span class="p">,</span>
+                  <span class="n">xaxis</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="nb">range</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mf">0.8</span><span class="p">]),</span>
+                  <span class="n">yaxis</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="nb">range</span><span class="o">=</span><span class="p">[</span><span class="o">-</span><span class="mf">0.05</span><span class="p">,</span> <span class="mf">0.05</span><span class="p">]))</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</details>
+<div class="cell_output docutils container">
+</div>
+</div>
+</section>
+<section id="id6">
+<h4>Ακούμε το σήμα<a class="headerlink" href="#id6" title="Link to this heading">#</a></h4>
+<div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Πρέπει να έχουμε εγκατεστημένη τη βιβλιοθήκη sounddevice</span>
+<span class="kn">import</span> <span class="nn">sounddevice</span> <span class="k">as</span> <span class="nn">sd</span>
+<span class="kn">import</span> <span class="nn">ipywidgets</span> <span class="k">as</span> <span class="nn">widgets</span>
+<span class="kn">from</span> <span class="nn">IPython.display</span> <span class="kn">import</span> <span class="n">display</span>
+
+<span class="k">def</span> <span class="nf">play_sound</span><span class="p">(</span><span class="n">b</span><span class="p">):</span>
+    <span class="n">sd</span><span class="o">.</span><span class="n">play</span><span class="p">(</span><span class="mi">20</span><span class="o">*</span><span class="n">s</span><span class="p">,</span><span class="n">Fs</span><span class="p">)</span>
+
+<span class="c1"># Create a button widget</span>
+<span class="n">play_button</span> <span class="o">=</span> <span class="n">widgets</span><span class="o">.</span><span class="n">Button</span><span class="p">(</span><span class="n">description</span><span class="o">=</span><span class="s2">&quot;Play Sound&quot;</span><span class="p">)</span>
+
+<span class="c1"># Link the button to the function that plays the sound</span>
+<span class="n">play_button</span><span class="o">.</span><span class="n">on_click</span><span class="p">(</span><span class="n">play_sound</span><span class="p">)</span>
+
+<span class="c1"># Display the button</span>
+<span class="n">display</span><span class="p">(</span><span class="n">play_button</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</details>
+<div class="cell_output docutils container">
+<script type="application/vnd.jupyter.widget-view+json">{"model_id": "8535b53059074d2695eadc04d6146eca", "version_major": 2, "version_minor": 0}</script></div>
+</div>
+</section>
+<section id="spectrum">
+<h4>Φάσμα (spectrum)<a class="headerlink" href="#spectrum" title="Link to this heading">#</a></h4>
+<div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">f</span><span class="p">,</span> <span class="n">Pxx_den</span> <span class="o">=</span> <span class="n">signal</span><span class="o">.</span><span class="n">welch</span><span class="p">(</span><span class="n">s</span><span class="p">,</span> <span class="n">Fs</span><span class="p">,</span> <span class="n">noverlap</span><span class="o">=</span><span class="mi">128</span><span class="p">,</span> <span class="n">nperseg</span><span class="o">=</span><span class="mi">256</span><span class="p">)</span>
+
+<span class="c1"># Create Plotly figure</span>
+<span class="n">fig</span> <span class="o">=</span> <span class="n">go</span><span class="o">.</span><span class="n">Figure</span><span class="p">()</span>
+
+<span class="c1"># Add trace for the PSD using a logarithmic scale on the y-axis</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">add_trace</span><span class="p">(</span><span class="n">go</span><span class="o">.</span><span class="n">Scatter</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">f</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="n">Pxx_den</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="s1">&#39;lines&#39;</span><span class="p">,</span><span class="n">line</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">color</span><span class="o">=</span><span class="s1">&#39;#1F77B4&#39;</span><span class="p">)))</span>
+
+<span class="c1"># Update layout for a semilog plot</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">update_layout</span><span class="p">(</span>
+    <span class="n">title</span><span class="o">=</span><span class="s1">&#39;Φάσμα σήματος sonar&#39;</span><span class="p">,</span><span class="n">title_x</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">title_font</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">size</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;black&#39;</span><span class="p">,</span> <span class="n">family</span><span class="o">=</span><span class="s2">&quot;Arial, sans-serif&quot;</span><span class="p">),</span>
+    <span class="n">xaxis_title</span><span class="o">=</span><span class="s1">&#39;Συχνότητα (Hz)&#39;</span><span class="p">,</span>
+    <span class="n">yaxis_title</span><span class="o">=</span><span class="s1">&#39;Πυκνότητα φάσματος ισχύος&#39;</span><span class="p">,</span>
+    <span class="n">yaxis_type</span><span class="o">=</span><span class="s1">&#39;log&#39;</span><span class="p">,</span>  <span class="c1"># Set y-axis to logarithmic scale</span>
+    <span class="n">template</span><span class="o">=</span><span class="s1">&#39;plotly_white&#39;</span><span class="p">,</span>
+    <span class="n">xaxis</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">showgrid</span><span class="o">=</span><span class="kc">True</span><span class="p">),</span>
+    <span class="n">yaxis</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">showgrid</span><span class="o">=</span><span class="kc">True</span><span class="p">),</span>  <span class="c1"># Customize grid color</span>
+<span class="p">)</span>
+
+<span class="c1"># Show figure</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</details>
+<div class="cell_output docutils container">
+</div>
+</div>
+</section>
+</section>
+<section id="id7">
+<h3>Σήμα βιολιού<a class="headerlink" href="#id7" title="Link to this heading">#</a></h3>
+<div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">f</span><span class="o">=</span><span class="nb">open</span><span class="p">(</span><span class="s2">&quot;files/violin.wav&quot;</span><span class="p">,</span> <span class="s1">&#39;rb&#39;</span><span class="p">)</span>
+<span class="n">Fs_viol</span><span class="p">,</span> <span class="n">s_viol</span> <span class="o">=</span> <span class="n">scipy</span><span class="o">.</span><span class="n">io</span><span class="o">.</span><span class="n">wavfile</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="n">f</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Fs_viol=&#39;</span><span class="p">,</span><span class="n">Fs_viol</span><span class="p">,</span> <span class="s1">&#39; number of samples=&#39;</span><span class="p">,</span><span class="nb">len</span><span class="p">(</span><span class="n">s_viol</span><span class="p">))</span>
+<span class="n">f</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</details>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Fs_viol= 44100  number of samples= 220500
+</pre></div>
+</div>
+</div>
+</div>
+<section id="id8">
+<h4>Στο πεδίο του χρόνου<a class="headerlink" href="#id8" title="Link to this heading">#</a></h4>
+<div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">tvl</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">s_viol</span><span class="p">))</span> <span class="o">/</span> <span class="n">Fs_viol</span>
+
+<span class="c1"># Create Plotly figure</span>
+<span class="n">fig</span> <span class="o">=</span> <span class="n">go</span><span class="o">.</span><span class="n">Figure</span><span class="p">()</span>
+
+<span class="c1"># Add trace for the signal</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">add_trace</span><span class="p">(</span><span class="n">go</span><span class="o">.</span><span class="n">Scatter</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">tvl</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="n">s_viol</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="s1">&#39;lines&#39;</span><span class="p">,</span><span class="n">line</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">color</span><span class="o">=</span><span class="s1">&#39;#1F77B4&#39;</span><span class="p">)))</span>
+
+<span class="c1"># Update layout</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">update_layout</span><span class="p">(</span>
+    <span class="n">title</span><span class="o">=</span><span class="s1">&#39;Signal over time&#39;</span><span class="p">,</span><span class="n">title_x</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">title_font</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">size</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;black&#39;</span><span class="p">,</span> <span class="n">family</span><span class="o">=</span><span class="s2">&quot;Arial, sans-serif&quot;</span><span class="p">),</span>
+    <span class="n">xaxis_title</span><span class="o">=</span><span class="s1">&#39;Time (s)&#39;</span><span class="p">,</span>
+    <span class="n">yaxis_title</span><span class="o">=</span><span class="s1">&#39;Amplitude&#39;</span><span class="p">,</span>
+    <span class="n">template</span><span class="o">=</span><span class="s1">&#39;plotly_white&#39;</span><span class="p">,</span>
+    <span class="n">xaxis</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">showgrid</span><span class="o">=</span><span class="kc">True</span><span class="p">),</span>
+    <span class="n">yaxis</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">showgrid</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="p">)</span>
+
+<span class="c1"># Show figure</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</details>
+<div class="cell_output docutils container">
+</div>
+</div>
+<div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">ipywidgets</span> <span class="k">as</span> <span class="nn">widgets</span>
+<span class="kn">from</span> <span class="nn">IPython.display</span> <span class="kn">import</span> <span class="n">display</span>
+<span class="kn">import</span> <span class="nn">sounddevice</span> <span class="k">as</span> <span class="nn">sd</span>
+<span class="kn">import</span> <span class="nn">threading</span>
+
+<span class="c1"># Define your sound and its sampling rate</span>
+<span class="c1"># s_viol and Fs_viol should be defined before this point</span>
+
+<span class="k">def</span> <span class="nf">play_sound</span><span class="p">():</span>
+    <span class="n">sd</span><span class="o">.</span><span class="n">play</span><span class="p">(</span><span class="n">s_viol</span><span class="p">,</span> <span class="n">Fs_viol</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">on_button_clicked</span><span class="p">(</span><span class="n">b</span><span class="p">):</span>
+    <span class="n">threading</span><span class="o">.</span><span class="n">Thread</span><span class="p">(</span><span class="n">target</span><span class="o">=</span><span class="n">play_sound</span><span class="p">)</span><span class="o">.</span><span class="n">start</span><span class="p">()</span>
+
+<span class="c1"># Create a button widget</span>
+<span class="n">play_button</span> <span class="o">=</span> <span class="n">widgets</span><span class="o">.</span><span class="n">Button</span><span class="p">(</span><span class="n">description</span><span class="o">=</span><span class="s2">&quot;Play Sound&quot;</span><span class="p">)</span>
+
+<span class="c1"># Link the button to the function that plays the sound</span>
+<span class="n">play_button</span><span class="o">.</span><span class="n">on_click</span><span class="p">(</span><span class="n">on_button_clicked</span><span class="p">)</span>
+
+<span class="c1"># Display the button</span>
+<span class="n">display</span><span class="p">(</span><span class="n">play_button</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</details>
+<div class="cell_output docutils container">
+<script type="application/vnd.jupyter.widget-view+json">{"model_id": "6ac4f0dfe14d4d4695118680eef2bb30", "version_major": 2, "version_minor": 0}</script></div>
+</div>
+</section>
+<section id="spectrum-spectorgram">
+<h4>Φάσμα (spectrum) και Φασματόγραμμα  (spectorgram)<a class="headerlink" href="#spectrum-spectorgram" title="Link to this heading">#</a></h4>
+<div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">f</span><span class="p">,</span> <span class="n">Pxx_den</span> <span class="o">=</span> <span class="n">signal</span><span class="o">.</span><span class="n">welch</span><span class="p">(</span><span class="n">s_viol</span><span class="p">,</span> <span class="n">Fs_viol</span><span class="p">,</span> <span class="n">nperseg</span><span class="o">=</span><span class="mi">1024</span><span class="p">,</span> <span class="n">noverlap</span><span class="o">=</span><span class="mi">256</span><span class="p">)</span>
+
+<span class="c1"># Create Plotly figure</span>
+<span class="n">fig</span> <span class="o">=</span> <span class="n">go</span><span class="o">.</span><span class="n">Figure</span><span class="p">()</span>
+
+<span class="c1"># Add trace for the PSD using a logarithmic scale on the y-axis</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">add_trace</span><span class="p">(</span><span class="n">go</span><span class="o">.</span><span class="n">Scatter</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">f</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="n">Pxx_den</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="s1">&#39;lines&#39;</span><span class="p">,</span><span class="n">line</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">color</span><span class="o">=</span><span class="s1">&#39;#1F77B4&#39;</span><span class="p">)))</span>
+
+<span class="c1"># Update layout for a semilog plot</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">update_layout</span><span class="p">(</span>
+    <span class="n">title</span><span class="o">=</span><span class="s1">&#39;Power Spectral Density&#39;</span><span class="p">,</span> <span class="n">title_x</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">title_font</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">size</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;black&#39;</span><span class="p">,</span> <span class="n">family</span><span class="o">=</span><span class="s2">&quot;Arial, sans-serif&quot;</span><span class="p">),</span>
+    <span class="n">xaxis_title</span><span class="o">=</span><span class="s1">&#39;Συχνότητα [Hz]&#39;</span><span class="p">,</span>
+    <span class="n">yaxis_title</span><span class="o">=</span><span class="s1">&#39;Πυκνότητα φάσματος ισχύος [V&lt;sup&gt;2&lt;/sup&gt;/Hz]&#39;</span><span class="p">,</span>
+    <span class="n">yaxis_type</span><span class="o">=</span><span class="s1">&#39;log&#39;</span><span class="p">,</span>  <span class="c1"># Set y-axis to logarithmic scale</span>
+    <span class="n">template</span><span class="o">=</span><span class="s1">&#39;plotly_white&#39;</span><span class="p">,</span>
+    <span class="n">xaxis</span><span class="o">=</span><span class="nb">dict</span><span class="p">(),</span>
+    <span class="n">yaxis</span><span class="o">=</span><span class="nb">dict</span><span class="p">(),</span>  <span class="c1"># Customize grid color</span>
+<span class="p">)</span>
+
+<span class="c1"># Set y-axis range</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">update_yaxes</span><span class="p">(</span><span class="nb">range</span><span class="o">=</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">log10</span><span class="p">(</span><span class="mf">0.5e-2</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">log10</span><span class="p">(</span><span class="mf">1e5</span><span class="p">)])</span>
+
+<span class="c1"># Show figure</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</details>
+<div class="cell_output docutils container">
+</div>
+</div>
+<div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">f</span><span class="p">,</span> <span class="n">tsp</span><span class="p">,</span> <span class="n">Sxx</span> <span class="o">=</span> <span class="n">signal</span><span class="o">.</span><span class="n">spectrogram</span><span class="p">(</span><span class="n">s</span><span class="p">,</span> <span class="n">Fs</span><span class="p">)</span>
+
+<span class="c1"># Create Plotly figure</span>
+<span class="n">fig</span> <span class="o">=</span> <span class="n">go</span><span class="o">.</span><span class="n">Figure</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">go</span><span class="o">.</span><span class="n">Heatmap</span><span class="p">(</span>
+    <span class="n">z</span><span class="o">=</span><span class="mi">10</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">log10</span><span class="p">(</span><span class="n">Sxx</span><span class="p">),</span>  <span class="c1"># Convert power to dB</span>
+    <span class="n">x</span><span class="o">=</span><span class="n">tsp</span><span class="p">,</span>  <span class="c1"># Time for x-axis</span>
+    <span class="n">y</span><span class="o">=</span><span class="n">f</span><span class="p">,</span>  <span class="c1"># Frequency for y-axis</span>
+<span class="p">))</span>
+
+<span class="c1"># Update layout</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">update_layout</span><span class="p">(</span>
+    <span class="n">title</span><span class="o">=</span><span class="s1">&#39;Spectrogram&#39;</span><span class="p">,</span> <span class="n">title_x</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">title_font</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">size</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;black&#39;</span><span class="p">,</span> <span class="n">family</span><span class="o">=</span><span class="s2">&quot;Arial, sans-serif&quot;</span><span class="p">),</span>
+    <span class="n">xaxis_title</span><span class="o">=</span><span class="s1">&#39;Χρόνος [sec]&#39;</span><span class="p">,</span>
+    <span class="n">yaxis_title</span><span class="o">=</span><span class="s1">&#39;Συχνότητα [Hz]&#39;</span><span class="p">,</span>
+    <span class="n">template</span><span class="o">=</span><span class="s1">&#39;plotly_white&#39;</span>
+<span class="p">)</span>
+
+<span class="c1"># Show figure</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</details>
+<div class="cell_output docutils container">
+</div>
+</div>
+</section>
+</section>
+<section id="id9">
+<h3>Βαθυπερατά φίλτρα<a class="headerlink" href="#id9" title="Link to this heading">#</a></h3>
+<section id="id10">
+<h4>Η μέθοδος των παραθύρων<a class="headerlink" href="#id10" title="Link to this heading">#</a></h4>
+<p>…
+…</p>
+<div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">scipy</span> <span class="kn">import</span> <span class="n">signal</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+
+
+<span class="n">H</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">hstack</span><span class="p">((</span><span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">Fs</span><span class="o">/</span><span class="mi">8</span><span class="p">)),</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">Fs</span><span class="o">-</span><span class="n">Fs</span><span class="o">/</span><span class="mi">4</span><span class="p">)),</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">Fs</span><span class="o">/</span><span class="mi">8</span><span class="p">))))</span>
+
+<span class="c1"># Create the x values for the stem plot</span>
+<span class="n">x_values</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">H</span><span class="p">))</span>
+
+<span class="c1"># Create Plotly figure</span>
+<span class="n">fig</span> <span class="o">=</span> <span class="n">go</span><span class="o">.</span><span class="n">Figure</span><span class="p">()</span>
+
+<span class="c1"># Add stems</span>
+<span class="k">for</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">x_values</span><span class="p">,</span> <span class="n">H</span><span class="p">):</span>
+    <span class="n">fig</span><span class="o">.</span><span class="n">add_trace</span><span class="p">(</span><span class="n">go</span><span class="o">.</span><span class="n">Scatter</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="p">[</span><span class="n">x</span><span class="p">,</span> <span class="n">x</span><span class="p">],</span> <span class="n">y</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="n">y</span><span class="p">],</span> <span class="n">mode</span><span class="o">=</span><span class="s1">&#39;lines&#39;</span><span class="p">,</span> <span class="n">line</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">color</span><span class="o">=</span><span class="s1">&#39;#1F77B4&#39;</span><span class="p">)))</span>
+
+<span class="c1"># Add markers</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">add_trace</span><span class="p">(</span><span class="n">go</span><span class="o">.</span><span class="n">Scatter</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">x_values</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="n">H</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="s1">&#39;markers&#39;</span><span class="p">,</span> <span class="n">marker</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">color</span><span class="o">=</span><span class="s1">&#39;#1F77B4&#39;</span><span class="p">)))</span>
+
+<span class="c1"># Update layout</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">update_layout</span><span class="p">(</span>
+    <span class="n">title</span><span class="o">=</span><span class="s1">&#39;Stem plot&#39;</span><span class="p">,</span> <span class="n">title_x</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span><span class="n">title_font</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">size</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;black&#39;</span><span class="p">,</span> <span class="n">family</span><span class="o">=</span><span class="s2">&quot;Arial, sans-serif&quot;</span><span class="p">),</span>
+    <span class="n">xaxis_title</span><span class="o">=</span><span class="s1">&#39;Index&#39;</span><span class="p">,</span>
+    <span class="n">yaxis_title</span><span class="o">=</span><span class="s1">&#39;Amplitude&#39;</span><span class="p">,</span>
+    <span class="n">template</span><span class="o">=</span><span class="s1">&#39;plotly_white&#39;</span>
+<span class="p">)</span>
+
+<span class="c1"># Show figure</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+
+
+<span class="c1">#its kinda slow</span>
+</pre></div>
+</div>
+</div>
+</details>
+<div class="cell_output docutils container">
+</div>
+</div>
+</section>
+<section id="h">
+<h4><em>Ορθογωνικό παράθυρο (απλή περικοπή της h)</em><a class="headerlink" href="#h" title="Link to this heading">#</a></h4>
+<div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">h</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">real</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">fft</span><span class="o">.</span><span class="n">ifft</span><span class="p">(</span><span class="n">H</span><span class="p">))</span>
+<span class="n">middle</span><span class="o">=</span><span class="nb">int</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">h</span><span class="p">)</span><span class="o">/</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">h</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">hstack</span><span class="p">((</span><span class="n">h</span><span class="p">[</span><span class="n">middle</span><span class="p">:],</span><span class="n">h</span><span class="p">[:</span><span class="n">middle</span><span class="p">]))</span>
+<span class="n">h32</span><span class="o">=</span><span class="n">h</span><span class="p">[</span><span class="n">middle</span><span class="o">-</span><span class="mi">16</span><span class="p">:</span><span class="n">middle</span><span class="o">+</span><span class="mi">16</span><span class="p">]</span>
+<span class="n">h128</span><span class="o">=</span><span class="n">h</span><span class="p">[</span><span class="n">middle</span><span class="o">-</span><span class="mi">64</span><span class="p">:</span><span class="n">middle</span><span class="o">+</span><span class="mi">64</span><span class="p">]</span>
+
+<span class="n">x_values_h32</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">h32</span><span class="p">))</span>
+
+<span class="c1"># Create Plotly figure for h32</span>
+<span class="n">fig_h32</span> <span class="o">=</span> <span class="n">go</span><span class="o">.</span><span class="n">Figure</span><span class="p">()</span>
+
+<span class="c1"># Add stems for h32</span>
+<span class="k">for</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">x_values_h32</span><span class="p">,</span> <span class="n">h32</span><span class="p">):</span>
+    <span class="n">fig_h32</span><span class="o">.</span><span class="n">add_trace</span><span class="p">(</span><span class="n">go</span><span class="o">.</span><span class="n">Scatter</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="p">[</span><span class="n">x</span><span class="p">,</span> <span class="n">x</span><span class="p">],</span> <span class="n">y</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="n">y</span><span class="p">],</span> <span class="n">mode</span><span class="o">=</span><span class="s1">&#39;lines&#39;</span><span class="p">,</span> <span class="n">line</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">color</span><span class="o">=</span><span class="s1">&#39;#1F77B4&#39;</span><span class="p">)))</span>
+
+<span class="c1"># Add markers for h32</span>
+<span class="n">fig_h32</span><span class="o">.</span><span class="n">add_trace</span><span class="p">(</span><span class="n">go</span><span class="o">.</span><span class="n">Scatter</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">x_values_h32</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="n">h32</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="s1">&#39;markers&#39;</span><span class="p">,</span> <span class="n">marker</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">color</span><span class="o">=</span><span class="s1">&#39;#1F77B4&#39;</span><span class="p">)))</span>
+
+<span class="c1"># Update layout for h32</span>
+<span class="n">fig_h32</span><span class="o">.</span><span class="n">update_layout</span><span class="p">(</span>
+    <span class="n">title</span><span class="o">=</span><span class="s1">&#39;Stem plot of h32&#39;</span><span class="p">,</span> <span class="n">title_x</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span><span class="n">title_font</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">size</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;black&#39;</span><span class="p">,</span> <span class="n">family</span><span class="o">=</span><span class="s2">&quot;Arial, sans-serif&quot;</span><span class="p">),</span>
+    <span class="n">xaxis_title</span><span class="o">=</span><span class="s1">&#39;Index&#39;</span><span class="p">,</span>
+    <span class="n">yaxis_title</span><span class="o">=</span><span class="s1">&#39;Amplitude&#39;</span><span class="p">,</span>
+    <span class="n">template</span><span class="o">=</span><span class="s1">&#39;plotly_white&#39;</span>
+<span class="p">)</span>
+
+<span class="c1"># Show figure for h32</span>
+<span class="n">fig_h32</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</details>
+<div class="cell_output docutils container">
+</div>
+</div>
+<div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">freq</span><span class="p">,</span><span class="n">resp32</span> <span class="o">=</span> <span class="n">signal</span><span class="o">.</span><span class="n">freqz</span><span class="p">(</span><span class="n">h32</span><span class="p">)</span>
+<span class="n">freq</span><span class="p">,</span><span class="n">resp128</span> <span class="o">=</span> <span class="n">signal</span><span class="o">.</span><span class="n">freqz</span><span class="p">(</span><span class="n">h128</span><span class="p">)</span>
+
+<span class="c1"># Create Plotly figure</span>
+<span class="n">fig</span> <span class="o">=</span> <span class="n">go</span><span class="o">.</span><span class="n">Figure</span><span class="p">()</span>
+
+<span class="c1"># Add traces for h32 and h128 frequency responses</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">add_trace</span><span class="p">(</span><span class="n">go</span><span class="o">.</span><span class="n">Scatter</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="mf">0.5</span> <span class="o">*</span> <span class="n">Fs</span> <span class="o">*</span> <span class="n">freq</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">resp32</span><span class="p">),</span> <span class="n">mode</span><span class="o">=</span><span class="s1">&#39;lines&#39;</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;h32&#39;</span><span class="p">,</span> <span class="n">line</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">color</span><span class="o">=</span><span class="s1">&#39;#1F77B4&#39;</span><span class="p">)))</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">add_trace</span><span class="p">(</span><span class="n">go</span><span class="o">.</span><span class="n">Scatter</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="mf">0.5</span> <span class="o">*</span> <span class="n">Fs</span> <span class="o">*</span> <span class="n">freq</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">resp128</span><span class="p">),</span> <span class="n">mode</span><span class="o">=</span><span class="s1">&#39;lines&#39;</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;h128&#39;</span><span class="p">,</span> <span class="n">line</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">color</span><span class="o">=</span><span class="s1">&#39;green&#39;</span><span class="p">)))</span>
+
+<span class="c1"># Update layout for a semilog plot</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">update_layout</span><span class="p">(</span>
+    <span class="n">title</span><span class="o">=</span><span class="s1">&#39;Απόκριση συχνότητας βαθυπερατού φίλτρου&lt;br&gt;(με ορθογωνικά παράθυρα)&#39;</span><span class="p">,</span> <span class="n">title_x</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span><span class="n">title_font</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">size</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;black&#39;</span><span class="p">,</span> <span class="n">family</span><span class="o">=</span><span class="s2">&quot;Arial, sans-serif&quot;</span><span class="p">),</span>
+    <span class="n">xaxis_title</span><span class="o">=</span><span class="s1">&#39;Συχνότητα (Hz)&#39;</span><span class="p">,</span>
+    <span class="n">yaxis_title</span><span class="o">=</span><span class="s1">&#39;Κέρδος&#39;</span><span class="p">,</span>
+    <span class="n">yaxis_type</span><span class="o">=</span><span class="s1">&#39;log&#39;</span><span class="p">,</span>  <span class="c1"># Set y-axis to logarithmic scale</span>
+    <span class="n">template</span><span class="o">=</span><span class="s1">&#39;plotly_white&#39;</span><span class="p">,</span>
+    <span class="n">xaxis</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">showgrid</span><span class="o">=</span><span class="kc">True</span><span class="p">),</span>
+    <span class="n">yaxis</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">showgrid</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="p">)</span>
+
+<span class="c1"># Show figure</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</details>
+<div class="cell_output docutils container">
+</div>
+</div>
+</section>
+<section id="hamming-kaiser">
+<h4><em>Παράθυρα Hamming και Kaiser</em><a class="headerlink" href="#hamming-kaiser" title="Link to this heading">#</a></h4>
+<div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">h64</span><span class="o">=</span><span class="n">h</span><span class="p">[</span><span class="n">middle</span><span class="o">-</span><span class="mi">32</span><span class="p">:</span><span class="n">middle</span><span class="o">+</span><span class="mi">32</span><span class="p">]</span>
+<span class="n">freq</span><span class="p">,</span><span class="n">resp64</span> <span class="o">=</span> <span class="n">signal</span><span class="o">.</span><span class="n">freqz</span><span class="p">(</span><span class="n">h64</span><span class="p">)</span>
+<span class="n">w_hamming</span><span class="o">=</span><span class="n">signal</span><span class="o">.</span><span class="n">hamming</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">h64</span><span class="p">))</span>
+<span class="n">h64_hamming</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">multiply</span><span class="p">(</span><span class="n">h64</span><span class="p">,</span><span class="n">w_hamming</span><span class="p">)</span>
+<span class="n">w_kaiser</span><span class="o">=</span><span class="n">signal</span><span class="o">.</span><span class="n">kaiser</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">h64</span><span class="p">),</span><span class="mi">5</span><span class="p">)</span>
+<span class="n">h64_kaiser</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">multiply</span><span class="p">(</span><span class="n">h64</span><span class="p">,</span><span class="n">w_kaiser</span><span class="p">)</span>
+
+<span class="n">freq</span><span class="p">,</span><span class="n">resp64_hamming</span> <span class="o">=</span> <span class="n">signal</span><span class="o">.</span><span class="n">freqz</span><span class="p">(</span><span class="n">h64_hamming</span><span class="p">)</span>
+<span class="n">freq</span><span class="p">,</span><span class="n">resp64_kaiser</span> <span class="o">=</span> <span class="n">signal</span><span class="o">.</span><span class="n">freqz</span><span class="p">(</span><span class="n">h64_kaiser</span><span class="p">)</span>
+
+<span class="n">fig</span> <span class="o">=</span> <span class="n">go</span><span class="o">.</span><span class="n">Figure</span><span class="p">()</span>
+
+<span class="c1"># Add trace for h64 (rectangular window)</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">add_trace</span><span class="p">(</span><span class="n">go</span><span class="o">.</span><span class="n">Scatter</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="mf">0.5</span> <span class="o">*</span> <span class="n">Fs</span> <span class="o">*</span> <span class="n">freq</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">resp64</span><span class="p">),</span> <span class="n">mode</span><span class="o">=</span><span class="s1">&#39;lines&#39;</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;Rectangular&#39;</span><span class="p">,</span> <span class="n">line</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">color</span><span class="o">=</span><span class="s1">&#39;#1F77B4&#39;</span><span class="p">)))</span>
+
+<span class="c1"># Add trace for h64 with Hamming window</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">add_trace</span><span class="p">(</span><span class="n">go</span><span class="o">.</span><span class="n">Scatter</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="mf">0.5</span> <span class="o">*</span> <span class="n">Fs</span> <span class="o">*</span> <span class="n">freq</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">resp64_hamming</span><span class="p">),</span> <span class="n">mode</span><span class="o">=</span><span class="s1">&#39;lines&#39;</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;Hamming&#39;</span><span class="p">,</span> <span class="n">line</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">color</span><span class="o">=</span><span class="s1">&#39;green&#39;</span><span class="p">)))</span>
+
+<span class="c1"># Add trace for h64 with Kaiser window</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">add_trace</span><span class="p">(</span><span class="n">go</span><span class="o">.</span><span class="n">Scatter</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="mf">0.5</span> <span class="o">*</span> <span class="n">Fs</span> <span class="o">*</span> <span class="n">freq</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">resp64_kaiser</span><span class="p">),</span> <span class="n">mode</span><span class="o">=</span><span class="s1">&#39;lines&#39;</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;Kaiser&#39;</span><span class="p">,</span> <span class="n">line</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">color</span><span class="o">=</span><span class="s1">&#39;red&#39;</span><span class="p">)))</span>
+
+<span class="c1"># Update layout for a semilog plot</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">update_layout</span><span class="p">(</span>
+    <span class="n">title</span><span class="o">=</span><span class="s1">&#39;Απόκριση συχνότητας βαθυπερατού φίλτρου&lt;br&gt;παράθυρα hamming (πράσινο) και kaiser (κόκκινο)&lt;br&gt;(το αντίστοιχο ορθογωνικό σε μπλε)&#39;</span><span class="p">,</span> <span class="n">title_x</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span><span class="n">title_font</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">size</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;black&#39;</span><span class="p">,</span> <span class="n">family</span><span class="o">=</span><span class="s2">&quot;Arial, sans-serif&quot;</span><span class="p">),</span>
+    <span class="n">xaxis_title</span><span class="o">=</span><span class="s1">&#39;Συχνότητα (Hz)&#39;</span><span class="p">,</span>
+    <span class="n">yaxis_title</span><span class="o">=</span><span class="s1">&#39;Κέρδος&#39;</span><span class="p">,</span>
+    <span class="n">yaxis_type</span><span class="o">=</span><span class="s1">&#39;log&#39;</span><span class="p">,</span>  <span class="c1"># Set y-axis to logarithmic scale</span>
+    <span class="n">template</span><span class="o">=</span><span class="s1">&#39;plotly_white&#39;</span><span class="p">,</span>
+    <span class="n">xaxis</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">showgrid</span><span class="o">=</span><span class="kc">True</span><span class="p">),</span>
+    <span class="n">yaxis</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">showgrid</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="p">)</span>
+
+<span class="c1"># Show figure</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</details>
+<div class="cell_output docutils container">
+</div>
+</div>
+</section>
+<section id="id11">
+<h4>Φίλτρα ισοϋψών κυματώσεων<a class="headerlink" href="#id11" title="Link to this heading">#</a></h4>
+<div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">lpass</span> <span class="o">=</span> <span class="n">signal</span><span class="o">.</span><span class="n">remez</span><span class="p">(</span><span class="mi">64</span><span class="p">,</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1000</span><span class="p">,</span> <span class="mi">1300</span><span class="p">,</span> <span class="n">Fs</span><span class="o">/</span><span class="mi">2</span><span class="p">],</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">fs</span><span class="o">=</span><span class="n">Fs</span><span class="p">)</span>
+<span class="n">freq</span><span class="p">,</span><span class="n">resp_pm</span> <span class="o">=</span> <span class="n">signal</span><span class="o">.</span><span class="n">freqz</span><span class="p">(</span><span class="n">lpass</span><span class="p">)</span>
+
+<span class="c1"># Compute frequency response for the equiripple (Remez) filter</span>
+<span class="n">freq_pm</span><span class="p">,</span> <span class="n">resp_pm</span> <span class="o">=</span> <span class="n">signal</span><span class="o">.</span><span class="n">freqz</span><span class="p">(</span><span class="n">lpass</span><span class="p">)</span>
+
+<span class="c1"># Create Plotly figure</span>
+<span class="n">fig</span> <span class="o">=</span> <span class="n">go</span><span class="o">.</span><span class="n">Figure</span><span class="p">()</span>
+
+<span class="c1"># Add trace for rectangular window response</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">add_trace</span><span class="p">(</span><span class="n">go</span><span class="o">.</span><span class="n">Scatter</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="mf">0.5</span> <span class="o">*</span> <span class="n">Fs</span> <span class="o">*</span> <span class="n">freq</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">resp64</span><span class="p">),</span> <span class="n">mode</span><span class="o">=</span><span class="s1">&#39;lines&#39;</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;Rectangular Window&#39;</span><span class="p">,</span> <span class="n">line</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">color</span><span class="o">=</span><span class="s1">&#39;#1F77B4&#39;</span><span class="p">)))</span>
+
+<span class="c1"># Add trace for equiripple filter response</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">add_trace</span><span class="p">(</span><span class="n">go</span><span class="o">.</span><span class="n">Scatter</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="mf">0.5</span> <span class="o">*</span> <span class="n">Fs</span> <span class="o">*</span> <span class="n">freq_pm</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">resp_pm</span><span class="p">),</span> <span class="n">mode</span><span class="o">=</span><span class="s1">&#39;lines&#39;</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;Equiripple Filter&#39;</span><span class="p">,</span> <span class="n">line</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">color</span><span class="o">=</span><span class="s1">&#39;green&#39;</span><span class="p">)))</span>
+
+<span class="c1"># Update layout for a semilog plot</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">update_layout</span><span class="p">(</span>
+    <span class="n">title</span><span class="o">=</span><span class="s1">&#39;Απόκριση συχνότητας βαθυπερατού φίλτρου equirriple (πράσινο)&lt;br&gt;(το αντίστοιχο με ορθογωνικό παραθυρο σε μπλε)&#39;</span><span class="p">,</span> <span class="n">title_x</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span><span class="n">title_font</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">size</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;black&#39;</span><span class="p">,</span> <span class="n">family</span><span class="o">=</span><span class="s2">&quot;Arial, sans-serif&quot;</span><span class="p">),</span>
+    <span class="n">xaxis_title</span><span class="o">=</span><span class="s1">&#39;Συχνότητα (Hz)&#39;</span><span class="p">,</span>
+    <span class="n">yaxis_title</span><span class="o">=</span><span class="s1">&#39;Κέρδος&#39;</span><span class="p">,</span>
+    <span class="n">yaxis_type</span><span class="o">=</span><span class="s1">&#39;log&#39;</span><span class="p">,</span>  <span class="c1"># Set y-axis to logarithmic scale</span>
+    <span class="n">template</span><span class="o">=</span><span class="s1">&#39;plotly_white&#39;</span><span class="p">,</span>
+    <span class="n">xaxis</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">showgrid</span><span class="o">=</span><span class="kc">True</span><span class="p">),</span>
+    <span class="n">yaxis</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">showgrid</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="p">)</span>
+
+<span class="c1"># Show figure</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</details>
+<div class="cell_output docutils container">
+</div>
+</div>
+</section>
+<section id="id12">
+<h4>Εφαρμογή του φίλτρου<a class="headerlink" href="#id12" title="Link to this heading">#</a></h4>
+<div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">s_pm</span> <span class="o">=</span> <span class="n">signal</span><span class="o">.</span><span class="n">convolve</span><span class="p">(</span><span class="n">s</span><span class="p">,</span><span class="n">lpass</span><span class="p">,</span><span class="n">mode</span><span class="o">=</span><span class="s1">&#39;same&#39;</span><span class="p">)</span><span class="o">/</span><span class="nb">sum</span><span class="p">(</span><span class="n">lpass</span><span class="p">)</span>
+
+<span class="n">f</span><span class="p">,</span> <span class="n">Pxx_den</span> <span class="o">=</span> <span class="n">signal</span><span class="o">.</span><span class="n">welch</span><span class="p">(</span><span class="n">s_pm</span><span class="p">,</span> <span class="n">Fs</span><span class="p">,</span> <span class="n">noverlap</span><span class="o">=</span><span class="mi">128</span><span class="p">,</span> <span class="n">nperseg</span><span class="o">=</span><span class="mi">256</span><span class="p">)</span>
+
+<span class="c1"># Create Plotly figure</span>
+<span class="n">fig</span> <span class="o">=</span> <span class="n">go</span><span class="o">.</span><span class="n">Figure</span><span class="p">()</span>
+
+<span class="c1"># Add trace for the power spectral density of the filtered signal</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">add_trace</span><span class="p">(</span><span class="n">go</span><span class="o">.</span><span class="n">Scatter</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">f</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="n">Pxx_den</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="s1">&#39;lines&#39;</span><span class="p">,</span> <span class="n">line</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">color</span><span class="o">=</span><span class="s1">&#39;#1F77B4&#39;</span><span class="p">)))</span>
+
+<span class="c1"># Update layout for a semilog plot</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">update_layout</span><span class="p">(</span>
+    <span class="n">title</span><span class="o">=</span><span class="s1">&#39;Φάσμα φιλτραρισμένου σήματος sonar&#39;</span><span class="p">,</span><span class="n">title_x</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span><span class="n">title_font</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">size</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;black&#39;</span><span class="p">,</span> <span class="n">family</span><span class="o">=</span><span class="s2">&quot;Arial, sans-serif&quot;</span><span class="p">),</span>
+    <span class="n">xaxis_title</span><span class="o">=</span><span class="s1">&#39;Συχνότητα (Hz)&#39;</span><span class="p">,</span>
+    <span class="n">yaxis_title</span><span class="o">=</span><span class="s1">&#39;Πυκνότητα φάσματος ισχύος&#39;</span><span class="p">,</span>
+    <span class="n">yaxis_type</span><span class="o">=</span><span class="s1">&#39;log&#39;</span><span class="p">,</span>  <span class="c1"># Set y-axis to logarithmic scale</span>
+    <span class="n">template</span><span class="o">=</span><span class="s1">&#39;plotly_white&#39;</span><span class="p">,</span>
+    <span class="n">xaxis</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">showgrid</span><span class="o">=</span><span class="kc">True</span><span class="p">),</span>
+    <span class="n">yaxis</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">showgrid</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="nb">range</span><span class="o">=</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">log10</span><span class="p">(</span><span class="mf">1e-15</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">log10</span><span class="p">(</span><span class="mf">1e-7</span><span class="p">)])</span>  <span class="c1"># Adjust y-axis range</span>
+<span class="p">)</span>
+
+<span class="c1"># Show figure</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+
+<span class="k">def</span> <span class="nf">play_sound</span><span class="p">(</span><span class="n">b</span><span class="p">):</span>
+    <span class="n">sd</span><span class="o">.</span><span class="n">play</span><span class="p">(</span><span class="n">s_pm</span><span class="p">,</span> <span class="n">Fs</span><span class="p">)</span>
+
+<span class="c1"># Create a button widget</span>
+<span class="n">play_button</span> <span class="o">=</span> <span class="n">widgets</span><span class="o">.</span><span class="n">Button</span><span class="p">(</span><span class="n">description</span><span class="o">=</span><span class="s2">&quot;Play Sound&quot;</span><span class="p">)</span>
+
+<span class="c1"># Link the button to the function that plays the sound</span>
+<span class="n">play_button</span><span class="o">.</span><span class="n">on_click</span><span class="p">(</span><span class="n">play_sound</span><span class="p">)</span>
+
+<span class="c1"># Display the button</span>
+<span class="n">display</span><span class="p">(</span><span class="n">play_button</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</details>
+<div class="cell_output docutils container">
+<script type="application/vnd.jupyter.widget-view+json">{"model_id": "82ed1df6887847c68f6e3af3488beee8", "version_major": 2, "version_minor": 0}</script></div>
+</div>
+</section>
+</section>
+<section id="id13">
+<h3>Ζωνοπερατά φίλτρα<a class="headerlink" href="#id13" title="Link to this heading">#</a></h3>
+<section id="id14">
+<h4><em>Με αναλυτικό υπολογισμό της κρουστικής απόκρισης και παράθυρο</em><a class="headerlink" href="#id14" title="Link to this heading">#</a></h4>
+<div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Με αναλυτικό υπολογισμό της κρουστικής απόκρισης και παράθυρο kaiser</span>
+<span class="n">f1</span><span class="o">=</span><span class="mi">800</span><span class="p">;</span> <span class="n">f2</span><span class="o">=</span><span class="mi">1600</span><span class="p">;</span>  
+<span class="n">Ts</span><span class="o">=</span><span class="mi">1</span><span class="o">/</span><span class="n">Fs</span>
+<span class="n">f2m1</span><span class="o">=</span><span class="p">(</span><span class="n">f2</span><span class="o">-</span><span class="n">f1</span><span class="p">);</span> <span class="n">f2p1</span><span class="o">=</span><span class="p">(</span><span class="n">f2</span><span class="o">+</span><span class="n">f1</span><span class="p">)</span><span class="o">/</span><span class="mi">2</span><span class="p">;</span> <span class="n">N</span><span class="o">=</span><span class="mi">256</span>
+<span class="n">t</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="o">-</span><span class="p">(</span><span class="n">N</span><span class="o">-</span><span class="mi">1</span><span class="p">),</span><span class="n">N</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span><span class="o">*</span><span class="n">Ts</span><span class="o">/</span><span class="mi">2</span>
+<span class="n">hbp</span><span class="o">=</span><span class="mi">2</span><span class="o">/</span><span class="n">Fs</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">divide</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">multiply</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">*</span><span class="n">f2p1</span><span class="o">*</span><span class="n">t</span><span class="p">),</span><span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">*</span><span class="n">f2m1</span><span class="o">*</span><span class="n">t</span><span class="p">))</span><span class="o">/</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">,</span><span class="n">t</span><span class="p">)</span>
+<span class="n">hbpw</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">multiply</span><span class="p">(</span><span class="n">hbp</span><span class="p">,</span><span class="n">signal</span><span class="o">.</span><span class="n">kaiser</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">hbp</span><span class="p">),</span><span class="mi">5</span><span class="p">))</span>
+
+<span class="n">s_bp</span><span class="o">=</span><span class="n">signal</span><span class="o">.</span><span class="n">convolve</span><span class="p">(</span><span class="n">s</span><span class="p">,</span><span class="n">hbp</span><span class="p">,</span><span class="s1">&#39;same&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</details>
+</div>
+<div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">f</span><span class="p">,</span> <span class="n">Pxx_den</span> <span class="o">=</span> <span class="n">signal</span><span class="o">.</span><span class="n">welch</span><span class="p">(</span><span class="n">s_bp</span><span class="p">,</span> <span class="n">Fs</span><span class="p">,</span> <span class="n">noverlap</span><span class="o">=</span><span class="mi">128</span><span class="p">,</span> <span class="n">nperseg</span><span class="o">=</span><span class="mi">256</span><span class="p">)</span>
+
+<span class="c1"># Create Plotly figure</span>
+<span class="n">fig</span> <span class="o">=</span> <span class="n">go</span><span class="o">.</span><span class="n">Figure</span><span class="p">()</span>
+
+<span class="c1"># Add trace for the power spectral density</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">add_trace</span><span class="p">(</span><span class="n">go</span><span class="o">.</span><span class="n">Scatter</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">f</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="n">Pxx_den</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="s1">&#39;lines&#39;</span><span class="p">,</span> <span class="n">line</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">color</span><span class="o">=</span><span class="s1">&#39;blue&#39;</span><span class="p">)))</span>
+
+<span class="c1"># Update layout for a semilog plot</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">update_layout</span><span class="p">(</span>
+    <span class="n">title</span><span class="o">=</span><span class="s1">&#39;Φάσμα ζωνοπερατού σήματος sonar&#39;</span><span class="p">,</span><span class="n">title_x</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span><span class="n">title_font</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">size</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;black&#39;</span><span class="p">,</span> <span class="n">family</span><span class="o">=</span><span class="s2">&quot;Arial, sans-serif&quot;</span><span class="p">),</span>
+    <span class="n">xaxis_title</span><span class="o">=</span><span class="s1">&#39;Συχνότητα (Hz)&#39;</span><span class="p">,</span>
+    <span class="n">yaxis_title</span><span class="o">=</span><span class="s1">&#39;Πυκνότητα φάσματος ισχύος&#39;</span><span class="p">,</span>
+    <span class="n">yaxis_type</span><span class="o">=</span><span class="s1">&#39;log&#39;</span><span class="p">,</span>  <span class="c1"># Set y-axis to logarithmic scale</span>
+    <span class="n">template</span><span class="o">=</span><span class="s1">&#39;plotly_white&#39;</span><span class="p">,</span>
+    <span class="n">xaxis</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">showgrid</span><span class="o">=</span><span class="kc">True</span><span class="p">),</span>
+    <span class="n">yaxis</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">showgrid</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="nb">range</span><span class="o">=</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">log10</span><span class="p">(</span><span class="mf">1e-15</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">log10</span><span class="p">(</span><span class="mf">1e-7</span><span class="p">)])</span>  <span class="c1"># Adjust y-axis range</span>
+<span class="p">)</span>
+
+<span class="c1"># Show figure</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+
+<span class="k">def</span> <span class="nf">play_sound</span><span class="p">(</span><span class="n">b</span><span class="p">):</span>
+    <span class="n">sd</span><span class="o">.</span><span class="n">play</span><span class="p">(</span><span class="mi">20</span> <span class="o">*</span> <span class="n">s_bp</span><span class="p">,</span> <span class="n">Fs</span><span class="p">)</span>
+
+<span class="c1"># Create a button widget</span>
+<span class="n">play_button</span> <span class="o">=</span> <span class="n">widgets</span><span class="o">.</span><span class="n">Button</span><span class="p">(</span><span class="n">description</span><span class="o">=</span><span class="s2">&quot;Play Sound&quot;</span><span class="p">)</span>
+
+<span class="c1"># Link the button to the function that plays the sound</span>
+<span class="n">play_button</span><span class="o">.</span><span class="n">on_click</span><span class="p">(</span><span class="n">play_sound</span><span class="p">)</span>
+
+<span class="c1"># Display the button</span>
+<span class="n">display</span><span class="p">(</span><span class="n">play_button</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</details>
+<div class="cell_output docutils container">
+<script type="application/vnd.jupyter.widget-view+json">{"model_id": "21d1966d8d83468a95a64e2fc7cd9189", "version_major": 2, "version_minor": 0}</script></div>
+</div>
+</section>
+<section id="id15">
+<h4><em>Ζωνοπερατό ισουψών κυματώσεων</em><a class="headerlink" href="#id15" title="Link to this heading">#</a></h4>
+<div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">bpass</span> <span class="o">=</span> <span class="n">signal</span><span class="o">.</span><span class="n">remez</span><span class="p">(</span><span class="mi">128</span><span class="p">,</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="n">f1</span><span class="o">*</span><span class="mf">0.9</span><span class="p">,</span> <span class="n">f1</span><span class="o">*</span><span class="mf">1.1</span><span class="p">,</span> <span class="n">f2</span><span class="o">*</span><span class="mf">0.95</span><span class="p">,</span> <span class="n">f2</span><span class="o">*</span><span class="mf">1.05</span><span class="p">,</span> <span class="n">Fs</span><span class="o">/</span><span class="mi">2</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">fs</span><span class="o">=</span><span class="n">Fs</span><span class="p">)</span>
+<span class="n">freq</span><span class="p">,</span><span class="n">resp_pm</span> <span class="o">=</span> <span class="n">signal</span><span class="o">.</span><span class="n">freqz</span><span class="p">(</span><span class="n">bpass</span><span class="p">)</span>
+
+<span class="c1"># Compute frequency response for the equiripple bandpass filter</span>
+<span class="n">freq</span><span class="p">,</span> <span class="n">resp_pm</span> <span class="o">=</span> <span class="n">signal</span><span class="o">.</span><span class="n">freqz</span><span class="p">(</span><span class="n">bpass</span><span class="p">)</span>
+
+<span class="c1"># Create Plotly figure</span>
+<span class="n">fig</span> <span class="o">=</span> <span class="n">go</span><span class="o">.</span><span class="n">Figure</span><span class="p">()</span>
+
+<span class="c1"># Add trace for equiripple bandpass filter response</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">add_trace</span><span class="p">(</span><span class="n">go</span><span class="o">.</span><span class="n">Scatter</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="mf">0.5</span> <span class="o">*</span> <span class="n">Fs</span> <span class="o">*</span> <span class="n">freq</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">resp_pm</span><span class="p">),</span> <span class="n">mode</span><span class="o">=</span><span class="s1">&#39;lines&#39;</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;Equiripple Bandpass&#39;</span><span class="p">,</span> <span class="n">line</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">color</span><span class="o">=</span><span class="s1">&#39;green&#39;</span><span class="p">)))</span>
+
+<span class="c1"># Update layout for a semilog plot</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">update_layout</span><span class="p">(</span>
+    <span class="n">title</span><span class="o">=</span><span class="s1">&#39;Απόκριση συχνότητας ζωνοπερατού φίλτρου equirriple&#39;</span><span class="p">,</span><span class="n">title_x</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span><span class="n">title_font</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">size</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;black&#39;</span><span class="p">,</span> <span class="n">family</span><span class="o">=</span><span class="s2">&quot;Arial, sans-serif&quot;</span><span class="p">),</span>
+    <span class="n">xaxis_title</span><span class="o">=</span><span class="s1">&#39;Συχνότητα (Hz)&#39;</span><span class="p">,</span>
+    <span class="n">yaxis_title</span><span class="o">=</span><span class="s1">&#39;Κέρδος&#39;</span><span class="p">,</span>
+    <span class="n">yaxis_type</span><span class="o">=</span><span class="s1">&#39;log&#39;</span><span class="p">,</span>  <span class="c1"># Set y-axis to logarithmic scale</span>
+    <span class="n">template</span><span class="o">=</span><span class="s1">&#39;plotly_white&#39;</span><span class="p">,</span>
+    <span class="n">xaxis</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">showgrid</span><span class="o">=</span><span class="kc">True</span><span class="p">),</span>
+    <span class="n">yaxis</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">showgrid</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="p">)</span>
+
+<span class="c1"># Show figure</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</details>
+<div class="cell_output docutils container">
+</div>
+</div>
+</section>
+</section>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "ntua-el17840/Interactive-Digital-Communications",
+            ref: "main",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./content"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="Digcom_Lab1.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Εργαστηριακή Άσκηση 1</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="Digcom_Lab3.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Εργαστηριακή Άσκηση 3</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">Μέρος 1: Εισαγωγή</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">Εξάσκηση</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">Μέρος 2: Σχεδιασμός και υλοποίηση φίλτρων</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#sonar">Σήμα sonar</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">Στο πεδίο του χρόνου</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">Ακούμε το σήμα</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#spectrum">Φάσμα (spectrum)</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id7">Σήμα βιολιού</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id8">Στο πεδίο του χρόνου</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#spectrum-spectorgram">Φάσμα (spectrum) και Φασματόγραμμα  (spectorgram)</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id9">Βαθυπερατά φίλτρα</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id10">Η μέθοδος των παραθύρων</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#h"><em>Ορθογωνικό παράθυρο (απλή περικοπή της h)</em></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#hamming-kaiser"><em>Παράθυρα Hamming και Kaiser</em></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id11">Φίλτρα ισοϋψών κυματώσεων</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id12">Εφαρμογή του φίλτρου</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id13">Ζωνοπερατά φίλτρα</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id14"><em>Με αναλυτικό υπολογισμό της κρουστικής απόκρισης και παράθυρο</em></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id15"><em>Ζωνοπερατό ισουψών κυματώσεων</em></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By ECE - NTUA
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
