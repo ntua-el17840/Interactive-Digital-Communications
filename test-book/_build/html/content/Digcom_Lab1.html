@@ -32,7 +32,7 @@
     <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=384b581d" />
     <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
     <link rel="stylesheet" type="text/css" href="../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css?v=0a3b3ea7" />
   
@@ -534,18 +534,7 @@ document.write(`
 <div class="thebe highlight-python notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;hello world!&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">s</span><span class="o">=</span><span class="mi">2</span>
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;s =&#39;</span><span class="p">,</span><span class="n">s</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>s = 2
-</pre></div>
-</div>
-</div>
+<div class="cell tag_thebe-init tag_remove-input docutils container">
 </div>
 </section>
 <section id="id4">
@@ -554,11 +543,6 @@ document.write(`
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">v</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">9</span><span class="p">])</span>
 <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;v =&#39;</span><span class="p">,</span><span class="n">v</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>v = [1 5 9]
 </pre></div>
 </div>
 </div>
@@ -573,13 +557,6 @@ document.write(`
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>a = [[1 2 3]
- [4 5 6]
- [7 8 9]]
-</pre></div>
-</div>
-</div>
 </div>
 </section>
 <section id="id6">
@@ -587,13 +564,6 @@ document.write(`
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">a</span><span class="o">+</span><span class="mi">5</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[ 6,  7,  8],
-       [ 9, 10, 11],
-       [12, 13, 14]])
 </pre></div>
 </div>
 </div>
@@ -608,11 +578,6 @@ document.write(`
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>b= [ 4 20 36]
-</pre></div>
-</div>
-</div>
 </div>
 </section>
 <section id="elementwise">
@@ -620,11 +585,6 @@ document.write(`
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">np</span><span class="o">.</span><span class="n">multiply</span><span class="p">(</span><span class="n">v</span><span class="p">,</span><span class="n">b</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([  4, 100, 324])
 </pre></div>
 </div>
 </div>
@@ -638,11 +598,6 @@ document.write(`
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>3
-</pre></div>
-</div>
-</div>
 </div>
 </section>
 <section id="id9">
@@ -650,11 +605,6 @@ document.write(`
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">a</span><span class="o">.</span><span class="n">shape</span>   <span class="c1"># για array: np.array(a.shape)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(3, 3)
 </pre></div>
 </div>
 </div>
@@ -669,11 +619,6 @@ document.write(`
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2
-</pre></div>
-</div>
-</div>
 </div>
 </section>
 <section id="id11">
@@ -682,11 +627,6 @@ document.write(`
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">a</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>6
 </pre></div>
 </div>
 </div>
@@ -704,12 +644,6 @@ document.write(`
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>v1 = [5 9]
-v2 = [5]
-</pre></div>
-</div>
-</div>
 </div>
 </section>
 <section id="id13">
@@ -721,12 +655,6 @@ v2 = [5]
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[1, 2, 3],
-       [4, 5, 6]])
-</pre></div>
-</div>
-</div>
 </div>
 </section>
 <section id="id14">
@@ -735,11 +663,6 @@ v2 = [5]
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">t</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mf">0.5</span><span class="p">,</span><span class="mf">0.1</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;t=&#39;</span><span class="p">,</span><span class="n">t</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>t= [0.  0.1 0.2 0.3 0.4]
 </pre></div>
 </div>
 </div>
@@ -756,144 +679,6 @@ v2 = [5]
 X(f)=\int_{-\infty}^{\infty} x(t)e^{-j2\pi ft} dt
  
 \]</div>
-<<<<<<< HEAD
-=======
-<div class="cell tag_hide-input docutils container">
-<details class="hide above-input">
-<summary aria-label="Toggle hidden content">
-<span class="collapsed">Show code cell source</span>
-<span class="expanded">Hide code cell source</span>
-</summary>
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Παράμετροι δειγματοληψίας</span>
-<span class="n">fs</span> <span class="o">=</span> <span class="mi">1000</span>  <span class="c1"># Sampling frequency in Hz</span>
-<span class="n">T</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">/</span> <span class="n">fs</span>  <span class="c1"># Sampling period</span>
-<span class="n">L</span> <span class="o">=</span> <span class="mi">1000</span>  <span class="c1"># Number of samples</span>
-
-<span class="c1"># Create time vector</span>
-<span class="n">t</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">L</span><span class="p">)</span> <span class="o">*</span> <span class="n">T</span>
-
-
-<span class="c1"># Define the function to update the plot based on the selected frequencies</span>
-<span class="k">def</span> <span class="nf">update_plot</span><span class="p">(</span><span class="n">selected_frequencies</span><span class="p">):</span>
-    <span class="c1"># Generate the signal with the selected frequencies</span>
-    <span class="n">signal</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">t</span><span class="p">))</span>
-    <span class="k">for</span> <span class="n">f</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">selected_frequencies</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">selected_frequencies</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="mi">1</span><span class="p">):</span>
-        <span class="n">signal</span> <span class="o">+=</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span> <span class="o">*</span> <span class="n">f</span> <span class="o">*</span> <span class="n">t</span><span class="p">)</span>
-                    
-
-    <span class="c1"># Calculate the FFT of the original signal</span>
-    <span class="n">original_signal_fft</span> <span class="o">=</span> <span class="n">fft</span><span class="p">(</span><span class="n">signal</span><span class="p">)</span>
-    <span class="c1"># Calculate frequencies for the FFT of the original signal</span>
-    <span class="n">original_freqs</span> <span class="o">=</span> <span class="n">fftfreq</span><span class="p">(</span><span class="n">L</span><span class="p">,</span> <span class="n">T</span><span class="p">)[:</span><span class="n">L</span> <span class="o">//</span> <span class="mi">2</span><span class="p">]</span>
-    <span class="c1"># Calculate magnitude of Fourier coefficients (amplitude) for the original signal</span>
-    <span class="n">original_magnitude</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">original_signal_fft</span><span class="p">)[:</span><span class="n">L</span> <span class="o">//</span> <span class="mi">2</span><span class="p">]</span>
-
-    <span class="c1"># Create Plotly figures for the original signal</span>
-    <span class="n">fig_signal</span> <span class="o">=</span> <span class="n">go</span><span class="o">.</span><span class="n">FigureWidget</span><span class="p">(</span>
-        <span class="n">data</span><span class="o">=</span><span class="p">[</span><span class="n">go</span><span class="o">.</span><span class="n">Scatter</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">t</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="n">signal</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="s1">&#39;lines&#39;</span><span class="p">,</span> <span class="n">line</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">color</span><span class="o">=</span><span class="s1">&#39;#00CC96&#39;</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="mi">2</span><span class="p">))],</span>
-        <span class="n">layout</span><span class="o">=</span><span class="n">go</span><span class="o">.</span><span class="n">Layout</span><span class="p">(</span>
-            <span class="n">title</span><span class="o">=</span><span class="s1">&#39;Original Signal&#39;</span><span class="p">,</span>
-            <span class="n">xaxis</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">title</span><span class="o">=</span><span class="s1">&#39;Time (s)&#39;</span><span class="p">,</span> <span class="n">showgrid</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">gridcolor</span><span class="o">=</span><span class="s1">&#39;LightGrey&#39;</span><span class="p">),</span>
-            <span class="n">yaxis</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">title</span><span class="o">=</span><span class="s1">&#39;Amplitude&#39;</span><span class="p">,</span> <span class="n">showgrid</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">gridcolor</span><span class="o">=</span><span class="s1">&#39;LightGrey&#39;</span><span class="p">),</span>
-            <span class="n">margin</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">l</span><span class="o">=</span><span class="mi">40</span><span class="p">,</span> <span class="n">b</span><span class="o">=</span><span class="mi">40</span><span class="p">,</span> <span class="n">t</span><span class="o">=</span><span class="mi">40</span><span class="p">,</span> <span class="n">r</span><span class="o">=</span><span class="mi">40</span><span class="p">),</span>
-            <span class="n">hovermode</span><span class="o">=</span><span class="s1">&#39;closest&#39;</span><span class="p">,</span>
-            <span class="n">paper_bgcolor</span><span class="o">=</span><span class="s1">&#39;white&#39;</span><span class="p">,</span>
-            <span class="n">plot_bgcolor</span><span class="o">=</span><span class="s1">&#39;white&#39;</span><span class="p">,</span>
-            <span class="n">template</span><span class="o">=</span><span class="s1">&#39;plotly_white&#39;</span>
-        <span class="p">)</span>
-    <span class="p">)</span>
-
-    <span class="c1"># Create Plotly figures for the Fourier transform</span>
-    <span class="n">fig_fft</span> <span class="o">=</span> <span class="n">go</span><span class="o">.</span><span class="n">FigureWidget</span><span class="p">(</span>
-        <span class="n">data</span><span class="o">=</span><span class="p">[</span><span class="n">go</span><span class="o">.</span><span class="n">Scatter</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">original_freqs</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="n">original_magnitude</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="s1">&#39;lines&#39;</span><span class="p">,</span> <span class="n">line</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">color</span><span class="o">=</span><span class="s1">&#39;#1F77B4&#39;</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="mi">2</span><span class="p">))],</span>
-        <span class="n">layout</span><span class="o">=</span><span class="n">go</span><span class="o">.</span><span class="n">Layout</span><span class="p">(</span>
-            <span class="n">title</span><span class="o">=</span><span class="s1">&#39;Fourier Transformation of Original Signal&#39;</span><span class="p">,</span>
-            <span class="n">xaxis</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">title</span><span class="o">=</span><span class="s1">&#39;Frequency (Hz)&#39;</span><span class="p">,</span> <span class="n">showgrid</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">gridcolor</span><span class="o">=</span><span class="s1">&#39;LightGrey&#39;</span><span class="p">),</span>
-            <span class="n">yaxis</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">title</span><span class="o">=</span><span class="s1">&#39;Amplitude&#39;</span><span class="p">,</span> <span class="n">showgrid</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">gridcolor</span><span class="o">=</span><span class="s1">&#39;LightGrey&#39;</span><span class="p">),</span>
-            <span class="n">margin</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">l</span><span class="o">=</span><span class="mi">40</span><span class="p">,</span> <span class="n">b</span><span class="o">=</span><span class="mi">40</span><span class="p">,</span> <span class="n">t</span><span class="o">=</span><span class="mi">40</span><span class="p">,</span> <span class="n">r</span><span class="o">=</span><span class="mi">40</span><span class="p">),</span>
-            <span class="n">hovermode</span><span class="o">=</span><span class="s1">&#39;closest&#39;</span><span class="p">,</span>
-            <span class="n">paper_bgcolor</span><span class="o">=</span><span class="s1">&#39;white&#39;</span><span class="p">,</span>
-            <span class="n">plot_bgcolor</span><span class="o">=</span><span class="s1">&#39;white&#39;</span><span class="p">,</span>
-            <span class="n">template</span><span class="o">=</span><span class="s1">&#39;plotly_white&#39;</span>
-        <span class="p">)</span>
-    <span class="p">)</span>
-
-    <span class="k">return</span> <span class="n">fig_signal</span><span class="p">,</span> <span class="n">fig_fft</span>
-
-<span class="c1"># Create the slider widget styled similarly to the Dash range slider</span>
-<span class="n">frequency_slider</span> <span class="o">=</span> <span class="n">IntRangeSlider</span><span class="p">(</span>
-    <span class="n">value</span><span class="o">=</span><span class="p">[</span><span class="mi">5</span><span class="p">,</span> <span class="mi">10</span><span class="p">],</span>
-    <span class="nb">min</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
-    <span class="nb">max</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span>
-    <span class="n">step</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
-    <span class="n">description</span><span class="o">=</span><span class="s1">&#39;Frequency Range (Hz)&#39;</span><span class="p">,</span>
-    <span class="n">style</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;description_width&#39;</span><span class="p">:</span> <span class="s1">&#39;initial&#39;</span><span class="p">},</span>
-    <span class="n">layout</span><span class="o">=</span><span class="n">Layout</span><span class="p">(</span><span class="n">width</span><span class="o">=</span><span class="s1">&#39;90%&#39;</span><span class="p">),</span>  <span class="c1"># Set the width to 100% of the container</span>
-    <span class="n">readout_format</span><span class="o">=</span><span class="s1">&#39;d&#39;</span><span class="p">,</span>  <span class="c1"># Integer format</span>
-    <span class="n">continuous_update</span><span class="o">=</span><span class="kc">False</span>
-<span class="p">)</span>
-
-<span class="c1"># Define tick marks at intervals of 5</span>
-<span class="n">frequency_slider_marks</span> <span class="o">=</span> <span class="p">{</span><span class="n">i</span><span class="p">:</span> <span class="nb">str</span><span class="p">(</span><span class="n">i</span><span class="p">)</span> <span class="o">+</span> <span class="s1">&#39; Hz&#39;</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">51</span><span class="p">,</span> <span class="mi">5</span><span class="p">)}</span>
-<span class="n">frequency_slider</span><span class="o">.</span><span class="n">style</span><span class="o">.</span><span class="n">handle_color</span> <span class="o">=</span> <span class="s1">&#39;lightblue&#39;</span>  <span class="c1"># Set the handle to light blue</span>
-
-<span class="c1"># Define the response function</span>
-<span class="k">def</span> <span class="nf">response</span><span class="p">(</span><span class="n">change</span><span class="p">):</span>
-    <span class="n">fig_signal</span><span class="p">,</span> <span class="n">fig_fft</span> <span class="o">=</span> <span class="n">update_plot</span><span class="p">(</span><span class="n">frequency_slider</span><span class="o">.</span><span class="n">value</span><span class="p">)</span>
-    <span class="k">with</span> <span class="n">graph_output</span><span class="p">:</span>
-        <span class="n">graph_output</span><span class="o">.</span><span class="n">clear_output</span><span class="p">(</span><span class="n">wait</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-        <span class="c1"># Use Flexbox layout to center and stretch the graphs</span>
-        <span class="n">hbox</span> <span class="o">=</span> <span class="n">HBox</span><span class="p">([</span><span class="n">fig_signal</span><span class="p">,</span> <span class="n">fig_fft</span><span class="p">])</span>
-        <span class="n">hbox</span><span class="o">.</span><span class="n">layout</span> <span class="o">=</span> <span class="n">Layout</span><span class="p">(</span><span class="n">display</span><span class="o">=</span><span class="s1">&#39;flex&#39;</span><span class="p">,</span> <span class="n">flex_flow</span><span class="o">=</span><span class="s1">&#39;row&#39;</span><span class="p">,</span> <span class="n">align_items</span><span class="o">=</span><span class="s1">&#39;stretch&#39;</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="s1">&#39;auto&#39;</span><span class="p">)</span>
-        <span class="n">display</span><span class="p">(</span><span class="n">hbox</span><span class="p">)</span>
-
-<span class="c1"># Observe changes in the slider value</span>
-<span class="n">frequency_slider</span><span class="o">.</span><span class="n">observe</span><span class="p">(</span><span class="n">response</span><span class="p">,</span> <span class="n">names</span><span class="o">=</span><span class="s1">&#39;value&#39;</span><span class="p">)</span>
-
-<span class="c1"># Create Output widgets for the plots</span>
-<span class="n">graph_output</span> <span class="o">=</span> <span class="n">widgets</span><span class="o">.</span><span class="n">Output</span><span class="p">()</span>
-
-<span class="c1"># Call the response function to update the plots initially</span>
-<span class="n">response</span><span class="p">(</span><span class="kc">None</span><span class="p">)</span>
-
-<span class="c1"># Style the HTML element</span>
-<span class="n">html_label</span> <span class="o">=</span> <span class="n">widgets</span><span class="o">.</span><span class="n">HTML</span><span class="p">(</span>
-    <span class="n">value</span><span class="o">=</span><span class="s2">&quot;&quot;&quot;</span>
-<span class="s2">        &lt;h2 style=&#39;font-weight: bold; font-size: 30px; text-align: center;&#39;&gt;Interactive Signal and Fourier Transformation&lt;/h2&gt;</span>
-<span class="s2">        &lt;!-- Configure and load Thebe !--&gt;</span>
-<span class="s2">&lt;script type=&quot;text/x-thebe-config&quot;&gt;</span>
-<span class="s2">  {</span>
-<span class="s2">      requestKernel: true,</span>
-<span class="s2">      mountActivateWidget: true,</span>
-<span class="s2">      mountStatusWidget: true,</span>
-<span class="s2">      binderOptions: {</span>
-<span class="s2">      repo: &quot;binder-examples/requirements&quot;,</span>
-<span class="s2">      },</span>
-<span class="s2">  }</span>
-<span class="s2">&lt;/script&gt;</span>
-
-<span class="s2">&lt;script src=&quot;https://unpkg.com/thebe@latest/lib/index.js&quot;&gt;&lt;/script&gt;</span>
-
-<span class="s2">&lt;div class=&quot;thebe-activate&quot;&gt;&lt;/div&gt;</span>
-<span class="s2">&lt;div class=&quot;thebe-status&quot;&gt;&lt;/div&gt;</span>
-<span class="s2">&lt;pre data-executable=&quot;true&quot; data-language=&quot;python&quot;&gt;print(&quot;Hello!&quot;)&lt;/pre&gt;</span>
-<span class="s2">    &quot;&quot;&quot;</span>
-<span class="p">)</span>
-
-<span class="c1"># Display the slider and the outputs</span>
-<span class="n">vbox_layout</span> <span class="o">=</span> <span class="n">Layout</span><span class="p">(</span><span class="n">display</span><span class="o">=</span><span class="s1">&#39;flex&#39;</span><span class="p">,</span> <span class="n">flex_flow</span><span class="o">=</span><span class="s1">&#39;column&#39;</span><span class="p">,</span> <span class="n">align_items</span><span class="o">=</span><span class="s1">&#39;center&#39;</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="s1">&#39;100%&#39;</span><span class="p">)</span>
-<span class="n">widgets</span><span class="o">.</span><span class="n">VBox</span><span class="p">([</span><span class="n">html_label</span><span class="p">,</span>
-              <span class="n">frequency_slider</span><span class="p">,</span>
-              <span class="n">graph_output</span><span class="p">],</span> <span class="n">layout</span><span class="o">=</span><span class="n">vbox_layout</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</details>
-<div class="cell_output docutils container">
-<script type="application/vnd.jupyter.widget-view+json">{"version_major": 2, "version_minor": 0, "model_id": "6629851139a947b1894c08553263c6c6"}</script></div>
-</div>
->>>>>>> 8deb60a076496b63b6c35698d568e100cf634e04
 <div class="cell tag_hide-input tag_thebe-init docutils container">
 <details class="hide above-input">
 <summary aria-label="Toggle hidden content">
@@ -902,9 +687,6 @@ X(f)=\int_{-\infty}^{\infty} x(t)e^{-j2\pi ft} dt
 </summary>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">jupyter_dash</span> <span class="kn">import</span> <span class="n">JupyterDash</span>
-<span class="kn">import</span> <span class="nn">dash_core_components</span> <span class="k">as</span> <span class="nn">dcc</span>
-<span class="kn">import</span> <span class="nn">dash_html_components</span> <span class="k">as</span> <span class="nn">html</span>
-<span class="kn">from</span> <span class="nn">dash.dependencies</span> <span class="kn">import</span> <span class="n">Input</span><span class="p">,</span> <span class="n">Output</span>
 
 <span class="n">app1</span> <span class="o">=</span> <span class="n">JupyterDash</span><span class="p">(</span><span class="vm">__name__</span><span class="p">,</span> <span class="n">external_stylesheets</span><span class="o">=</span><span class="p">[</span><span class="n">dbc</span><span class="o">.</span><span class="n">themes</span><span class="o">.</span><span class="n">BOOTSTRAP</span><span class="p">])</span>
 
@@ -1008,17 +790,6 @@ X(f)=\int_{-\infty}^{\infty} x(t)e^{-j2\pi ft} dt
 </div>
 </div>
 </details>
-<div class="cell_output docutils container">
-<div class="output text_html">
-        <iframe
-            width="100%"
-            height="650"
-            src="http://127.0.0.1:8050/"
-            frameborder="0"
-            allowfullscreen
-            
-        ></iframe>
-        </div></div>
 </div>
 <p>Λαμβάνοντας δείγματα του <span class="math notranslate nohighlight">\(x(t)\)</span> με ρυθμό <span class="math notranslate nohighlight">\(f_s=1/T_s\)</span> παράγεται σήμα διακριτού χρόνου <span class="math notranslate nohighlight">\(x(nT_s)\)</span>. Μαθηματικά το αναπαριστάνουμε ως σειρά συναρτήσεων δέλτα</p>
 <div class="math notranslate nohighlight">
@@ -1195,17 +966,6 @@ X_\delta (f)=\sum_{n=-\infty}^{\infty}x(nT_s)e^{-j2\pi fnT_s}=X(f)*1/T_s\sum_{n=
 </div>
 </div>
 </details>
-<div class="cell_output docutils container">
-<div class="output text_html">
-        <iframe
-            width="100%"
-            height="650"
-            src="http://127.0.0.1:8051/"
-            frameborder="0"
-            allowfullscreen
-            
-        ></iframe>
-        </div></div>
 </div>
 <p>Για βαθυπερατά σήματα <span class="math notranslate nohighlight">\(x(t)\)</span> εύρους ζώνης W, με την υπόθεση ότι ο ρυθμός δειγματοληψίας <span class="math notranslate nohighlight">\(fs ≥
 2W\)</span>, ισχύει ότι <span class="math notranslate nohighlight">\(X(f) = T_s X_\delta(f)\)</span>, <span class="math notranslate nohighlight">\(0 ≤ f ≤ W\)</span>, δηλαδή, το σήμα <span class="math notranslate nohighlight">\(X(f)\)</span> προκύπτει μετά από διάβαση του
@@ -1400,17 +1160,6 @@ X_d(\phi) \triangleq \sum_{n=-\infty}^{\infty} x[n] \exp (-j 2 \pi n \phi)
 </div>
 </div>
 </details>
-<div class="cell_output docutils container">
-<div class="output text_html">
-        <iframe
-            width="100%"
-            height="650"
-            src="http://127.0.0.1:8052/"
-            frameborder="0"
-            allowfullscreen
-            
-        ></iframe>
-        </div></div>
 </div>
 <p>Με τη σειρά των διακριτών αριθμών να προκύπτει ως αποτέλεσμα δειγματοληψίας, <span class="math notranslate nohighlight">\(x[n]=x(nT_s)\)</span>, ο
 DTFT και ο μετασχηματισμός Fourier <span class="math notranslate nohighlight">\(X_\delta(f)\)</span> του δειγματοληπτημένου σήματος συνδέονται μέσω
@@ -1722,17 +1471,6 @@ x_{n}=\frac{1}{N} \sum_{k=0}^{N-1} X_{k} \exp \left(j 2 \pi n \frac{k}{N}\right)
 </div>
 </div>
 </details>
-<div class="cell_output docutils container">
-<div class="output text_html">
-        <iframe
-            width="100%"
-            height="650"
-            src="http://127.0.0.1:8053/"
-            frameborder="0"
-            allowfullscreen
-            
-        ></iframe>
-        </div></div>
 </div>
 <section id="id16">
 <h3>Φασματική Ανάλυση<a class="headerlink" href="#id16" title="Link to this heading">#</a></h3>
@@ -1991,17 +1729,6 @@ P_x = \sum_{k=-\infty}^{\infty} |X[k]|^2
 </div>
 </div>
 </details>
-<div class="cell_output docutils container">
-<div class="output text_html">
-        <iframe
-            width="100%"
-            height="650"
-            src="http://127.0.0.1:8059/"
-            frameborder="0"
-            allowfullscreen
-            
-        ></iframe>
-        </div></div>
 </div>
 <div class="cell tag_hide-input docutils container">
 <details class="hide above-input">
@@ -2167,17 +1894,6 @@ P_x = \sum_{k=-\infty}^{\infty} |X[k]|^2
 </div>
 </div>
 </details>
-<div class="cell_output docutils container">
-<div class="output text_html">
-        <iframe
-            width="100%"
-            height="650"
-            src="http://127.0.0.1:8060/"
-            frameborder="0"
-            allowfullscreen
-            
-        ></iframe>
-        </div></div>
 </div>
 <div class="cell tag_hide-input docutils container">
 <details class="hide above-input">
@@ -2306,17 +2022,6 @@ P_x = \sum_{k=-\infty}^{\infty} |X[k]|^2
 </div>
 </div>
 </details>
-<div class="cell_output docutils container">
-<div class="output text_html">
-        <iframe
-            width="100%"
-            height="650"
-            src="http://127.0.0.1:8063/"
-            frameborder="0"
-            allowfullscreen
-            
-        ></iframe>
-        </div></div>
 </div>
 </section>
 <section id="id18">
@@ -2400,8 +2105,6 @@ P_x = \sum_{k=-\infty}^{\infty} |X[k]|^2
 </div>
 </div>
 </details>
-<div class="cell_output docutils container">
-</div>
 </div>
 </section>
 </section>
