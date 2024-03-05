@@ -1,20 +1,23 @@
 Traceback (most recent call last):
-  File "C:\Users\lampr\AppData\Roaming\Python\Python311\site-packages\jupyter_cache\executors\utils.py", line 58, in single_nb_execution
+  File "C:\Users\sotiris\AppData\Local\anaconda3\Lib\site-packages\jupyter_cache\executors\utils.py", line 58, in single_nb_execution
     executenb(
-  File "C:\Users\lampr\AppData\Roaming\Python\Python311\site-packages\nbclient\client.py", line 1314, in execute
+  File "C:\Users\sotiris\AppData\Local\anaconda3\Lib\site-packages\nbclient\client.py", line 1204, in execute
     return NotebookClient(nb=nb, resources=resources, km=km, **kwargs).execute()
            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "C:\Users\lampr\AppData\Roaming\Python\Python311\site-packages\jupyter_core\utils\__init__.py", line 165, in wrapped
-    return loop.run_until_complete(inner)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "C:\Users\lampr\anaconda3\Lib\asyncio\base_events.py", line 653, in run_until_complete
+  File "C:\Users\sotiris\AppData\Local\anaconda3\Lib\site-packages\nbclient\util.py", line 84, in wrapped
+    return just_run(coro(*args, **kwargs))
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sotiris\AppData\Local\anaconda3\Lib\site-packages\nbclient\util.py", line 62, in just_run
+    return loop.run_until_complete(coro)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sotiris\AppData\Local\anaconda3\Lib\asyncio\base_events.py", line 653, in run_until_complete
     return future.result()
            ^^^^^^^^^^^^^^^
-  File "C:\Users\lampr\AppData\Roaming\Python\Python311\site-packages\nbclient\client.py", line 709, in async_execute
+  File "C:\Users\sotiris\AppData\Local\anaconda3\Lib\site-packages\nbclient\client.py", line 663, in async_execute
     await self.async_execute_cell(
-  File "C:\Users\lampr\AppData\Roaming\Python\Python311\site-packages\nbclient\client.py", line 1062, in async_execute_cell
+  File "C:\Users\sotiris\AppData\Local\anaconda3\Lib\site-packages\nbclient\client.py", line 965, in async_execute_cell
     await self._check_raise_for_error(cell, cell_index, exec_reply)
-  File "C:\Users\lampr\AppData\Roaming\Python\Python311\site-packages\nbclient\client.py", line 918, in _check_raise_for_error
+  File "C:\Users\sotiris\AppData\Local\anaconda3\Lib\site-packages\nbclient\client.py", line 862, in _check_raise_for_error
     raise CellExecutionError.from_cell_and_msg(cell, exec_reply_content)
 nbclient.exceptions.CellExecutionError: An error occurred while executing the following cell:
 ------------------
@@ -112,8 +115,8 @@ if __name__ == '__main__':
 
 ------------------
 
-
 [1;31m---------------------------------------------------------------------------[0m
+<<<<<<< HEAD
 [1;31mOSError[0m                                   Traceback (most recent call last)
 Cell [1;32mIn[4], line 91[0m
 [0;32m     71[0m app11[38;5;241m.[39mlayout [38;5;241m=[39m html[38;5;241m.[39mDiv(
@@ -207,4 +210,16 @@ File [1;32m~\anaconda3\Lib\site-packages\dash\_jupyter.py:377[0m, in [0;36mJu
 
 [1;31mOSError[0m: Address 'http://127.0.0.1:8200' already in use.
     Try passing a different port to run_server.
+=======
+[1;31mModuleNotFoundError[0m                       Traceback (most recent call last)
+Cell [1;32mIn[2], line 3[0m
+[0;32m      1[0m [38;5;28;01mimport[39;00m [38;5;21;01mnumpy[39;00m [38;5;28;01mas[39;00m [38;5;21;01mnp[39;00m
+[0;32m      2[0m [38;5;28;01mfrom[39;00m [38;5;21;01mscipy[39;00m[38;5;21;01m.[39;00m[38;5;21;01mfft[39;00m [38;5;28;01mimport[39;00m fft, ifft, fftshift, ifftshift
+[1;32m----> 3[0m [38;5;28;01mimport[39;00m [38;5;21;01mdash[39;00m
+[0;32m      4[0m [38;5;28;01mfrom[39;00m [38;5;21;01mdash[39;00m [38;5;28;01mimport[39;00m Dash, dcc, html
+[0;32m      5[0m [38;5;28;01mimport[39;00m [38;5;21;01mplotly[39;00m[38;5;21;01m.[39;00m[38;5;21;01mgraph_objs[39;00m [38;5;28;01mas[39;00m [38;5;21;01mgo[39;00m
+
+[1;31mModuleNotFoundError[0m: No module named 'dash'
+ModuleNotFoundError: No module named 'dash'
+>>>>>>> 6f045f7b230dfc013d056c68adc3d8ed1718ab58
 
