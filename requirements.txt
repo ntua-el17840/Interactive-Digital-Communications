@@ -5,5 +5,6 @@ numpy
 pandas
 plotly
 dash-bootstrap-components
-ipywidgets==7.6.5
+ipywidgets==7.7.2
 jupyter-dash
+ipython

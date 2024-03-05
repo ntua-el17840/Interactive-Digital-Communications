@@ -21,19 +21,6 @@ Traceback (most recent call last):
     raise CellExecutionError.from_cell_and_msg(cell, exec_reply_content)
 nbclient.exceptions.CellExecutionError: An error occurred while executing the following cell:
 ------------------
-<<<<<<< HEAD
-Fs=500
-f1,Pxx1 = pwelch(x,Fs)
-f2,Pxx2 = signal.welch(x,fs=Fs)
-
-fig = go.Figure()
-fig.add_trace(go.Scatter(x=f2, y=Pxx2, mode='lines', line=dict(color='#1F77B4')))
-fig.update_layout(title='Periodogram signal.welch()', title_x=0.5, 
-                  title_font=dict(size=20, color='black', family="Arial, sans-serif"),
-                  xaxis_title='Frequency (Hz)', yaxis_title='Power',
-                  template='plotly_white')
-fig.show()
-=======
 from scipy import signal
 # Ανατρέξτε στην τεκμηρίωση της βιβλιοθήκης scipy.signal
 # https://docs.scipy.org/doc/scipy/reference/signal.html
@@ -53,20 +40,9 @@ import warnings
 warnings.filterwarnings('ignore')
 from ipywidgets import widgets, Layout, HBox, VBox, IntRangeSlider
 print("Libraries added successfully!")
->>>>>>> 6f045f7b230dfc013d056c68adc3d8ed1718ab58
 ------------------
 
 [1;31m---------------------------------------------------------------------------[0m
-<<<<<<< HEAD
-[1;31mNameError[0m                                 Traceback (most recent call last)
-Cell [1;32mIn[24], line 2[0m
-[0;32m      1[0m Fs[38;5;241m=[39m[38;5;241m500[39m
-[1;32m----> 2[0m f1,Pxx1 [38;5;241m=[39m pwelch([43mx[49m,Fs)
-[0;32m      3[0m f2,Pxx2 [38;5;241m=[39m signal[38;5;241m.[39mwelch(x,fs[38;5;241m=[39mFs)
-[0;32m      5[0m fig [38;5;241m=[39m go[38;5;241m.[39mFigure()
-
-[1;31mNameError[0m: name 'x' is not defined
-=======
 [1;31mModuleNotFoundError[0m                       Traceback (most recent call last)
 Cell [1;32mIn[1], line 5[0m
 [0;32m      2[0m [38;5;66;03m# Ανατρέξτε στην τεκμηρίωση της βιβλιοθήκης scipy.signal[39;00m
@@ -78,5 +54,4 @@ Cell [1;32mIn[1], line 5[0m
 
 [1;31mModuleNotFoundError[0m: No module named 'dash'
 ModuleNotFoundError: No module named 'dash'
->>>>>>> 6f045f7b230dfc013d056c68adc3d8ed1718ab58
 

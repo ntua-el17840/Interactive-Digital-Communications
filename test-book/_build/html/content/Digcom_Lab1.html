@@ -482,7 +482,9 @@ document.write(`
 <h3>Jupyter notebook<a class="headerlink" href="#jupyter-notebook" title="Link to this heading">#</a></h3>
 <p>To Project Jupyter είναι ένας μη κερδοσκοπικός οργανισμός με αποστολή τη συγγραφή ανοικτού λογισμικού για διαδραστικές εφαρμογές. Ξεκίνησε από ipython, ωστόσο σήμερα προσφέρει προγράμματα σε πολλές γλώσσες προγραμματισμού.</p>
 <p>Το jupyter notebook (<a class="reference external" href="https://jupyter.org/">https://jupyter.org/</a>) είναι μια πλατφόρμα web ανοικτού λογισμικού για την ανάπτυξη διαδραστικών εφαρμογών, κυρίως για επεξεργασία (επιστημονικών) δεδομένων και μηχανικής μάθησης.</p>
-<button title="Run code" class="thebelab-button thebe-launch-button" onclick="initThebe()">Run code</button></section>
+<p><button title="Launch thebe" class="thebelab-button thebe-launch-button" onclick="initThebe()">Interactive Code</button></p>
+<div class="thebe-status thebe-status-mounted" title="Status:"><span class="thebe-status-stub">Status:</span><span class="thebe-status-field">No Kernel Attached</span><div class="thebe-status-message"></div></div>
+</section>
 <section id="id2">
 <h3>Εξάσκηση<a class="headerlink" href="#id2" title="Link to this heading">#</a></h3>
 <div class="cell tag_hide-input tag_thebe-init docutils container">
@@ -530,6 +532,39 @@ document.write(`
 </pre></div>
 </div>
 </div>
+</div>
+<script src='https://cdn.plot.ly/plotly-latest.min.js'></script><div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span>
+<span class="kn">import</span> <span class="nn">plotly.graph_objects</span> <span class="k">as</span> <span class="nn">go</span>
+<span class="kn">import</span> <span class="nn">ipywidgets</span> <span class="k">as</span> <span class="nn">iw</span>
+<span class="n">n</span><span class="o">=</span><span class="mi">1</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">50</span><span class="p">)</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">50</span><span class="p">)</span>
+<span class="n">z</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">outer</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span><span class="o">**</span><span class="n">n</span>
+
+
+<span class="n">fw</span> <span class="o">=</span> <span class="n">go</span><span class="o">.</span><span class="n">FigureWidget</span><span class="p">(</span><span class="n">go</span><span class="o">.</span><span class="n">Surface</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="n">y</span><span class="p">,</span> <span class="n">z</span><span class="o">=</span><span class="n">z</span><span class="p">))</span>
+<span class="n">fw</span><span class="o">.</span><span class="n">layout</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">width</span><span class="o">=</span><span class="mi">600</span><span class="p">,</span> <span class="n">height</span><span class="o">=</span><span class="mi">600</span><span class="p">)</span>
+<span class="c1">#fw.show()</span>
+
+<span class="k">def</span> <span class="nf">surface_changed</span><span class="p">(</span><span class="n">change</span><span class="p">):</span>
+    <span class="n">new_z</span><span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">outer</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span><span class="o">**</span><span class="n">slider</span><span class="o">.</span><span class="n">value</span>
+    <span class="n">fw</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">z</span> <span class="o">=</span> <span class="n">new_z</span><span class="p">)</span>
+
+<span class="n">slider</span> <span class="o">=</span> <span class="n">iw</span><span class="o">.</span><span class="n">IntSlider</span><span class="p">(</span><span class="n">value</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="nb">min</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="nb">max</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">step</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s1">&#39;n&#39;</span><span class="p">)</span>
+<span class="n">slider</span><span class="o">.</span><span class="n">layout</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="n">margin</span><span class="o">=</span><span class="s1">&#39;10px 80px 40px 5px&#39;</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="s1">&#39;500px&#39;</span><span class="p">)</span>
+<span class="n">play_widget</span> <span class="o">=</span> <span class="n">iw</span><span class="o">.</span><span class="n">Play</span><span class="p">(</span><span class="n">value</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="nb">min</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="nb">max</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">step</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">interval</span><span class="o">=</span><span class="mi">500</span><span class="p">)</span><span class="c1">#the play_widget values are linked to IntSlider values</span>
+<span class="n">play_widget</span><span class="o">.</span><span class="n">layout</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="n">margin</span><span class="o">=</span><span class="s1">&#39;10px 10px 50px 100px&#39;</span><span class="p">)</span>
+<span class="n">iw</span><span class="o">.</span><span class="n">link</span><span class="p">((</span><span class="n">play_widget</span><span class="p">,</span> <span class="s1">&#39;value&#39;</span><span class="p">),</span> <span class="p">(</span><span class="n">slider</span><span class="p">,</span> <span class="s1">&#39;value&#39;</span><span class="p">))</span>
+<span class="n">slider</span><span class="o">.</span><span class="n">observe</span><span class="p">(</span><span class="n">surface_changed</span><span class="p">,</span> <span class="s1">&#39;value&#39;</span><span class="p">)</span>
+
+<span class="n">iw</span><span class="o">.</span><span class="n">VBox</span><span class="p">([</span><span class="n">fw</span><span class="p">,</span> <span class="n">iw</span><span class="o">.</span><span class="n">HBox</span><span class="p">([</span><span class="n">play_widget</span><span class="p">,</span> <span class="n">slider</span><span class="p">])])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<script type="application/vnd.jupyter.widget-view+json">{"model_id": "19306c9ca9ad4fadaef1ee00c24b928b", "version_major": 2, "version_minor": 0}</script></div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -613,7 +648,7 @@ document.write(`
         <span class="n">graph_output</span><span class="o">.</span><span class="n">clear_output</span><span class="p">(</span><span class="n">wait</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
         <span class="c1"># Use Flexbox layout to center and stretch the graphs</span>
         <span class="n">hbox</span> <span class="o">=</span> <span class="n">HBox</span><span class="p">([</span><span class="n">fig_signal</span><span class="p">,</span> <span class="n">fig_fft</span><span class="p">])</span>
-        <span class="n">hbox</span><span class="o">.</span><span class="n">layout</span> <span class="o">=</span> <span class="n">Layout</span><span class="p">(</span><span class="n">display</span><span class="o">=</span><span class="s1">&#39;flex&#39;</span><span class="p">,</span> <span class="n">flex_flow</span><span class="o">=</span><span class="s1">&#39;row&#39;</span><span class="p">,</span> <span class="n">align_items</span><span class="o">=</span><span class="s1">&#39;stretch&#39;</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="s1">&#39;auto&#39;</span><span class="p">)</span>
+        <span class="n">hbox</span><span class="o">.</span><span class="n">layout</span> <span class="o">=</span> <span class="n">Layout</span><span class="p">(</span><span class="n">display</span><span class="o">=</span><span class="s1">&#39;flex&#39;</span><span class="p">,</span> <span class="n">flex_flow</span><span class="o">=</span><span class="s1">&#39;row&#39;</span><span class="p">,</span> <span class="n">align_items</span><span class="o">=</span><span class="s1">&#39;stretch&#39;</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="s1">&#39;95%&#39;</span><span class="p">)</span>
         <span class="n">display</span><span class="p">(</span><span class="n">hbox</span><span class="p">)</span>
 
 <span class="c1"># Observe changes in the slider value</span>
@@ -641,13 +676,10 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<script type="application/vnd.jupyter.widget-view+json">{"model_id": "6c80f558a6b046e59e65c5078cae475f", "version_major": 2, "version_minor": 0}</script></div>
+<script type="application/vnd.jupyter.widget-view+json">{"model_id": "822b561c616b44ec860484a30ca6aef5", "version_major": 2, "version_minor": 0}</script></div>
 </div>
 <section id="id3">
 <h4>Δημιουργήστε ένα βαθμωτό (μονοδιάστατο) μέγεθος<a class="headerlink" href="#id3" title="Link to this heading">#</a></h4>
-<div class="thebe highlight-python notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;hello world!&quot;</span><span class="p">)</span>
-</pre></div>
-</div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">s</span><span class="o">=</span><span class="mi">2</span>
@@ -799,144 +831,6 @@ document.write(`
 X(f)=\int_{-\infty}^{\infty} x(t)e^{-j2\pi ft} dt
  
 \]</div>
-<<<<<<< HEAD
-<div class="cell tag_hide-input docutils container">
-<details class="hide above-input">
-<summary aria-label="Toggle hidden content">
-<span class="collapsed">Show code cell source</span>
-<span class="expanded">Hide code cell source</span>
-</summary>
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Παράμετροι δειγματοληψίας</span>
-<span class="n">fs</span> <span class="o">=</span> <span class="mi">1000</span>  <span class="c1"># Sampling frequency in Hz</span>
-<span class="n">T</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">/</span> <span class="n">fs</span>  <span class="c1"># Sampling period</span>
-<span class="n">L</span> <span class="o">=</span> <span class="mi">1000</span>  <span class="c1"># Number of samples</span>
-
-<span class="c1"># Create time vector</span>
-<span class="n">t</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">L</span><span class="p">)</span> <span class="o">*</span> <span class="n">T</span>
-
-
-<span class="c1"># Define the function to update the plot based on the selected frequencies</span>
-<span class="k">def</span> <span class="nf">update_plot</span><span class="p">(</span><span class="n">selected_frequencies</span><span class="p">):</span>
-    <span class="c1"># Generate the signal with the selected frequencies</span>
-    <span class="n">signal</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">t</span><span class="p">))</span>
-    <span class="k">for</span> <span class="n">f</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">selected_frequencies</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">selected_frequencies</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="mi">1</span><span class="p">):</span>
-        <span class="n">signal</span> <span class="o">+=</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span> <span class="o">*</span> <span class="n">f</span> <span class="o">*</span> <span class="n">t</span><span class="p">)</span>
-                    
-
-    <span class="c1"># Calculate the FFT of the original signal</span>
-    <span class="n">original_signal_fft</span> <span class="o">=</span> <span class="n">fft</span><span class="p">(</span><span class="n">signal</span><span class="p">)</span>
-    <span class="c1"># Calculate frequencies for the FFT of the original signal</span>
-    <span class="n">original_freqs</span> <span class="o">=</span> <span class="n">fftfreq</span><span class="p">(</span><span class="n">L</span><span class="p">,</span> <span class="n">T</span><span class="p">)[:</span><span class="n">L</span> <span class="o">//</span> <span class="mi">2</span><span class="p">]</span>
-    <span class="c1"># Calculate magnitude of Fourier coefficients (amplitude) for the original signal</span>
-    <span class="n">original_magnitude</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">original_signal_fft</span><span class="p">)[:</span><span class="n">L</span> <span class="o">//</span> <span class="mi">2</span><span class="p">]</span>
-
-    <span class="c1"># Create Plotly figures for the original signal</span>
-    <span class="n">fig_signal</span> <span class="o">=</span> <span class="n">go</span><span class="o">.</span><span class="n">FigureWidget</span><span class="p">(</span>
-        <span class="n">data</span><span class="o">=</span><span class="p">[</span><span class="n">go</span><span class="o">.</span><span class="n">Scatter</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">t</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="n">signal</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="s1">&#39;lines&#39;</span><span class="p">,</span> <span class="n">line</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">color</span><span class="o">=</span><span class="s1">&#39;#00CC96&#39;</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="mi">2</span><span class="p">))],</span>
-        <span class="n">layout</span><span class="o">=</span><span class="n">go</span><span class="o">.</span><span class="n">Layout</span><span class="p">(</span>
-            <span class="n">title</span><span class="o">=</span><span class="s1">&#39;Original Signal&#39;</span><span class="p">,</span>
-            <span class="n">xaxis</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">title</span><span class="o">=</span><span class="s1">&#39;Time (s)&#39;</span><span class="p">,</span> <span class="n">showgrid</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">gridcolor</span><span class="o">=</span><span class="s1">&#39;LightGrey&#39;</span><span class="p">),</span>
-            <span class="n">yaxis</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">title</span><span class="o">=</span><span class="s1">&#39;Amplitude&#39;</span><span class="p">,</span> <span class="n">showgrid</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">gridcolor</span><span class="o">=</span><span class="s1">&#39;LightGrey&#39;</span><span class="p">),</span>
-            <span class="n">margin</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">l</span><span class="o">=</span><span class="mi">40</span><span class="p">,</span> <span class="n">b</span><span class="o">=</span><span class="mi">40</span><span class="p">,</span> <span class="n">t</span><span class="o">=</span><span class="mi">40</span><span class="p">,</span> <span class="n">r</span><span class="o">=</span><span class="mi">40</span><span class="p">),</span>
-            <span class="n">hovermode</span><span class="o">=</span><span class="s1">&#39;closest&#39;</span><span class="p">,</span>
-            <span class="n">paper_bgcolor</span><span class="o">=</span><span class="s1">&#39;white&#39;</span><span class="p">,</span>
-            <span class="n">plot_bgcolor</span><span class="o">=</span><span class="s1">&#39;white&#39;</span><span class="p">,</span>
-            <span class="n">template</span><span class="o">=</span><span class="s1">&#39;plotly_white&#39;</span>
-        <span class="p">)</span>
-    <span class="p">)</span>
-
-    <span class="c1"># Create Plotly figures for the Fourier transform</span>
-    <span class="n">fig_fft</span> <span class="o">=</span> <span class="n">go</span><span class="o">.</span><span class="n">FigureWidget</span><span class="p">(</span>
-        <span class="n">data</span><span class="o">=</span><span class="p">[</span><span class="n">go</span><span class="o">.</span><span class="n">Scatter</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">original_freqs</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="n">original_magnitude</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="s1">&#39;lines&#39;</span><span class="p">,</span> <span class="n">line</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">color</span><span class="o">=</span><span class="s1">&#39;#1F77B4&#39;</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="mi">2</span><span class="p">))],</span>
-        <span class="n">layout</span><span class="o">=</span><span class="n">go</span><span class="o">.</span><span class="n">Layout</span><span class="p">(</span>
-            <span class="n">title</span><span class="o">=</span><span class="s1">&#39;Fourier Transformation of Original Signal&#39;</span><span class="p">,</span>
-            <span class="n">xaxis</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">title</span><span class="o">=</span><span class="s1">&#39;Frequency (Hz)&#39;</span><span class="p">,</span> <span class="n">showgrid</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">gridcolor</span><span class="o">=</span><span class="s1">&#39;LightGrey&#39;</span><span class="p">),</span>
-            <span class="n">yaxis</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">title</span><span class="o">=</span><span class="s1">&#39;Amplitude&#39;</span><span class="p">,</span> <span class="n">showgrid</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">gridcolor</span><span class="o">=</span><span class="s1">&#39;LightGrey&#39;</span><span class="p">),</span>
-            <span class="n">margin</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">l</span><span class="o">=</span><span class="mi">40</span><span class="p">,</span> <span class="n">b</span><span class="o">=</span><span class="mi">40</span><span class="p">,</span> <span class="n">t</span><span class="o">=</span><span class="mi">40</span><span class="p">,</span> <span class="n">r</span><span class="o">=</span><span class="mi">40</span><span class="p">),</span>
-            <span class="n">hovermode</span><span class="o">=</span><span class="s1">&#39;closest&#39;</span><span class="p">,</span>
-            <span class="n">paper_bgcolor</span><span class="o">=</span><span class="s1">&#39;white&#39;</span><span class="p">,</span>
-            <span class="n">plot_bgcolor</span><span class="o">=</span><span class="s1">&#39;white&#39;</span><span class="p">,</span>
-            <span class="n">template</span><span class="o">=</span><span class="s1">&#39;plotly_white&#39;</span>
-        <span class="p">)</span>
-    <span class="p">)</span>
-
-    <span class="k">return</span> <span class="n">fig_signal</span><span class="p">,</span> <span class="n">fig_fft</span>
-
-<span class="c1"># Create the slider widget styled similarly to the Dash range slider</span>
-<span class="n">frequency_slider</span> <span class="o">=</span> <span class="n">IntRangeSlider</span><span class="p">(</span>
-    <span class="n">value</span><span class="o">=</span><span class="p">[</span><span class="mi">5</span><span class="p">,</span> <span class="mi">10</span><span class="p">],</span>
-    <span class="nb">min</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
-    <span class="nb">max</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span>
-    <span class="n">step</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
-    <span class="n">description</span><span class="o">=</span><span class="s1">&#39;Frequency Range (Hz)&#39;</span><span class="p">,</span>
-    <span class="n">style</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;description_width&#39;</span><span class="p">:</span> <span class="s1">&#39;initial&#39;</span><span class="p">},</span>
-    <span class="n">layout</span><span class="o">=</span><span class="n">Layout</span><span class="p">(</span><span class="n">width</span><span class="o">=</span><span class="s1">&#39;90%&#39;</span><span class="p">),</span>  <span class="c1"># Set the width to 100% of the container</span>
-    <span class="n">readout_format</span><span class="o">=</span><span class="s1">&#39;d&#39;</span><span class="p">,</span>  <span class="c1"># Integer format</span>
-    <span class="n">continuous_update</span><span class="o">=</span><span class="kc">False</span>
-<span class="p">)</span>
-
-<span class="c1"># Define tick marks at intervals of 5</span>
-<span class="n">frequency_slider_marks</span> <span class="o">=</span> <span class="p">{</span><span class="n">i</span><span class="p">:</span> <span class="nb">str</span><span class="p">(</span><span class="n">i</span><span class="p">)</span> <span class="o">+</span> <span class="s1">&#39; Hz&#39;</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">51</span><span class="p">,</span> <span class="mi">5</span><span class="p">)}</span>
-<span class="n">frequency_slider</span><span class="o">.</span><span class="n">style</span><span class="o">.</span><span class="n">handle_color</span> <span class="o">=</span> <span class="s1">&#39;lightblue&#39;</span>  <span class="c1"># Set the handle to light blue</span>
-
-<span class="c1"># Define the response function</span>
-<span class="k">def</span> <span class="nf">response</span><span class="p">(</span><span class="n">change</span><span class="p">):</span>
-    <span class="n">fig_signal</span><span class="p">,</span> <span class="n">fig_fft</span> <span class="o">=</span> <span class="n">update_plot</span><span class="p">(</span><span class="n">frequency_slider</span><span class="o">.</span><span class="n">value</span><span class="p">)</span>
-    <span class="k">with</span> <span class="n">graph_output</span><span class="p">:</span>
-        <span class="n">graph_output</span><span class="o">.</span><span class="n">clear_output</span><span class="p">(</span><span class="n">wait</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-        <span class="c1"># Use Flexbox layout to center and stretch the graphs</span>
-        <span class="n">hbox</span> <span class="o">=</span> <span class="n">HBox</span><span class="p">([</span><span class="n">fig_signal</span><span class="p">,</span> <span class="n">fig_fft</span><span class="p">])</span>
-        <span class="n">hbox</span><span class="o">.</span><span class="n">layout</span> <span class="o">=</span> <span class="n">Layout</span><span class="p">(</span><span class="n">display</span><span class="o">=</span><span class="s1">&#39;flex&#39;</span><span class="p">,</span> <span class="n">flex_flow</span><span class="o">=</span><span class="s1">&#39;row&#39;</span><span class="p">,</span> <span class="n">align_items</span><span class="o">=</span><span class="s1">&#39;stretch&#39;</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="s1">&#39;auto&#39;</span><span class="p">)</span>
-        <span class="n">display</span><span class="p">(</span><span class="n">hbox</span><span class="p">)</span>
-
-<span class="c1"># Observe changes in the slider value</span>
-<span class="n">frequency_slider</span><span class="o">.</span><span class="n">observe</span><span class="p">(</span><span class="n">response</span><span class="p">,</span> <span class="n">names</span><span class="o">=</span><span class="s1">&#39;value&#39;</span><span class="p">)</span>
-
-<span class="c1"># Create Output widgets for the plots</span>
-<span class="n">graph_output</span> <span class="o">=</span> <span class="n">widgets</span><span class="o">.</span><span class="n">Output</span><span class="p">()</span>
-
-<span class="c1"># Call the response function to update the plots initially</span>
-<span class="n">response</span><span class="p">(</span><span class="kc">None</span><span class="p">)</span>
-
-<span class="c1"># Style the HTML element</span>
-<span class="n">html_label</span> <span class="o">=</span> <span class="n">widgets</span><span class="o">.</span><span class="n">HTML</span><span class="p">(</span>
-    <span class="n">value</span><span class="o">=</span><span class="s2">&quot;&quot;&quot;</span>
-<span class="s2">        &lt;h2 style=&#39;font-weight: bold; font-size: 30px; text-align: center;&#39;&gt;Interactive Signal and Fourier Transformation&lt;/h2&gt;</span>
-<span class="s2">        &lt;!-- Configure and load Thebe !--&gt;</span>
-<span class="s2">&lt;script type=&quot;text/x-thebe-config&quot;&gt;</span>
-<span class="s2">  {</span>
-<span class="s2">      requestKernel: true,</span>
-<span class="s2">      mountActivateWidget: true,</span>
-<span class="s2">      mountStatusWidget: true,</span>
-<span class="s2">      binderOptions: {</span>
-<span class="s2">      repo: &quot;binder-examples/requirements&quot;,</span>
-<span class="s2">      },</span>
-<span class="s2">  }</span>
-<span class="s2">&lt;/script&gt;</span>
-
-<span class="s2">&lt;script src=&quot;https://unpkg.com/thebe@latest/lib/index.js&quot;&gt;&lt;/script&gt;</span>
-
-<span class="s2">&lt;div class=&quot;thebe-activate&quot;&gt;&lt;/div&gt;</span>
-<span class="s2">&lt;div class=&quot;thebe-status&quot;&gt;&lt;/div&gt;</span>
-<span class="s2">&lt;pre data-executable=&quot;true&quot; data-language=&quot;python&quot;&gt;print(&quot;Hello!&quot;)&lt;/pre&gt;</span>
-<span class="s2">    &quot;&quot;&quot;</span>
-<span class="p">)</span>
-
-<span class="c1"># Display the slider and the outputs</span>
-<span class="n">vbox_layout</span> <span class="o">=</span> <span class="n">Layout</span><span class="p">(</span><span class="n">display</span><span class="o">=</span><span class="s1">&#39;flex&#39;</span><span class="p">,</span> <span class="n">flex_flow</span><span class="o">=</span><span class="s1">&#39;column&#39;</span><span class="p">,</span> <span class="n">align_items</span><span class="o">=</span><span class="s1">&#39;center&#39;</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="s1">&#39;100%&#39;</span><span class="p">)</span>
-<span class="n">widgets</span><span class="o">.</span><span class="n">VBox</span><span class="p">([</span><span class="n">html_label</span><span class="p">,</span>
-              <span class="n">frequency_slider</span><span class="p">,</span>
-              <span class="n">graph_output</span><span class="p">],</span> <span class="n">layout</span><span class="o">=</span><span class="n">vbox_layout</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</details>
-<div class="cell_output docutils container">
-<script type="application/vnd.jupyter.widget-view+json">{"version_major": 2, "version_minor": 0, "model_id": "e7a7182189774777839b96f7a9eab8a7"}</script></div>
-</div>
-=======
->>>>>>> 6f045f7b230dfc013d056c68adc3d8ed1718ab58
 <div class="cell tag_hide-input tag_thebe-init docutils container">
 <details class="hide above-input">
 <summary aria-label="Toggle hidden content">
@@ -1042,34 +936,12 @@ X(f)=\int_{-\infty}^{\infty} x(t)e^{-j2\pi ft} dt
     
 
 <span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
-<<<<<<< HEAD
-    <span class="n">app1</span><span class="o">.</span><span class="n">run_server</span><span class="p">(</span><span class="n">debug</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">port</span><span class="o">=</span><span class="mi">8049</span><span class="p">)</span>
-=======
     <span class="c1"># Use &#39;inline&#39; mode when running in Jupyter notebooks</span>
-<<<<<<< HEAD
     <span class="n">app1</span><span class="o">.</span><span class="n">run_server</span><span class="p">(</span><span class="n">mode</span><span class="o">=</span><span class="s1">&#39;inline&#39;</span><span class="p">,</span> <span class="n">debug</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-=======
-    <span class="n">app1</span><span class="o">.</span><span class="n">run_server</span><span class="p">(</span><span class="n">mode</span><span class="o">=</span><span class="s1">&#39;inline&#39;</span><span class="p">)</span>
->>>>>>> 6f045f7b230dfc013d056c68adc3d8ed1718ab58
->>>>>>> a00ab4cbeec1ff74976270179d2e793cf482a4e8
 </pre></div>
 </div>
 </div>
 </details>
-<<<<<<< HEAD
-<div class="cell_output docutils container">
-<div class="output text_html">
-        <iframe
-            width="100%"
-            height="650"
-            src="http://127.0.0.1:8049/"
-            frameborder="0"
-            allowfullscreen
-            
-        ></iframe>
-        </div></div>
-=======
->>>>>>> 6f045f7b230dfc013d056c68adc3d8ed1718ab58
 </div>
 <p>Λαμβάνοντας δείγματα του <span class="math notranslate nohighlight">\(x(t)\)</span> με ρυθμό <span class="math notranslate nohighlight">\(f_s=1/T_s\)</span> παράγεται σήμα διακριτού χρόνου <span class="math notranslate nohighlight">\(x(nT_s)\)</span>. Μαθηματικά το αναπαριστάνουμε ως σειρά συναρτήσεων δέλτα</p>
 <div class="math notranslate nohighlight">
@@ -2385,22 +2257,6 @@ P_x = \sum_{k=-\infty}^{\infty} |X[k]|^2
 </div>
 </div>
 </details>
-<<<<<<< HEAD
-<div class="cell_output docutils container">
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">NameError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
-<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">24</span><span class="p">],</span> <span class="n">line</span> <span class="mi">2</span>
-<span class="g g-Whitespace">      </span><span class="mi">1</span> <span class="n">Fs</span><span class="o">=</span><span class="mi">500</span>
-<span class="ne">----&gt; </span><span class="mi">2</span> <span class="n">f1</span><span class="p">,</span><span class="n">Pxx1</span> <span class="o">=</span> <span class="n">pwelch</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">Fs</span><span class="p">)</span>
-<span class="g g-Whitespace">      </span><span class="mi">3</span> <span class="n">f2</span><span class="p">,</span><span class="n">Pxx2</span> <span class="o">=</span> <span class="n">signal</span><span class="o">.</span><span class="n">welch</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">fs</span><span class="o">=</span><span class="n">Fs</span><span class="p">)</span>
-<span class="g g-Whitespace">      </span><span class="mi">5</span> <span class="n">fig</span> <span class="o">=</span> <span class="n">go</span><span class="o">.</span><span class="n">Figure</span><span class="p">()</span>
-
-<span class="ne">NameError</span>: name &#39;x&#39; is not defined
-</pre></div>
-</div>
-</div>
-=======
->>>>>>> 6f045f7b230dfc013d056c68adc3d8ed1718ab58
 </div>
 </section>
 </section>

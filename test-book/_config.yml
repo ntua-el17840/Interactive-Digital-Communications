@@ -40,15 +40,3 @@ sphinx:
     - sphinx_inline_tabs
   config:
     nb_execution_show_tb: True
-<<<<<<< HEAD
-
-  extra_javascript:
-    - _static/thebe_auto.js
-
-    
-=======
-    thebe_config:
-      requestKernel: true
-      auto_run: true  # Automatically run all cells when Thebe is activated
-
->>>>>>> 6f045f7b230dfc013d056c68adc3d8ed1718ab58
