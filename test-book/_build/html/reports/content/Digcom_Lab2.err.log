@@ -88,20 +88,19 @@ Reconstructed_Signal.update_layout(
     template='plotly_white'
 )
 
-# Layout of the Dash app
 app11.layout = html.Div(
     children=[
         html.H2('Signal Analysis'),
         dbc.Row(
             children=[
-                dbc.Col(dcc.Graph(figure=Original_Signal), width=6),
-                dbc.Col(dcc.Graph(figure=Magnitude_Spectrum), width=6)
+                dbc.Col(dcc.Graph(figure=Original_Signal, style={'height': '250px'}), width=6),
+                dbc.Col(dcc.Graph(figure=Magnitude_Spectrum, style={'height': '250px'}), width=6)
             ]
         ),
         dbc.Row(
             children=[
-                dbc.Col(dcc.Graph(figure=Low_pass_Spectrum), width=6),
-                dbc.Col(dcc.Graph(figure=Reconstructed_Signal), width=6)
+                dbc.Col(dcc.Graph(figure=Low_pass_Spectrum, style={'height': '250px'}), width=6),
+                dbc.Col(dcc.Graph(figure=Reconstructed_Signal, style={'height': '250px'}), width=6)
             ]
         )
     ],
@@ -109,22 +108,22 @@ app11.layout = html.Div(
 )
 
 if __name__ == '__main__':
-    app11.run_server(debug=True, port=8100)
+    app11.run_server(debug=True, port=8200)
 
 ------------------
 
 
 [1;31m---------------------------------------------------------------------------[0m
 [1;31mOSError[0m                                   Traceback (most recent call last)
-Cell [1;32mIn[2], line 92[0m
-[0;32m     72[0m app11[38;5;241m.[39mlayout [38;5;241m=[39m html[38;5;241m.[39mDiv(
-[0;32m     73[0m     children[38;5;241m=[39m[
-[0;32m     74[0m         html[38;5;241m.[39mH2([38;5;124m'[39m[38;5;124mSignal Analysis[39m[38;5;124m'[39m),
+Cell [1;32mIn[4], line 91[0m
+[0;32m     71[0m app11[38;5;241m.[39mlayout [38;5;241m=[39m html[38;5;241m.[39mDiv(
+[0;32m     72[0m     children[38;5;241m=[39m[
+[0;32m     73[0m         html[38;5;241m.[39mH2([38;5;124m'[39m[38;5;124mSignal Analysis[39m[38;5;124m'[39m),
 [1;32m   (...)[0m
-[0;32m     88[0m     style[38;5;241m=[39m{[38;5;124m'[39m[38;5;124mbackgroundColor[39m[38;5;124m'[39m: [38;5;124m'[39m[38;5;124mwhite[39m[38;5;124m'[39m, [38;5;124m'[39m[38;5;124mpadding[39m[38;5;124m'[39m: [38;5;124m'[39m[38;5;124m20px[39m[38;5;124m'[39m}
-[0;32m     89[0m )
-[0;32m     91[0m [38;5;28;01mif[39;00m [38;5;18m__name__[39m [38;5;241m==[39m [38;5;124m'[39m[38;5;124m__main__[39m[38;5;124m'[39m:
-[1;32m---> 92[0m     [43mapp11[49m[38;5;241;43m.[39;49m[43mrun_server[49m[43m([49m[43mdebug[49m[38;5;241;43m=[39;49m[38;5;28;43;01mTrue[39;49;00m[43m,[49m[43m [49m[43mport[49m[38;5;241;43m=[39;49m[38;5;241;43m8100[39;49m[43m)[49m
+[0;32m     87[0m     style[38;5;241m=[39m{[38;5;124m'[39m[38;5;124mbackgroundColor[39m[38;5;124m'[39m: [38;5;124m'[39m[38;5;124mwhite[39m[38;5;124m'[39m, [38;5;124m'[39m[38;5;124mpadding[39m[38;5;124m'[39m: [38;5;124m'[39m[38;5;124m20px[39m[38;5;124m'[39m}
+[0;32m     88[0m )
+[0;32m     90[0m [38;5;28;01mif[39;00m [38;5;18m__name__[39m [38;5;241m==[39m [38;5;124m'[39m[38;5;124m__main__[39m[38;5;124m'[39m:
+[1;32m---> 91[0m     [43mapp11[49m[38;5;241;43m.[39;49m[43mrun_server[49m[43m([49m[43mdebug[49m[38;5;241;43m=[39;49m[38;5;28;43;01mTrue[39;49;00m[43m,[49m[43m [49m[43mport[49m[38;5;241;43m=[39;49m[38;5;241;43m8200[39;49m[43m)[49m
 
 File [1;32m~\anaconda3\Lib\site-packages\dash\dash.py:2175[0m, in [0;36mDash.run_server[1;34m(self, *args, **kwargs)[0m
 [0;32m   2169[0m [38;5;28;01mdef[39;00m [38;5;21mrun_server[39m([38;5;28mself[39m, [38;5;241m*[39margs, [38;5;241m*[39m[38;5;241m*[39mkwargs):
@@ -206,6 +205,6 @@ File [1;32m~\anaconda3\Lib\site-packages\dash\_jupyter.py:377[0m, in [0;36mJu
 [0;32m    381[0m [38;5;28;01mexcept[39;00m requests[38;5;241m.[39mConnectionError [38;5;28;01mas[39;00m err:
 [0;32m    382[0m     _get_error()
 
-[1;31mOSError[0m: Address 'http://127.0.0.1:8100' already in use.
+[1;31mOSError[0m: Address 'http://127.0.0.1:8200' already in use.
     Try passing a different port to run_server.
 

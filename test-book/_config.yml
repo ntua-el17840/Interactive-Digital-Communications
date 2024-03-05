@@ -38,5 +38,8 @@ html:
 sphinx:
   config:
     nb_execution_show_tb: True
+
   extra_javascript:
     - _static/thebe_auto.js
+
+    
