@@ -1,10 +1,10 @@
-scipy
-dash
-matplotlib
 numpy
+scipy
+matplotlib
+ipython
+ipywidgets==7.7.2
+dash
 pandas
 plotly
 dash-bootstrap-components
-ipywidgets==7.7.2
 jupyter-dash
-ipython

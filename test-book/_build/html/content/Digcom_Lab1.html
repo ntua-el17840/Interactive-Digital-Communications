@@ -839,15 +839,20 @@ X(f)=\int_{-\infty}^{\infty} x(t)e^{-j2\pi ft} dt
 
 <span class="c1"># Display the slider and the outputs</span>
 <span class="n">vbox_layout</span> <span class="o">=</span> <span class="n">Layout</span><span class="p">(</span><span class="n">display</span><span class="o">=</span><span class="s1">&#39;flex&#39;</span><span class="p">,</span> <span class="n">flex_flow</span><span class="o">=</span><span class="s1">&#39;column&#39;</span><span class="p">,</span> <span class="n">align_items</span><span class="o">=</span><span class="s1">&#39;center&#39;</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="s1">&#39;100%&#39;</span><span class="p">)</span>
-<span class="n">widgets</span><span class="o">.</span><span class="n">VBox</span><span class="p">([</span><span class="n">html_label</span><span class="p">,</span>
+<span class="n">ui</span> <span class="o">=</span> <span class="n">widgets</span><span class="o">.</span><span class="n">VBox</span><span class="p">([</span><span class="n">html_label</span><span class="p">,</span>
               <span class="n">frequency_slider</span><span class="p">,</span>
               <span class="n">graph_output</span><span class="p">],</span> <span class="n">layout</span><span class="o">=</span><span class="n">vbox_layout</span><span class="p">)</span>
+
+<span class="n">out</span> <span class="o">=</span> <span class="n">widgets</span><span class="o">.</span><span class="n">interactive_output</span><span class="p">(</span><span class="n">update_plot</span><span class="p">,</span> <span class="p">{</span><span class="s1">&#39;selected_frequencies&#39;</span><span class="p">:</span> <span class="n">frequency_slider</span><span class="p">})</span>
+
+<span class="n">clear_output</span><span class="p">(</span><span class="n">wait</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>  <span class="c1"># Clear the previous plot</span>
+<span class="n">display</span><span class="p">(</span><span class="n">ui</span><span class="p">,</span> <span class="n">out</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 </details>
 <div class="cell_output docutils container">
-<script type="application/vnd.jupyter.widget-view+json">{"model_id": "e218c7ddccea4cb79b000ce1bb84d10e", "version_major": 2, "version_minor": 0}</script></div>
+<script type="application/vnd.jupyter.widget-view+json">{"model_id": "02c268025d30492d8a12381c9a884310", "version_major": 2, "version_minor": 0}</script><script type="application/vnd.jupyter.widget-view+json">{"model_id": "8b1b84aa539b4cff99e2b83476e2cefa", "version_major": 2, "version_minor": 0}</script></div>
 </div>
 <p>Λαμβάνοντας δείγματα του <span class="math notranslate nohighlight">\(x(t)\)</span> με ρυθμό <span class="math notranslate nohighlight">\(f_s=1/T_s\)</span> παράγεται σήμα διακριτού χρόνου <span class="math notranslate nohighlight">\(x(nT_s)\)</span>. Μαθηματικά το αναπαριστάνουμε ως σειρά συναρτήσεων δέλτα</p>
 <div class="math notranslate nohighlight">
@@ -866,13 +871,7 @@ X_\delta (f)=\sum_{n=-\infty}^{\infty}x(nT_s)e^{-j2\pi fnT_s}=X(f)*1/T_s\sum_{n=
 <p>που είναι περιοδική συνάρτηση.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
-<span class="kn">from</span> <span class="nn">scipy.fft</span> <span class="kn">import</span> <span class="n">fft</span><span class="p">,</span> <span class="n">fftfreq</span>
-<span class="kn">import</span> <span class="nn">ipywidgets</span> <span class="k">as</span> <span class="nn">widgets</span>
-<span class="kn">from</span> <span class="nn">IPython.display</span> <span class="kn">import</span> <span class="n">display</span><span class="p">,</span> <span class="n">clear_output</span>
-
-<span class="c1"># Παράμετροι δειγματοληψίας</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Παράμετροι δειγματοληψίας</span>
 <span class="n">T</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">/</span> <span class="n">fs</span>  <span class="c1"># Sampling period</span>
 <span class="n">L</span> <span class="o">=</span> <span class="mi">1000</span>  <span class="c1"># Number of samples</span>
 
@@ -983,12 +982,13 @@ X_\delta (f)=\sum_{n=-\infty}^{\infty}x(nT_s)e^{-j2\pi fnT_s}=X(f)*1/T_s\sum_{n=
 
 <span class="n">out</span> <span class="o">=</span> <span class="n">widgets</span><span class="o">.</span><span class="n">interactive_output</span><span class="p">(</span><span class="n">plot_sampled_signal</span><span class="p">,</span> <span class="p">{</span><span class="s1">&#39;f_range&#39;</span><span class="p">:</span> <span class="n">frequency_slider</span><span class="p">,</span> <span class="s1">&#39;n_samples&#39;</span><span class="p">:</span> <span class="n">samples_slider</span><span class="p">})</span>
 
+<span class="n">clear_output</span><span class="p">(</span><span class="n">wait</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>  <span class="c1"># Clear the previous plot</span>
 <span class="n">display</span><span class="p">(</span><span class="n">ui</span><span class="p">,</span> <span class="n">out</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<script type="application/vnd.jupyter.widget-view+json">{"model_id": "76dbed9bed9e4b59930103f760fb93cf", "version_major": 2, "version_minor": 0}</script><script type="application/vnd.jupyter.widget-view+json">{"model_id": "c87ca9c88e8a4166b883b418f1540ef6", "version_major": 2, "version_minor": 0}</script></div>
+<script type="application/vnd.jupyter.widget-view+json">{"model_id": "b16547e445b3400989de390413ff309b", "version_major": 2, "version_minor": 0}</script><script type="application/vnd.jupyter.widget-view+json">{"model_id": "7a81734cdf434ad582022ef432de8642", "version_major": 2, "version_minor": 0}</script></div>
 </div>
 <p>Για βαθυπερατά σήματα <span class="math notranslate nohighlight">\(x(t)\)</span> εύρους ζώνης W, με την υπόθεση ότι ο ρυθμός δειγματοληψίας <span class="math notranslate nohighlight">\(fs ≥
 2W\)</span>, ισχύει ότι <span class="math notranslate nohighlight">\(X(f) = T_s X_\delta(f)\)</span>, <span class="math notranslate nohighlight">\(0 ≤ f ≤ W\)</span>, δηλαδή, το σήμα <span class="math notranslate nohighlight">\(X(f)\)</span> προκύπτει μετά από διάβαση του
@@ -1143,12 +1143,13 @@ X_d(\phi) \triangleq \sum_{n=-\infty}^{\infty} x[n] \exp (-j 2 \pi n \phi)
     <span class="p">{</span><span class="s1">&#39;selected_frequencies&#39;</span><span class="p">:</span> <span class="n">frequency_slider</span><span class="p">,</span> <span class="s1">&#39;selected_samples&#39;</span><span class="p">:</span> <span class="n">samples_slider</span><span class="p">}</span>
 <span class="p">)</span>
 
+<span class="n">clear_output</span><span class="p">(</span><span class="n">wait</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>  <span class="c1"># Clear the previous plot</span>
 <span class="n">display</span><span class="p">(</span><span class="n">ui</span><span class="p">,</span> <span class="n">out</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<script type="application/vnd.jupyter.widget-view+json">{"model_id": "b90327764987410a863fc950f56bb158", "version_major": 2, "version_minor": 0}</script><script type="application/vnd.jupyter.widget-view+json">{"model_id": "26e585f096294b089ddea794f7d77f80", "version_major": 2, "version_minor": 0}</script></div>
+<script type="application/vnd.jupyter.widget-view+json">{"model_id": "e43496d260424bc9b4209d89de9202a1", "version_major": 2, "version_minor": 0}</script><script type="application/vnd.jupyter.widget-view+json">{"model_id": "5f977f6bff9149c5a79ccc2749cf2d4d", "version_major": 2, "version_minor": 0}</script></div>
 </div>
 <p>Με τη σειρά των διακριτών αριθμών να προκύπτει ως αποτέλεσμα δειγματοληψίας, <span class="math notranslate nohighlight">\(x[n]=x(nT_s)\)</span>, ο
 DTFT και ο μετασχηματισμός Fourier <span class="math notranslate nohighlight">\(X_\delta(f)\)</span> του δειγματοληπτημένου σήματος συνδέονται μέσω
@@ -1356,12 +1357,13 @@ x_{n}=\frac{1}{N} \sum_{k=0}^{N-1} X_{k} \exp \left(j 2 \pi n \frac{k}{N}\right)
 <span class="n">out</span> <span class="o">=</span> <span class="n">widgets</span><span class="o">.</span><span class="n">interactive_output</span><span class="p">(</span><span class="n">plot_signals</span><span class="p">,</span> <span class="p">{</span><span class="s1">&#39;f_range&#39;</span><span class="p">:</span> <span class="n">frequency_slider</span><span class="p">,</span> <span class="s1">&#39;samples&#39;</span><span class="p">:</span> <span class="n">samples_slider</span><span class="p">,</span> <span class="s1">&#39;selected_N&#39;</span><span class="p">:</span> <span class="n">N_slider</span><span class="p">})</span>
 
 <span class="c1"># Display the widgets and output</span>
+<span class="n">clear_output</span><span class="p">(</span><span class="n">wait</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>  <span class="c1"># Clear the previous plot</span>
 <span class="n">display</span><span class="p">(</span><span class="n">ui</span><span class="p">,</span> <span class="n">out</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<script type="application/vnd.jupyter.widget-view+json">{"model_id": "fe7c9427114b40cc8bbf5773b5ee44dc", "version_major": 2, "version_minor": 0}</script><script type="application/vnd.jupyter.widget-view+json">{"model_id": "dd07aa044c844cbebf438d9ae74536f5", "version_major": 2, "version_minor": 0}</script></div>
+<script type="application/vnd.jupyter.widget-view+json">{"model_id": "4e967e2a81ee4e2c94cbb7e343939c36", "version_major": 2, "version_minor": 0}</script><script type="application/vnd.jupyter.widget-view+json">{"model_id": "a9b90be349ea4c7a99733fbd2fe994fe", "version_major": 2, "version_minor": 0}</script></div>
 </div>
 <section id="id16">
 <h3>Φασματική Ανάλυση<a class="headerlink" href="#id16" title="Link to this heading">#</a></h3>
@@ -1544,7 +1546,7 @@ P_x = \sum_{k=-\infty}^{\infty} |X[k]|^2
 
 <span class="n">html_label</span> <span class="o">=</span> <span class="n">widgets</span><span class="o">.</span><span class="n">HTML</span><span class="p">(</span>
     <span class="n">value</span><span class="o">=</span><span class="s2">&quot;&quot;&quot;</span>
-<span class="s2">        &lt;h2 style=&#39;font-weight: bold; font-size: 30px; text-align: center;&#39;&gt;Frequency and Frequency sampling selector&lt;/h2&gt;</span>
+<span class="s2">        &lt;h2 style=&#39;font-weight: bold; font-size: 30px; text-align: center;&#39;&gt;Μέρος 3: Part 1&lt;/h2&gt;</span>
 <span class="s2">    &quot;&quot;&quot;</span>
 <span class="p">)</span>
 
@@ -1555,19 +1557,15 @@ P_x = \sum_{k=-\infty}^{\infty} |X[k]|^2
 <span class="n">out</span> <span class="o">=</span> <span class="n">widgets</span><span class="o">.</span><span class="n">interactive_output</span><span class="p">(</span><span class="n">update_graph</span><span class="p">,</span> <span class="p">{</span><span class="s1">&#39;selected_frequencies&#39;</span><span class="p">:</span> <span class="n">frequency_slider</span><span class="p">,</span> <span class="s1">&#39;selected_Fo&#39;</span><span class="p">:</span> <span class="n">Fo_slider</span><span class="p">})</span>
 
 <span class="c1"># Display the widgets and output</span>
+<span class="n">clear_output</span><span class="p">(</span><span class="n">wait</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>  <span class="c1"># Clear the previous plot</span>
 <span class="n">display</span><span class="p">(</span><span class="n">ui</span><span class="p">,</span> <span class="n">out</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<script type="application/vnd.jupyter.widget-view+json">{"model_id": "af101d45d3b54bb8ba5d537553c899db", "version_major": 2, "version_minor": 0}</script><script type="application/vnd.jupyter.widget-view+json">{"model_id": "d81091e138c1402c841c07cd748407f2", "version_major": 2, "version_minor": 0}</script></div>
+<script type="application/vnd.jupyter.widget-view+json">{"model_id": "2e7ee9569e5a4fd498206a1f94ba244e", "version_major": 2, "version_minor": 0}</script><script type="application/vnd.jupyter.widget-view+json">{"model_id": "e0e499b950474527a9664825d33762b5", "version_major": 2, "version_minor": 0}</script></div>
 </div>
-<div class="cell tag_hide-input docutils container">
-<details class="hide above-input">
-<summary aria-label="Toggle hidden content">
-<span class="collapsed">Show code cell source</span>
-<span class="expanded">Hide code cell source</span>
-</summary>
+<div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Part 2 Προσθέστε θόρυβο στο σήμα</span>
 
@@ -1579,84 +1577,38 @@ P_x = \sum_{k=-\infty}^{\infty} |X[k]|^2
 <span class="c1"># Σχεδιάσατε το σήμα με θόρυβο s στο πεδίο του χρόνου στην περιοχή 0 έως 0.2 sec </span>
 <span class="c1"># και κλίμακα από -2 έως 2 καθώς και το αμφίπλευρο φάσμα του.</span>
 
-<span class="n">app11</span> <span class="o">=</span> <span class="n">Dash</span><span class="p">(</span><span class="vm">__name__</span><span class="p">,</span> <span class="n">external_stylesheets</span><span class="o">=</span><span class="p">[</span><span class="n">dbc</span><span class="o">.</span><span class="n">themes</span><span class="o">.</span><span class="n">BOOTSTRAP</span><span class="p">])</span>
+
+<span class="k">def</span> <span class="nf">nextpow2</span><span class="p">(</span><span class="n">i</span><span class="p">):</span>
+    <span class="c1"># Compute the next highest power of 2</span>
+    <span class="n">n</span> <span class="o">=</span> <span class="mi">1</span>
+    <span class="k">while</span> <span class="n">n</span> <span class="o">&lt;</span> <span class="n">i</span><span class="p">:</span> <span class="n">n</span> <span class="o">*=</span> <span class="mi">2</span>
+    <span class="k">return</span> <span class="n">n</span>
 
 
-<span class="c1"># Layout of the Dash app</span>
-<span class="n">app11</span><span class="o">.</span><span class="n">layout</span> <span class="o">=</span> <span class="n">html</span><span class="o">.</span><span class="n">Div</span><span class="p">(</span>
-    <span class="n">children</span><span class="o">=</span><span class="p">[</span>
-        <span class="n">html</span><span class="o">.</span><span class="n">H2</span><span class="p">(</span><span class="s1">&#39;Frequency sampling selector&#39;</span><span class="p">),</span>
-        <span class="n">dcc</span><span class="o">.</span><span class="n">Slider</span><span class="p">(</span>
-            <span class="nb">id</span><span class="o">=</span><span class="s1">&#39;Fs_slider&#39;</span><span class="p">,</span>
-            <span class="nb">min</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span>
-            <span class="nb">max</span><span class="o">=</span><span class="mi">2000</span><span class="p">,</span>
-            <span class="n">step</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span>
-            <span class="n">value</span><span class="o">=</span><span class="mi">1000</span><span class="p">,</span> 
-            <span class="n">marks</span><span class="o">=</span><span class="p">{</span><span class="n">i</span><span class="p">:</span> <span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s1"> Hz&#39;</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">100</span><span class="p">,</span> <span class="mi">2000</span><span class="p">,</span> <span class="mi">100</span><span class="p">)},</span>
-            <span class="n">included</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>  <span class="c1"># To remove the color fill</span>
-            <span class="n">updatemode</span><span class="o">=</span><span class="s1">&#39;drag&#39;</span><span class="p">,</span>  <span class="c1"># Update slider continuously while dragging</span>
-            <span class="n">tooltip</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;placement&#39;</span><span class="p">:</span> <span class="s1">&#39;bottom&#39;</span><span class="p">}</span>  <span class="c1"># Show tooltip at the bottom</span>
-        <span class="p">),</span>
-        <span class="n">dbc</span><span class="o">.</span><span class="n">Row</span><span class="p">(</span>
-            <span class="n">children</span><span class="o">=</span><span class="p">[</span>
-                <span class="n">dbc</span><span class="o">.</span><span class="n">Col</span><span class="p">(</span>
-                    <span class="n">dcc</span><span class="o">.</span><span class="n">Graph</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="s1">&#39;signal&#39;</span><span class="p">),</span>
-                    <span class="n">width</span><span class="o">=</span><span class="mi">12</span>
-                <span class="p">),</span>
-                <span class="n">dbc</span><span class="o">.</span><span class="n">Col</span><span class="p">(</span>
-                    <span class="n">dcc</span><span class="o">.</span><span class="n">Graph</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="s1">&#39;freq_signal&#39;</span><span class="p">),</span>
-                    <span class="n">width</span><span class="o">=</span><span class="mi">12</span>
-                <span class="p">),</span>
-                <span class="n">dbc</span><span class="o">.</span><span class="n">Col</span><span class="p">(</span>
-                    <span class="n">dcc</span><span class="o">.</span><span class="n">Graph</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="s1">&#39;double_signal&#39;</span><span class="p">),</span>
-                    <span class="n">width</span><span class="o">=</span><span class="mi">12</span>
-                <span class="p">),</span>
-                <span class="n">dbc</span><span class="o">.</span><span class="n">Col</span><span class="p">(</span>
-                    <span class="n">dcc</span><span class="o">.</span><span class="n">Graph</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="s1">&#39;spectrum_signal&#39;</span><span class="p">),</span>
-                    <span class="n">width</span><span class="o">=</span><span class="mi">12</span>
-                <span class="p">)</span>
-            <span class="p">]</span>
-        <span class="p">)</span>
-    <span class="p">],</span>
-    <span class="n">style</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;backgroundColor&#39;</span><span class="p">:</span> <span class="s1">&#39;white&#39;</span><span class="p">,</span> <span class="s1">&#39;padding&#39;</span><span class="p">:</span> <span class="s1">&#39;20px&#39;</span><span class="p">}</span>
-<span class="p">)</span>
+<span class="n">x</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">*</span><span class="mi">30</span><span class="o">*</span><span class="n">t</span><span class="p">)</span> \
+<span class="o">+</span> <span class="mf">0.8</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">*</span><span class="mi">80</span><span class="o">*</span><span class="p">(</span><span class="n">t</span><span class="o">-</span><span class="mi">2</span><span class="p">))</span> \
+<span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">*</span><span class="mi">60</span><span class="o">*</span><span class="n">t</span><span class="p">);</span>                <span class="c1"># συνιστώσα 60 Hz</span>
 
-<span class="c1"># Callback to update graphs</span>
-<span class="nd">@app11</span><span class="o">.</span><span class="n">callback</span><span class="p">(</span>
-    <span class="p">[</span><span class="n">Output</span><span class="p">(</span><span class="s1">&#39;signal&#39;</span><span class="p">,</span> <span class="s1">&#39;figure&#39;</span><span class="p">),</span>
-     <span class="n">Output</span><span class="p">(</span><span class="s1">&#39;freq_signal&#39;</span><span class="p">,</span> <span class="s1">&#39;figure&#39;</span><span class="p">),</span>
-     <span class="n">Output</span><span class="p">(</span><span class="s1">&#39;double_signal&#39;</span><span class="p">,</span> <span class="s1">&#39;figure&#39;</span><span class="p">),</span>
-     <span class="n">Output</span><span class="p">(</span><span class="s1">&#39;spectrum_signal&#39;</span><span class="p">,</span> <span class="s1">&#39;figure&#39;</span><span class="p">)],</span>
-    <span class="p">[</span><span class="n">Input</span><span class="p">(</span><span class="s1">&#39;Fs_slider&#39;</span><span class="p">,</span> <span class="s1">&#39;value&#39;</span><span class="p">)]</span>
-<span class="p">)</span>
-<span class="k">def</span> <span class="nf">update_graph</span><span class="p">(</span><span class="n">selected_frequencies</span><span class="p">):</span>
-
+<span class="c1"># Function to update plots</span>
+<span class="k">def</span> <span class="nf">update_plots</span><span class="p">(</span><span class="n">selected_frequencies</span><span class="p">):</span>
+    <span class="n">Fs</span> <span class="o">=</span> <span class="n">selected_frequencies</span>        <span class="c1"># Sampling frequency 1000 Hz</span>
+    <span class="n">Ts</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">/</span> <span class="n">Fs</span>                      <span class="c1"># Sampling period</span>
+    <span class="n">L</span> <span class="o">=</span> <span class="mi">1000</span>                         <span class="c1"># Length of signal (number of samples)</span>
+    <span class="n">T</span> <span class="o">=</span> <span class="n">L</span> <span class="o">*</span> <span class="n">Ts</span>                       <span class="c1"># Duration of signal</span>
+    <span class="n">t</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="p">(</span><span class="n">L</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span> <span class="o">*</span> <span class="n">Ts</span><span class="p">,</span> <span class="n">Ts</span><span class="p">)</span>  <span class="c1"># Time vector</span>
+    
     <span class="n">rand_n</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">size</span><span class="p">(</span><span class="n">x</span><span class="p">))</span>
-    <span class="n">Fs</span><span class="o">=</span><span class="n">selected_frequencies</span>
-    <span class="c1"># Original signal graph</span>
-    <span class="n">domain_n</span> <span class="o">=</span> <span class="p">{</span>
-        <span class="s1">&#39;data&#39;</span><span class="p">:</span> <span class="p">[</span><span class="n">go</span><span class="o">.</span><span class="n">Scatter</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">t</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="n">rand_n</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="s1">&#39;lines&#39;</span><span class="p">,</span> <span class="n">line</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">color</span><span class="o">=</span><span class="s1">&#39;#00CC96&#39;</span><span class="p">))],</span>
-        <span class="s1">&#39;layout&#39;</span><span class="p">:</span> <span class="n">go</span><span class="o">.</span><span class="n">Layout</span><span class="p">(</span>
-            <span class="n">title</span><span class="o">=</span><span class="s1">&#39;Time domain plot of n&#39;</span><span class="p">,</span>
-            <span class="n">xaxis</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;title&#39;</span><span class="p">:</span> <span class="s1">&#39;t (sec)&#39;</span><span class="p">,</span> <span class="s1">&#39;showgrid&#39;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span> <span class="s1">&#39;gridcolor&#39;</span><span class="p">:</span> <span class="s1">&#39;LightGrey&#39;</span><span class="p">,</span> <span class="s1">&#39;range&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">]},</span>
-            <span class="n">yaxis</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;title&#39;</span><span class="p">:</span> <span class="s1">&#39;Amplitude&#39;</span><span class="p">,</span> <span class="s1">&#39;showgrid&#39;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span> <span class="s1">&#39;gridcolor&#39;</span><span class="p">:</span> <span class="s1">&#39;LightGrey&#39;</span><span class="p">},</span>
-            <span class="n">margin</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;l&#39;</span><span class="p">:</span> <span class="mi">40</span><span class="p">,</span> <span class="s1">&#39;b&#39;</span><span class="p">:</span> <span class="mi">40</span><span class="p">,</span> <span class="s1">&#39;t&#39;</span><span class="p">:</span> <span class="mi">40</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">:</span> <span class="mi">40</span><span class="p">},</span>
-            <span class="n">hovermode</span><span class="o">=</span><span class="s1">&#39;closest&#39;</span><span class="p">,</span>
-            <span class="n">paper_bgcolor</span><span class="o">=</span><span class="s1">&#39;white&#39;</span><span class="p">,</span>
-            <span class="n">plot_bgcolor</span><span class="o">=</span><span class="s1">&#39;white&#39;</span><span class="p">,</span>
-            <span class="n">template</span><span class="o">=</span><span class="s1">&#39;plotly_white&#39;</span>
-        <span class="p">)</span>
-    <span class="p">}</span>
     
+    <span class="c1"># Plotting</span>
+    <span class="n">fig</span><span class="p">,</span> <span class="n">axs</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">20</span><span class="p">))</span>
 
-    <span class="c1"># Fourier transform</span>
-    <span class="k">def</span> <span class="nf">nextpow2</span><span class="p">(</span><span class="n">i</span><span class="p">):</span>
-        <span class="n">n</span> <span class="o">=</span> <span class="mi">1</span>
-        <span class="k">while</span> <span class="n">n</span> <span class="o">&lt;</span> <span class="n">i</span><span class="p">:</span>
-            <span class="n">n</span> <span class="o">*=</span> <span class="mi">2</span>
-        <span class="k">return</span> <span class="n">n</span>
+    <span class="c1"># Time domain plot of n</span>
+    <span class="n">axs</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">rand_n</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;#00CC96&#39;</span><span class="p">)</span>
+    <span class="n">axs</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Time domain plot of n&#39;</span><span class="p">)</span>
+    <span class="n">axs</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;t (sec)&#39;</span><span class="p">)</span>
+    <span class="n">axs</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;Amplitude&#39;</span><span class="p">)</span>
+    <span class="n">axs</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
     
-
     <span class="c1"># Correction for N calculation using bitwise operator</span>
     <span class="n">N</span> <span class="o">=</span> <span class="mi">2</span><span class="o">^</span><span class="n">nextpow2</span><span class="p">(</span><span class="n">L</span><span class="p">)</span>
     <span class="n">Fo</span> <span class="o">=</span> <span class="n">Fs</span> <span class="o">/</span> <span class="n">N</span>   
@@ -1665,85 +1617,67 @@ P_x = \sum_{k=-\infty}^{\infty} |X[k]|^2
     <span class="n">rand_N</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">fft</span><span class="o">.</span><span class="n">fft</span><span class="p">(</span><span class="n">rand_n</span><span class="p">,</span> <span class="n">N</span><span class="p">)</span>
     <span class="n">rand_N</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">fft</span><span class="o">.</span><span class="n">fftshift</span><span class="p">(</span><span class="n">rand_N</span><span class="p">)</span>
     <span class="n">power_n</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">multiply</span><span class="p">(</span><span class="n">rand_N</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">conj</span><span class="p">(</span><span class="n">rand_N</span><span class="p">))</span> <span class="o">/</span> <span class="n">N</span> <span class="o">/</span> <span class="n">L</span>
-
-    <span class="n">freq_domain</span> <span class="o">=</span> <span class="p">{</span>
-        <span class="s1">&#39;data&#39;</span><span class="p">:</span> <span class="p">[</span><span class="n">go</span><span class="o">.</span><span class="n">Scatter</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">f_shifted</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="n">power_n</span><span class="o">.</span><span class="n">real</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="s1">&#39;lines&#39;</span><span class="p">,</span> <span class="n">line</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">color</span><span class="o">=</span><span class="s1">&#39;#1F77B4&#39;</span><span class="p">))],</span>
-        <span class="s1">&#39;layout&#39;</span><span class="p">:</span> <span class="n">go</span><span class="o">.</span><span class="n">Layout</span><span class="p">(</span>
-            <span class="n">title</span><span class="o">=</span><span class="s1">&#39;Frequency domain plot of x&#39;</span><span class="p">,</span>
-            <span class="n">xaxis</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;title&#39;</span><span class="p">:</span> <span class="s1">&#39;f (Hz)&#39;</span><span class="p">,</span> <span class="s1">&#39;showgrid&#39;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span> <span class="s1">&#39;gridcolor&#39;</span><span class="p">:</span> <span class="s1">&#39;LightGrey&#39;</span><span class="p">},</span>
-            <span class="n">yaxis</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;title&#39;</span><span class="p">:</span> <span class="s1">&#39;Amplitude&#39;</span><span class="p">,</span> <span class="s1">&#39;showgrid&#39;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span> <span class="s1">&#39;gridcolor&#39;</span><span class="p">:</span> <span class="s1">&#39;LightGrey&#39;</span><span class="p">},</span>
-            <span class="n">margin</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;l&#39;</span><span class="p">:</span> <span class="mi">40</span><span class="p">,</span> <span class="s1">&#39;b&#39;</span><span class="p">:</span> <span class="mi">40</span><span class="p">,</span> <span class="s1">&#39;t&#39;</span><span class="p">:</span> <span class="mi">40</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">:</span> <span class="mi">40</span><span class="p">},</span>
-            <span class="n">hovermode</span><span class="o">=</span><span class="s1">&#39;closest&#39;</span><span class="p">,</span>
-            <span class="n">paper_bgcolor</span><span class="o">=</span><span class="s1">&#39;white&#39;</span><span class="p">,</span>
-            <span class="n">plot_bgcolor</span><span class="o">=</span><span class="s1">&#39;white&#39;</span><span class="p">,</span>
-            <span class="n">template</span><span class="o">=</span><span class="s1">&#39;plotly_white&#39;</span>
-        <span class="p">)</span>
-    <span class="p">}</span>
+    <span class="c1"># Frequency domain plot of x</span>
+    <span class="n">axs</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">f_shifted</span><span class="p">,</span> <span class="n">power_n</span><span class="o">.</span><span class="n">real</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;#1F77B4&#39;</span><span class="p">)</span>
+    <span class="n">axs</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Frequency domain plot of x&#39;</span><span class="p">)</span>
+    <span class="n">axs</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;f (Hz)&#39;</span><span class="p">)</span>
+    <span class="n">axs</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;Amplitude&#39;</span><span class="p">)</span>
+    <span class="n">axs</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
     
-
+    <span class="c1"># Two sided spectrum of x</span>
     <span class="n">s</span> <span class="o">=</span> <span class="n">x</span> <span class="o">+</span> <span class="n">rand_n</span>
-    <span class="n">spectrum</span> <span class="o">=</span> <span class="p">{</span>
-        <span class="s1">&#39;data&#39;</span><span class="p">:</span> <span class="p">[</span><span class="n">go</span><span class="o">.</span><span class="n">Scatter</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">t</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="n">s</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="s1">&#39;lines&#39;</span><span class="p">,</span> <span class="n">line</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">color</span><span class="o">=</span><span class="s1">&#39;#00CC96&#39;</span><span class="p">))],</span>
-        <span class="s1">&#39;layout&#39;</span><span class="p">:</span> <span class="n">go</span><span class="o">.</span><span class="n">Layout</span><span class="p">(</span>
-            <span class="n">title</span><span class="o">=</span><span class="s1">&#39;Two sided spectrum of x&#39;</span><span class="p">,</span>
-            <span class="n">xaxis</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;title&#39;</span><span class="p">:</span> <span class="s1">&#39;t (sec)&#39;</span><span class="p">,</span> <span class="s1">&#39;showgrid&#39;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span> <span class="s1">&#39;gridcolor&#39;</span><span class="p">:</span> <span class="s1">&#39;LightGrey&#39;</span><span class="p">,</span> <span class="s1">&#39;range&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">]},</span>
-            <span class="n">yaxis</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;title&#39;</span><span class="p">:</span> <span class="s1">&#39;Amplitude&#39;</span><span class="p">,</span> <span class="s1">&#39;showgrid&#39;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span> <span class="s1">&#39;gridcolor&#39;</span><span class="p">:</span> <span class="s1">&#39;LightGrey&#39;</span><span class="p">},</span>
-            <span class="n">margin</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;l&#39;</span><span class="p">:</span> <span class="mi">40</span><span class="p">,</span> <span class="s1">&#39;b&#39;</span><span class="p">:</span> <span class="mi">40</span><span class="p">,</span> <span class="s1">&#39;t&#39;</span><span class="p">:</span> <span class="mi">40</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">:</span> <span class="mi">40</span><span class="p">},</span>
-            <span class="n">hovermode</span><span class="o">=</span><span class="s1">&#39;closest&#39;</span><span class="p">,</span>
-            <span class="n">paper_bgcolor</span><span class="o">=</span><span class="s1">&#39;white&#39;</span><span class="p">,</span>
-            <span class="n">plot_bgcolor</span><span class="o">=</span><span class="s1">&#39;white&#39;</span><span class="p">,</span>
-            <span class="n">template</span><span class="o">=</span><span class="s1">&#39;plotly_white&#39;</span>
-        <span class="p">)</span>
-    <span class="p">}</span>
+    <span class="n">axs</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">s</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;#00CC96&#39;</span><span class="p">)</span>
+    <span class="n">axs</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Two sided spectrum of x&#39;</span><span class="p">)</span>
+    <span class="n">axs</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;t (sec)&#39;</span><span class="p">)</span>
+    <span class="n">axs</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;Amplitude&#39;</span><span class="p">)</span>
+    <span class="n">axs</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
     
+    <span class="c1"># Two sided spectrum of s</span>
     <span class="n">S</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">fft</span><span class="o">.</span><span class="n">fft</span><span class="p">(</span><span class="n">s</span><span class="p">,</span> <span class="n">N</span><span class="p">)</span>
     <span class="n">S</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">fft</span><span class="o">.</span><span class="n">fftshift</span><span class="p">(</span><span class="n">S</span><span class="p">)</span>
-
-
-    <span class="n">spectrum_two_sided</span> <span class="o">=</span> <span class="p">{</span>
-        <span class="s1">&#39;data&#39;</span><span class="p">:</span> <span class="p">[</span><span class="n">go</span><span class="o">.</span><span class="n">Scatter</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">f_shifted</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">S</span><span class="p">),</span> <span class="n">mode</span><span class="o">=</span><span class="s1">&#39;lines&#39;</span><span class="p">,</span> <span class="n">line</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">color</span><span class="o">=</span><span class="s1">&#39;#1F77B4&#39;</span><span class="p">))],</span>
-        <span class="s1">&#39;layout&#39;</span><span class="p">:</span> <span class="n">go</span><span class="o">.</span><span class="n">Layout</span><span class="p">(</span>
-            <span class="n">title</span><span class="o">=</span><span class="s1">&#39;Two sided spectrum of s&#39;</span><span class="p">,</span>
-            <span class="n">xaxis</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;title&#39;</span><span class="p">:</span> <span class="s1">&#39;f (Hz)&#39;</span><span class="p">,</span> <span class="s1">&#39;showgrid&#39;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span> <span class="s1">&#39;gridcolor&#39;</span><span class="p">:</span> <span class="s1">&#39;LightGrey&#39;</span><span class="p">},</span>
-            <span class="n">yaxis</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;title&#39;</span><span class="p">:</span> <span class="s1">&#39;Amplitude&#39;</span><span class="p">,</span> <span class="s1">&#39;showgrid&#39;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span> <span class="s1">&#39;gridcolor&#39;</span><span class="p">:</span> <span class="s1">&#39;LightGrey&#39;</span><span class="p">},</span>
-            <span class="n">margin</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;l&#39;</span><span class="p">:</span> <span class="mi">40</span><span class="p">,</span> <span class="s1">&#39;b&#39;</span><span class="p">:</span> <span class="mi">40</span><span class="p">,</span> <span class="s1">&#39;t&#39;</span><span class="p">:</span> <span class="mi">40</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">:</span> <span class="mi">40</span><span class="p">},</span>
-            <span class="n">hovermode</span><span class="o">=</span><span class="s1">&#39;closest&#39;</span><span class="p">,</span>
-            <span class="n">paper_bgcolor</span><span class="o">=</span><span class="s1">&#39;white&#39;</span><span class="p">,</span>
-            <span class="n">plot_bgcolor</span><span class="o">=</span><span class="s1">&#39;white&#39;</span><span class="p">,</span>
-            <span class="n">template</span><span class="o">=</span><span class="s1">&#39;plotly_white&#39;</span>
-        <span class="p">)</span>
-    <span class="p">}</span>
-
-
-    <span class="c1"># Return this additional figure in the callback</span>
-    <span class="k">return</span> <span class="n">domain_n</span><span class="p">,</span><span class="n">freq_domain</span><span class="p">,</span><span class="n">spectrum</span><span class="p">,</span><span class="n">spectrum_two_sided</span>
-
+    <span class="n">axs</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">f_shifted</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">S</span><span class="p">),</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;#1F77B4&#39;</span><span class="p">)</span>
+    <span class="n">axs</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Two sided spectrum of s&#39;</span><span class="p">)</span>
+    <span class="n">axs</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;f (Hz)&#39;</span><span class="p">)</span>
+    <span class="n">axs</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;Magnitude&#39;</span><span class="p">)</span>
+    <span class="n">axs</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
     
+    <span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 
-<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
-    <span class="n">app11</span><span class="o">.</span><span class="n">run_server</span><span class="p">(</span><span class="n">debug</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">port</span><span class="o">=</span><span class="mi">8060</span><span class="p">)</span>
+<span class="c1"># Create the slider widget</span>
+<span class="n">fs_slider</span> <span class="o">=</span> <span class="n">widgets</span><span class="o">.</span><span class="n">IntSlider</span><span class="p">(</span>
+    <span class="n">value</span><span class="o">=</span><span class="mi">1000</span><span class="p">,</span>
+    <span class="nb">min</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span>
+    <span class="nb">max</span><span class="o">=</span><span class="mi">2000</span><span class="p">,</span>
+    <span class="n">step</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span>
+    <span class="n">description</span><span class="o">=</span><span class="s1">&#39;Sampling Frequency (Hz):&#39;</span><span class="p">,</span>
+    <span class="n">layout</span><span class="o">=</span><span class="n">Layout</span><span class="p">(</span><span class="n">width</span><span class="o">=</span><span class="s1">&#39;90%&#39;</span><span class="p">),</span>
+    <span class="n">style</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;description_width&#39;</span><span class="p">:</span> <span class="s1">&#39;initial&#39;</span><span class="p">},</span>
+    <span class="n">continuous_update</span><span class="o">=</span><span class="kc">False</span>
+<span class="p">)</span>
+
+<span class="n">html_label</span> <span class="o">=</span> <span class="n">widgets</span><span class="o">.</span><span class="n">HTML</span><span class="p">(</span>
+    <span class="n">value</span><span class="o">=</span><span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">        &lt;h2 style=&#39;font-weight: bold; font-size: 30px; text-align: center;&#39;&gt;Μέρος 3: Part 2&lt;/h2&gt;</span>
+<span class="s2">    &quot;&quot;&quot;</span>
+<span class="p">)</span>
+
+<span class="c1"># Display the sliders and output</span>
+<span class="n">vbox_layout</span> <span class="o">=</span> <span class="n">Layout</span><span class="p">(</span><span class="n">display</span><span class="o">=</span><span class="s1">&#39;flex&#39;</span><span class="p">,</span> <span class="n">flex_flow</span><span class="o">=</span><span class="s1">&#39;column&#39;</span><span class="p">,</span> <span class="n">align_items</span><span class="o">=</span><span class="s1">&#39;center&#39;</span><span class="p">)</span>
+
+<span class="n">ui</span> <span class="o">=</span> <span class="n">widgets</span><span class="o">.</span><span class="n">VBox</span><span class="p">([</span><span class="n">html_label</span><span class="p">,</span> <span class="n">frequency_slider</span><span class="p">],</span> <span class="n">layout</span><span class="o">=</span><span class="n">vbox_layout</span><span class="p">)</span>
+<span class="n">out</span> <span class="o">=</span> <span class="n">widgets</span><span class="o">.</span><span class="n">interactive_output</span><span class="p">(</span><span class="n">update_plots</span><span class="p">,</span> <span class="p">{</span><span class="s1">&#39;selected_frequencies&#39;</span><span class="p">:</span> <span class="n">frequency_slider</span><span class="p">})</span>
+
+<span class="c1"># Display the slider</span>
+<span class="n">clear_output</span><span class="p">(</span><span class="n">wait</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>  <span class="c1"># Clear the previous plot</span>
+<span class="n">display</span><span class="p">(</span><span class="n">ui</span><span class="p">,</span><span class="n">out</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
-</details>
 <div class="cell_output docutils container">
-<div class="output text_html">
-        <iframe
-            width="100%"
-            height="650"
-            src="http://127.0.0.1:8060/"
-            frameborder="0"
-            allowfullscreen
-            
-        ></iframe>
-        </div></div>
+<script type="application/vnd.jupyter.widget-view+json">{"model_id": "3c35efa50f554c5fa1d329999230c9d6", "version_major": 2, "version_minor": 0}</script><script type="application/vnd.jupyter.widget-view+json">{"model_id": "a0f890fcfc7a45deabd1cc71bfb2b060", "version_major": 2, "version_minor": 0}</script></div>
 </div>
-<div class="cell tag_hide-input docutils container">
-<details class="hide above-input">
-<summary aria-label="Toggle hidden content">
-<span class="collapsed">Show code cell source</span>
-<span class="expanded">Hide code cell source</span>
-</summary>
+<div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Part 3. Πολλαπλασιασμός σημάτων</span>
 
@@ -1754,49 +1688,7 @@ P_x = \sum_{k=-\infty}^{\infty} |X[k]|^2
 <span class="c1"># και κλίμακα από -2 έως 2 καθώς και στο πεδίο της συχνότητας</span>
 <span class="c1"># χρησιμοποιώντας τη συνάρτηση fftshift.</span>
 
-
-<span class="n">app12</span> <span class="o">=</span> <span class="n">Dash</span><span class="p">(</span><span class="vm">__name__</span><span class="p">,</span> <span class="n">external_stylesheets</span><span class="o">=</span><span class="p">[</span><span class="n">dbc</span><span class="o">.</span><span class="n">themes</span><span class="o">.</span><span class="n">BOOTSTRAP</span><span class="p">])</span>
-
-
-<span class="c1"># Layout of the Dash app</span>
-<span class="n">app12</span><span class="o">.</span><span class="n">layout</span> <span class="o">=</span> <span class="n">html</span><span class="o">.</span><span class="n">Div</span><span class="p">(</span>
-    <span class="n">children</span><span class="o">=</span><span class="p">[</span>
-        <span class="n">html</span><span class="o">.</span><span class="n">H2</span><span class="p">(</span><span class="s1">&#39;Frequency resolution selector&#39;</span><span class="p">),</span>
-        <span class="n">dcc</span><span class="o">.</span><span class="n">Slider</span><span class="p">(</span>
-            <span class="nb">id</span><span class="o">=</span><span class="s1">&#39;Fο_slider&#39;</span><span class="p">,</span>
-            <span class="nb">min</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span>
-            <span class="nb">max</span><span class="o">=</span><span class="mi">200</span><span class="p">,</span>
-            <span class="n">step</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span>
-            <span class="n">value</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> 
-            <span class="n">marks</span><span class="o">=</span><span class="p">{</span><span class="n">i</span><span class="p">:</span> <span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s1"> Hz&#39;</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">200</span><span class="p">,</span> <span class="mi">10</span><span class="p">)},</span>
-            <span class="n">included</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>  <span class="c1"># To remove the color fill</span>
-            <span class="n">updatemode</span><span class="o">=</span><span class="s1">&#39;drag&#39;</span><span class="p">,</span>  <span class="c1"># Update slider continuously while dragging</span>
-            <span class="n">tooltip</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;placement&#39;</span><span class="p">:</span> <span class="s1">&#39;bottom&#39;</span><span class="p">}</span>  <span class="c1"># Show tooltip at the bottom</span>
-        <span class="p">),</span>
-        <span class="n">dbc</span><span class="o">.</span><span class="n">Row</span><span class="p">(</span>
-            <span class="n">children</span><span class="o">=</span><span class="p">[</span>
-                <span class="n">dbc</span><span class="o">.</span><span class="n">Col</span><span class="p">(</span>
-                    <span class="n">dcc</span><span class="o">.</span><span class="n">Graph</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="s1">&#39;domain_y&#39;</span><span class="p">),</span>
-                    <span class="n">width</span><span class="o">=</span><span class="mi">12</span>
-                <span class="p">),</span>
-                <span class="n">dbc</span><span class="o">.</span><span class="n">Col</span><span class="p">(</span>
-                    <span class="n">dcc</span><span class="o">.</span><span class="n">Graph</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="s1">&#39;domain_f_y&#39;</span><span class="p">),</span>
-                    <span class="n">width</span><span class="o">=</span><span class="mi">12</span>
-                <span class="p">)</span>
-            <span class="p">]</span>
-        <span class="p">)</span>
-    <span class="p">],</span>
-    <span class="n">style</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;backgroundColor&#39;</span><span class="p">:</span> <span class="s1">&#39;white&#39;</span><span class="p">,</span> <span class="s1">&#39;padding&#39;</span><span class="p">:</span> <span class="s1">&#39;20px&#39;</span><span class="p">}</span>
-<span class="p">)</span>
-
-<span class="c1"># Callback to update graphs</span>
-<span class="nd">@app12</span><span class="o">.</span><span class="n">callback</span><span class="p">(</span>
-    <span class="p">[</span><span class="n">Output</span><span class="p">(</span><span class="s1">&#39;domain_y&#39;</span><span class="p">,</span> <span class="s1">&#39;figure&#39;</span><span class="p">),</span>
-    <span class="n">Output</span><span class="p">(</span><span class="s1">&#39;domain_f_y&#39;</span><span class="p">,</span> <span class="s1">&#39;figure&#39;</span><span class="p">)],</span>
-    <span class="p">[</span><span class="n">Input</span><span class="p">(</span><span class="s1">&#39;Fο_slider&#39;</span><span class="p">,</span> <span class="s1">&#39;value&#39;</span><span class="p">)]</span>
-<span class="p">)</span>
-<span class="k">def</span> <span class="nf">update_graph</span><span class="p">(</span><span class="n">selected_frequencies</span><span class="p">):</span>
-
+<span class="k">def</span> <span class="nf">update_plots</span><span class="p">(</span><span class="n">selected_frequencies</span><span class="p">):</span>
     <span class="n">Fο</span><span class="o">=</span><span class="n">selected_frequencies</span>
     <span class="n">z</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">*</span><span class="n">Fο</span><span class="o">*</span><span class="n">t</span><span class="p">)</span>
     <span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span> <span class="o">*</span> <span class="mi">30</span> <span class="o">*</span> <span class="n">t</span><span class="p">)</span> \
@@ -1807,23 +1699,16 @@ P_x = \sum_{k=-\infty}^{\infty} |X[k]|^2
     <span class="n">s</span> <span class="o">=</span> <span class="n">x</span> <span class="o">+</span> <span class="n">rand_n</span>
     <span class="n">y</span><span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">multiply</span><span class="p">(</span><span class="n">z</span><span class="p">,</span><span class="n">s</span><span class="p">)</span>
 
-    <span class="c1"># Time domain plot of y</span>
+    <span class="c1"># Plotting</span>
+    <span class="n">fig</span><span class="p">,</span> <span class="n">axs</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">20</span><span class="p">))</span>
 
-    <span class="n">domain_y</span> <span class="o">=</span> <span class="p">{</span>
-        <span class="s1">&#39;data&#39;</span><span class="p">:</span> <span class="p">[</span><span class="n">go</span><span class="o">.</span><span class="n">Scatter</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">t</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="n">y</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="s1">&#39;lines&#39;</span><span class="p">,</span> <span class="n">line</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">color</span><span class="o">=</span><span class="s1">&#39;#00CC96&#39;</span><span class="p">))],</span>
-        <span class="s1">&#39;layout&#39;</span><span class="p">:</span> <span class="n">go</span><span class="o">.</span><span class="n">Layout</span><span class="p">(</span>
-            <span class="n">title</span><span class="o">=</span><span class="s1">&#39;Time domain plot of y&#39;</span><span class="p">,</span>
-            <span class="n">xaxis</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;title&#39;</span><span class="p">:</span> <span class="s1">&#39;t (sec)&#39;</span><span class="p">,</span> <span class="s1">&#39;showgrid&#39;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span> <span class="s1">&#39;gridcolor&#39;</span><span class="p">:</span> <span class="s1">&#39;LightGrey&#39;</span><span class="p">},</span>
-            <span class="n">yaxis</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;title&#39;</span><span class="p">:</span> <span class="s1">&#39;Amplitude&#39;</span><span class="p">,</span> <span class="s1">&#39;showgrid&#39;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span> <span class="s1">&#39;gridcolor&#39;</span><span class="p">:</span> <span class="s1">&#39;LightGrey&#39;</span><span class="p">},</span>
-            <span class="n">margin</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;l&#39;</span><span class="p">:</span> <span class="mi">40</span><span class="p">,</span> <span class="s1">&#39;b&#39;</span><span class="p">:</span> <span class="mi">40</span><span class="p">,</span> <span class="s1">&#39;t&#39;</span><span class="p">:</span> <span class="mi">40</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">:</span> <span class="mi">40</span><span class="p">},</span>
-            <span class="n">hovermode</span><span class="o">=</span><span class="s1">&#39;closest&#39;</span><span class="p">,</span>
-            <span class="n">paper_bgcolor</span><span class="o">=</span><span class="s1">&#39;white&#39;</span><span class="p">,</span>
-            <span class="n">plot_bgcolor</span><span class="o">=</span><span class="s1">&#39;white&#39;</span><span class="p">,</span>
-            <span class="n">template</span><span class="o">=</span><span class="s1">&#39;plotly_white&#39;</span>
-        <span class="p">)</span>
-    <span class="p">}</span>
+    <span class="c1"># Time domain plot</span>
+    <span class="n">axs</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;#00CC96&#39;</span><span class="p">)</span>
+    <span class="n">axs</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Time domain plot of y&#39;</span><span class="p">)</span>
+    <span class="n">axs</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;t (sec)&#39;</span><span class="p">)</span>
+    <span class="n">axs</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;Amplitude&#39;</span><span class="p">)</span>
+    <span class="n">axs</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
     
-
     <span class="c1"># Fourier transform</span>
     <span class="k">def</span> <span class="nf">nextpow2</span><span class="p">(</span><span class="n">i</span><span class="p">):</span>
         <span class="n">n</span> <span class="o">=</span> <span class="mi">1</span>
@@ -1838,44 +1723,47 @@ P_x = \sum_{k=-\infty}^{\infty} |X[k]|^2
     <span class="n">f</span><span class="o">=</span><span class="n">f</span><span class="o">-</span><span class="n">Fs</span><span class="o">/</span><span class="mi">2</span>   
     <span class="n">Y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">fft</span><span class="o">.</span><span class="n">fftshift</span><span class="p">(</span><span class="n">Y</span><span class="p">)</span>
 
-    <span class="c1"># Frequency domain plot of y</span>
+    <span class="n">axs</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">Y</span><span class="p">),</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;#1F77B4&#39;</span><span class="p">)</span>
+    <span class="n">axs</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Frequency domain plot of y&#39;</span><span class="p">)</span>
+    <span class="n">axs</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;f (Hz)&#39;</span><span class="p">)</span>
+    <span class="n">axs</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;Amplitude&#39;</span><span class="p">)</span>
+    <span class="n">axs</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
 
-    <span class="n">domain_f_y</span> <span class="o">=</span> <span class="p">{</span>
-        <span class="s1">&#39;data&#39;</span><span class="p">:</span> <span class="p">[</span><span class="n">go</span><span class="o">.</span><span class="n">Scatter</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">f</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">Y</span><span class="p">),</span> <span class="n">mode</span><span class="o">=</span><span class="s1">&#39;lines&#39;</span><span class="p">,</span> <span class="n">line</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">color</span><span class="o">=</span><span class="s1">&#39;#1F77B4&#39;</span><span class="p">))],</span>
-        <span class="s1">&#39;layout&#39;</span><span class="p">:</span> <span class="n">go</span><span class="o">.</span><span class="n">Layout</span><span class="p">(</span>
-            <span class="n">title</span><span class="o">=</span><span class="s1">&#39;Frequency domain plot of y&#39;</span><span class="p">,</span>
-            <span class="n">xaxis</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;title&#39;</span><span class="p">:</span> <span class="s1">&#39;f (Hz)&#39;</span><span class="p">,</span> <span class="s1">&#39;showgrid&#39;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span> <span class="s1">&#39;gridcolor&#39;</span><span class="p">:</span> <span class="s1">&#39;LightGrey&#39;</span><span class="p">},</span>
-            <span class="n">yaxis</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;title&#39;</span><span class="p">:</span> <span class="s1">&#39;Amplitude&#39;</span><span class="p">,</span> <span class="s1">&#39;showgrid&#39;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span> <span class="s1">&#39;gridcolor&#39;</span><span class="p">:</span> <span class="s1">&#39;LightGrey&#39;</span><span class="p">},</span>
-            <span class="n">margin</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;l&#39;</span><span class="p">:</span> <span class="mi">40</span><span class="p">,</span> <span class="s1">&#39;b&#39;</span><span class="p">:</span> <span class="mi">40</span><span class="p">,</span> <span class="s1">&#39;t&#39;</span><span class="p">:</span> <span class="mi">40</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">:</span> <span class="mi">40</span><span class="p">},</span>
-            <span class="n">hovermode</span><span class="o">=</span><span class="s1">&#39;closest&#39;</span><span class="p">,</span>
-            <span class="n">paper_bgcolor</span><span class="o">=</span><span class="s1">&#39;white&#39;</span><span class="p">,</span>
-            <span class="n">plot_bgcolor</span><span class="o">=</span><span class="s1">&#39;white&#39;</span><span class="p">,</span>
-            <span class="n">template</span><span class="o">=</span><span class="s1">&#39;plotly_white&#39;</span>
-        <span class="p">)</span>
-    <span class="p">}</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 
-    <span class="c1"># Return this additional figure in the callback</span>
-    <span class="k">return</span> <span class="n">domain_y</span><span class="p">,</span> <span class="n">domain_f_y</span>
+<span class="c1"># Create the slider widget for Fo</span>
+<span class="n">Fo_slider</span> <span class="o">=</span> <span class="n">widgets</span><span class="o">.</span><span class="n">IntSlider</span><span class="p">(</span>
+    <span class="n">value</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span>
+    <span class="nb">min</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span>
+    <span class="nb">max</span><span class="o">=</span><span class="mi">200</span><span class="p">,</span>
+    <span class="n">step</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span>
+    <span class="n">description</span><span class="o">=</span><span class="s1">&#39;Fo (Hz):&#39;</span><span class="p">,</span>
+    <span class="n">layout</span><span class="o">=</span><span class="n">Layout</span><span class="p">(</span><span class="n">width</span><span class="o">=</span><span class="s1">&#39;90%&#39;</span><span class="p">),</span>
+    <span class="n">style</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;description_width&#39;</span><span class="p">:</span> <span class="s1">&#39;initial&#39;</span><span class="p">},</span>
+    <span class="n">continuous_update</span><span class="o">=</span><span class="kc">False</span>
+<span class="p">)</span>
 
-    
+<span class="n">html_label</span> <span class="o">=</span> <span class="n">widgets</span><span class="o">.</span><span class="n">HTML</span><span class="p">(</span>
+    <span class="n">value</span><span class="o">=</span><span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">        &lt;h2 style=&#39;font-weight: bold; font-size: 30px; text-align: center;&#39;&gt;Μέρος 3: Part 3&lt;/h2&gt;</span>
+<span class="s2">    &quot;&quot;&quot;</span>
+<span class="p">)</span>
 
-<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
-    <span class="n">app12</span><span class="o">.</span><span class="n">run_server</span><span class="p">(</span><span class="n">debug</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">port</span><span class="o">=</span><span class="mi">8063</span><span class="p">)</span>
+<span class="c1"># Display the sliders and output</span>
+<span class="n">vbox_layout</span> <span class="o">=</span> <span class="n">Layout</span><span class="p">(</span><span class="n">display</span><span class="o">=</span><span class="s1">&#39;flex&#39;</span><span class="p">,</span> <span class="n">flex_flow</span><span class="o">=</span><span class="s1">&#39;column&#39;</span><span class="p">,</span> <span class="n">align_items</span><span class="o">=</span><span class="s1">&#39;center&#39;</span><span class="p">)</span>
+
+<span class="n">ui</span> <span class="o">=</span> <span class="n">widgets</span><span class="o">.</span><span class="n">VBox</span><span class="p">([</span><span class="n">html_label</span><span class="p">,</span> <span class="n">Fo_slider</span><span class="p">],</span> <span class="n">layout</span><span class="o">=</span><span class="n">vbox_layout</span><span class="p">)</span>
+<span class="n">out</span> <span class="o">=</span> <span class="n">widgets</span><span class="o">.</span><span class="n">interactive_output</span><span class="p">(</span><span class="n">update_plots</span><span class="p">,</span> <span class="p">{</span><span class="s1">&#39;selected_frequencies&#39;</span><span class="p">:</span> <span class="n">Fo_slider</span><span class="p">})</span>
+
+<span class="c1"># Display the slider</span>
+<span class="n">clear_output</span><span class="p">(</span><span class="n">wait</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>  <span class="c1"># Clear the previous plot</span>
+<span class="n">display</span><span class="p">(</span><span class="n">ui</span><span class="p">,</span><span class="n">out</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
-</details>
 <div class="cell_output docutils container">
-<div class="output text_html">
-        <iframe
-            width="100%"
-            height="650"
-            src="http://127.0.0.1:8063/"
-            frameborder="0"
-            allowfullscreen
-            
-        ></iframe>
-        </div></div>
+<script type="application/vnd.jupyter.widget-view+json">{"model_id": "27cdab8308e045769d0a3534b59059c5", "version_major": 2, "version_minor": 0}</script><script type="application/vnd.jupyter.widget-view+json">{"model_id": "cd12d6a41e9f4d3aa645d0aed963cf94", "version_major": 2, "version_minor": 0}</script></div>
 </div>
 </section>
 <section id="id18">
@@ -1923,13 +1811,13 @@ P_x = \sum_{k=-\infty}^{\infty} |X[k]|^2
         <span class="n">avg_pwr</span><span class="o">=</span><span class="n">avg_pwr</span><span class="o">+</span><span class="n">power</span>
     <span class="n">avg_pwr</span><span class="o">=</span><span class="n">avg_pwr</span><span class="o">/</span><span class="n">windows</span>
 
-    <span class="n">fig</span> <span class="o">=</span> <span class="n">go</span><span class="o">.</span><span class="n">Figure</span><span class="p">()</span>
-    <span class="n">fig</span><span class="o">.</span><span class="n">add_trace</span><span class="p">(</span><span class="n">go</span><span class="o">.</span><span class="n">Scatter</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">f</span><span class="p">[:</span><span class="n">N</span><span class="o">//</span><span class="mi">2</span><span class="p">],</span> <span class="n">y</span><span class="o">=</span><span class="n">avg_pwr</span><span class="p">[:</span><span class="n">N</span><span class="o">//</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">real</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="s1">&#39;lines&#39;</span><span class="p">,</span> <span class="n">line</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">color</span><span class="o">=</span><span class="s1">&#39;#1F77B4&#39;</span><span class="p">)))</span>
-    <span class="n">fig</span><span class="o">.</span><span class="n">update_layout</span><span class="p">(</span><span class="n">title</span><span class="o">=</span><span class="s1">&#39;Periodogram pwelch()&#39;</span><span class="p">,</span> <span class="n">title_x</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> 
-                      <span class="n">title_font</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">size</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;black&#39;</span><span class="p">,</span> <span class="n">family</span><span class="o">=</span><span class="s2">&quot;Arial, sans-serif&quot;</span><span class="p">),</span>
-                      <span class="n">xaxis_title</span><span class="o">=</span><span class="s1">&#39;Frequency (Hz)&#39;</span><span class="p">,</span> <span class="n">yaxis_title</span><span class="o">=</span><span class="s1">&#39;Power&#39;</span><span class="p">,</span>
-                      <span class="n">template</span><span class="o">=</span><span class="s1">&#39;plotly_white&#39;</span><span class="p">)</span>
-    <span class="n">fig</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot; fig, ax = plt.subplots()</span>
+<span class="sd">    fig.set_size_inches(18.5, 10.5)</span>
+<span class="sd">    ax.plot(f[np.arange(0,N//2)],avg_pwr[np.arange(0,N//2)])</span>
+<span class="sd">    ax.set(xlabel=&#39;Frequency (Hz)&#39;, ylabel=&#39;Power&#39;,</span>
+<span class="sd">           title=&#39;Periodogram pwelch()&#39;)</span>
+<span class="sd">    ax.grid()</span>
+<span class="sd">    plt.show() &quot;&quot;&quot;</span>
     
     <span class="k">return</span> <span class="n">f</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="n">N</span><span class="o">//</span><span class="mi">2</span><span class="p">)],</span> <span class="n">avg_pwr</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="n">N</span><span class="o">//</span><span class="mi">2</span><span class="p">)]</span>
 </pre></div>
@@ -1944,44 +1832,71 @@ P_x = \sum_{k=-\infty}^{\infty} |X[k]|^2
 <span class="expanded">Hide code cell source</span>
 </summary>
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">Fs</span><span class="o">=</span><span class="mi">500</span>
-<span class="n">f1</span><span class="p">,</span><span class="n">Pxx1</span> <span class="o">=</span> <span class="n">pwelch</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">Fs</span><span class="p">)</span>
-<span class="n">f2</span><span class="p">,</span><span class="n">Pxx2</span> <span class="o">=</span> <span class="n">signal</span><span class="o">.</span><span class="n">welch</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">fs</span><span class="o">=</span><span class="n">Fs</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Function to update plots based on slider value</span>
+<span class="k">def</span> <span class="nf">update_plots</span><span class="p">(</span><span class="n">Fs</span><span class="p">):</span>
+    <span class="k">global</span> <span class="n">x</span><span class="p">,</span> <span class="n">t</span>
+    <span class="n">T</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">/</span> <span class="n">Fs</span>  <span class="c1"># Update sampling period</span>
+    <span class="n">t</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">L</span><span class="p">)</span> <span class="o">*</span> <span class="n">T</span>  <span class="c1"># Update time vector</span>
+    
+    <span class="c1"># Recompute signal x with new sampling frequency</span>
+    <span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span> <span class="o">*</span> <span class="mi">30</span> <span class="o">*</span> <span class="n">t</span><span class="p">)</span> <span class="o">+</span> <span class="mf">0.8</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span> <span class="o">*</span> <span class="mi">80</span> <span class="o">*</span> <span class="p">(</span><span class="n">t</span> <span class="o">-</span> <span class="mi">2</span><span class="p">))</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span> <span class="o">*</span> <span class="mi">60</span> <span class="o">*</span> <span class="n">t</span><span class="p">)</span>
+    
+    <span class="c1"># Compute pwelch</span>
+    <span class="n">f1</span><span class="p">,</span> <span class="n">Pxx1</span> <span class="o">=</span> <span class="n">pwelch</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">Fs</span><span class="p">)</span>
+    
+    <span class="c1"># Compute signal.welch</span>
+    <span class="n">f2</span><span class="p">,</span> <span class="n">Pxx2</span> <span class="o">=</span> <span class="n">signal</span><span class="o">.</span><span class="n">welch</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">fs</span><span class="o">=</span><span class="n">Fs</span><span class="p">)</span>
+    
+    <span class="c1"># Plot</span>
+    <span class="n">fig</span><span class="p">,</span> <span class="n">axs</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mf">18.5</span><span class="p">,</span> <span class="mi">20</span><span class="p">))</span>
+    
+    <span class="c1"># Plot custom pwelch</span>
+    <span class="n">axs</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">f1</span><span class="p">,</span> <span class="n">Pxx1</span><span class="p">)</span>
+    <span class="n">axs</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">xlabel</span><span class="o">=</span><span class="s1">&#39;Frequency (Hz)&#39;</span><span class="p">,</span> <span class="n">ylabel</span><span class="o">=</span><span class="s1">&#39;Power&#39;</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s1">&#39;Periodogram pwelch()&#39;</span><span class="p">)</span>
+    <span class="n">axs</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">grid</span><span class="p">()</span>
+    
+    <span class="c1"># Plot signal.welch</span>
+    <span class="n">axs</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">f2</span><span class="p">,</span> <span class="n">Pxx2</span><span class="p">)</span>
+    <span class="n">axs</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">xlabel</span><span class="o">=</span><span class="s1">&#39;Frequency (Hz)&#39;</span><span class="p">,</span> <span class="n">ylabel</span><span class="o">=</span><span class="s1">&#39;Power&#39;</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s1">&#39;Periodogram signal.welch()&#39;</span><span class="p">)</span>
+    <span class="n">axs</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">grid</span><span class="p">()</span>
+    
+    <span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 
-<span class="n">fig</span> <span class="o">=</span> <span class="n">go</span><span class="o">.</span><span class="n">Figure</span><span class="p">()</span>
-<span class="n">fig</span><span class="o">.</span><span class="n">add_trace</span><span class="p">(</span><span class="n">go</span><span class="o">.</span><span class="n">Scatter</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">f2</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="n">Pxx2</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="s1">&#39;lines&#39;</span><span class="p">,</span> <span class="n">line</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">color</span><span class="o">=</span><span class="s1">&#39;#1F77B4&#39;</span><span class="p">)))</span>
-<span class="n">fig</span><span class="o">.</span><span class="n">update_layout</span><span class="p">(</span><span class="n">title</span><span class="o">=</span><span class="s1">&#39;Periodogram signal.welch()&#39;</span><span class="p">,</span> <span class="n">title_x</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> 
-                  <span class="n">title_font</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">size</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;black&#39;</span><span class="p">,</span> <span class="n">family</span><span class="o">=</span><span class="s2">&quot;Arial, sans-serif&quot;</span><span class="p">),</span>
-                  <span class="n">xaxis_title</span><span class="o">=</span><span class="s1">&#39;Frequency (Hz)&#39;</span><span class="p">,</span> <span class="n">yaxis_title</span><span class="o">=</span><span class="s1">&#39;Power&#39;</span><span class="p">,</span>
-                  <span class="n">template</span><span class="o">=</span><span class="s1">&#39;plotly_white&#39;</span><span class="p">)</span>
-<span class="n">fig</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+<span class="c1"># Create slider for Fs</span>
+<span class="n">Fs_slider</span> <span class="o">=</span> <span class="n">widgets</span><span class="o">.</span><span class="n">IntSlider</span><span class="p">(</span>
+    <span class="n">value</span><span class="o">=</span><span class="mi">500</span><span class="p">,</span>
+    <span class="nb">min</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span>
+    <span class="nb">max</span><span class="o">=</span><span class="mi">2000</span><span class="p">,</span> 
+    <span class="n">step</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span>
+    <span class="n">description</span><span class="o">=</span><span class="s1">&#39;Sampling Frequency (Fs):&#39;</span><span class="p">,</span>
+    <span class="n">layout</span><span class="o">=</span><span class="n">Layout</span><span class="p">(</span><span class="n">width</span><span class="o">=</span><span class="s1">&#39;90%&#39;</span><span class="p">),</span>
+    <span class="n">style</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;description_width&#39;</span><span class="p">:</span> <span class="s1">&#39;initial&#39;</span><span class="p">},</span> 
+    <span class="n">continuous_update</span><span class="o">=</span><span class="kc">False</span>
+<span class="p">)</span>
+
+
+<span class="n">html_label</span> <span class="o">=</span> <span class="n">widgets</span><span class="o">.</span><span class="n">HTML</span><span class="p">(</span>
+    <span class="n">value</span><span class="o">=</span><span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">        &lt;h2 style=&#39;font-weight: bold; font-size: 30px; text-align: center;&#39;&gt;Μέρος 4:&lt;/h2&gt;</span>
+<span class="s2">    &quot;&quot;&quot;</span>
+<span class="p">)</span>
+
+<span class="c1"># Display the sliders and output</span>
+<span class="n">vbox_layout</span> <span class="o">=</span> <span class="n">Layout</span><span class="p">(</span><span class="n">display</span><span class="o">=</span><span class="s1">&#39;flex&#39;</span><span class="p">,</span> <span class="n">flex_flow</span><span class="o">=</span><span class="s1">&#39;column&#39;</span><span class="p">,</span> <span class="n">align_items</span><span class="o">=</span><span class="s1">&#39;center&#39;</span><span class="p">)</span>
+
+<span class="n">ui</span> <span class="o">=</span> <span class="n">widgets</span><span class="o">.</span><span class="n">VBox</span><span class="p">([</span><span class="n">html_label</span><span class="p">,</span> <span class="n">Fs_slider</span><span class="p">],</span> <span class="n">layout</span><span class="o">=</span><span class="n">vbox_layout</span><span class="p">)</span>
+<span class="n">out</span> <span class="o">=</span> <span class="n">widgets</span><span class="o">.</span><span class="n">interactive_output</span><span class="p">(</span><span class="n">update_plots</span><span class="p">,</span> <span class="p">{</span><span class="s1">&#39;Fs&#39;</span><span class="p">:</span> <span class="n">Fs_slider</span><span class="p">})</span>
+
+<span class="c1"># Display the slider</span>
+<span class="n">clear_output</span><span class="p">(</span><span class="n">wait</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>  <span class="c1"># Clear the previous plot</span>
+<span class="n">display</span><span class="p">(</span><span class="n">ui</span><span class="p">,</span><span class="n">out</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 </details>
 <div class="cell_output docutils container">
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">TypeError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
-<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">26</span><span class="p">],</span> <span class="n">line</span> <span class="mi">2</span>
-<span class="g g-Whitespace">      </span><span class="mi">1</span> <span class="n">Fs</span><span class="o">=</span><span class="mi">500</span>
-<span class="ne">----&gt; </span><span class="mi">2</span> <span class="n">f1</span><span class="p">,</span><span class="n">Pxx1</span> <span class="o">=</span> <span class="n">pwelch</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">Fs</span><span class="p">)</span>
-<span class="g g-Whitespace">      </span><span class="mi">3</span> <span class="n">f2</span><span class="p">,</span><span class="n">Pxx2</span> <span class="o">=</span> <span class="n">signal</span><span class="o">.</span><span class="n">welch</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">fs</span><span class="o">=</span><span class="n">Fs</span><span class="p">)</span>
-<span class="g g-Whitespace">      </span><span class="mi">5</span> <span class="n">fig</span> <span class="o">=</span> <span class="n">go</span><span class="o">.</span><span class="n">Figure</span><span class="p">()</span>
-
-<span class="nn">Cell In[25], line 37,</span> in <span class="ni">pwelch</span><span class="nt">(x, Fs)</span>
-<span class="g g-Whitespace">     </span><span class="mi">34</span> <span class="n">avg_pwr</span><span class="o">=</span><span class="n">avg_pwr</span><span class="o">/</span><span class="n">windows</span>
-<span class="g g-Whitespace">     </span><span class="mi">36</span> <span class="n">fig</span> <span class="o">=</span> <span class="n">go</span><span class="o">.</span><span class="n">Figure</span><span class="p">()</span>
-<span class="ne">---&gt; </span><span class="mi">37</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_trace</span><span class="p">(</span><span class="n">go</span><span class="o">.</span><span class="n">Scatter</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">f</span><span class="p">[:</span><span class="n">N</span><span class="o">//</span><span class="mi">2</span><span class="p">],</span> <span class="n">y</span><span class="o">=</span><span class="n">avg_pwr</span><span class="p">[:</span><span class="n">N</span><span class="o">//</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">real</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="s1">&#39;lines&#39;</span><span class="p">,</span> <span class="n">line</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">color</span><span class="o">=</span><span class="s1">&#39;#1F77B4&#39;</span><span class="p">)))</span>
-<span class="g g-Whitespace">     </span><span class="mi">38</span> <span class="n">fig</span><span class="o">.</span><span class="n">update_layout</span><span class="p">(</span><span class="n">title</span><span class="o">=</span><span class="s1">&#39;Periodogram pwelch()&#39;</span><span class="p">,</span> <span class="n">title_x</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> 
-<span class="g g-Whitespace">     </span><span class="mi">39</span>                   <span class="n">title_font</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">size</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;black&#39;</span><span class="p">,</span> <span class="n">family</span><span class="o">=</span><span class="s2">&quot;Arial, sans-serif&quot;</span><span class="p">),</span>
-<span class="g g-Whitespace">     </span><span class="mi">40</span>                   <span class="n">xaxis_title</span><span class="o">=</span><span class="s1">&#39;Frequency (Hz)&#39;</span><span class="p">,</span> <span class="n">yaxis_title</span><span class="o">=</span><span class="s1">&#39;Power&#39;</span><span class="p">,</span>
-<span class="g g-Whitespace">     </span><span class="mi">41</span>                   <span class="n">template</span><span class="o">=</span><span class="s1">&#39;plotly_white&#39;</span><span class="p">)</span>
-<span class="g g-Whitespace">     </span><span class="mi">42</span> <span class="n">fig</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
-
-<span class="ne">TypeError</span>: &#39;float&#39; object is not subscriptable
-</pre></div>
-</div>
-</div>
+<script type="application/vnd.jupyter.widget-view+json">{"model_id": "ab7ed6aa4d8145dfb6450e3cd5dd0ec7", "version_major": 2, "version_minor": 0}</script><script type="application/vnd.jupyter.widget-view+json">{"model_id": "ae59477b5fb64369a163bcdf48d0740a", "version_major": 2, "version_minor": 0}</script></div>
 </div>
 </section>
 </section>
