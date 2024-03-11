@@ -1,130 +1,114 @@
 Traceback (most recent call last):
-  File "C:\Users\sotiris\AppData\Local\anaconda3\Lib\site-packages\jupyter_cache\executors\utils.py", line 58, in single_nb_execution
+  File "C:\Users\lampr\AppData\Roaming\Python\Python311\site-packages\jupyter_cache\executors\utils.py", line 58, in single_nb_execution
     executenb(
-  File "C:\Users\sotiris\AppData\Local\anaconda3\Lib\site-packages\nbclient\client.py", line 1204, in execute
+  File "C:\Users\lampr\AppData\Roaming\Python\Python311\site-packages\nbclient\client.py", line 1314, in execute
     return NotebookClient(nb=nb, resources=resources, km=km, **kwargs).execute()
            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "C:\Users\sotiris\AppData\Local\anaconda3\Lib\site-packages\nbclient\util.py", line 84, in wrapped
-    return just_run(coro(*args, **kwargs))
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "C:\Users\sotiris\AppData\Local\anaconda3\Lib\site-packages\nbclient\util.py", line 62, in just_run
-    return loop.run_until_complete(coro)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "C:\Users\sotiris\AppData\Local\anaconda3\Lib\asyncio\base_events.py", line 653, in run_until_complete
+  File "C:\Users\lampr\AppData\Roaming\Python\Python311\site-packages\jupyter_core\utils\__init__.py", line 165, in wrapped
+    return loop.run_until_complete(inner)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\lampr\anaconda3\Lib\asyncio\base_events.py", line 653, in run_until_complete
     return future.result()
            ^^^^^^^^^^^^^^^
-  File "C:\Users\sotiris\AppData\Local\anaconda3\Lib\site-packages\nbclient\client.py", line 663, in async_execute
+  File "C:\Users\lampr\AppData\Roaming\Python\Python311\site-packages\nbclient\client.py", line 709, in async_execute
     await self.async_execute_cell(
-  File "C:\Users\sotiris\AppData\Local\anaconda3\Lib\site-packages\nbclient\client.py", line 965, in async_execute_cell
+  File "C:\Users\lampr\AppData\Roaming\Python\Python311\site-packages\nbclient\client.py", line 1062, in async_execute_cell
     await self._check_raise_for_error(cell, cell_index, exec_reply)
-  File "C:\Users\sotiris\AppData\Local\anaconda3\Lib\site-packages\nbclient\client.py", line 862, in _check_raise_for_error
+  File "C:\Users\lampr\AppData\Roaming\Python\Python311\site-packages\nbclient\client.py", line 918, in _check_raise_for_error
     raise CellExecutionError.from_cell_and_msg(cell, exec_reply_content)
 nbclient.exceptions.CellExecutionError: An error occurred while executing the following cell:
 ------------------
-import numpy as np
-from scipy.fft import fft, ifft, fftshift, ifftshift
-import dash
-from dash import Dash, dcc, html
 import plotly.graph_objs as go
-import dash_bootstrap_components as dbc
+from scipy import signal
+import numpy as np
 
+# Define filter sizes
+filter_sizes = [32, 64, 128, 160, 256]
 
-# First part: Original signal and its FFT
-xb = np.array([1, 2, 3, 4, 5, 4, 3, 2, 1])
-x = ifftshift(xb)
-X = fft(x)
-Xb = fftshift(X)  # Spectrum with DC component in the center
+# Compute frequency responses
+freq32, resp32 = signal.freqz(h32)
+freq64, resp64 = signal.freqz(h64)
+freq128, resp128 = signal.freqz(h128)
+freq160, resp160 = signal.freqz(h160)
+freq256, resp256 = signal.freqz(h256)
 
-# Second part: Low-pass filter effect
-Xb_low_pass = np.array([0, 0, 1, 1, 1, 1, 1, 0, 0])
-X_low_pass = ifftshift(Xb_low_pass)
-x_low_pass = ifft(X_low_pass)
-xb_low_pass = fftshift(x_low_pass)
+# Compute frequency responses
+freqs = {}
+resps = {}
+for filt in [32, 64, 128, 160, 256]:
+    freqs[f'h{filt}'], resps[f'h{filt}'] = signal.freqz(eval(f'h{filt}'))
 
-app11 = Dash(__name__, external_stylesheets=[dbc.themes.BOOTSTRAP])
+# Create initial traces for the plot
+traces = []
+for filt in filter_sizes:
+    traces.append(go.Scatter(
+        x=0.5 * Fs * freqs[f'h{filt}'] / np.pi,
+        y=np.abs(resps[f'h{filt}']),
+        mode='lines',
+        name=f'h{filt}',
+        visible=False  # Initially set traces to be hidden
+    ))
 
-# Directly define the figures for plotting
-Original_Signal = go.Figure(go.Scatter(x=np.arange(-4, 5), y=xb,line=dict(color='blue'), mode='lines+markers', name='Original Signal'))
-Original_Signal.update_layout(
-    title='Original Signal',
-    xaxis={'title': 'Time (s)', 'showgrid': True, 'gridcolor': 'LightGrey'},
-    yaxis={'title': 'Amplitude', 'showgrid': True, 'gridcolor': 'LightGrey'},
-    margin={'l': 40, 'b': 40, 't': 40, 'r': 40},
-    hovermode='closest',
-    paper_bgcolor='white',
-    plot_bgcolor='white',
-    template='plotly_white'
+# Create layout for the plot
+layout = go.Layout(
+    title='Frequency Response of Selected Filters',
+    xaxis_title='Frequency (Hz)',
+    yaxis_title='Gain',
+    yaxis_type='log',
+    template='plotly_white',
+    xaxis=dict(range=[0, 3000])  # Set x-axis range from 0 to 3000 Hz
 )
 
-Magnitude_Spectrum = go.Figure(go.Scatter(x=np.arange(-4, 5), y=np.abs(Xb),line=dict(color='red'), mode='lines+markers', name='Magnitude Spectrum'))
-Magnitude_Spectrum.update_layout(
-    title='Magnitude Spectrum',
-    xaxis={'title': 'Frequency (Hz)', 'showgrid': True, 'gridcolor': 'LightGrey'},
-    yaxis={'title': 'Amplitude', 'showgrid': True, 'gridcolor': 'LightGrey'},
-    margin={'l': 40, 'b': 40, 't': 40, 'r': 40},
-    hovermode='closest',
-    paper_bgcolor='white',
-    plot_bgcolor='white',
-    template='plotly_white'
-)
+# Define callback function to update visibility of traces
+def update_visibility(selected_filters):
+    visibility = [filt in selected_filters for filt in filter_sizes]
+    return visibility
 
-Low_pass_Spectrum = go.Figure(go.Scatter(x=np.arange(-4, 5), y=Xb_low_pass,line=dict(color='green'), mode='lines+markers', name='Low-pass Spectrum'))
-Low_pass_Spectrum.update_layout(
-    title='Low-pass Spectrum',
-    xaxis={'title': 'Time (s)', 'showgrid': True, 'gridcolor': 'LightGrey'},
-    yaxis={'title': 'Amplitude', 'showgrid': True, 'gridcolor': 'LightGrey'},
-    margin={'l': 40, 'b': 40, 't': 40, 'r': 40},
-    hovermode='closest',
-    paper_bgcolor='white',
-    plot_bgcolor='white',
-    template='plotly_white'
-)
-
-Reconstructed_Signal = go.Figure(go.Scatter(x=np.arange(-4, 5), y=xb_low_pass.real,line=dict(color='purple'), mode='lines+markers', name='Reconstructed Signal'))
-Reconstructed_Signal.update_layout(
-    title='Reconstructed Signal',
-    xaxis={'title': 'Frequency (Hz)', 'showgrid': True, 'gridcolor': 'LightGrey'},
-    yaxis={'title': 'Amplitude', 'showgrid': True, 'gridcolor': 'LightGrey'},
-    margin={'l': 40, 'b': 40, 't': 40, 'r': 40},
-    hovermode='closest',
-    paper_bgcolor='white',
-    plot_bgcolor='white',
-    template='plotly_white'
-)
-
-app11.layout = html.Div(
-    children=[
-        html.H2('Signal Analysis'),
-        dbc.Row(
-            children=[
-                dbc.Col(dcc.Graph(figure=Original_Signal, style={'height': '250px'}), width=6),
-                dbc.Col(dcc.Graph(figure=Magnitude_Spectrum, style={'height': '250px'}), width=6)
-            ]
-        ),
-        dbc.Row(
-            children=[
-                dbc.Col(dcc.Graph(figure=Low_pass_Spectrum, style={'height': '250px'}), width=6),
-                dbc.Col(dcc.Graph(figure=Reconstructed_Signal, style={'height': '250px'}), width=6)
-            ]
+# Create dropdown menu for selecting filters
+dropdown_menu = []
+for filt in filter_sizes:
+    dropdown_menu.append(
+        dict(
+            args=[{'visible': update_visibility([filt])}],
+            label=f'h{filt}',
+            method='update'
         )
-    ],
-    style={'backgroundColor': 'white', 'padding': '20px'}
-)
+    )
 
-if __name__ == '__main__':
-    app11.run_server(mode='inline',debug=True, port=8200)
+# Append 'All' option to dropdown menu
+dropdown_menu.insert(0, dict(args=[{'visible': update_visibility(filter_sizes)}], label='All', method='update'))
+
+# Update layout with dropdown menu
+layout['updatemenus'] = [
+    dict(
+        buttons=dropdown_menu,
+        direction='down',
+        pad={'r': 10, 't': 10},
+        showactive=True,
+        x=0.1,
+        xanchor='left',
+        y=1.1,
+        yanchor='top'
+    )
+]
+
+# Create figure
+fig = go.Figure(data=traces, layout=layout)
+
+# Show plot
+fig.show()
 
 ------------------
 
-[1;31m---------------------------------------------------------------------------[0m
-[1;31mModuleNotFoundError[0m                       Traceback (most recent call last)
-Cell [1;32mIn[4], line 3[0m
-[0;32m      1[0m [38;5;28;01mimport[39;00m [38;5;21;01mnumpy[39;00m [38;5;28;01mas[39;00m [38;5;21;01mnp[39;00m
-[0;32m      2[0m [38;5;28;01mfrom[39;00m [38;5;21;01mscipy[39;00m[38;5;21;01m.[39;00m[38;5;21;01mfft[39;00m [38;5;28;01mimport[39;00m fft, ifft, fftshift, ifftshift
-[1;32m----> 3[0m [38;5;28;01mimport[39;00m [38;5;21;01mdash[39;00m
-[0;32m      4[0m [38;5;28;01mfrom[39;00m [38;5;21;01mdash[39;00m [38;5;28;01mimport[39;00m Dash, dcc, html
-[0;32m      5[0m [38;5;28;01mimport[39;00m [38;5;21;01mplotly[39;00m[38;5;21;01m.[39;00m[38;5;21;01mgraph_objs[39;00m [38;5;28;01mas[39;00m [38;5;21;01mgo[39;00m
 
-[1;31mModuleNotFoundError[0m: No module named 'dash'
-ModuleNotFoundError: No module named 'dash'
+[1;31m---------------------------------------------------------------------------[0m
+[1;31mNameError[0m                                 Traceback (most recent call last)
+Cell [1;32mIn[18], line 9[0m
+[0;32m      6[0m filter_sizes [38;5;241m=[39m [[38;5;241m32[39m, [38;5;241m64[39m, [38;5;241m128[39m, [38;5;241m160[39m, [38;5;241m256[39m]
+[0;32m      8[0m [38;5;66;03m# Compute frequency responses[39;00m
+[1;32m----> 9[0m freq32, resp32 [38;5;241m=[39m signal[38;5;241m.[39mfreqz([43mh32[49m)
+[0;32m     10[0m freq64, resp64 [38;5;241m=[39m signal[38;5;241m.[39mfreqz(h64)
+[0;32m     11[0m freq128, resp128 [38;5;241m=[39m signal[38;5;241m.[39mfreqz(h128)
+
+[1;31mNameError[0m: name 'h32' is not defined
 
