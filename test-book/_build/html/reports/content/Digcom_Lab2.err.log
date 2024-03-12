@@ -21,6 +21,7 @@ Traceback (most recent call last):
     raise CellExecutionError.from_cell_and_msg(cell, exec_reply_content)
 nbclient.exceptions.CellExecutionError: An error occurred while executing the following cell:
 ------------------
+<<<<<<< HEAD
 from scipy import signal
 import scipy.io.wavfile
 # Ανατρέξτε στην τεκμηρίωση της βιβλιοθήκης scipy.signal
@@ -39,9 +40,71 @@ import dash_bootstrap_components as dbc
 import warnings
 warnings.filterwarnings('ignore')
 print("Libraries added successfully!")
+=======
+# Παράμετροι σήματος
+Fs = 8192  # Συχνότητα δειγματοληψίας
+t = np.arange(0, 1.0, 1/Fs)  # Διάρκεια σήματος 1 δευτερόλεπτο
+
+# Δημιουργία του σήματος
+s1 = np.sin(2*np.pi*700*t) + np.sin(2*np.pi*900*t) + np.sin(2*np.pi*1400*t) + np.sin(2*np.pi*2500*t)
+
+# Σχεδιασμός των φίλτρων Parks-McClellan
+lpass32 = signal.remez(32, [0, 1000, 1300, Fs/2], [1, 0], fs=Fs)
+lpass64 = signal.remez(64, [0, 1000, 1300, Fs/2], [1, 0], fs=Fs)
+lpass128 = signal.remez(128, [0, 1000, 1300, Fs/2], [1, 0], fs=Fs)
+lpass160 = signal.remez(160, [0, 1000, 1300, Fs/2], [1, 0], fs=Fs)
+lpass256 = signal.remez(256, [0, 1000, 1300, Fs/2], [1, 0], fs=Fs)
+
+# Φιλτράρισμα του σήματος
+s1_filtered32 = signal.lfilter(lpass32, 1.0, s1)
+s1_filtered64 = signal.lfilter(lpass64, 1.0, s1)
+s1_filtered128 = signal.lfilter(lpass128, 1.0, s1)
+s1_filtered160 = signal.lfilter(lpass160, 1.0, s1)
+s1_filtered256 = signal.lfilter(lpass256, 1.0, s1)
+
+# Φασματική πυκνότητα των φιλτραρισμένων σημάτων
+f, Pxx1_den = signal.welch(s1, Fs, nperseg=1024)
+f32, Pxx1_den32 = signal.welch(s1_filtered32, Fs, nperseg=1024)
+f64, Pxx1_den64 = signal.welch(s1_filtered64, Fs, nperseg=1024)
+f128, Pxx1_den128 = signal.welch(s1_filtered128, Fs, nperseg=1024)
+f160, Pxx1_den160 = signal.welch(s1_filtered160, Fs, nperseg=1024)
+f256, Pxx1_den256 = signal.welch(s1_filtered256, Fs, nperseg=1024)
+
+# Σχεδίαση των φασματικών πυκνοτήτων σε Plotly
+fig = go.Figure()
+
+
+# Αρχικό σήμα
+fig.add_trace(go.Scatter(x=f, y=10*np.log10(Pxx1_den), mode='lines', name='Original Signal'))
+
+# Φιλτραρισμένο σήμα 32
+fig.add_trace(go.Scatter(x=f32, y=10*np.log10(Pxx1_den32), mode='lines', name='Filtered Signal 32'))
+
+# Φιλτραρισμένο σήμα 64
+fig.add_trace(go.Scatter(x=f64, y=10*np.log10(Pxx1_den64), mode='lines', name='Filtered Signal 64'))
+
+# Φιλτραρισμένο σήμα 128
+fig.add_trace(go.Scatter(x=f128, y=10*np.log10(Pxx1_den128), mode='lines', name='Filtered Signal 128'))
+
+# Φιλτραρισμένο σήμα 160
+fig.add_trace(go.Scatter(x=f160, y=10*np.log10(Pxx1_den160), mode='lines', name='Filtered Signal 256'))
+
+# Ενημέρωση layout
+fig.update_layout(title='Φασματική Πυκνότητα Ισχύος',
+                  xaxis_title='Συχνότητα (Hz)',
+                  yaxis_title='Πυκνότητα Ισχύος (dB)',
+                  template='plotly_white')
+
+fig.show(renderer='notebook')
+# Convert figure to HTML
+fig_html = pio.to_html(fig, full_html=False, include_plotlyjs='cdn')
+display(HTML(fig_html))
+
+>>>>>>> 3de4d57 (ok)
 ------------------
 
 [1;31m---------------------------------------------------------------------------[0m
+<<<<<<< HEAD
 [1;31mModuleNotFoundError[0m                       Traceback (most recent call last)
 Cell [1;32mIn[5], line 6[0m
 [0;32m      3[0m [38;5;66;03m# Ανατρέξτε στην τεκμηρίωση της βιβλιοθήκης scipy.signal[39;00m
@@ -53,4 +116,14 @@ Cell [1;32mIn[5], line 6[0m
 
 [1;31mModuleNotFoundError[0m: No module named 'dash'
 ModuleNotFoundError: No module named 'dash'
+=======
+[1;31mNameError[0m                                 Traceback (most recent call last)
+Cell [1;32mIn[20], line 57[0m
+[0;32m     55[0m fig[38;5;241m.[39mshow(renderer[38;5;241m=[39m[38;5;124m'[39m[38;5;124mnotebook[39m[38;5;124m'[39m)
+[0;32m     56[0m [38;5;66;03m# Convert figure to HTML[39;00m
+[1;32m---> 57[0m fig_html [38;5;241m=[39m [43mpio[49m[38;5;241m.[39mto_html(fig, full_html[38;5;241m=[39m[38;5;28;01mFalse[39;00m, include_plotlyjs[38;5;241m=[39m[38;5;124m'[39m[38;5;124mcdn[39m[38;5;124m'[39m)
+[0;32m     58[0m display(HTML(fig_html))
+
+[1;31mNameError[0m: name 'pio' is not defined
+>>>>>>> 3de4d57 (ok)
 
