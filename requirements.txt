@@ -3,8 +3,3 @@ scipy
 matplotlib
 ipython
 ipywidgets==7.7.2
-dash
-pandas
-plotly
-dash-bootstrap-components
-jupyter-dash
