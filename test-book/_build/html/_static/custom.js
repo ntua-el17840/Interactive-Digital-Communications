@@ -1,7 +1,7 @@
 function isTargetPage() {
-    // Check if the current page URL contains the specified path, ignoring query parameters or hash fragments
-    const path = window.location.pathname + window.location.search + window.location.hash;
-    return path.startsWith('/content/Digcom_Lab1.html');
+    // Check if the URL path contains the specific page segment, accounting for variable base paths
+    const urlPath = window.location.pathname;
+    return urlPath.includes('/content/Digcom_Lab1.html');
 }
 
 
@@ -59,6 +59,7 @@ function observeStatusChanges() {
 
 if (isTargetPage()) {
     document.addEventListener('DOMContentLoaded', (event) => {
+        console.log("starting custom code");
         hideInitialCodecells(); // Initially hide relevant codecells
         observeStatusChanges(); // Start observing for changes to '.status' elements
     });
