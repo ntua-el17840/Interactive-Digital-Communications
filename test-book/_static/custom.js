@@ -6,26 +6,18 @@ function isTargetPage() {
 
 
 function hideInitialCodecells() {
-    // Dynamically find and hide all 'codecell' elements with a number 28 or higher
-    document.querySelectorAll('[id^="codecell"]').forEach(element => {
-        let match = element.id.match(/^codecell(\d+)$/);
-        if (match && parseInt(match[1], 10) >= 100) {
-            element.style.display = 'none';
-            console.log(`Element with ID ${element.id} has been initially hidden.`);
-        }
+    document.querySelectorAll('.tag_hide-code-cell [id^="codecell"]').forEach(element => {
+        element.style.display = 'none';
+        console.log(`Element with ID ${element.id} has been initially hidden.`);
     });
 }
 
 function customFunction() {
-    // Dynamically hide '.thebelab-input' within 'codecell' elements with a number 28 or higher
-    document.querySelectorAll('[id^="codecell"]').forEach(element => {
-        let match = element.id.match(/^codecell(\d+)$/);
-        if (match && parseInt(match[1], 10) >= 100) {
-            let inputElement = element.querySelector('.thebelab-input');
-            if (inputElement) {
-                inputElement.style.display = 'none';
-                console.log(`Thebelab input within ${element.id} has been hidden.`);
-            }
+    document.querySelectorAll('.tag_hide-code-cell [id^="codecell"]').forEach(element => {
+        let inputElement = element.querySelector('.thebelab-input');
+        if (inputElement) {
+            inputElement.style.display = 'none';
+            console.log(`Thebelab input within ${element.id} has been hidden.`);
         }
     });
 }
