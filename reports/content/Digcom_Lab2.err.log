@@ -21,109 +21,35 @@ Traceback (most recent call last):
     raise CellExecutionError.from_cell_and_msg(cell, exec_reply_content)
 nbclient.exceptions.CellExecutionError: An error occurred while executing the following cell:
 ------------------
+from scipy import signal
+import scipy.io.wavfile
+# Ανατρέξτε στην τεκμηρίωση της βιβλιοθήκης scipy.signal
+# https://docs.scipy.org/doc/scipy/reference/signal.html
+from scipy.fft import fft, fftfreq
+from dash import Dash, dcc, html, Input, Output
+import matplotlib
+import matplotlib.pyplot as plt
 import numpy as np
-from scipy.fft import fft, ifft, fftshift, ifftshift
-import dash
-from dash import Dash, dcc, html
+from numpy import random
+import pandas
+import plotly
+import plotly.express as px
 import plotly.graph_objs as go
 import dash_bootstrap_components as dbc
-
-
-# First part: Original signal and its FFT
-xb = np.array([1, 2, 3, 4, 5, 4, 3, 2, 1])
-x = ifftshift(xb)
-X = fft(x)
-Xb = fftshift(X)  # Spectrum with DC component in the center
-
-# Second part: Low-pass filter effect
-Xb_low_pass = np.array([0, 0, 1, 1, 1, 1, 1, 0, 0])
-X_low_pass = ifftshift(Xb_low_pass)
-x_low_pass = ifft(X_low_pass)
-xb_low_pass = fftshift(x_low_pass)
-
-app11 = Dash(__name__, external_stylesheets=[dbc.themes.BOOTSTRAP])
-
-# Directly define the figures for plotting
-Original_Signal = go.Figure(go.Scatter(x=np.arange(-4, 5), y=xb,line=dict(color='blue'), mode='lines+markers', name='Original Signal'))
-Original_Signal.update_layout(
-    title='Original Signal',
-    xaxis={'title': 'Time (s)', 'showgrid': True, 'gridcolor': 'LightGrey'},
-    yaxis={'title': 'Amplitude', 'showgrid': True, 'gridcolor': 'LightGrey'},
-    margin={'l': 40, 'b': 40, 't': 40, 'r': 40},
-    hovermode='closest',
-    paper_bgcolor='white',
-    plot_bgcolor='white',
-    template='plotly_white'
-)
-
-Magnitude_Spectrum = go.Figure(go.Scatter(x=np.arange(-4, 5), y=np.abs(Xb),line=dict(color='red'), mode='lines+markers', name='Magnitude Spectrum'))
-Magnitude_Spectrum.update_layout(
-    title='Magnitude Spectrum',
-    xaxis={'title': 'Frequency (Hz)', 'showgrid': True, 'gridcolor': 'LightGrey'},
-    yaxis={'title': 'Amplitude', 'showgrid': True, 'gridcolor': 'LightGrey'},
-    margin={'l': 40, 'b': 40, 't': 40, 'r': 40},
-    hovermode='closest',
-    paper_bgcolor='white',
-    plot_bgcolor='white',
-    template='plotly_white'
-)
-
-Low_pass_Spectrum = go.Figure(go.Scatter(x=np.arange(-4, 5), y=Xb_low_pass,line=dict(color='green'), mode='lines+markers', name='Low-pass Spectrum'))
-Low_pass_Spectrum.update_layout(
-    title='Low-pass Spectrum',
-    xaxis={'title': 'Time (s)', 'showgrid': True, 'gridcolor': 'LightGrey'},
-    yaxis={'title': 'Amplitude', 'showgrid': True, 'gridcolor': 'LightGrey'},
-    margin={'l': 40, 'b': 40, 't': 40, 'r': 40},
-    hovermode='closest',
-    paper_bgcolor='white',
-    plot_bgcolor='white',
-    template='plotly_white'
-)
-
-Reconstructed_Signal = go.Figure(go.Scatter(x=np.arange(-4, 5), y=xb_low_pass.real,line=dict(color='purple'), mode='lines+markers', name='Reconstructed Signal'))
-Reconstructed_Signal.update_layout(
-    title='Reconstructed Signal',
-    xaxis={'title': 'Frequency (Hz)', 'showgrid': True, 'gridcolor': 'LightGrey'},
-    yaxis={'title': 'Amplitude', 'showgrid': True, 'gridcolor': 'LightGrey'},
-    margin={'l': 40, 'b': 40, 't': 40, 'r': 40},
-    hovermode='closest',
-    paper_bgcolor='white',
-    plot_bgcolor='white',
-    template='plotly_white'
-)
-
-app11.layout = html.Div(
-    children=[
-        html.H2('Signal Analysis'),
-        dbc.Row(
-            children=[
-                dbc.Col(dcc.Graph(figure=Original_Signal, style={'height': '250px'}), width=6),
-                dbc.Col(dcc.Graph(figure=Magnitude_Spectrum, style={'height': '250px'}), width=6)
-            ]
-        ),
-        dbc.Row(
-            children=[
-                dbc.Col(dcc.Graph(figure=Low_pass_Spectrum, style={'height': '250px'}), width=6),
-                dbc.Col(dcc.Graph(figure=Reconstructed_Signal, style={'height': '250px'}), width=6)
-            ]
-        )
-    ],
-    style={'backgroundColor': 'white', 'padding': '20px'}
-)
-
-if __name__ == '__main__':
-    app11.run_server(mode='inline',debug=True, port=8200)
-
+import warnings
+warnings.filterwarnings('ignore')
+print("Libraries added successfully!")
 ------------------
 
 [1;31m---------------------------------------------------------------------------[0m
 [1;31mModuleNotFoundError[0m                       Traceback (most recent call last)
-Cell [1;32mIn[4], line 3[0m
-[0;32m      1[0m [38;5;28;01mimport[39;00m [38;5;21;01mnumpy[39;00m [38;5;28;01mas[39;00m [38;5;21;01mnp[39;00m
-[0;32m      2[0m [38;5;28;01mfrom[39;00m [38;5;21;01mscipy[39;00m[38;5;21;01m.[39;00m[38;5;21;01mfft[39;00m [38;5;28;01mimport[39;00m fft, ifft, fftshift, ifftshift
-[1;32m----> 3[0m [38;5;28;01mimport[39;00m [38;5;21;01mdash[39;00m
-[0;32m      4[0m [38;5;28;01mfrom[39;00m [38;5;21;01mdash[39;00m [38;5;28;01mimport[39;00m Dash, dcc, html
-[0;32m      5[0m [38;5;28;01mimport[39;00m [38;5;21;01mplotly[39;00m[38;5;21;01m.[39;00m[38;5;21;01mgraph_objs[39;00m [38;5;28;01mas[39;00m [38;5;21;01mgo[39;00m
+Cell [1;32mIn[5], line 6[0m
+[0;32m      3[0m [38;5;66;03m# Ανατρέξτε στην τεκμηρίωση της βιβλιοθήκης scipy.signal[39;00m
+[0;32m      4[0m [38;5;66;03m# https://docs.scipy.org/doc/scipy/reference/signal.html[39;00m
+[0;32m      5[0m [38;5;28;01mfrom[39;00m [38;5;21;01mscipy[39;00m[38;5;21;01m.[39;00m[38;5;21;01mfft[39;00m [38;5;28;01mimport[39;00m fft, fftfreq
+[1;32m----> 6[0m [38;5;28;01mfrom[39;00m [38;5;21;01mdash[39;00m [38;5;28;01mimport[39;00m Dash, dcc, html, Input, Output
+[0;32m      7[0m [38;5;28;01mimport[39;00m [38;5;21;01mmatplotlib[39;00m
+[0;32m      8[0m [38;5;28;01mimport[39;00m [38;5;21;01mmatplotlib[39;00m[38;5;21;01m.[39;00m[38;5;21;01mpyplot[39;00m [38;5;28;01mas[39;00m [38;5;21;01mplt[39;00m
 
 [1;31mModuleNotFoundError[0m: No module named 'dash'
 ModuleNotFoundError: No module named 'dash'
