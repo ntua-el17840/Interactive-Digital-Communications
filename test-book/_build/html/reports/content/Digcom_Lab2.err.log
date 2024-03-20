@@ -18,106 +18,45 @@ Traceback (most recent call last):
     raise CellExecutionError.from_cell_and_msg(cell, exec_reply_content)
 nbclient.exceptions.CellExecutionError: An error occurred while executing the following cell:
 ------------------
-%matplotlib inline
-import numpy as np
-import matplotlib.pyplot as plt
-from scipy import signal
-from scipy.io.wavfile import write
-from IPython.display import display, Audio, clear_output
-import ipywidgets as widgets
-import io
+bpass = signal.remez(128, [0, f1*0.95, f1*1.1, f2*0.95, f2*1.05, Fs/2], [0, 1, 0], fs=Fs)
+freq,resp_pm = signal.freqz(bpass)
 
-filters = {
-    'lpass32': signal.remez(33, [0, 0.1*Fs, 0.15*Fs, 0.5*Fs], [1, 0], Hz=Fs),
-    'lpass64': signal.remez(65, [0, 0.1*Fs, 0.15*Fs, 0.5*Fs], [1, 0], Hz=Fs),
-    'lpass128': signal.remez(129, [0, 0.1*Fs, 0.15*Fs, 0.5*Fs], [1, 0], Hz=Fs),
-    'lpass160': signal.remez(161, [0, 0.1*Fs, 0.15*Fs, 0.5*Fs], [1, 0], Hz=Fs),
-    'lpass256': signal.remez(257, [0, 0.1*Fs, 0.15*Fs, 0.5*Fs], [1, 0], Hz=Fs)
-}
+# Compute frequency response for the equiripple bandpass filter
+freq, resp_pm = signal.freqz(bpass)
 
-# Prepare audio data
-audio_data = {}
+# Create Plotly figure
+fig = go.Figure()
 
-for name, lp_filter_coeffs in lp_filters.items():
-    # Apply the filter to the signal
-    s_lp_filtered = signal.convolve(s, lp_filter_coeffs, mode='same') / np.sum(lp_filter_coeffs)
-    
-    # Normalize the filtered signal to prevent clipping
-    s_lp_filtered_normalized = np.int16((s_lp_filtered / np.max(np.abs(s_lp_filtered))) * 32767)
-    
-    # Write to an in-memory file
-    audio_buf = io.BytesIO()
-    write(audio_buf, Fs, s_lp_filtered_normalized)
-    audio_buf.seek(0)  # Go back to the beginning of the BytesIO object
-    
-    # Store the audio buffer
-    audio_data[name] = audio_buf
+# Add trace for equiripple bandpass filter response
+fig.add_trace(go.Scatter(x=0.5 * Fs * freq / np.pi, y=np.abs(resp_pm), mode='lines', name='Equiripple Bandpass', line=dict(color='green')))
 
-# Function to display the frequency response of the filtered signal
-def plot_freq_response(filter_name):
-    with plot_output:
-        clear_output(wait=True)
-        # Apply the filter to the original signal
-        s_lp_filtered = signal.convolve(s, lp_filters[filter_name], mode='same') / np.sum(lp_filters[filter_name])
-        
-        # Calculate FFT
-        freqs = np.fft.rfftfreq(len(s_lp_filtered), 1/Fs)
-        fft_mag = np.abs(np.fft.rfft(s_lp_filtered))
-        
-        # Convert magnitude to dB
-        fft_mag_db = 20 * np.log10(fft_mag)
-        
-        plt.figure(figsize=(10, 5))
-        plt.plot(freqs, fft_mag_db)
-        plt.title(f'Frequency Response of Filtered Signal with {filter_name}')
-        plt.xlabel('Frequency (Hz)')
-        plt.ylabel('Magnitude (dB)')
-        plt.grid(True)
-        plt.xlim(0, Fs/2)
-        plt.show()
-
-# Audio playback function
-def show_audio_player(filter_name):
-    with audio_output:
-        clear_output(wait=True)
-        display(Audio(data=audio_data[filter_name].getvalue(), rate=Fs))
-
-# Widget setup
-filter_dropdown = widgets.Dropdown(
-    options=[(name, name) for name in lp_filters.keys()],
-    value='lpass32',
-    description='Filter:'
+# Update layout for a semilog plot
+fig.update_layout(
+    title='Απόκριση συχνότητας ζωνοπερατού φίλτρου equirriple',title_x=0.5,title_font=dict(size=20, color='black', family="Arial, sans-serif"),
+    xaxis_title='Συχνότητα (Hz)',
+    yaxis_title='Κέρδος',
+    yaxis_type='log',  # Set y-axis to logarithmic scale
+    template='plotly_white',
+    xaxis=dict(showgrid=True),
+    yaxis=dict(showgrid=True)
 )
 
-plot_output = widgets.Output()
-audio_output = widgets.Output()
+# Show figure
+fig.show(renderer='notebook')
 
-def on_filter_change(change):
-    filter_name = change['new']
-    plot_freq_response(filter_name)
-    show_audio_player(filter_name)
-
-filter_dropdown.observe(on_filter_change, names='value')
-
-# Display the UI
-vbox = widgets.VBox([filter_dropdown, plot_output, audio_output])
-display(vbox)
-
-# Initialize
-on_filter_change({'new': filter_dropdown.value})
-
+# Convert figure to HTML
+fig_html = pio.to_html(fig, full_html=False, include_plotlyjs='cdn')
+display(HTML(fig_html))
 ------------------
 
 
 [1;31m---------------------------------------------------------------------------[0m
 [1;31mNameError[0m                                 Traceback (most recent call last)
-Cell [1;32mIn[11], line 21[0m
-[0;32m     18[0m [38;5;66;03m# Prepare audio data[39;00m
-[0;32m     19[0m audio_data [38;5;241m=[39m {}
-[1;32m---> 21[0m [38;5;28;01mfor[39;00m name, lp_filter_coeffs [38;5;129;01min[39;00m [43mlp_filters[49m[38;5;241m.[39mitems():
-[0;32m     22[0m     [38;5;66;03m# Apply the filter to the signal[39;00m
-[0;32m     23[0m     s_lp_filtered [38;5;241m=[39m signal[38;5;241m.[39mconvolve(s, lp_filter_coeffs, mode[38;5;241m=[39m[38;5;124m'[39m[38;5;124msame[39m[38;5;124m'[39m) [38;5;241m/[39m np[38;5;241m.[39msum(lp_filter_coeffs)
-[0;32m     25[0m     [38;5;66;03m# Normalize the filtered signal to prevent clipping[39;00m
+Cell [1;32mIn[15], line 28[0m
+[0;32m     25[0m fig[38;5;241m.[39mshow(renderer[38;5;241m=[39m[38;5;124m'[39m[38;5;124mnotebook[39m[38;5;124m'[39m)
+[0;32m     27[0m [38;5;66;03m# Convert figure to HTML[39;00m
+[1;32m---> 28[0m fig_html [38;5;241m=[39m [43mpio[49m[38;5;241m.[39mto_html(fig, full_html[38;5;241m=[39m[38;5;28;01mFalse[39;00m, include_plotlyjs[38;5;241m=[39m[38;5;124m'[39m[38;5;124mcdn[39m[38;5;124m'[39m)
+[0;32m     29[0m display(HTML(fig_html))
 
-[1;31mNameError[0m: name 'lp_filters' is not defined
+[1;31mNameError[0m: name 'pio' is not defined
 
