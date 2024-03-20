@@ -18,28 +18,106 @@ Traceback (most recent call last):
     raise CellExecutionError.from_cell_and_msg(cell, exec_reply_content)
 nbclient.exceptions.CellExecutionError: An error occurred while executing the following cell:
 ------------------
-f=open("files/violin.wav", 'rb')
-Fs_viol, s_viol = scipy.io.wavfile.read(f)
-print('Fs_viol=',Fs_viol, ' number of samples=',len(s_viol))
-f.close()
+%matplotlib inline
+import numpy as np
+import matplotlib.pyplot as plt
+from scipy import signal
+from scipy.io.wavfile import write
+from IPython.display import display, Audio, clear_output
+import ipywidgets as widgets
+import io
+
+filters = {
+    'lpass32': signal.remez(33, [0, 0.1*Fs, 0.15*Fs, 0.5*Fs], [1, 0], Hz=Fs),
+    'lpass64': signal.remez(65, [0, 0.1*Fs, 0.15*Fs, 0.5*Fs], [1, 0], Hz=Fs),
+    'lpass128': signal.remez(129, [0, 0.1*Fs, 0.15*Fs, 0.5*Fs], [1, 0], Hz=Fs),
+    'lpass160': signal.remez(161, [0, 0.1*Fs, 0.15*Fs, 0.5*Fs], [1, 0], Hz=Fs),
+    'lpass256': signal.remez(257, [0, 0.1*Fs, 0.15*Fs, 0.5*Fs], [1, 0], Hz=Fs)
+}
+
+# Prepare audio data
+audio_data = {}
+
+for name, lp_filter_coeffs in lp_filters.items():
+    # Apply the filter to the signal
+    s_lp_filtered = signal.convolve(s, lp_filter_coeffs, mode='same') / np.sum(lp_filter_coeffs)
+    
+    # Normalize the filtered signal to prevent clipping
+    s_lp_filtered_normalized = np.int16((s_lp_filtered / np.max(np.abs(s_lp_filtered))) * 32767)
+    
+    # Write to an in-memory file
+    audio_buf = io.BytesIO()
+    write(audio_buf, Fs, s_lp_filtered_normalized)
+    audio_buf.seek(0)  # Go back to the beginning of the BytesIO object
+    
+    # Store the audio buffer
+    audio_data[name] = audio_buf
+
+# Function to display the frequency response of the filtered signal
+def plot_freq_response(filter_name):
+    with plot_output:
+        clear_output(wait=True)
+        # Apply the filter to the original signal
+        s_lp_filtered = signal.convolve(s, lp_filters[filter_name], mode='same') / np.sum(lp_filters[filter_name])
+        
+        # Calculate FFT
+        freqs = np.fft.rfftfreq(len(s_lp_filtered), 1/Fs)
+        fft_mag = np.abs(np.fft.rfft(s_lp_filtered))
+        
+        # Convert magnitude to dB
+        fft_mag_db = 20 * np.log10(fft_mag)
+        
+        plt.figure(figsize=(10, 5))
+        plt.plot(freqs, fft_mag_db)
+        plt.title(f'Frequency Response of Filtered Signal with {filter_name}')
+        plt.xlabel('Frequency (Hz)')
+        plt.ylabel('Magnitude (dB)')
+        plt.grid(True)
+        plt.xlim(0, Fs/2)
+        plt.show()
+
+# Audio playback function
+def show_audio_player(filter_name):
+    with audio_output:
+        clear_output(wait=True)
+        display(Audio(data=audio_data[filter_name].getvalue(), rate=Fs))
+
+# Widget setup
+filter_dropdown = widgets.Dropdown(
+    options=[(name, name) for name in lp_filters.keys()],
+    value='lpass32',
+    description='Filter:'
+)
+
+plot_output = widgets.Output()
+audio_output = widgets.Output()
+
+def on_filter_change(change):
+    filter_name = change['new']
+    plot_freq_response(filter_name)
+    show_audio_player(filter_name)
+
+filter_dropdown.observe(on_filter_change, names='value')
+
+# Display the UI
+vbox = widgets.VBox([filter_dropdown, plot_output, audio_output])
+display(vbox)
+
+# Initialize
+on_filter_change({'new': filter_dropdown.value})
+
 ------------------
 
 
 [1;31m---------------------------------------------------------------------------[0m
-[1;31mFileNotFoundError[0m                         Traceback (most recent call last)
-Cell [1;32mIn[10], line 1[0m
-[1;32m----> 1[0m f[38;5;241m=[39m[38;5;28;43mopen[39;49m[43m([49m[38;5;124;43m"[39;49m[38;5;124;43mfiles/violin.wav[39;49m[38;5;124;43m"[39;49m[43m,[49m[43m [49m[38;5;124;43m'[39;49m[38;5;124;43mrb[39;49m[38;5;124;43m'[39;49m[43m)[49m
-[0;32m      2[0m Fs_viol, s_viol [38;5;241m=[39m scipy[38;5;241m.[39mio[38;5;241m.[39mwavfile[38;5;241m.[39mread(f)
-[0;32m      3[0m [38;5;28mprint[39m([38;5;124m'[39m[38;5;124mFs_viol=[39m[38;5;124m'[39m,Fs_viol, [38;5;124m'[39m[38;5;124m number of samples=[39m[38;5;124m'[39m,[38;5;28mlen[39m(s_viol))
+[1;31mNameError[0m                                 Traceback (most recent call last)
+Cell [1;32mIn[11], line 21[0m
+[0;32m     18[0m [38;5;66;03m# Prepare audio data[39;00m
+[0;32m     19[0m audio_data [38;5;241m=[39m {}
+[1;32m---> 21[0m [38;5;28;01mfor[39;00m name, lp_filter_coeffs [38;5;129;01min[39;00m [43mlp_filters[49m[38;5;241m.[39mitems():
+[0;32m     22[0m     [38;5;66;03m# Apply the filter to the signal[39;00m
+[0;32m     23[0m     s_lp_filtered [38;5;241m=[39m signal[38;5;241m.[39mconvolve(s, lp_filter_coeffs, mode[38;5;241m=[39m[38;5;124m'[39m[38;5;124msame[39m[38;5;124m'[39m) [38;5;241m/[39m np[38;5;241m.[39msum(lp_filter_coeffs)
+[0;32m     25[0m     [38;5;66;03m# Normalize the filtered signal to prevent clipping[39;00m
 
-File [1;32m~\AppData\Roaming\Python\Python311\site-packages\IPython\core\interactiveshell.py:310[0m, in [0;36m_modified_open[1;34m(file, *args, **kwargs)[0m
-[0;32m    303[0m [38;5;28;01mif[39;00m file [38;5;129;01min[39;00m {[38;5;241m0[39m, [38;5;241m1[39m, [38;5;241m2[39m}:
-[0;32m    304[0m     [38;5;28;01mraise[39;00m [38;5;167;01mValueError[39;00m(
-[0;32m    305[0m         [38;5;124mf[39m[38;5;124m"[39m[38;5;124mIPython won[39m[38;5;124m'[39m[38;5;124mt let you open fd=[39m[38;5;132;01m{[39;00mfile[38;5;132;01m}[39;00m[38;5;124m by default [39m[38;5;124m"[39m
-[0;32m    306[0m         [38;5;124m"[39m[38;5;124mas it is likely to crash IPython. If you know what you are doing, [39m[38;5;124m"[39m
-[0;32m    307[0m         [38;5;124m"[39m[38;5;124myou can use builtins[39m[38;5;124m'[39m[38;5;124m open.[39m[38;5;124m"[39m
-[0;32m    308[0m     )
-[1;32m--> 310[0m [38;5;28;01mreturn[39;00m [43mio_open[49m[43m([49m[43mfile[49m[43m,[49m[43m [49m[38;5;241;43m*[39;49m[43margs[49m[43m,[49m[43m [49m[38;5;241;43m*[39;49m[38;5;241;43m*[39;49m[43mkwargs[49m[43m)[49m
-
-[1;31mFileNotFoundError[0m: [Errno 2] No such file or directory: 'files/violin.wav'
+[1;31mNameError[0m: name 'lp_filters' is not defined
 
