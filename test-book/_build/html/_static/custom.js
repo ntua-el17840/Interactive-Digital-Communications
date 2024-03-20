@@ -35,9 +35,9 @@ function observeStatusChanges() {
     const callback = function(mutationsList, observer) {
         for (const mutation of mutationsList) {
             if (mutation.type === 'childList' || mutation.type === 'characterData') {
-                let elements = document.querySelectorAll('.status');
+                let elements = document.querySelectorAll('.launch_msg');
                 elements.forEach((element) => {
-                    if (element.textContent.trim().toLowerCase() === 'ready') {
+                    if (element.textContent === 'Launching from mybinder.org: ') {
                         customFunction(); // Hide '.thebelab-input' in relevant codecells when status is 'ready'
                     }
                 });
