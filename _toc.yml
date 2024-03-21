@@ -1,0 +1,17 @@
+# Table of contents
+# Learn more at https://jupyterbook.org/customize/toc.html
+
+format: jb-book
+root: intro
+parts:
+- caption: Intro to Digital Communications
+  chapters:
+  - file: digital_communications_intro
+- caption: Lab Exercises
+  chapters:
+  - file: content/Digcom_Lab1
+  - file: content/Digcom_Lab2
+  - file: content/Digcom_Lab3
+  - file: content/Digcom_Lab4
+  - file: content/Digcom_Lab5
+  - file: content/Digcom_Lab6
