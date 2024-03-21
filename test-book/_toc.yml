@@ -4,12 +4,12 @@
 format: jb-book
 root: intro
 parts:
-- caption: Beginning Files
+- caption: Introduction to Digital Communications
   chapters:
   - file: markdown
   - file: notebooks
   - file: markdown-notebooks
-- caption: Digital Communications
+- caption: Lab Exercises
   chapters:
   - file: content/Digcom_Lab1
   - file: content/Digcom_Lab2
