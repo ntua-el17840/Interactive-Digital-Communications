@@ -4,17 +4,9 @@
 format: jb-book
 root: intro
 parts:
-<<<<<<< HEAD
-- caption: Introduction to Digital Communications
-  chapters:
-  - file: markdown
-  - file: notebooks
-  - file: markdown-notebooks
-=======
 - caption: Intro to Digital Communications
   chapters:
   - file: digital_communications_intro
->>>>>>> d546939e94d695c6e9c44c085bc5ec2e2e14440e
 - caption: Lab Exercises
   chapters:
   - file: content/Digcom_Lab1
