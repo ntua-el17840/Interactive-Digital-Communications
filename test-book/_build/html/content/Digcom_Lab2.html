@@ -63,7 +63,7 @@
     <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'content/Digcom_Lab2';</script>
-    <script src="../_static/custom.js?v=79ff29b6"></script>
+    <script src="../_static/custom.js?v=8345a7c9"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="Εργαστηριακή Άσκηση 3" href="Digcom_Lab3.html" />
@@ -527,14 +527,10 @@ document.write(`
 </div>
 </div>
 </div>
-<div class="cell tag_remove-input tag_thebe-init docutils container">
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>X equals Y: False
-X equals Z: True
-</pre></div>
-</div>
-</div>
-</div>
+<ul class="simple">
+<li><p>X equals Y: False</p></li>
+<li><p>X equals Z: True</p></li>
+</ul>
 <p>Question 1: Which of the vectors Y and Z equals X? Write your answer in a text file lab2_nnnnn.txt, where nnnnn are the last five numbers of your registration number, using Notepad from the Windows menu (Start → Programs → Accessories → Notepad) and save it in the My Documents folder. You will submit this file electronically at the end, after answering the next questions, so you can leave it open.</p>
 <p>Question 2: Repeat with <span class="math notranslate nohighlight">\(X=[-1:2]\)</span>. What do you observe? Write your answer in the text file lab2_nnnnn.txt. Try the following two examples in the command window to consolidate the use of the <span class="math notranslate nohighlight">\(fftshift\)</span> and <span class="math notranslate nohighlight">\(ifftshift\)</span> functions in combination with <span class="math notranslate nohighlight">\(fft\)</span> and <span class="math notranslate nohighlight">\(ifft\)</span>.</p>
 <details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
@@ -1519,7 +1515,7 @@ Code<div class="sd-summary-down docutils">
 <section id="question-2">
 <h3>Question 2<a class="headerlink" href="#question-2" title="Link to this heading">#</a></h3>
 <p>For the bandpass filter from question 1 above, using the Parks-McClellan method, select an appropriate filter order to achieve at least 60 dB attenuation in the stop bands. Apply this filter to the four sine wave signal from question 5 of Part B.</p>
-<div class="cell tag_thebe-init tag_hode-code-cell docutils container">
+<div class="cell tag_thebe-init tag_hide-code-cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">scipy.signal</span> <span class="kn">import</span> <span class="n">remez</span><span class="p">,</span> <span class="n">freqz</span>
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>

@@ -1,7 +1,7 @@
 function isTargetPage() {
     // Check if the URL path contains the specific page segment, accounting for variable base paths
     const urlPath = window.location.pathname;
-    return urlPath.includes('/content/Digcom_Lab1.html');
+    return urlPath.includes('/content/Digcom_Lab');
 }
 
 
