@@ -786,7 +786,7 @@ document.write(`
 X(f)=\int_{-\infty}^{\infty} x(t)e^{-j2\pi ft} dt
  
 \]</div>
-<p><img alt="theory_1.png" src="../_images/theory_1.png" /></p>
+<p><img alt="lab1_1.png" src="../_images/lab1_1.png" /></p>
 <p>By sampling <span class="math notranslate nohighlight">\(x(t)\)</span> at a rate <span class="math notranslate nohighlight">\(f_s=1/T_s\)</span>, a discrete-time signal <span class="math notranslate nohighlight">\(x(nT_s)\)</span> is produced. Mathematically, it is represented as a series of delta functions</p>
 <div class="math notranslate nohighlight">
 \[
@@ -802,7 +802,7 @@ X_\delta (f)=\sum_{n=-\infty}^{\infty}x(nT_s)e^{-j2\pi fnT_s}=X(f)*1/T_s\sum_{n=
  
 \]</div>
 <p>which is a periodic function.</p>
-<p><img alt="theory_2.png" src="../_images/theory_2.png" /></p>
+<p><img alt="lab1_2.png" src="../_images/lab1_2.png" /></p>
 <p>For band-limited signals <span class="math notranslate nohighlight">\(x(t)\)</span> with bandwidth W, assuming that the sampling rate <span class="math notranslate nohighlight">\(fs ≥ 2W\)</span>, it holds that <span class="math notranslate nohighlight">\(X(f) = T_s X_\delta(f)\)</span>, <span class="math notranslate nohighlight">\(0 ≤ f ≤ W\)</span>, meaning, the signal <span class="math notranslate nohighlight">\(X(f)\)</span> results from passing the sampled <span class="math notranslate nohighlight">\(x_\delta(t)\)</span> through an ideal low-pass filter with gain <span class="math notranslate nohighlight">\(T_s\)</span>. From the previous schema, it becomes evident that if the sampling is done with a frequency less than twice the highest frequency <span class="math notranslate nohighlight">\(W\)</span> of the signal (undersampling), then “images” of the spectrum from higher frequencies appear in the signal’s frequency domain, preventing the accurate restoration of the original continuous-time signal. This phenomenon is called aliasing, and the error during the restoration of the original signal is referred to as aliasing error.
 Sampling in the time domain is the basis for defining the Discrete Time Fourier Transform (DTFT). For a series of discrete numbers <span class="math notranslate nohighlight">\(x[n]\)</span>, the discrete-time Fourier transform is defined as:</p>
 <div class="math notranslate nohighlight">
@@ -812,7 +812,7 @@ X_d(\phi) \triangleq \sum_{n=-\infty}^{\infty} x[n] \exp (-j 2 \pi n \phi)
  
 \]</div>
 <p>The DTFT is a periodic function with a period of <span class="math notranslate nohighlight">\(1\)</span>, therefore, it is sufficient to compute it in the frequency interval <span class="math notranslate nohighlight">\([0,1]\)</span> or equivalently <span class="math notranslate nohighlight">\([-½,½]\)</span>. Note that the DTFT, although it arises from a series of discrete numbers <span class="math notranslate nohighlight">\(x[n]\)</span>, is a continuous function of the variable <span class="math notranslate nohighlight">\(\phi\)</span> as illustrated in the next schema.</p>
-<p><img alt="theory_3.png" src="../_images/theory_3.png" /></p>
+<p><img alt="lab1_3.png" src="../_images/lab1_3.png" /></p>
 <p>With the series of discrete numbers arising as a result of sampling, <span class="math notranslate nohighlight">\(x[n]=x(nT_s)\)</span>, the DTFT and the Fourier transform <span class="math notranslate nohighlight">\(X_\delta(f)\)</span> of the sampled signal are connected through the correspondence <span class="math notranslate nohighlight">\(\phi ↔ f/f_s\)</span>. The common practice is to represent the ratio <span class="math notranslate nohighlight">\(f/f_s\)</span> as normalized frequency <span class="math notranslate nohighlight">\(\phi\)</span> (<span class="math notranslate nohighlight">\(f_D\)</span>, in your notes) and the real frequencies to arise as multiples of it (usually fractional). To link the DTFT with the Fourier transform <span class="math notranslate nohighlight">\(X(f)\)</span> of the signal, an additional conversion to the sampling period by multiplying by <span class="math notranslate nohighlight">\(T_s\)</span> (or dividing by <span class="math notranslate nohighlight">\(f_s\)</span>) is required.
 Analogous to sampling signals in time, we can sample in the frequency domain by taking discrete values <span class="math notranslate nohighlight">\(X(kf_o)\)</span> of the Fourier transform corresponding to a frequency analysis <span class="math notranslate nohighlight">\(f_o=1/T_o\)</span>. This is equivalent to the periodic repetition of the continuous-time signal <span class="math notranslate nohighlight">\(x(t)\)</span> every <span class="math notranslate nohighlight">\(Τ_ο\)</span>, since the periodic signal</p>
 <div class="math notranslate nohighlight">
@@ -858,7 +858,7 @@ x_{n}=\frac{1}{N} \sum_{k=0}^{N-1} X_{k} \exp \left(j 2 \pi n \frac{k}{N}\right)
  
 \]</div>
 <p>The <span class="math notranslate nohighlight">\(X_d(\phi)\)</span> as DTFT is a periodic function and if the original series xn was periodic (and we didn’t apply the window), then <span class="math notranslate nohighlight">\(X_d(\phi)\)</span> would be zero everywhere except at the sampling points <span class="math notranslate nohighlight">\(k/N\)</span>. That is, if we consider a finite-length series of numbers that repeats periodically, the discrete-time Fourier transform of it (DTFT) is also periodic and discrete. Moreover, the DFT and its inverse IDFT, if we did not limit the indices <span class="math notranslate nohighlight">\(n\)</span> and <span class="math notranslate nohighlight">\(k\)</span> between <span class="math notranslate nohighlight">\(0\)</span> and <span class="math notranslate nohighlight">\(N-1\)</span>, would be periodic functions. Therefore, the finite series xn can be considered as a periodic discrete-time signal observed only during a period and the DFT, the series <span class="math notranslate nohighlight">\(X_k\)</span>, as the samples with resolution <span class="math notranslate nohighlight">\(1/N\)</span> of the DTFT <span class="math notranslate nohighlight">\(X_d(\phi)\)</span> in the domain of normalized frequencies <span class="math notranslate nohighlight">\([0,1]\)</span>, as shown in the next schema.</p>
-<p><img alt="theory_4.png" src="../_images/theory_4.png" /></p>
+<p><img alt="lab1_4.png" src="../_images/lab1_4.png" /></p>
 </section>
 <section id="spectral-analysis">
 <h3>Spectral Analysis<a class="headerlink" href="#spectral-analysis" title="Permalink to this heading">#</a></h3>
