@@ -1,56 +1,177 @@
 Traceback (most recent call last):
-  File "C:\Users\sotiris\AppData\Local\anaconda3\Lib\site-packages\jupyter_cache\executors\utils.py", line 58, in single_nb_execution
+  File "C:\Users\Sotiris\anaconda3\envs\digital_communications\lib\site-packages\jupyter_cache\executors\utils.py", line 58, in single_nb_execution
     executenb(
-  File "C:\Users\sotiris\AppData\Local\anaconda3\Lib\site-packages\nbclient\client.py", line 1204, in execute
+  File "C:\Users\Sotiris\anaconda3\envs\digital_communications\lib\site-packages\nbclient\client.py", line 1305, in execute
     return NotebookClient(nb=nb, resources=resources, km=km, **kwargs).execute()
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "C:\Users\sotiris\AppData\Local\anaconda3\Lib\site-packages\nbclient\util.py", line 84, in wrapped
-    return just_run(coro(*args, **kwargs))
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "C:\Users\sotiris\AppData\Local\anaconda3\Lib\site-packages\nbclient\util.py", line 62, in just_run
-    return loop.run_until_complete(coro)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "C:\Users\sotiris\AppData\Local\anaconda3\Lib\asyncio\base_events.py", line 653, in run_until_complete
+  File "C:\Users\Sotiris\anaconda3\envs\digital_communications\lib\site-packages\jupyter_core\utils\__init__.py", line 173, in wrapped
+    return loop.run_until_complete(inner)
+  File "C:\Users\Sotiris\anaconda3\envs\digital_communications\lib\asyncio\base_events.py", line 616, in run_until_complete
     return future.result()
-           ^^^^^^^^^^^^^^^
-  File "C:\Users\sotiris\AppData\Local\anaconda3\Lib\site-packages\nbclient\client.py", line 663, in async_execute
+  File "C:\Users\Sotiris\anaconda3\envs\digital_communications\lib\site-packages\nbclient\client.py", line 705, in async_execute
     await self.async_execute_cell(
-  File "C:\Users\sotiris\AppData\Local\anaconda3\Lib\site-packages\nbclient\client.py", line 965, in async_execute_cell
+  File "C:\Users\Sotiris\anaconda3\envs\digital_communications\lib\site-packages\nbclient\client.py", line 1058, in async_execute_cell
     await self._check_raise_for_error(cell, cell_index, exec_reply)
-  File "C:\Users\sotiris\AppData\Local\anaconda3\Lib\site-packages\nbclient\client.py", line 862, in _check_raise_for_error
+  File "C:\Users\Sotiris\anaconda3\envs\digital_communications\lib\site-packages\nbclient\client.py", line 914, in _check_raise_for_error
     raise CellExecutionError.from_cell_and_msg(cell, exec_reply_content)
 nbclient.exceptions.CellExecutionError: An error occurred while executing the following cell:
 ------------------
-from scipy import signal
-import scipy.io.wavfile
-# Ανατρέξτε στην τεκμηρίωση της βιβλιοθήκης scipy.signal
-# https://docs.scipy.org/doc/scipy/reference/signal.html
-from scipy.fft import fft, fftfreq
-from dash import Dash, dcc, html, Input, Output
-import matplotlib
-import matplotlib.pyplot as plt
 import numpy as np
-from numpy import random
-import pandas
-import plotly
-import plotly.express as px
-import plotly.graph_objs as go
-import dash_bootstrap_components as dbc
-import warnings
-warnings.filterwarnings('ignore')
-print("Libraries added successfully!")
+from scipy.signal import remez, convolve, welch
+import matplotlib.pyplot as plt
+import scipy.io
+import sounddevice as sd
+
+#6
+with open('../files/sima.txt') as f:
+    s = [float(x) for x in f]
+s=np.array(s)
+Fs=8192
+
+
+# 7
+f, Pxx = scipy.signal.welch(s, Fs)
+#plt.figure(); plt.semilogy(f, Pxx); plt.grid(True); plt.xlabel('Frequency [Hz]'); plt.ylabel('PSD [V**2/Hz]')
+
+# 8-9
+N = Fs // 2  # Adjusted for Python indexing, assuming Fs is even
+H = np.concatenate((np.ones(N//4), np.zeros(N//2), np.ones(N//4)))
+
+# 10-14
+h = np.fft.ifft(H, n=N).real
+h = np.fft.fftshift(h)  # Equivalent to MATLAB's circshift for centering the impulse response
+
+# 15-17
+h32 = h[N//2-16:N//2+17]
+h64 = h[N//2-32:N//2+33]
+h128 = h[N//2-64:N//2+65]
+
+# 18 - Stem plot for h32, h64, h128
+
+# Create a 1x2 grid of subplots: one row, two columns
+fig, axs = plt.subplots(1, 2, figsize=(14, 4))  # Adjust the figsize to suit your needs
+
+# Plot stem plots on the left subplot (axs[0])
+axs[0].stem(range(len(h64)), h64, basefmt=" ", linefmt='g-', markerfmt='go', label='h64')
+axs[0].stem(range(len(h32)), h32, basefmt=" ", linefmt='b-', markerfmt='bo', label='h32')
+axs[0].stem(range(len(h128)), h128, basefmt=" ", linefmt='r-', markerfmt='ro', label='h128')
+axs[0].set_title('Stem Plot of h32, h64, h128')
+axs[0].set_xlabel('Samples')
+axs[0].set_ylabel('Amplitude')
+axs[0].grid(True)
+axs[0].legend()
+
+# 19 - Frequency response of h64
+w, h = scipy.signal.freqz(h64)
+#plt.figure(); plt.plot(w / np.pi * (Fs / 2), np.abs(h)); plt.title('Frequency Response of h64');plt.xlabel('Frequency (Hz)');plt.ylabel('Magnitude');plt.grid()
+
+# 20 - For visualizing the frequency responses of h32, h64, and h128 together
+plt.figure(figsize=(14, 4))
+
+# Define a list of colors corresponding to each filter
+colors = ['b', 'g', 'r']  # Blue for h32, Green for h64, Red for h128
+
+for filt, label, color in zip([h32, h64, h128], ['h32', 'h64', 'h128'], colors):
+    w, h = scipy.signal.freqz(filt)
+    axs[1].plot(w / np.pi * (Fs / 2), 20 * np.log10(abs(h)), label=label, color=color)
+axs[1].set_title('Frequency Responses of h32, h64, h128')
+axs[1].set_xlabel('Frequency (Hz)')
+axs[1].set_ylabel('Magnitude (dB)')
+axs[1].grid(True)
+axs[1].legend()
+
+# Display the figure with plots side by side
+plt.tight_layout()
+plt.show()
+
+# 22-26
+wh = np.hamming(len(h64))
+wk = np.kaiser(len(h64), 5)
+plt.figure(figsize=(14, 4)); plt.plot(wh, 'g', label='Hamming'); plt.plot(wk, 'r', label='Kaiser'); plt.legend(); plt.grid()
+
+# 27-30
+h_hamming = h64 * wh
+h_kaiser = h64 * wk
+
+# 31 `wvtool` equivalent visualization
+# Plot the impulse responses
+# Create a 1x2 grid of subplots
+fig, axs = plt.subplots(1, 2, figsize=(14, 4))  # Adjust the figsize to suit your needs
+
+# Impulse Responses Plot on the left subplot (axs[0])
+axs[0].stem(range(len(h64)), h64, basefmt="b", linefmt='b-', markerfmt='bo', label='h64')
+axs[0].stem(range(len(h_hamming)), h_hamming, basefmt="g", linefmt='g-', markerfmt='go', label='h_hamming')
+axs[0].stem(range(len(h_kaiser)), h_kaiser, basefmt="r", linefmt='r-', markerfmt='ro', label='h_kaiser')
+axs[0].set_title('Impulse Responses')
+axs[0].set_xlabel('Samples')
+axs[0].set_ylabel('Amplitude')
+axs[0].legend()
+axs[0].grid(True)
+
+# Frequency Responses Plot on the right subplot (axs[1])
+colors = ['b', 'g', 'r']  # Blue for h64, Green for h_hamming, Red for h_kaiser
+for filt, label, color in zip([h64, h_hamming, h_kaiser], ['h64', 'h_hamming', 'h_kaiser'], colors):
+    w, h = scipy.signal.freqz(filt)
+    axs[1].plot(w / np.pi * (Fs / 2), 20 * np.log10(abs(h)), label=label, color=color)
+axs[1].set_title('Frequency Responses')
+axs[1].set_xlabel('Frequency (Hz)')
+axs[1].set_ylabel('Magnitude (dB)')
+axs[1].legend()
+axs[1].grid(True)
+
+plt.tight_layout()
+plt.show()
+
+# 32-38 Filtering and plotting PSD
+y_rect = np.convolve(s, h64, mode='same')
+f, Pxx = scipy.signal.welch(y_rect, Fs)
+#plt.figure();plt.grid(True); plt.semilogy(f, Pxx); plt.xlabel('Frequency [Hz]'); plt.ylabel('PSD [V**2/Hz]'); plt.title('h64')
+
+fig, axs = plt.subplots(1, 3, figsize=(14, 4))  # Adjust the figsize to suit your needs
+
+axs[0].semilogy(f, Pxx); axs[0].grid(True); axs[0].set_xlabel('Frequency [Hz]'); axs[0].set_ylabel('PSD [V**2/Hz]')
+
+y_hamm = np.convolve(s, h_hamming, mode='same')
+f, Pxx = scipy.signal.welch(y_hamm, Fs)
+#plt.figure();plt.grid(True); plt.semilogy(f, Pxx); plt.xlabel('Frequency [Hz]'); plt.ylabel('PSD [V**2/Hz]'); plt.title('h_hamming')
+
+y_kais = np.convolve(s, h_kaiser, mode='same')
+f, Pxx = scipy.signal.welch(y_kais, Fs)
+axs[1].grid(True); axs[1].semilogy(f, Pxx); axs[1].set_xlabel('Frequency [Hz]'); axs[1].set_ylabel('PSD [V**2/Hz]'); axs[1].set_title('h_kaiser')
+
+# 40-44  Parks-McClellan low-pass filter
+freq = np.array([0, 0.10, 0.15, 0.5]) * Fs  # Scale frequencies correctly
+gain = [1, 1, 0, 0]
+
+# Call firwin2 with corrected parameters and using the `fs` parameter
+hpm = signal.firwin2(65, freq, gain, fs=Fs)
+s_pm = np.convolve(s, hpm, 'same')
+
+# Plotting or analyzing the filtered signals (y_rect, y_hamm, y_kais, s_pm) can be done similarly
+# For example, to plot the PSD:
+f, Pxx_spec = signal.welch(s_pm, Fs, 'flattop', 1024, scaling='spectrum')
+axs[2].semilogy(f, np.sqrt(Pxx_spec))
+axs[2].set_xlabel('frequency [Hz]')
+axs[2].grid(True)
+axs[2].set_ylabel('Linear spectrum [V RMS]')
+axs[2].set_title('Power spectrum (welch)')
+
+plt.tight_layout()
+plt.show()
+
+# 45-46 Playing sound (s and s_pm assumed as original and filtered signal)
+sd.play(20 * s, Fs); sd.wait()
+# sd.play(20 * s_lp, Fs); sd.wait()  # Uncomment and adjust variable name as needed for the filtered signal
 ------------------
+
 
 [1;31m---------------------------------------------------------------------------[0m
 [1;31mModuleNotFoundError[0m                       Traceback (most recent call last)
-Cell [1;32mIn[5], line 6[0m
-[0;32m      3[0m [38;5;66;03m# Ανατρέξτε στην τεκμηρίωση της βιβλιοθήκης scipy.signal[39;00m
-[0;32m      4[0m [38;5;66;03m# https://docs.scipy.org/doc/scipy/reference/signal.html[39;00m
-[0;32m      5[0m [38;5;28;01mfrom[39;00m [38;5;21;01mscipy[39;00m[38;5;21;01m.[39;00m[38;5;21;01mfft[39;00m [38;5;28;01mimport[39;00m fft, fftfreq
-[1;32m----> 6[0m [38;5;28;01mfrom[39;00m [38;5;21;01mdash[39;00m [38;5;28;01mimport[39;00m Dash, dcc, html, Input, Output
-[0;32m      7[0m [38;5;28;01mimport[39;00m [38;5;21;01mmatplotlib[39;00m
-[0;32m      8[0m [38;5;28;01mimport[39;00m [38;5;21;01mmatplotlib[39;00m[38;5;21;01m.[39;00m[38;5;21;01mpyplot[39;00m [38;5;28;01mas[39;00m [38;5;21;01mplt[39;00m
+Cell [1;32mIn[6], line 5[0m
+[0;32m      3[0m [38;5;28;01mimport[39;00m [38;5;21;01mmatplotlib[39;00m[38;5;21;01m.[39;00m[38;5;21;01mpyplot[39;00m [38;5;28;01mas[39;00m [38;5;21;01mplt[39;00m
+[0;32m      4[0m [38;5;28;01mimport[39;00m [38;5;21;01mscipy[39;00m[38;5;21;01m.[39;00m[38;5;21;01mio[39;00m
+[1;32m----> 5[0m [38;5;28;01mimport[39;00m [38;5;21;01msounddevice[39;00m [38;5;28;01mas[39;00m [38;5;21;01msd[39;00m
+[0;32m      7[0m [38;5;66;03m#6[39;00m
+[0;32m      8[0m [38;5;28;01mwith[39;00m [38;5;28mopen[39m([38;5;124m'[39m[38;5;124m../files/sima.txt[39m[38;5;124m'[39m) [38;5;28;01mas[39;00m f:
 
-[1;31mModuleNotFoundError[0m: No module named 'dash'
-ModuleNotFoundError: No module named 'dash'
+[1;31mModuleNotFoundError[0m: No module named 'sounddevice'
 
