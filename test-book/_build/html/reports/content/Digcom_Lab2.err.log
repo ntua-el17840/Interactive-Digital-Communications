@@ -15,164 +15,112 @@ Traceback (most recent call last):
     raise CellExecutionError.from_cell_and_msg(cell, exec_reply_content)
 nbclient.exceptions.CellExecutionError: An error occurred while executing the following cell:
 ------------------
-import numpy as np
-from scipy.signal import remez, convolve, welch
+import ipywidgets as widgets
+from IPython.display import display, clear_output
+import scipy
+from scipy.signal import welch
 import matplotlib.pyplot as plt
-import scipy.io
-import sounddevice as sd
+import numpy as np
 
-#6
-with open('../files/sima.txt') as f:
+#Define parameters
+with open('http://127.0.0.1:5500/test-book/_build/html/_static/sima.txt') as f:
     s = [float(x) for x in f]
 s=np.array(s)
 Fs=8192
-
-
-# 7
 f, Pxx = scipy.signal.welch(s, Fs)
-#plt.figure(); plt.semilogy(f, Pxx); plt.grid(True); plt.xlabel('Frequency [Hz]'); plt.ylabel('PSD [V**2/Hz]')
-
-# 8-9
-N = Fs // 2  # Adjusted for Python indexing, assuming Fs is even
+N = Fs // 2 
 H = np.concatenate((np.ones(N//4), np.zeros(N//2), np.ones(N//4)))
-
-# 10-14
 h = np.fft.ifft(H, n=N).real
-h = np.fft.fftshift(h)  # Equivalent to MATLAB's circshift for centering the impulse response
-
-# 15-17
+h = np.fft.fftshift(h)
 h32 = h[N//2-16:N//2+17]
 h64 = h[N//2-32:N//2+33]
 h128 = h[N//2-64:N//2+65]
 
-# 18 - Stem plot for h32, h64, h128
+# Assuming H is defined and calculated as before
+H = np.hstack((np.ones(int(Fs/8)), np.zeros(int(Fs-Fs/4)), np.ones(int(Fs/8))))
+h = np.real(np.fft.ifft(H))
+middle = int(len(h)/2)
+h = np.hstack((h[middle:], h[:middle]))
+h32 = h[middle-16:middle+16]
+h64 = h[middle-32:middle+32]
+h128 = h[middle-64:middle+64]
+h160 = h[middle-80:middle+80]
+h256 = h[middle-128:middle+128]
 
-# Create a 1x2 grid of subplots: one row, two columns
-fig, axs = plt.subplots(1, 2, figsize=(14, 4))  # Adjust the figsize to suit your needs
+h_variants = {
+    'h32': h[middle-16:middle+16],
+    'h64': h[middle-32:middle+32],
+    'h128': h[middle-64:middle+64],
+    'h160': h[middle-80:middle+80],
+    'h256': h[middle-128:middle+128],
+}
 
-# Plot stem plots on the left subplot (axs[0])
-axs[0].stem(range(len(h64)), h64, basefmt=" ", linefmt='g-', markerfmt='go', label='h64')
-axs[0].stem(range(len(h32)), h32, basefmt=" ", linefmt='b-', markerfmt='bo', label='h32')
-axs[0].stem(range(len(h128)), h128, basefmt=" ", linefmt='r-', markerfmt='ro', label='h128')
-axs[0].set_title('Stem Plot of h32, h64, h128')
-axs[0].set_xlabel('Samples')
-axs[0].set_ylabel('Amplitude')
-axs[0].grid(True)
-axs[0].legend()
+output2 = widgets.Output()
+output2.layout = Layout(width='auto', margin='0 auto')
 
-# 19 - Frequency response of h64
-w, h = scipy.signal.freqz(h64)
-#plt.figure(); plt.plot(w / np.pi * (Fs / 2), np.abs(h)); plt.title('Frequency Response of h64');plt.xlabel('Frequency (Hz)');plt.ylabel('Magnitude');plt.grid()
+# Function to plot
+def plot_stem(h_key):
+    with output2:
+        clear_output(wait=True)  # Clear the previous plots
+        h_data = h_variants[h_key]
+        x_values = np.arange(len(h_data))
+        plt.close('all')  # Close all existing figures
+        fig, ax = plt.subplots()
+        markerline, stemlines, baseline = ax.stem(x_values, h_data, '-.')
+        plt.setp(baseline, 'color', 'k', 'linewidth', 2)
+        plt.title('Stem plot of selected filter')
+        plt.xlabel('Index')
+        plt.ylabel('Amplitude')
+        plt.show()
 
-# 20 - For visualizing the frequency responses of h32, h64, and h128 together
-plt.figure(figsize=(14, 4))
+# HTML Label
+html_label = widgets.HTML(
+    value="<h2 style='font-weight: bold; font-size: 30px; text-align: center;'>Filter Visualization</h2>"
+)
 
-# Define a list of colors corresponding to each filter
-colors = ['b', 'g', 'r']  # Blue for h32, Green for h64, Red for h128
+# Setup the widgets
+dropdown = widgets.Dropdown(options=list(h_variants.keys()), value='h32', description='Filter:')
 
-for filt, label, color in zip([h32, h64, h128], ['h32', 'h64', 'h128'], colors):
-    w, h = scipy.signal.freqz(filt)
-    axs[1].plot(w / np.pi * (Fs / 2), 20 * np.log10(abs(h)), label=label, color=color)
-axs[1].set_title('Frequency Responses of h32, h64, h128')
-axs[1].set_xlabel('Frequency (Hz)')
-axs[1].set_ylabel('Magnitude (dB)')
-axs[1].grid(True)
-axs[1].legend()
+# Function that updates the plot based on dropdown
+def update_plot(change):
+    plot_stem(change['new'])
 
-# Display the figure with plots side by side
-plt.tight_layout()
-plt.show()
+# Observe dropdown for changes
+dropdown.observe(update_plot, names='value')
 
-# 22-26
-wh = np.hamming(len(h64))
-wk = np.kaiser(len(h64), 5)
-plt.figure(figsize=(14, 4)); plt.plot(wh, 'g', label='Hamming'); plt.plot(wk, 'r', label='Kaiser'); plt.legend(); plt.grid()
+# VBox layout to align items
+vbox_layout = Layout(display='flex', flex_flow='column', align_items='center', justify_content='space-between')
+ui = widgets.VBox([html_label, dropdown], layout=vbox_layout)
 
-# 27-30
-h_hamming = h64 * wh
-h_kaiser = h64 * wk
+# Group the dropdown, output widget, and HTML label in a vertical box layout
+vbox_final = widgets.VBox([ui, output2])
 
-# 31 `wvtool` equivalent visualization
-# Plot the impulse responses
-# Create a 1x2 grid of subplots
-fig, axs = plt.subplots(1, 2, figsize=(14, 4))  # Adjust the figsize to suit your needs
+# Display the final VBox
+display(vbox_final)
 
-# Impulse Responses Plot on the left subplot (axs[0])
-axs[0].stem(range(len(h64)), h64, basefmt="b", linefmt='b-', markerfmt='bo', label='h64')
-axs[0].stem(range(len(h_hamming)), h_hamming, basefmt="g", linefmt='g-', markerfmt='go', label='h_hamming')
-axs[0].stem(range(len(h_kaiser)), h_kaiser, basefmt="r", linefmt='r-', markerfmt='ro', label='h_kaiser')
-axs[0].set_title('Impulse Responses')
-axs[0].set_xlabel('Samples')
-axs[0].set_ylabel('Amplitude')
-axs[0].legend()
-axs[0].grid(True)
+# Initial call to display the plot
+plot_stem(dropdown.value)  # Use the dropdown's value
 
-# Frequency Responses Plot on the right subplot (axs[1])
-colors = ['b', 'g', 'r']  # Blue for h64, Green for h_hamming, Red for h_kaiser
-for filt, label, color in zip([h64, h_hamming, h_kaiser], ['h64', 'h_hamming', 'h_kaiser'], colors):
-    w, h = scipy.signal.freqz(filt)
-    axs[1].plot(w / np.pi * (Fs / 2), 20 * np.log10(abs(h)), label=label, color=color)
-axs[1].set_title('Frequency Responses')
-axs[1].set_xlabel('Frequency (Hz)')
-axs[1].set_ylabel('Magnitude (dB)')
-axs[1].legend()
-axs[1].grid(True)
-
-plt.tight_layout()
-plt.show()
-
-# 32-38 Filtering and plotting PSD
-y_rect = np.convolve(s, h64, mode='same')
-f, Pxx = scipy.signal.welch(y_rect, Fs)
-#plt.figure();plt.grid(True); plt.semilogy(f, Pxx); plt.xlabel('Frequency [Hz]'); plt.ylabel('PSD [V**2/Hz]'); plt.title('h64')
-
-fig, axs = plt.subplots(1, 3, figsize=(14, 4))  # Adjust the figsize to suit your needs
-
-axs[0].semilogy(f, Pxx); axs[0].grid(True); axs[0].set_xlabel('Frequency [Hz]'); axs[0].set_ylabel('PSD [V**2/Hz]')
-
-y_hamm = np.convolve(s, h_hamming, mode='same')
-f, Pxx = scipy.signal.welch(y_hamm, Fs)
-#plt.figure();plt.grid(True); plt.semilogy(f, Pxx); plt.xlabel('Frequency [Hz]'); plt.ylabel('PSD [V**2/Hz]'); plt.title('h_hamming')
-
-y_kais = np.convolve(s, h_kaiser, mode='same')
-f, Pxx = scipy.signal.welch(y_kais, Fs)
-axs[1].grid(True); axs[1].semilogy(f, Pxx); axs[1].set_xlabel('Frequency [Hz]'); axs[1].set_ylabel('PSD [V**2/Hz]'); axs[1].set_title('h_kaiser')
-
-# 40-44  Parks-McClellan low-pass filter
-freq = np.array([0, 0.10, 0.15, 0.5]) * Fs  # Scale frequencies correctly
-gain = [1, 1, 0, 0]
-
-# Call firwin2 with corrected parameters and using the `fs` parameter
-hpm = signal.firwin2(65, freq, gain, fs=Fs)
-s_pm = np.convolve(s, hpm, 'same')
-
-# Plotting or analyzing the filtered signals (y_rect, y_hamm, y_kais, s_pm) can be done similarly
-# For example, to plot the PSD:
-f, Pxx_spec = signal.welch(s_pm, Fs, 'flattop', 1024, scaling='spectrum')
-axs[2].semilogy(f, np.sqrt(Pxx_spec))
-axs[2].set_xlabel('frequency [Hz]')
-axs[2].grid(True)
-axs[2].set_ylabel('Linear spectrum [V RMS]')
-axs[2].set_title('Power spectrum (welch)')
-
-plt.tight_layout()
-plt.show()
-
-# 45-46 Playing sound (s and s_pm assumed as original and filtered signal)
-sd.play(20 * s, Fs); sd.wait()
-# sd.play(20 * s_lp, Fs); sd.wait()  # Uncomment and adjust variable name as needed for the filtered signal
 ------------------
 
 
 [1;31m---------------------------------------------------------------------------[0m
-[1;31mAttributeError[0m                            Traceback (most recent call last)
-Cell [1;32mIn[5], line 129[0m
-[0;32m    126[0m gain [38;5;241m=[39m [[38;5;241m1[39m, [38;5;241m1[39m, [38;5;241m0[39m, [38;5;241m0[39m]
-[0;32m    128[0m [38;5;66;03m# Call firwin2 with corrected parameters and using the `fs` parameter[39;00m
-[1;32m--> 129[0m hpm [38;5;241m=[39m [43msignal[49m[38;5;241;43m.[39;49m[43mfirwin2[49m([38;5;241m65[39m, freq, gain, fs[38;5;241m=[39mFs)
-[0;32m    130[0m s_pm [38;5;241m=[39m np[38;5;241m.[39mconvolve(s, hpm, [38;5;124m'[39m[38;5;124msame[39m[38;5;124m'[39m)
-[0;32m    132[0m [38;5;66;03m# Plotting or analyzing the filtered signals (y_rect, y_hamm, y_kais, s_pm) can be done similarly[39;00m
-[0;32m    133[0m [38;5;66;03m# For example, to plot the PSD:[39;00m
+[1;31mOSError[0m                                   Traceback (most recent call last)
+Cell [1;32mIn[6], line 9[0m
+[0;32m      6[0m [38;5;28;01mimport[39;00m [38;5;21;01mnumpy[39;00m [38;5;28;01mas[39;00m [38;5;21;01mnp[39;00m
+[0;32m      8[0m [38;5;66;03m#Define parameters[39;00m
+[1;32m----> 9[0m [38;5;28;01mwith[39;00m [38;5;28;43mopen[39;49m[43m([49m[38;5;124;43m'[39;49m[38;5;124;43mhttp://127.0.0.1:5500/test-book/_build/html/_static/sima.txt[39;49m[38;5;124;43m'[39;49m[43m)[49m [38;5;28;01mas[39;00m f:
+[0;32m     10[0m     s [38;5;241m=[39m [[38;5;28mfloat[39m(x) [38;5;28;01mfor[39;00m x [38;5;129;01min[39;00m f]
+[0;32m     11[0m s[38;5;241m=[39mnp[38;5;241m.[39marray(s)
 
-[1;31mAttributeError[0m: 'numpy.ndarray' object has no attribute 'firwin2'
+File [1;32m~\anaconda3\envs\digital_communications\lib\site-packages\IPython\core\interactiveshell.py:284[0m, in [0;36m_modified_open[1;34m(file, *args, **kwargs)[0m
+[0;32m    277[0m [38;5;28;01mif[39;00m file [38;5;129;01min[39;00m {[38;5;241m0[39m, [38;5;241m1[39m, [38;5;241m2[39m}:
+[0;32m    278[0m     [38;5;28;01mraise[39;00m [38;5;167;01mValueError[39;00m(
+[0;32m    279[0m         [38;5;124mf[39m[38;5;124m"[39m[38;5;124mIPython won[39m[38;5;124m'[39m[38;5;124mt let you open fd=[39m[38;5;132;01m{[39;00mfile[38;5;132;01m}[39;00m[38;5;124m by default [39m[38;5;124m"[39m
+[0;32m    280[0m         [38;5;124m"[39m[38;5;124mas it is likely to crash IPython. If you know what you are doing, [39m[38;5;124m"[39m
+[0;32m    281[0m         [38;5;124m"[39m[38;5;124myou can use builtins[39m[38;5;124m'[39m[38;5;124m open.[39m[38;5;124m"[39m
+[0;32m    282[0m     )
+[1;32m--> 284[0m [38;5;28;01mreturn[39;00m [43mio_open[49m[43m([49m[43mfile[49m[43m,[49m[43m [49m[38;5;241;43m*[39;49m[43margs[49m[43m,[49m[43m [49m[38;5;241;43m*[39;49m[38;5;241;43m*[39;49m[43mkwargs[49m[43m)[49m
+
+[1;31mOSError[0m: [Errno 22] Invalid argument: 'http://127.0.0.1:5500/test-book/_build/html/_static/sima.txt'
 
