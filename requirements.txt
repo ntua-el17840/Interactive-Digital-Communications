@@ -4,3 +4,4 @@ matplotlib
 ipython
 ipywidgets==7.7.2
 sounddevice
+requests
