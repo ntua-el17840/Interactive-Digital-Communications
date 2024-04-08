@@ -1,14 +1,15 @@
 
+
 <!DOCTYPE html>
 
 
-<html lang="en" data-content_root="../" >
+<html lang="en" data-content_root="" >
 
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
-    <title>Εργαστηριακή Άσκηση 4 &#8212; Interactive Digital Communtications</title>
+    <title>Lab Exercise 4: Nyquist signaling and L-ASK &#8212; Interactive Digital Communtications</title>
   
   
   
@@ -18,56 +19,60 @@
   </script>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="../_static/styles/theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
-<link href="../_static/styles/bootstrap.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
-<link href="../_static/styles/pydata-sphinx-theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+  <link href="../_static/styles/theme.css?digest=5b4479735964841361fd" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=5b4479735964841361fd" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=5b4479735964841361fd" rel="stylesheet" />
 
   
-  <link href="../_static/vendor/fontawesome/6.5.1/css/all.min.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
-  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.1/webfonts/fa-solid-900.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.1/webfonts/fa-brands-400.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.1/webfonts/fa-regular-400.woff2" />
+  <link href="../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=5b4479735964841361fd" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
 
-    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=fa44fd50" />
-    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=384b581d" />
-    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
-    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
-    <link rel="stylesheet" type="text/css" href="../_static/tabs.css?v=4c969af8" />
-    <link rel="stylesheet" type="text/css" href="../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css?v=0a3b3ea7" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/tabs.css" />
     <link rel="stylesheet" type="text/css" href="../_static/custom.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
   
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae" />
-<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae" />
-  <script src="../_static/vendor/fontawesome/6.5.1/js/all.min.js?digest=8d27b9dea8ad943066ae"></script>
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=5b4479735964841361fd" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=5b4479735964841361fd" />
+  <script src="../_static/vendor/fontawesome/6.1.2/js/all.min.js?digest=5b4479735964841361fd"></script>
 
-    <script src="../_static/documentation_options.js?v=9eb32ce0"></script>
-    <script src="../_static/doctools.js?v=888ff710"></script>
-    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
-    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
-    <script src="../_static/copybutton.js?v=f281be69"></script>
-    <script src="../_static/scripts/sphinx-book-theme.js?v=efea14e4"></script>
-    <script src="../_static/tabs.js?v=3ee01567"></script>
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script src="../_static/tabs.js"></script>
     <script>let toggleHintShow = 'Click to show';</script>
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
-    <script src="../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script src="../_static/togglebutton.js"></script>
+    <script src="../_static/custom.js"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
-    <script src="../_static/design-tabs.js?v=36754332"></script>
-    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
-    <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
-    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
-    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script src="../_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
     <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'content/Digcom_Lab4';</script>
-    <script src="../_static/custom.js?v=79ff29b6"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="Εργαστηριακή Άσκηση 5" href="Digcom_Lab5.html" />
-    <link rel="prev" title="Εργαστηριακή Άσκηση 3" href="Digcom_Lab3.html" />
+    <link rel="prev" title="Lab Exercise 3: Matched Filters and L-ASK" href="Digcom_Lab3.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -77,9 +82,10 @@
 
   
   
-  <a id="pst-skip-link" class="skip-link" href="#main-content">Skip to main content</a>
+  <a class="skip-link" href="#main-content">Skip to main content</a>
   
   <div id="pst-scroll-pixel-helper"></div>
+
   
   <button type="button" class="btn rounded-pill" id="pst-back-to-top">
     <i class="fa-solid fa-arrow-up"></i>
@@ -120,14 +126,11 @@
 </form></div>
   </div>
   
-    <header class="bd-header navbar navbar-expand-lg bd-navbar">
-    </header>
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+    </nav>
   
-
   <div class="bd-container">
     <div class="bd-container__inner bd-page-width">
-      
-      
       
       <div class="bd-sidebar-primary bd-sidebar">
         
@@ -161,18 +164,7 @@
   
   
 </a></div>
-        <div class="sidebar-primary-item">
-
- <script>
- document.write(`
-   <button class="btn navbar-btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <i class="fa-solid fa-magnifying-glass"></i>
-    <span class="search-button__default-text">Search</span>
-    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
-   </button>
- `);
- </script></div>
-        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
     <div class="bd-toc-item navbar-nav active">
         
         <ul class="nav bd-sidenav bd-sidenav__home-link">
@@ -190,10 +182,10 @@
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Lab Exercises</span></p>
 <ul class="current nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="Digcom_Lab1.html">Lab Exercise 1</a></li>
-<li class="toctree-l1"><a class="reference internal" href="Digcom_Lab2.html">Lab Exercise 2</a></li>
-<li class="toctree-l1"><a class="reference internal" href="Digcom_Lab3.html">Εργαστηριακή Άσκηση 3</a></li>
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">Εργαστηριακή Άσκηση 4</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Digcom_Lab1.html">Lab Exercise 1: Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Digcom_Lab2.html">Lab Exercise 2: Digital Filters</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Digcom_Lab3.html">Lab Exercise 3: Matched Filters and L-ASK</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Lab Exercise 4: Nyquist signaling and L-ASK</a></li>
 <li class="toctree-l1"><a class="reference internal" href="Digcom_Lab5.html">Εργαστηριακή Άσκηση 5</a></li>
 <li class="toctree-l1"><a class="reference internal" href="Digcom_Lab6.html">Εργαστηριακή Άσκηση 6</a></li>
 </ul>
@@ -412,7 +404,7 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Εργαστηριακή Άσκηση 4</h1>
+    <h1>Lab Exercise 4: Nyquist signaling and L-ASK</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -422,10 +414,14 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#nyquist">1. Παραγωγή σήματος με φίλτρα Nyquist – Διαγράμματα χρόνου και συχνότητας</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ber-vs-eb-no">2. Υπολογισμός επίδοσης BER vs Eb/No.</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#gray">3. Επίδραση του τρόπου κωδικοποίησης: Gray ή άλλη</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">4. Υπολογισμός παραμέτρων συστήματος</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#part-1-useful-code">Part 1: Useful Code</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#importing-packages-we-will-need-later-in-python">Importing packages we will need later in Python</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#part-2-signal-generation-with-nyquist-filters-time-and-frequency-plots">Part 2: Signal generation with Nyquist filters – Time and frequency plots</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#part-3-performance-calculation-ber-vs-eb-no">Part 3: Performance calculation: BER vs Eb/No.</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#part-4-the-effect-of-the-coding-method-gray-or-other">Part 4: The effect of the coding method: Gray or other</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#part-5-calculation-of-system-parameters">Part 5: Calculation of system parameters</a></li>
 </ul>
             </nav>
         </div>
@@ -435,29 +431,22 @@ document.write(`
               
                 
 <div id="searchbox"></div>
-                <article class="bd-article">
+                <article class="bd-article" role="main">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="id1">
-<h1>Εργαστηριακή Άσκηση 4<a class="headerlink" href="#id1" title="Link to this heading">#</a></h1>
-<p>Αφού μελετηθεί το κεφάλαιο 4 των σημειώσεων και, ειδικότερα, το Παράδειγμα
-4.2, να γραφεί και εκτελεστεί κώδικας για τα εξής:</p>
-<section id="nyquist">
-<h2>1. Παραγωγή σήματος με φίλτρα Nyquist – Διαγράμματα χρόνου και συχνότητας<a class="headerlink" href="#nyquist" title="Link to this heading">#</a></h2>
-<p>Να παραχθεί τυχαία δυαδική ακολουθία 10000 bits και στη συνέχεια αντίστοιχο
-σήμα 8-ASK βασικής ζώνης, με τα εξής χαρακτηριστικά:</p>
-<ul class="simple">
-<li><p>Κωδικοποίηση <span class="math notranslate nohighlight">\(Gray\)</span></p></li>
-<li><p>Σηματοδοσία <span class="math notranslate nohighlight">\(Nyquist\)</span> <span class="math notranslate nohighlight">\(root\)</span> <span class="math notranslate nohighlight">\(raised\)</span> <span class="math notranslate nohighlight">\(cosine\)</span>, με <span class="math notranslate nohighlight">\(roll-off=0.40\)</span></p></li>
-<li><p>Υπερ-δειγματοληψία με <span class="math notranslate nohighlight">\(nsamp=32\)</span> δείγματα ανά βασική περίοδο <span class="math notranslate nohighlight">\(Τ\)</span></p></li>
-<li><p>Τάξη φίλτρου πομπού: <span class="math notranslate nohighlight">\(256\)</span> (<span class="math notranslate nohighlight">\(8\)</span> περιόδων, <span class="math notranslate nohighlight">\(group-delay=4T\)</span>)</p></li>
-</ul>
-<p>a. Να υπολογισθεί το σήμα στην έξοδο προσαρμοσμένου φίλτρου στο δέκτη. Να δειχθεί τμήμα του σήματος αυτού (με την εντολή <span class="math notranslate nohighlight">\(plot\)</span>) διάρκειας <span class="math notranslate nohighlight">\(10Τ\)</span>.</p>
-<p>b. Να υπερτεθούν (με την εντολή <span class="math notranslate nohighlight">\(stem\)</span>) στο τμήμα αυτό τα αντίστοιχα δείγματα του σήματος εισόδου στο πλέγμα περιόδου <span class="math notranslate nohighlight">\(T\)</span> (πριν την υπερδειγματοληψία)</p>
-<p>c. Να σχεδιαστεί (με την εντολή <span class="math notranslate nohighlight">\(pwelch\)</span>) το φάσμα του σήματος στο δέκτη και να εξηγηθούν η μορφή και το εύρος του.</p>
-<p>Υπόδειξη: Για την κωδικοποίηση κατά Gray δυαδικού διανύσματος, <span class="math notranslate nohighlight">\(x\)</span>, σε σύμβολα L-ASK, να
-χρησιμοποιηθεί το ακόλουθο τμήμα κώδικα, όπου step η απόσταση γειτονικών σημείων L-ASK.
-Να εξηγηθεί σύντομα η λειτουργία του και, ειδικότερα, ο ρόλος του διανύσματος mapping (βλ.
-και Υπόδειξη στο επόμενο ερώτημα).</p>
+  <section class="tex2jax_ignore mathjax_ignore" id="lab-exercise-4-nyquist-signaling-and-l-ask">
+<h1>Lab Exercise 4: Nyquist signaling and L-ASK<a class="headerlink" href="#lab-exercise-4-nyquist-signaling-and-l-ask" title="Permalink to this heading">#</a></h1>
+<p>After studying Chapter 4 of the notes and, in particular, Example 4.2, write and run
+code for the following:</p>
+<section id="part-1-useful-code">
+<h2>Part 1: Useful Code<a class="headerlink" href="#part-1-useful-code" title="Permalink to this heading">#</a></h2>
+<div class="admonition-live-code admonition">
+<p class="admonition-title">Live Code</p>
+<p>Press the following button to make python code interactive. It will connect you to a kernel once it says “ready” (might take a bit, especially the first time it runs).</p>
+</div>
+<div style="text-align: center;">
+  <button title="Launch thebe" class="thebelab-button thebe-launch-button" onclick="initThebe()">Python Interactive Code</button>
+</div><section id="importing-packages-we-will-need-later-in-python">
+<h3>Importing packages we will need later in Python<a class="headerlink" href="#importing-packages-we-will-need-later-in-python" title="Permalink to this heading">#</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
@@ -470,12 +459,19 @@ document.write(`
 </div>
 </div>
 </div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Η συνάρτηση grayCode δέχεται έναν αριθμό n και επιστρέφει έναν πίνακα g που περιέχει </span>
-<span class="c1"># την κωδικοποίηση Gray για αριθμούς με n bits. </span>
-<span class="c1"># Αυτό γίνεται καλώντας αναδρομικά την συνάρτηση gray_code_recurse</span>
-
+<details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
+<summary class="sd-summary-title sd-card-header">
+Useful functions<div class="sd-summary-down docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-down" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M5.22 8.72a.75.75 0 000 1.06l6.25 6.25a.75.75 0 001.06 0l6.25-6.25a.75.75 0 00-1.06-1.06L12 14.44 6.28 8.72a.75.75 0 00-1.06 0z"></path></svg></div>
+<div class="sd-summary-up docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-up" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M18.78 15.28a.75.75 0 000-1.06l-6.25-6.25a.75.75 0 00-1.06 0l-6.25 6.25a.75.75 0 101.06 1.06L12 9.56l5.72 5.72a.75.75 0 001.06 0z"></path></svg></div>
+</summary><div class="sd-summary-content sd-card-body docutils">
+<div class="tab-set docutils">
+<input checked="True" class="tab-input" id="tab-set--0-input--1" name="tab-set--0" type="radio"><label class="tab-label" for="tab-set--0-input--1">Python</label><div class="tab-content docutils">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>
+<span class="c1"># The function grayCode accepts a number n and returns an array g containing</span>
+<span class="c1"># the Gray coding for numbers with n bits.</span>
+<span class="c1"># This is done by recursively calling the function gray_code_recurse</span>
 <span class="k">def</span> <span class="nf">grayCode</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
     <span class="k">def</span> <span class="nf">gray_code_recurse</span> <span class="p">(</span><span class="n">g</span><span class="p">,</span><span class="n">n</span><span class="p">):</span>
         <span class="n">k</span><span class="o">=</span><span class="nb">len</span><span class="p">(</span><span class="n">g</span><span class="p">)</span>
@@ -493,59 +489,39 @@ document.write(`
     <span class="n">g</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;0&#39;</span><span class="p">,</span><span class="s1">&#39;1&#39;</span><span class="p">]</span>
     <span class="n">gray_code_recurse</span><span class="p">(</span><span class="n">g</span><span class="p">,</span><span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">g</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Η συνάρτηση naturalBinaryCoding δέχεται έναν αριθμό n  και επιστρέφει έναν πίνακα</span>
-<span class="c1"># με δυαδικούς αριθμούς με n bits (ή ισοδύναμα μέχρι τον αριθμό 2**n, ο οποίος προκύπτει</span>
-<span class="c1"># με αριστερή ολίσθηση του 1 κατά n bits)</span>
 
+
+<span class="c1"># The function naturalBinaryCoding accepts a number n and returns an array</span>
+<span class="c1"># with binary numbers with n bits (or equivalently up to the number 2**n, which results</span>
+<span class="c1"># by left shifting 1 by n bits)</span>
 <span class="k">def</span> <span class="nf">naturalBinaryCoding</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
     <span class="n">binary_levels</span> <span class="o">=</span> <span class="p">[]</span>
     <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span> <span class="o">&lt;&lt;</span> <span class="n">n</span><span class="p">):</span>
         <span class="n">binary_levels</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s1">&#39;{:0</span><span class="si">{}</span><span class="s1">b}&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">n</span><span class="p">))</span>
     <span class="k">return</span> <span class="n">binary_levels</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Η συνάρτηση generateRandomBits παράγει n_bits τυχαία δυαδικά ψηφία</span>
 
+
+<span class="c1"># The function generateRandomBits generates n_bits random binary digits</span>
 <span class="k">def</span> <span class="nf">generateRandomBits</span><span class="p">(</span><span class="n">n_bits</span><span class="p">):</span>
     <span class="n">bitstream</span> <span class="o">=</span> <span class="p">[]</span>
     <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n_bits</span><span class="p">):</span>
         <span class="n">random_bit</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
         <span class="n">bitstream</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">random_bit</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">bitstream</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Η συνάρτηση createLevels χωρίζει το διάστημα [-Α, Α] σε L-1 ίσα διαστήματα,</span>
-<span class="c1"># έτσι ώστε να περιέχει πάντα τα άκρα του διαστήματος</span>
 
+
+<span class="c1"># The function createLevels divides the range [-A, A] into L-1 equal intervals,</span>
+<span class="c1"># so that it always contains the endpoints of the range</span>
 <span class="k">def</span> <span class="nf">createLevels</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">L</span><span class="p">):</span>
     <span class="n">y</span> <span class="o">=</span> <span class="p">[]</span>
     <span class="n">step</span> <span class="o">=</span> <span class="p">(</span><span class="n">A</span> <span class="o">-</span> <span class="p">(</span><span class="o">-</span><span class="n">A</span><span class="p">))</span> <span class="o">/</span> <span class="p">(</span><span class="n">L</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span>
     <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">L</span><span class="p">):</span>
         <span class="n">y</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="o">-</span><span class="n">A</span> <span class="o">+</span> <span class="n">i</span> <span class="o">*</span> <span class="n">step</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">y</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Η συνάρτηση createSymbols δέχεται ως όρισμα έναν πίνακα με bits και</span>
-<span class="c1"># ομαδοποιεί τα γειτονικά ψηφία σε σύμβολα με μήκος k</span>
 
+
+<span class="c1"># The function createSymbols takes an array with bits as an argument and</span>
+<span class="c1"># groups neighboring digits into symbols with length k</span>
 <span class="k">def</span> <span class="nf">createSymbols</span><span class="p">(</span><span class="n">k</span><span class="p">,</span> <span class="n">bitstream</span><span class="p">):</span>
     <span class="n">n_bits</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">bitstream</span><span class="p">)</span>
     <span class="n">symbols</span> <span class="o">=</span> <span class="p">[]</span>
@@ -555,16 +531,11 @@ document.write(`
             <span class="n">symbol</span> <span class="o">+=</span> <span class="nb">str</span><span class="p">(</span><span class="n">bitstream</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="n">j</span><span class="p">])</span>
         <span class="n">symbols</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">symbol</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">symbols</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Η συνάρτηση rootRaisedCosine δημιουργεί έναν παλμό τετραγωνικής ρίζας ανυψωμένου συνημιτόνου </span>
-<span class="c1"># με συντελέστή εξάπλωσης roll_off και τάξη που καθορίζεται από τον ρυθμό δειγματόληψίας (nsample) </span>
-<span class="c1"># και την καθύστερηση που θα εισάγει (delay)</span>
 
+
+<span class="c1"># The function rootRaisedCosine creates a root raised cosine pulse</span>
+<span class="c1"># with a roll-off coefficient and order determined by the sampling rate (nsample)</span>
+<span class="c1"># and the delay it will introduce (delay)</span>
 <span class="k">def</span> <span class="nf">rootRaisedCosine</span><span class="p">(</span><span class="n">nsamp</span><span class="p">,</span> <span class="n">roll_off</span><span class="p">,</span> <span class="n">delay</span><span class="p">):</span>
     <span class="n">F0</span> <span class="o">=</span> <span class="mf">0.5</span> <span class="o">/</span> <span class="n">nsamp</span>
     <span class="n">Fd</span> <span class="o">=</span> <span class="mi">1</span>
@@ -596,15 +567,10 @@ document.write(`
     <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
     
     <span class="k">return</span> <span class="n">h</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Η συνάρτηση upSample αυξάνει τον αριθμό των δειγμάτων ενός σήματος signal προσθέτοντας nsamp-1</span>
-<span class="c1"># μηδενικά μετά από κάθε δείγμα του σήματος</span>
 
+
+<span class="c1"># The function upSample increases the number of samples of a signal signal by adding nsamp-1</span>
+<span class="c1"># zeros after each sample of the signal</span>
 <span class="k">def</span> <span class="nf">upSample</span><span class="p">(</span><span class="n">signal</span><span class="p">,</span> <span class="n">nsamp</span><span class="p">):</span>
     <span class="n">upSampled</span> <span class="o">=</span> <span class="p">[]</span>
     <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">signal</span><span class="p">)</span> <span class="o">*</span> <span class="n">nsamp</span><span class="p">):</span>
@@ -613,101 +579,255 @@ document.write(`
         <span class="k">else</span><span class="p">:</span>
             <span class="n">upSampled</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">upSampled</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Η συνάρτηση downSample μειώνει την συχνότητα δειγματοληψία ενός σήματος signal κατά έναν παράγοντα nsamp </span>
-<span class="c1"># κρατώντας μόνο τα δείγματα που είναι πολλάπλάσια του nsamp (0, nsamp, 2*nsamp, ...)</span>
 
+
+<span class="c1"># The function downSample reduces the sampling frequency of a signal signal by a factor of nsamp</span>
+<span class="c1"># by keeping only the samples that are multiples of nsamp (0, nsamp, 2*nsamp, ...)</span>
 <span class="k">def</span> <span class="nf">downSample</span><span class="p">(</span><span class="n">signal</span><span class="p">,</span> <span class="n">nsamp</span><span class="p">):</span>
     <span class="n">downSampled</span> <span class="o">=</span> <span class="p">[]</span>
     <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">signal</span><span class="p">),</span> <span class="n">nsamp</span><span class="p">):</span>
         <span class="n">downSampled</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">signal</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
         
     <span class="k">return</span> <span class="n">downSampled</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Προσθέτει λευκό γκαουσσιανό θόρυβο με μέση τιμή μ (mu) και διασπορά σ^2 (sigma)</span>
 
+
+<span class="c1"># Adds white Gaussian noise with mean value μ (mu) and variance σ^2 (sigma)</span>
 <span class="k">def</span> <span class="nf">generateAWGN</span><span class="p">(</span><span class="n">signal</span><span class="p">,</span> <span class="n">mu</span><span class="p">,</span> <span class="n">sigma</span><span class="p">):</span>
     <span class="n">noise</span> <span class="o">=</span> <span class="n">sigma</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">signal</span><span class="p">))</span> <span class="o">+</span> <span class="n">mu</span>
     <span class="k">return</span> <span class="n">noise</span>
+    
 </pre></div>
 </div>
 </div>
 </div>
+</div>
+</details></section>
+</section>
+<section id="part-2-signal-generation-with-nyquist-filters-time-and-frequency-plots">
+<h2>Part 2: Signal generation with Nyquist filters – Time and frequency plots<a class="headerlink" href="#part-2-signal-generation-with-nyquist-filters-time-and-frequency-plots" title="Permalink to this heading">#</a></h2>
+<p>Generate a random binary sequence of 10000 bits and then a corresponding 8-ASK
+baseband signal, with the following characteristics:</p>
+<ul class="simple">
+<li><p>Gray coding</p></li>
+<li><p>Nyquist root raised cosine signaling, with roll-off =0.40</p></li>
+<li><p>Over-sampling with nsamp=20 samples per base period T</p></li>
+<li><p>Transmitter filter class: 200 (10 periods, group_delay=5T)</p></li>
+</ul>
+<div class="admonition hint">
+<p class="admonition-title">Hint</p>
+<p>To Gray encode a binary vector, x, into L-ASK symbols, use the following code segment,
+where step is the distance (or increment) between adjacent L-ASK points.
+Briefly explain its function and, in particular, the role of the mapping vector (see also Hint in the
+next question).</p>
+</div>
+<div class="tab-set docutils">
+<input checked="True" class="tab-input" id="tab-set--1-input--1" name="tab-set--1" type="radio"><label class="tab-label" for="tab-set--1-input--1">Matlab</label><div class="tab-content docutils">
+<div class="highlight-matlab notranslate"><div class="highlight"><pre><span></span><span class="n">L</span><span class="p">=</span>…<span class="p">;</span><span class="w"> </span><span class="nb">step</span><span class="p">=</span>…<span class="p">;</span><span class="w"> </span><span class="c">% ο αριθμός των πλατών και το βήμα μεταξύ τους</span>
+<span class="n">k</span><span class="p">=</span><span class="nb">log</span><span class="p">(</span><span class="n">L</span><span class="p">);</span>
+<span class="n">mapping</span><span class="p">=[</span><span class="nb">step</span><span class="o">/</span><span class="mi">2</span><span class="p">;</span><span class="w"> </span><span class="o">-</span><span class="nb">step</span><span class="o">/</span><span class="mi">2</span><span class="p">];</span>
+<span class="k">if</span><span class="p">(</span><span class="n">k</span><span class="o">&gt;</span><span class="mi">1</span><span class="p">)</span>
+<span class="w">	</span><span class="k">for</span><span class="w"> </span><span class="nb">j</span><span class="p">=</span><span class="mi">2</span><span class="p">:</span><span class="n">k</span>
+<span class="w">	</span><span class="n">mapping</span><span class="p">=[</span><span class="n">mapping</span><span class="o">+</span><span class="mi">2</span>^<span class="p">(</span><span class="nb">j</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">*</span><span class="nb">step</span><span class="o">/</span><span class="mi">2</span><span class="p">;</span><span class="w"> </span><span class="k">...</span>
+<span class="w">	</span><span class="o">-</span><span class="n">mapping</span><span class="o">-</span><span class="mi">2</span>^<span class="p">(</span><span class="nb">j</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">*</span><span class="nb">step</span><span class="o">/</span><span class="mi">2</span><span class="p">];</span>
+<span class="w">	</span><span class="k">end</span>
+<span class="k">end</span><span class="p">;</span>
+<span class="n">xsym</span><span class="p">=</span><span class="n">bi2de</span><span class="p">(</span><span class="nb">reshape</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">k</span><span class="p">,</span><span class="nb">length</span><span class="p">(</span><span class="n">x</span><span class="p">)</span><span class="o">/</span><span class="n">k</span><span class="p">).</span><span class="o">&#39;</span><span class="p">,</span><span class="s">&#39;left-msb&#39;</span><span class="p">);</span>
+<span class="n">y</span><span class="p">=[];</span>
+<span class="k">for</span><span class="w"> </span><span class="nb">i</span><span class="p">=</span><span class="mi">1</span><span class="p">:</span><span class="nb">length</span><span class="p">(</span><span class="n">xsym</span><span class="p">)</span>
+<span class="w">	</span><span class="n">y</span><span class="p">=[</span><span class="n">y</span><span class="w"> </span><span class="n">mapping</span><span class="p">(</span><span class="n">xsym</span><span class="p">(</span><span class="nb">i</span><span class="p">)</span><span class="o">+</span><span class="mi">1</span><span class="p">)];</span>
+<span class="k">end</span>
+</pre></div>
+</div>
+</div>
+</div>
+<ol class="arabic simple">
+<li><p>Calculate the signal at the output of the matched filter at the receiver.
+Show part of this signal (with the plot command) of 10T duration.</p></li>
+<li><p>Superimpose (with the stem command) on this part the corresponding
+samples of the input signal in the basic period grid T (before over-sampling)</p></li>
+<li><p>Plot (using the pwelch command) the spectrum of the signal at the
+receiver and explain its shape and amplitude.</p></li>
+</ol>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">n_bits</span> <span class="o">=</span> <span class="mi">80000</span>
-<span class="n">bitstream</span> <span class="o">=</span> <span class="n">generateRandomBits</span><span class="p">(</span><span class="n">n_bits</span><span class="p">)</span> <span class="c1"># Δημιουργία τυχαίων bits</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># The function grayCode accepts a number n and returns an array g containing</span>
+<span class="c1"># the Gray coding for numbers with n bits.</span>
+<span class="c1"># This is done by recursively calling the function gray_code_recurse</span>
+<span class="k">def</span> <span class="nf">grayCode</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">gray_code_recurse</span> <span class="p">(</span><span class="n">g</span><span class="p">,</span><span class="n">n</span><span class="p">):</span>
+        <span class="n">k</span><span class="o">=</span><span class="nb">len</span><span class="p">(</span><span class="n">g</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">n</span><span class="o">&lt;=</span><span class="mi">0</span><span class="p">:</span>
+            <span class="k">return</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span> <span class="p">(</span><span class="n">k</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="o">-</span><span class="mi">1</span><span class="p">):</span>
+                <span class="n">char</span><span class="o">=</span><span class="s1">&#39;1&#39;</span><span class="o">+</span><span class="n">g</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+                <span class="n">g</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">char</span><span class="p">)</span>
+            <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span> <span class="p">(</span><span class="n">k</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="o">-</span><span class="mi">1</span><span class="p">):</span>
+                <span class="n">g</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">=</span><span class="s1">&#39;0&#39;</span><span class="o">+</span><span class="n">g</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
 
-<span class="n">L</span> <span class="o">=</span> <span class="mi">16</span> <span class="c1"># Αριθμός επιπέδων της ASK</span>
+            <span class="n">gray_code_recurse</span> <span class="p">(</span><span class="n">g</span><span class="p">,</span><span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+
+    <span class="n">g</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;0&#39;</span><span class="p">,</span><span class="s1">&#39;1&#39;</span><span class="p">]</span>
+    <span class="n">gray_code_recurse</span><span class="p">(</span><span class="n">g</span><span class="p">,</span><span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">g</span>
+
+
+<span class="c1"># The function naturalBinaryCoding accepts a number n and returns an array</span>
+<span class="c1"># with binary numbers with n bits (or equivalently up to the number 2**n, which results</span>
+<span class="c1"># by left shifting 1 by n bits)</span>
+<span class="k">def</span> <span class="nf">naturalBinaryCoding</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+    <span class="n">binary_levels</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span> <span class="o">&lt;&lt;</span> <span class="n">n</span><span class="p">):</span>
+        <span class="n">binary_levels</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s1">&#39;{:0</span><span class="si">{}</span><span class="s1">b}&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">n</span><span class="p">))</span>
+    <span class="k">return</span> <span class="n">binary_levels</span>
+
+
+<span class="c1"># The function generateRandomBits generates n_bits random binary digits</span>
+<span class="k">def</span> <span class="nf">generateRandomBits</span><span class="p">(</span><span class="n">n_bits</span><span class="p">):</span>
+    <span class="n">bitstream</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n_bits</span><span class="p">):</span>
+        <span class="n">random_bit</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+        <span class="n">bitstream</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">random_bit</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">bitstream</span>
+
+
+<span class="c1"># The function createLevels divides the range [-A, A] into L-1 equal intervals,</span>
+<span class="c1"># so that it always contains the endpoints of the range</span>
+<span class="k">def</span> <span class="nf">createLevels</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">L</span><span class="p">):</span>
+    <span class="n">y</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">step</span> <span class="o">=</span> <span class="p">(</span><span class="n">A</span> <span class="o">-</span> <span class="p">(</span><span class="o">-</span><span class="n">A</span><span class="p">))</span> <span class="o">/</span> <span class="p">(</span><span class="n">L</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">L</span><span class="p">):</span>
+        <span class="n">y</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="o">-</span><span class="n">A</span> <span class="o">+</span> <span class="n">i</span> <span class="o">*</span> <span class="n">step</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">y</span>
+
+
+<span class="c1"># The function createSymbols takes an array with bits as an argument and</span>
+<span class="c1"># groups neighboring digits into symbols with length k</span>
+<span class="k">def</span> <span class="nf">createSymbols</span><span class="p">(</span><span class="n">k</span><span class="p">,</span> <span class="n">bitstream</span><span class="p">):</span>
+    <span class="n">n_bits</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">bitstream</span><span class="p">)</span>
+    <span class="n">symbols</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">n_bits</span> <span class="o">-</span> <span class="n">k</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="n">k</span><span class="p">):</span>
+        <span class="n">symbol</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
+        <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">k</span><span class="p">):</span>
+            <span class="n">symbol</span> <span class="o">+=</span> <span class="nb">str</span><span class="p">(</span><span class="n">bitstream</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="n">j</span><span class="p">])</span>
+        <span class="n">symbols</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">symbol</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">symbols</span>
+
+
+<span class="c1"># The function rootRaisedCosine creates a root raised cosine pulse</span>
+<span class="c1"># with a roll-off coefficient and order determined by the sampling rate (nsample)</span>
+<span class="c1"># and the delay it will introduce (delay)</span>
+<span class="k">def</span> <span class="nf">rootRaisedCosine</span><span class="p">(</span><span class="n">nsamp</span><span class="p">,</span> <span class="n">roll_off</span><span class="p">,</span> <span class="n">delay</span><span class="p">):</span>
+    <span class="n">F0</span> <span class="o">=</span> <span class="mf">0.5</span> <span class="o">/</span> <span class="n">nsamp</span>
+    <span class="n">Fd</span> <span class="o">=</span> <span class="mi">1</span>
+    <span class="n">Fs</span> <span class="o">=</span> <span class="n">Fd</span> <span class="o">*</span> <span class="n">nsamp</span>
+    <span class="n">Td</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">/</span> <span class="n">Fd</span>
+    <span class="n">Ts</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">/</span> <span class="n">Fs</span>
+    <span class="n">F1</span> <span class="o">=</span> <span class="n">F0</span> <span class="o">*</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">roll_off</span><span class="p">)</span>
+    <span class="n">F2</span> <span class="o">=</span> <span class="n">F0</span> <span class="o">*</span> <span class="p">(</span><span class="mi">1</span> <span class="o">+</span> <span class="n">roll_off</span><span class="p">)</span>
+    <span class="n">filter_order</span> <span class="o">=</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">nsamp</span> <span class="o">*</span> <span class="n">delay</span>
+
+    <span class="n">t</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">filter_order</span><span class="p">,</span> <span class="n">Td</span><span class="p">)</span>
+    <span class="n">h</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">t</span><span class="p">)):</span>
+        <span class="n">t_shifted</span> <span class="o">=</span> <span class="n">t</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">-</span> <span class="n">filter_order</span> <span class="o">/</span> <span class="mi">2</span>
+        <span class="k">if</span> <span class="n">t_shifted</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="n">h</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">F0</span><span class="p">)</span> <span class="o">*</span><span class="p">(</span><span class="mi">1</span> <span class="o">+</span> <span class="n">roll_off</span> <span class="o">*</span> <span class="p">((</span><span class="mi">4</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)))</span>
+        <span class="k">elif</span> <span class="n">t_shifted</span> <span class="o">==</span> <span class="mi">1</span> <span class="o">/</span> <span class="mi">8</span> <span class="o">/</span> <span class="n">roll_off</span> <span class="o">/</span> <span class="n">F0</span> <span class="ow">or</span> <span class="n">t_shifted</span> <span class="o">==</span> <span class="o">-</span> <span class="mi">1</span> <span class="o">/</span> <span class="mi">8</span> <span class="o">/</span> <span class="n">roll_off</span> <span class="o">/</span> <span class="n">F0</span> <span class="p">:</span>
+            <span class="n">h</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="n">roll_off</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">F0</span><span class="p">))</span> <span class="o">*</span> <span class="p">((</span><span class="mi">1</span> <span class="o">+</span> <span class="mi">2</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">)</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span> <span class="o">/</span> <span class="mi">4</span> <span class="o">/</span> <span class="n">roll_off</span><span class="p">)</span> <span class="o">+</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="mi">2</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">)</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span> <span class="o">/</span> <span class="mi">4</span> <span class="o">/</span> <span class="n">roll_off</span><span class="p">)))</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">factor1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">F0</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="mi">64</span> <span class="o">*</span> <span class="n">roll_off</span><span class="o">*</span> <span class="n">roll_off</span> <span class="o">*</span> <span class="n">F0</span> <span class="o">*</span> <span class="n">F0</span> <span class="o">*</span> <span class="n">t_shifted</span> <span class="o">*</span> <span class="n">t_shifted</span><span class="p">)</span>
+            <span class="n">factor2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span> <span class="o">*</span> <span class="n">F1</span> <span class="o">*</span> <span class="n">t_shifted</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span> <span class="o">*</span> <span class="n">F0</span> <span class="o">*</span> <span class="n">t_shifted</span><span class="p">)</span>
+            <span class="n">factor3</span> <span class="o">=</span> <span class="p">(</span><span class="mi">4</span> <span class="o">*</span> <span class="n">roll_off</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">)</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span> <span class="o">*</span> <span class="n">F2</span> <span class="o">*</span> <span class="n">t_shifted</span><span class="p">)</span> 
+            <span class="n">h</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">factor1</span> <span class="o">*</span> <span class="p">(</span><span class="n">factor2</span> <span class="o">+</span> <span class="n">factor3</span><span class="p">))</span>
+
+
+    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t</span><span class="p">,</span><span class="n">h</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">()</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Root raised cosine filter of order </span><span class="si">%d</span><span class="s1"> and roll-off factor </span><span class="si">%.1f</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="n">filter_order</span><span class="p">,</span> <span class="n">roll_off</span><span class="p">))</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+    
+    <span class="k">return</span> <span class="n">h</span>
+
+
+<span class="c1"># The function upSample increases the number of samples of a signal signal by adding nsamp-1</span>
+<span class="c1"># zeros after each sample of the signal</span>
+<span class="k">def</span> <span class="nf">upSample</span><span class="p">(</span><span class="n">signal</span><span class="p">,</span> <span class="n">nsamp</span><span class="p">):</span>
+    <span class="n">upSampled</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">signal</span><span class="p">)</span> <span class="o">*</span> <span class="n">nsamp</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">i</span> <span class="o">%</span> <span class="n">nsamp</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="n">upSampled</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">signal</span><span class="p">[</span><span class="n">i</span> <span class="o">//</span> <span class="n">nsamp</span><span class="p">])</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">upSampled</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">upSampled</span>
+
+
+<span class="c1"># The function downSample reduces the sampling frequency of a signal signal by a factor of nsamp</span>
+<span class="c1"># by keeping only the samples that are multiples of nsamp (0, nsamp, 2*nsamp, ...)</span>
+<span class="k">def</span> <span class="nf">downSample</span><span class="p">(</span><span class="n">signal</span><span class="p">,</span> <span class="n">nsamp</span><span class="p">):</span>
+    <span class="n">downSampled</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">signal</span><span class="p">),</span> <span class="n">nsamp</span><span class="p">):</span>
+        <span class="n">downSampled</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">signal</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+        
+    <span class="k">return</span> <span class="n">downSampled</span>
+
+
+<span class="c1"># Adds white Gaussian noise with mean value μ (mu) and variance σ^2 (sigma)</span>
+<span class="k">def</span> <span class="nf">generateAWGN</span><span class="p">(</span><span class="n">signal</span><span class="p">,</span> <span class="n">mu</span><span class="p">,</span> <span class="n">sigma</span><span class="p">):</span>
+    <span class="n">noise</span> <span class="o">=</span> <span class="n">sigma</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">signal</span><span class="p">))</span> <span class="o">+</span> <span class="n">mu</span>
+    <span class="k">return</span> <span class="n">noise</span>
+
+
+<span class="n">n_bits</span> <span class="o">=</span> <span class="mi">10000</span>
+<span class="n">bitstream</span> <span class="o">=</span> <span class="n">generateRandomBits</span><span class="p">(</span><span class="n">n_bits</span><span class="p">)</span> <span class="c1"># Generating random bits</span>
+
+<span class="n">L</span> <span class="o">=</span> <span class="mi">8</span> <span class="c1"># Number of ASK levels</span>
 <span class="n">A</span> <span class="o">=</span> <span class="n">L</span><span class="o">-</span><span class="mi">1</span> 
-<span class="n">k</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">log</span><span class="p">(</span><span class="n">L</span><span class="p">,</span><span class="mi">2</span><span class="p">))</span> <span class="c1"># Αριθμός ψηφίων σε κάθε σύμβολο</span>
-<span class="n">n_symb</span> <span class="o">=</span> <span class="n">n_bits</span> <span class="o">/</span> <span class="n">k</span> <span class="c1"># Αριθμός συμβόλων που προκύπτουν από τα τυχαία bits</span>
+<span class="n">k</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">log</span><span class="p">(</span><span class="n">L</span><span class="p">,</span><span class="mi">2</span><span class="p">))</span> <span class="c1"># Number of digits in each symbol</span>
+<span class="n">n_symb</span> <span class="o">=</span> <span class="n">n_bits</span> <span class="o">/</span> <span class="n">k</span> <span class="c1"># Number of symbols resulting from the random bits</span>
 
 <span class="n">y_levels</span> <span class="o">=</span> <span class="n">createLevels</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">L</span><span class="p">)</span> <span class="c1"># [-15, -13, -11 ... 11 13 15]</span>
 
-<span class="n">symbols</span> <span class="o">=</span> <span class="n">createSymbols</span><span class="p">(</span><span class="n">k</span><span class="p">,</span> <span class="n">bitstream</span><span class="p">)</span> <span class="c1"># Ομαδοποίηση σε σύμβολα</span>
+<span class="n">symbols</span> <span class="o">=</span> <span class="n">createSymbols</span><span class="p">(</span><span class="n">k</span><span class="p">,</span> <span class="n">bitstream</span><span class="p">)</span> <span class="c1"># Grouping into symbols</span>
 
-<span class="n">gray_encoding</span> <span class="o">=</span> <span class="n">grayCode</span><span class="p">(</span><span class="n">k</span><span class="p">)</span> <span class="c1"># Εφαρμογή κωδικοποίησης Gray</span>
+<span class="n">gray_encoding</span> <span class="o">=</span> <span class="n">grayCode</span><span class="p">(</span><span class="n">k</span><span class="p">)</span> <span class="c1"># Applying Gray encoding</span>
 
-<span class="c1"># Η x_gray περιέχει το επίπεδο τάσης στο οποίο αντιστοιχεί καθένα από τα σύμβολα</span>
+<span class="c1"># x_gray contains the voltage level corresponding to each of the symbols</span>
 <span class="n">x_gray</span> <span class="o">=</span> <span class="p">[]</span> 
 <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">symbols</span><span class="p">)):</span>
     <span class="n">x_gray</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">y_levels</span><span class="p">[</span><span class="n">gray_encoding</span><span class="o">.</span><span class="n">index</span><span class="p">(</span><span class="n">symbols</span><span class="p">[</span><span class="n">i</span><span class="p">])])</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">nsamp</span> <span class="o">=</span> <span class="mi">16</span>
-<span class="n">roll_off</span> <span class="o">=</span> <span class="mf">0.7</span>
-<span class="n">delay</span> <span class="o">=</span> <span class="mi">4</span>
+
+
+<span class="n">nsamp</span> <span class="o">=</span> <span class="mi">20</span>
+<span class="n">roll_off</span> <span class="o">=</span> <span class="mf">0.40</span>
+<span class="n">delay</span> <span class="o">=</span> <span class="mi">5</span>
 <span class="n">filter_order</span> <span class="o">=</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">nsamp</span> <span class="o">*</span> <span class="n">delay</span>
 
-<span class="c1"># Δημιουργία του φίλτρου ανυψωμένου συνημιτόνου</span>
-<span class="c1"># Υπερδειγμάτιση και συνέλιξη με τους τυχαίους ακεραίους </span>
+<span class="c1"># Creating the raised cosine filter</span>
+<span class="c1"># Upsampling and convolution with the random integers </span>
 <span class="n">filt</span> <span class="o">=</span> <span class="n">rootRaisedCosine</span><span class="p">(</span><span class="n">nsamp</span><span class="p">,</span> <span class="n">roll_off</span><span class="p">,</span> <span class="n">delay</span><span class="p">)</span>
 <span class="n">y</span> <span class="o">=</span> <span class="n">upSample</span><span class="p">(</span><span class="n">x_gray</span><span class="p">,</span> <span class="n">nsamp</span><span class="p">)</span>
 <span class="n">y_transmitted</span> <span class="o">=</span> <span class="n">scipy</span><span class="o">.</span><span class="n">signal</span><span class="o">.</span><span class="n">convolve</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">filt</span><span class="p">)</span>
 
-<span class="c1"># Στον δέκτη το σήμα φιλτράρεται πάλι από το φίλτρο root raised cosine</span>
+<span class="c1"># At the receiver, the signal is filtered again by the root raised cosine filter</span>
 <span class="n">y_received</span> <span class="o">=</span> <span class="n">scipy</span><span class="o">.</span><span class="n">signal</span><span class="o">.</span><span class="n">convolve</span><span class="p">(</span><span class="n">y_transmitted</span><span class="p">,</span> <span class="n">filt</span><span class="p">)</span>
 <span class="n">y_final</span> <span class="o">=</span> <span class="n">downSample</span><span class="p">(</span><span class="n">y_received</span><span class="p">,</span> <span class="n">nsamp</span><span class="p">)</span>
 
-<span class="c1"># Αποκόπτουμε τις ουρές που προέκυψαν από τις συνελίξεις</span>
+<span class="c1"># Trimming the tails resulted from the convolutions</span>
 <span class="n">y_final</span> <span class="o">=</span> <span class="n">y_final</span><span class="p">[</span><span class="mi">2</span> <span class="o">*</span> <span class="n">delay</span><span class="p">:</span> <span class="nb">len</span><span class="p">(</span><span class="n">y_final</span><span class="p">)</span> <span class="o">-</span> <span class="mi">2</span> <span class="o">*</span><span class="n">delay</span><span class="p">]</span>
 
-<span class="c1"># Εμφανίζουμε σε κοινό διάγραμμα το ληφθέν σήμα μετά την υποδειγμάτιση </span>
-<span class="c1"># και τους αρχικούς τυχαίους ακεραίους</span>
+<span class="c1"># Displaying on a common chart the received signal after downsampling </span>
+<span class="c1"># and the original random integers</span>
 <span class="n">t</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">y</span><span class="p">[:</span><span class="mi">10</span><span class="p">]))</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">y_final</span><span class="p">[:</span><span class="mi">10</span><span class="p">])</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">stem</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">x_gray</span><span class="p">[:</span><span class="mi">10</span><span class="p">])</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">([</span><span class="s1">&#39;Received&#39;</span><span class="p">,</span><span class="s1">&#39;Transmittted&#39;</span><span class="p">])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">([</span><span class="s1">&#39;Received&#39;</span><span class="p">,</span><span class="s1">&#39;Transmitted&#39;</span><span class="p">])</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">()</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<img alt="../_images/fc59c604aaa45d29d7dbff86ffabbc0faee99775ec6bae291805e1dc4112012d.png" src="../_images/fc59c604aaa45d29d7dbff86ffabbc0faee99775ec6bae291805e1dc4112012d.png" />
-<img alt="../_images/a7802b011b62b3554f999b4a0c0971ddcd56a7b56594876d57773f97a0da9925.png" src="../_images/a7802b011b62b3554f999b4a0c0971ddcd56a7b56594876d57773f97a0da9925.png" />
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Υπολογίζουμε την φασματική πυκνότητα ισχύος του ληφθέντος σήματος</span>
 
+
+<span class="c1"># Calculating the power spectral density of the received signal</span>
 <span class="n">f</span><span class="p">,</span> <span class="n">Pxx_den</span> <span class="o">=</span> <span class="n">scipy</span><span class="o">.</span><span class="n">signal</span><span class="o">.</span><span class="n">welch</span><span class="p">(</span><span class="n">y_received</span><span class="p">,</span> <span class="n">window</span><span class="o">=</span><span class="s1">&#39;hamming&#39;</span><span class="p">,</span> <span class="n">nperseg</span><span class="o">=</span><span class="mi">8192</span><span class="p">)</span>
 <span class="n">Pxx_den</span> <span class="o">=</span> <span class="mi">10</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">log10</span><span class="p">(</span><span class="n">Pxx_den</span><span class="p">)</span>
 <span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
@@ -721,29 +841,44 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/43a6e2e4fdbe26f6d7fe8911c1d7b4a6f1ac25a3e951f03c4bb1796ab58b07f8.png" src="../_images/43a6e2e4fdbe26f6d7fe8911c1d7b4a6f1ac25a3e951f03c4bb1796ab58b07f8.png" />
+<img alt="../_images/d64b3d3f1c9b42cd9ba21b6060d865f08ff7c3ddd2336539abd3601ed08d345c.png" src="../_images/d64b3d3f1c9b42cd9ba21b6060d865f08ff7c3ddd2336539abd3601ed08d345c.png" />
+<img alt="../_images/fcb7202130f04f22f440984eaecc9b65979f0493c184c321a88242e62cd3c9d8.png" src="../_images/fcb7202130f04f22f440984eaecc9b65979f0493c184c321a88242e62cd3c9d8.png" />
+<img alt="../_images/a7047905d84dbaa1d1356f480c8525b4919450b3f5390da535a45858d4bca9cc.png" src="../_images/a7047905d84dbaa1d1356f480c8525b4919450b3f5390da535a45858d4bca9cc.png" />
 </div>
 </div>
 </section>
-<section id="ber-vs-eb-no">
-<h2>2. Υπολογισμός επίδοσης BER vs Eb/No.<a class="headerlink" href="#ber-vs-eb-no" title="Link to this heading">#</a></h2>
-<p>Μελέτη της επίδρασης των παραμέτρων: τάξη φίλτρου Nyquist και roll-off
-Για την 8-ASK, να ληφθεί η καμπύλη BER-Eb/No θεωρητικά και με εξομοίωση</p>
+<section id="part-3-performance-calculation-ber-vs-eb-no">
+<h2>Part 3: Performance calculation: BER vs Eb/No.<a class="headerlink" href="#part-3-performance-calculation-ber-vs-eb-no" title="Permalink to this heading">#</a></h2>
+<p>Study of the effect of parameters: Nyquist filter order and roll-off</p>
+<p>For 8-ASK, obtain the BER-Eb/No curve theoretically and by simulation</p>
 <ul class="simple">
-<li><p>με roll-off=0.1 και τάξη φίλτρου</p>
-<ul>
-<li><p>64 (2 περιόδων, group_delay =T)</p></li>
-<li><p>128 (4 περιόδων, group_delay =2T)</p></li>
-<li><p>320 (10 περιόδων, group_delay =5T).</p></li>
-</ul>
+<li><p>with roll-off=0.1 and filter order</p>
+<ol class="arabic simple">
+<li><p>80 (4 periods, group_delay =2T)</p></li>
+<li><p>160 (8 periods, group_delay =4T)</p></li>
+<li><p>320 (16 periods, group_delay =8T).</p></li>
+</ol>
 </li>
-<li><p>με roll-off=0.2 και τάξη φίλτρου όπως στις περιπτώσεις a,b,c παραπάνω.</p></li>
-<li><p>με roll-off=0.4 και τάξη φίλτρου όπως στις περιπτώσεις a,b,c παραπάνω.</p></li>
+<li><p>with roll-off=0.2 and filter order as in cases a,b,c above.</p></li>
+<li><p>with roll-off=0.4 and filter class as in cases a,b,c above</p></li>
 </ul>
-<p>Υπόδειξη: Για την εκτίμηση Μέγιστης Πιθανοφάνειας, να συγκριθεί κάθε λαμβανόμενο
-σύμβολο (δείγμα στην έξοδο του προσαρμοσμένου φίλτρου) με τα στοιχεία του διανύσματος
-mapping. Η θέση του πλησιέστερου στοιχείου στο διάνυσμα θα δώσει και την αντίστοιχη
-κωδικολέξη. Το παρακάτω τμήμα κώδικα είναι μια υλοποίηση αυτού του φωρατή.</p>
+<div class="admonition hint">
+<p class="admonition-title">Hint</p>
+<p>For Maximum Likelihood estimation, compare each received symbol (sample at the output
+of the matched filter) with the elements of the mapping vector. The position of the closest
+element in the vector will also give the corresponding codeword. The following code snippet is an
+implementation of this forator.</p>
+</div>
+<div class="tab-set docutils">
+<input checked="True" class="tab-input" id="tab-set--2-input--1" name="tab-set--2" type="radio"><label class="tab-label" for="tab-set--2-input--1">Matlab</label><div class="tab-content docutils">
+<div class="highlight-matlab notranslate"><div class="highlight"><pre><span></span><span class="c">% yr: the received symbol, at the matched filter output</span>
+<span class="c">% xr: the encoded bit word, k bits</span>
+<span class="p">[</span><span class="n">m</span><span class="p">,</span><span class="nb">j</span><span class="p">]=</span><span class="nb">min</span><span class="p">(</span><span class="nb">abs</span><span class="p">(</span><span class="n">mapping</span><span class="o">-</span><span class="n">yr</span><span class="p">));</span>
+<span class="n">xr</span><span class="p">=</span><span class="n">de2bi</span><span class="p">(</span><span class="nb">j</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="n">k</span><span class="p">,</span><span class="s">&#39;left-msb&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+</div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Υπολογισμός της πιθανότητας εσφαλμένου ψηφίου θεωρητικά και μέσω προσομοίωσης</span>
@@ -812,15 +947,15 @@ mapping. Η θέση του πλησιέστερου στοιχείου στο �
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/cc0ee587a32199a7dc5b56bb0f87bc6996904f15944d6df8bb5573fa8ab3fd35.png" src="../_images/cc0ee587a32199a7dc5b56bb0f87bc6996904f15944d6df8bb5573fa8ab3fd35.png" />
+<img alt="../_images/78b232c9ae500bd98110f8ec48a954e02bc52f17b8511b6c46d7d2dff1d0c003.png" src="../_images/78b232c9ae500bd98110f8ec48a954e02bc52f17b8511b6c46d7d2dff1d0c003.png" />
 </div>
 </div>
 </section>
-<section id="gray">
-<h2>3. Επίδραση του τρόπου κωδικοποίησης: Gray ή άλλη<a class="headerlink" href="#gray" title="Link to this heading">#</a></h2>
-<p>Να παραχθούν καμπύλες BER-Eb/No για τις 16-ASK και 8-ASK με κωδικοποίηση
-άλλη (όχι Gray), π.χ. με <span class="math notranslate nohighlight">\(mapping=-(L-1):step:(L-1)\)</span>, και να συγκριθούν με τις
-θεωρητικές. Τι παρατηρείτε;</p>
+<section id="part-4-the-effect-of-the-coding-method-gray-or-other">
+<h2>Part 4: The effect of the coding method: Gray or other<a class="headerlink" href="#part-4-the-effect-of-the-coding-method-gray-or-other" title="Permalink to this heading">#</a></h2>
+<p>Produce BER-Eb/No curves for 16-ASK and 8-ASK with other coding (not Gray), e.g.
+with mapping=-(L-1):step:(L-1), and compare them with the theoretical ones.
+What do you observe?</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Επαναλάμβάνουμε την παραπάνω διαδικασία, αλλά θεωρούμε κωδικοποίηση με δυαδικούς αριθμούς αντί για Gray</span>
@@ -861,7 +996,7 @@ mapping. Η θέση του πλησιέστερου στοιχείου στο �
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/e1621f4379b76e24f25795e1e72e90172b7e7dcbb92a3aa151f561932747fd55.png" src="../_images/e1621f4379b76e24f25795e1e72e90172b7e7dcbb92a3aa151f561932747fd55.png" />
+<img alt="../_images/eb74c37dedb090f2cae0b8f47d84137f73b45be2d4a98a129a391c689e0dbc6c.png" src="../_images/eb74c37dedb090f2cae0b8f47d84137f73b45be2d4a98a129a391c689e0dbc6c.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -932,19 +1067,22 @@ mapping. Η θέση του πλησιέστερου στοιχείου στο �
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/45204eab46d76e280659b71894f5692b7321eef14c7ba9ec9cada97f29c1627b.png" src="../_images/45204eab46d76e280659b71894f5692b7321eef14c7ba9ec9cada97f29c1627b.png" />
+<img alt="../_images/dc5a472fd7a3e814d2530a7065bc021cb914a5df179d7e0b0a8ff3ddbe138df7.png" src="../_images/dc5a472fd7a3e814d2530a7065bc021cb914a5df179d7e0b0a8ff3ddbe138df7.png" />
 </div>
 </div>
 </section>
-<section id="id2">
-<h2>4. Υπολογισμός παραμέτρων συστήματος<a class="headerlink" href="#id2" title="Link to this heading">#</a></h2>
-<p>Το απαιτούμενο εύρος βασικής ζώνης με σηματοδοσία Nyquist, ισούται με
-$<span class="math notranslate nohighlight">\( W = \frac{1}{2T}(1+\alpha) \)</span>$</p>
-<p>όπου α ο συντελεστής εξάπλωσης (roll-off factor) του φίλτρου Nyquist και <span class="math notranslate nohighlight">\( \frac{1}{T} \)</span>
-ρυθμός μετάδοσης συμβόλων (ονομαζόμενος και Baud Rate). Εξ άλλου, ο ρυθμός μετάδοσης, <span class="math notranslate nohighlight">\(R\)</span>
-(bits/s), συνδέεται με το <span class="math notranslate nohighlight">\( \frac{1}{T} \)</span> και το μέγεθος του σηματικού αστερισμού, <span class="math notranslate nohighlight">\(L\)</span>, με τη σχέση
-$<span class="math notranslate nohighlight">\( \frac{R}{\log_2 L} = \frac{l}{T} \)</span>$</p>
-<p>αποτελεί, συνεπώς, τη συνδετική παράμετρο μεταξύ των <span class="math notranslate nohighlight">\(W\)</span> και <span class="math notranslate nohighlight">\(R\)</span>.</p>
+<section id="part-5-calculation-of-system-parameters">
+<h2>Part 5: Calculation of system parameters<a class="headerlink" href="#part-5-calculation-of-system-parameters" title="Permalink to this heading">#</a></h2>
+<p>Adjust the parameters of the 16-ASK transmission system to the following actual data/requirements:</p>
+<ul class="simple">
+<li><p>Width of (baseband) bandwidth <span class="math notranslate nohighlight">\(W = 1 \text{ MHz}\)</span></p></li>
+<li><p>Noise spectrum density <span class="math notranslate nohighlight">\(N_0 = 100 \text{ picowatt/Hz}\)</span> (one-sided)</p></li>
+<li><p><span class="math notranslate nohighlight">\(5 \text{ Mbps}\)</span> transmission rate</p></li>
+<li><p>Tolerable <span class="math notranslate nohighlight">\(BER=2 \text{ Kbps}\)</span></p></li>
+</ul>
+<p>Confirm the specifications in bandwidth and BER.</p>
+<p><strong>Connection with theory</strong>: The required (baseband) bandwidth with Nyquist signaling, is equal to: $<span class="math notranslate nohighlight">\( W = \frac{1}{2T}(1+\alpha) \)</span><span class="math notranslate nohighlight">\( where α the roll-off factor of the Nyquist filter and \)</span> \frac{1}{T} <span class="math notranslate nohighlight">\( the symbol transmission rate (also called Baud Rate). On the other hand, the transmission rate, \)</span>R<span class="math notranslate nohighlight">\( (bits/s), is related to \)</span> \frac{1}{T} <span class="math notranslate nohighlight">\( and the size of the sign constellation, L, with the relation: \)</span><span class="math notranslate nohighlight">\( \frac{R}{\log_2 L} = \frac{l}{T} \)</span>$</p>
+<p><span class="math notranslate nohighlight">\( \frac{1}{T} \)</span> consists the connecting parameter between <span class="math notranslate nohighlight">\(W\)</span> and <span class="math notranslate nohighlight">\(R\)</span>.</p>
 </section>
 </section>
 
@@ -984,7 +1122,7 @@ $<span class="math notranslate nohighlight">\( \frac{R}{\log_2 L} = \frac{l}{T} 
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">Εργαστηριακή Άσκηση 3</p>
+        <p class="prev-next-title">Lab Exercise 3: Matched Filters and L-ASK</p>
       </div>
     </a>
     <a class="right-next"
@@ -1005,17 +1143,20 @@ $<span class="math notranslate nohighlight">\( \frac{R}{\log_2 L} = \frac{l}{T} 
               
                 <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
 
-
   <div class="sidebar-secondary-item">
   <div class="page-toc tocsection onthispage">
     <i class="fa-solid fa-list"></i> Contents
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#nyquist">1. Παραγωγή σήματος με φίλτρα Nyquist – Διαγράμματα χρόνου και συχνότητας</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ber-vs-eb-no">2. Υπολογισμός επίδοσης BER vs Eb/No.</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#gray">3. Επίδραση του τρόπου κωδικοποίησης: Gray ή άλλη</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">4. Υπολογισμός παραμέτρων συστήματος</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#part-1-useful-code">Part 1: Useful Code</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#importing-packages-we-will-need-later-in-python">Importing packages we will need later in Python</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#part-2-signal-generation-with-nyquist-filters-time-and-frequency-plots">Part 2: Signal generation with Nyquist filters – Time and frequency plots</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#part-3-performance-calculation-ber-vs-eb-no">Part 3: Performance calculation: BER vs Eb/No.</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#part-4-the-effect-of-the-coding-method-gray-or-other">Part 4: The effect of the coding method: Gray or other</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#part-5-calculation-of-system-parameters">Part 5: Calculation of system parameters</a></li>
 </ul>
   </nav></div>
 
@@ -1040,7 +1181,7 @@ By ECE - NTUA
 
   <p class="copyright">
     
-      © Copyright 2023.
+      © Copyright 2022.
       <br/>
     
   </p>
@@ -1064,8 +1205,8 @@ By ECE - NTUA
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="../_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae"></script>
-<script src="../_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae"></script>
+  <script src="../_static/scripts/bootstrap.js?digest=5b4479735964841361fd"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=5b4479735964841361fd"></script>
 
   <footer class="bd-footer">
   </footer>
