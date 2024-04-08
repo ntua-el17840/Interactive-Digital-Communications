@@ -70,7 +70,7 @@ const thebe_selector_output = ".output, .cell_output"
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="Εργαστηριακή Άσκηση 6" href="Digcom_Lab6.html" />
-    <link rel="prev" title="Εργαστηριακή Άσκηση 4: Nyquist signaling and L-ASK" href="Digcom_Lab4.html" />
+    <link rel="prev" title="Lab Exercise 4: Nyquist signaling and L-ASK" href="Digcom_Lab4.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -183,7 +183,7 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l1"><a class="reference internal" href="Digcom_Lab1.html">Lab Exercise 1: Introduction</a></li>
 <li class="toctree-l1"><a class="reference internal" href="Digcom_Lab2.html">Lab Exercise 2: Digital Filters</a></li>
 <li class="toctree-l1"><a class="reference internal" href="Digcom_Lab3.html">Lab Exercise 3: Matched Filters and L-ASK</a></li>
-<li class="toctree-l1"><a class="reference internal" href="Digcom_Lab4.html">Εργαστηριακή Άσκηση 4: Nyquist signaling and L-ASK</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Digcom_Lab4.html">Lab Exercise 4: Nyquist signaling and L-ASK</a></li>
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">Εργαστηριακή Άσκηση 5</a></li>
 <li class="toctree-l1"><a class="reference internal" href="Digcom_Lab6.html">Εργαστηριακή Άσκηση 6</a></li>
 </ul>
@@ -678,12 +678,12 @@ Pb&lt;–&gt;Eb/No. Η συχνότητα δειγματοληψίας πρέπ�
 <span class="g g-Whitespace">    </span><span class="mi">126</span>     <span class="n">ber_th</span> <span class="o">=</span> <span class="n">ber_th</span> <span class="o">+</span><span class="p">[((</span><span class="n">L</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span> <span class="o">/</span><span class="p">(</span><span class="n">L</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">log2</span><span class="p">(</span><span class="n">L</span><span class="p">))</span> <span class="o">*</span> <span class="n">scipy</span><span class="o">.</span><span class="n">special</span><span class="o">.</span><span class="n">erfc</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mi">3</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">log2</span><span class="p">(</span><span class="n">L</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="n">L</span> <span class="o">*</span> <span class="n">L</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span> <span class="o">*</span> <span class="mi">10</span><span class="o">**</span><span class="p">(</span><span class="n">i</span><span class="o">/</span><span class="mi">10</span><span class="p">))))]</span>
 <span class="g g-Whitespace">    </span><span class="mi">128</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">18</span><span class="p">,</span> <span class="mi">16</span><span class="p">))</span>
 
-<span class="nn">Cell In[5], line 85,</span> in <span class="ni">ber_64qam</span><span class="nt">(EbNo)</span>
-<span class="g g-Whitespace">     </span><span class="mi">83</span> <span class="n">s_matrix</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">matrix</span><span class="p">(</span><span class="n">s</span><span class="p">)</span> <span class="c1">#ανάστροφος</span>
-<span class="g g-Whitespace">     </span><span class="mi">84</span> <span class="n">s_matrix</span><span class="o">=</span><span class="n">s_matrix</span><span class="o">.</span><span class="n">getH</span><span class="p">()</span>
-<span class="ne">---&gt; </span><span class="mi">85</span> <span class="n">s_list</span><span class="o">=</span><span class="n">s_matrix</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span>
-<span class="g g-Whitespace">     </span><span class="mi">86</span> <span class="n">Ps</span><span class="o">=</span><span class="mi">10</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">log10</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">matmul</span><span class="p">(</span><span class="n">s</span><span class="p">,</span><span class="n">s_list</span><span class="p">)</span><span class="o">/</span><span class="nb">len</span><span class="p">(</span><span class="n">s</span><span class="p">))</span> <span class="c1">#ισχύς μιγαδικού σήματος σε db</span>
-<span class="g g-Whitespace">     </span><span class="mi">87</span> <span class="n">Pn</span><span class="o">=</span><span class="n">Ps</span><span class="o">-</span><span class="n">SNR</span>
+<span class="nn">Cell In[5], line 71,</span> in <span class="ni">ber_64qam</span><span class="nt">(EbNo)</span>
+<span class="g g-Whitespace">     </span><span class="mi">69</span> <span class="n">y</span><span class="o">=</span><span class="p">[]</span>
+<span class="g g-Whitespace">     </span><span class="mi">70</span> <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="nb">len</span><span class="p">(</span><span class="n">xsym</span><span class="p">)):</span>
+<span class="ne">---&gt; </span><span class="mi">71</span>     <span class="n">y</span><span class="o">=</span><span class="n">y</span> <span class="o">+</span> <span class="p">[</span><span class="n">mapping</span><span class="p">[</span><span class="n">xsym</span><span class="p">[</span><span class="n">n</span><span class="p">]]]</span>
+<span class="g g-Whitespace">     </span><span class="mi">73</span> <span class="n">delay</span><span class="o">=</span><span class="mi">10</span>
+<span class="g g-Whitespace">     </span><span class="mi">74</span> <span class="n">filtorder</span><span class="o">=</span> <span class="n">delay</span><span class="o">*</span><span class="n">nsamp</span><span class="o">*</span><span class="mi">2</span>
 
 <span class="ne">KeyboardInterrupt</span>: 
 </pre></div>
@@ -849,7 +849,7 @@ Pb&lt;–&gt;Eb/No. Η συχνότητα δειγματοληψίας πρέπ�
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">Εργαστηριακή Άσκηση 4: Nyquist signaling and L-ASK</p>
+        <p class="prev-next-title">Lab Exercise 4: Nyquist signaling and L-ASK</p>
       </div>
     </a>
     <a class="right-next"

@@ -9,7 +9,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
-    <title>Εργαστηριακή Άσκηση 4: Nyquist signaling and L-ASK &#8212; Interactive Digital Communtications</title>
+    <title>Lab Exercise 4: Nyquist signaling and L-ASK &#8212; Interactive Digital Communtications</title>
   
   
   
@@ -185,7 +185,7 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l1"><a class="reference internal" href="Digcom_Lab1.html">Lab Exercise 1: Introduction</a></li>
 <li class="toctree-l1"><a class="reference internal" href="Digcom_Lab2.html">Lab Exercise 2: Digital Filters</a></li>
 <li class="toctree-l1"><a class="reference internal" href="Digcom_Lab3.html">Lab Exercise 3: Matched Filters and L-ASK</a></li>
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">Εργαστηριακή Άσκηση 4: Nyquist signaling and L-ASK</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Lab Exercise 4: Nyquist signaling and L-ASK</a></li>
 <li class="toctree-l1"><a class="reference internal" href="Digcom_Lab5.html">Εργαστηριακή Άσκηση 5</a></li>
 <li class="toctree-l1"><a class="reference internal" href="Digcom_Lab6.html">Εργαστηριακή Άσκηση 6</a></li>
 </ul>
@@ -404,7 +404,7 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Εργαστηριακή Άσκηση 4: Nyquist signaling and L-ASK</h1>
+    <h1>Lab Exercise 4: Nyquist signaling and L-ASK</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -416,12 +416,12 @@ document.write(`
                 <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#part-1-useful-code">Part 1: Useful Code</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#importing-packages-we-will-need-later-in-python">Importing packages we will need later in Python</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#signal-generation-with-nyquist-filters-time-and-frequency-plots">Signal generation with Nyquist filters – Time and frequency plots</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ber-vs-eb-no">2. Υπολογισμός επίδοσης BER vs Eb/No.</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#gray">3. Επίδραση του τρόπου κωδικοποίησης: Gray ή άλλη</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">4. Υπολογισμός παραμέτρων συστήματος</a></li>
 </ul>
 </li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#part-2-signal-generation-with-nyquist-filters-time-and-frequency-plots">Part 2: Signal generation with Nyquist filters – Time and frequency plots</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#part-3-performance-calculation-ber-vs-eb-no">Part 3: Performance calculation: BER vs Eb/No.</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#part-4-the-effect-of-the-coding-method-gray-or-other">Part 4: The effect of the coding method: Gray or other</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#part-5-calculation-of-system-parameters">Part 5: Calculation of system parameters</a></li>
 </ul>
             </nav>
         </div>
@@ -433,8 +433,8 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article" role="main">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="nyquist-signaling-and-l-ask">
-<h1>Εργαστηριακή Άσκηση 4: Nyquist signaling and L-ASK<a class="headerlink" href="#nyquist-signaling-and-l-ask" title="Permalink to this heading">#</a></h1>
+  <section class="tex2jax_ignore mathjax_ignore" id="lab-exercise-4-nyquist-signaling-and-l-ask">
+<h1>Lab Exercise 4: Nyquist signaling and L-ASK<a class="headerlink" href="#lab-exercise-4-nyquist-signaling-and-l-ask" title="Permalink to this heading">#</a></h1>
 <p>After studying Chapter 4 of the notes and, in particular, Example 4.2, write and run
 code for the following:</p>
 <section id="part-1-useful-code">
@@ -602,8 +602,9 @@ Useful functions<div class="sd-summary-down docutils">
 </div>
 </div>
 </details></section>
-<section id="signal-generation-with-nyquist-filters-time-and-frequency-plots">
-<h3>Signal generation with Nyquist filters – Time and frequency plots<a class="headerlink" href="#signal-generation-with-nyquist-filters-time-and-frequency-plots" title="Permalink to this heading">#</a></h3>
+</section>
+<section id="part-2-signal-generation-with-nyquist-filters-time-and-frequency-plots">
+<h2>Part 2: Signal generation with Nyquist filters – Time and frequency plots<a class="headerlink" href="#part-2-signal-generation-with-nyquist-filters-time-and-frequency-plots" title="Permalink to this heading">#</a></h2>
 <p>Generate a random binary sequence of 10000 bits and then a corresponding 8-ASK
 baseband signal, with the following characteristics:</p>
 <ul class="simple">
@@ -846,25 +847,38 @@ receiver and explain its shape and amplitude.</p></li>
 </div>
 </div>
 </section>
-<section id="ber-vs-eb-no">
-<h3>2. Υπολογισμός επίδοσης BER vs Eb/No.<a class="headerlink" href="#ber-vs-eb-no" title="Permalink to this heading">#</a></h3>
-<p>Μελέτη της επίδρασης των παραμέτρων: τάξη φίλτρου Nyquist και roll-off</p>
-<p>Για την 8-ASK, να ληφθεί η καμπύλη BER-Eb/No θεωρητικά και με εξομοίωση</p>
+<section id="part-3-performance-calculation-ber-vs-eb-no">
+<h2>Part 3: Performance calculation: BER vs Eb/No.<a class="headerlink" href="#part-3-performance-calculation-ber-vs-eb-no" title="Permalink to this heading">#</a></h2>
+<p>Study of the effect of parameters: Nyquist filter order and roll-off</p>
+<p>For 8-ASK, obtain the BER-Eb/No curve theoretically and by simulation</p>
 <ul class="simple">
-<li><p>με roll-off=0.1 και τάξη φίλτρου</p>
-<ul>
-<li><p>64 (2 περιόδων, group_delay =T)</p></li>
-<li><p>128 (4 περιόδων, group_delay =2T)</p></li>
-<li><p>320 (10 περιόδων, group_delay =5T).</p></li>
-</ul>
+<li><p>with roll-off=0.1 and filter order</p>
+<ol class="arabic simple">
+<li><p>80 (4 periods, group_delay =2T)</p></li>
+<li><p>160 (8 periods, group_delay =4T)</p></li>
+<li><p>320 (16 periods, group_delay =8T).</p></li>
+</ol>
 </li>
-<li><p>με roll-off=0.2 και τάξη φίλτρου όπως στις περιπτώσεις a,b,c παραπάνω.</p></li>
-<li><p>με roll-off=0.4 και τάξη φίλτρου όπως στις περιπτώσεις a,b,c παραπάνω.</p></li>
+<li><p>with roll-off=0.2 and filter order as in cases a,b,c above.</p></li>
+<li><p>with roll-off=0.4 and filter class as in cases a,b,c above</p></li>
 </ul>
-<p>Υπόδειξη: Για την εκτίμηση Μέγιστης Πιθανοφάνειας, να συγκριθεί κάθε λαμβανόμενο
-σύμβολο (δείγμα στην έξοδο του προσαρμοσμένου φίλτρου) με τα στοιχεία του διανύσματος
-mapping. Η θέση του πλησιέστερου στοιχείου στο διάνυσμα θα δώσει και την αντίστοιχη
-κωδικολέξη. Το παρακάτω τμήμα κώδικα είναι μια υλοποίηση αυτού του φωρατή.</p>
+<div class="admonition hint">
+<p class="admonition-title">Hint</p>
+<p>For Maximum Likelihood estimation, compare each received symbol (sample at the output
+of the matched filter) with the elements of the mapping vector. The position of the closest
+element in the vector will also give the corresponding codeword. The following code snippet is an
+implementation of this forator.</p>
+</div>
+<div class="tab-set docutils">
+<input checked="True" class="tab-input" id="tab-set--2-input--1" name="tab-set--2" type="radio"><label class="tab-label" for="tab-set--2-input--1">Matlab</label><div class="tab-content docutils">
+<div class="highlight-matlab notranslate"><div class="highlight"><pre><span></span><span class="c">% yr: the received symbol, at the matched filter output</span>
+<span class="c">% xr: the encoded bit word, k bits</span>
+<span class="p">[</span><span class="n">m</span><span class="p">,</span><span class="nb">j</span><span class="p">]=</span><span class="nb">min</span><span class="p">(</span><span class="nb">abs</span><span class="p">(</span><span class="n">mapping</span><span class="o">-</span><span class="n">yr</span><span class="p">));</span>
+<span class="n">xr</span><span class="p">=</span><span class="n">de2bi</span><span class="p">(</span><span class="nb">j</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="n">k</span><span class="p">,</span><span class="s">&#39;left-msb&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+</div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Υπολογισμός της πιθανότητας εσφαλμένου ψηφίου θεωρητικά και μέσω προσομοίωσης</span>
@@ -937,11 +951,11 @@ mapping. Η θέση του πλησιέστερου στοιχείου στο �
 </div>
 </div>
 </section>
-<section id="gray">
-<h3>3. Επίδραση του τρόπου κωδικοποίησης: Gray ή άλλη<a class="headerlink" href="#gray" title="Permalink to this heading">#</a></h3>
-<p>Να παραχθούν καμπύλες BER-Eb/No για τις 16-ASK και 8-ASK με κωδικοποίηση
-άλλη (όχι Gray), π.χ. με <span class="math notranslate nohighlight">\(mapping=-(L-1):step:(L-1)\)</span>, και να συγκριθούν με τις
-θεωρητικές. Τι παρατηρείτε;</p>
+<section id="part-4-the-effect-of-the-coding-method-gray-or-other">
+<h2>Part 4: The effect of the coding method: Gray or other<a class="headerlink" href="#part-4-the-effect-of-the-coding-method-gray-or-other" title="Permalink to this heading">#</a></h2>
+<p>Produce BER-Eb/No curves for 16-ASK and 8-ASK with other coding (not Gray), e.g.
+with mapping=-(L-1):step:(L-1), and compare them with the theoretical ones.
+What do you observe?</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Επαναλάμβάνουμε την παραπάνω διαδικασία, αλλά θεωρούμε κωδικοποίηση με δυαδικούς αριθμούς αντί για Gray</span>
@@ -1057,16 +1071,18 @@ mapping. Η θέση του πλησιέστερου στοιχείου στο �
 </div>
 </div>
 </section>
-<section id="id1">
-<h3>4. Υπολογισμός παραμέτρων συστήματος<a class="headerlink" href="#id1" title="Permalink to this heading">#</a></h3>
-<p>Το απαιτούμενο εύρος βασικής ζώνης με σηματοδοσία Nyquist, ισούται με
-$<span class="math notranslate nohighlight">\( W = \frac{1}{2T}(1+\alpha) \)</span>$</p>
-<p>όπου α ο συντελεστής εξάπλωσης (roll-off factor) του φίλτρου Nyquist και <span class="math notranslate nohighlight">\( \frac{1}{T} \)</span>
-ρυθμός μετάδοσης συμβόλων (ονομαζόμενος και Baud Rate). Εξ άλλου, ο ρυθμός μετάδοσης, <span class="math notranslate nohighlight">\(R\)</span>
-(bits/s), συνδέεται με το <span class="math notranslate nohighlight">\( \frac{1}{T} \)</span> και το μέγεθος του σηματικού αστερισμού, <span class="math notranslate nohighlight">\(L\)</span>, με τη σχέση
-$<span class="math notranslate nohighlight">\( \frac{R}{\log_2 L} = \frac{l}{T} \)</span>$</p>
-<p>αποτελεί, συνεπώς, τη συνδετική παράμετρο μεταξύ των <span class="math notranslate nohighlight">\(W\)</span> και <span class="math notranslate nohighlight">\(R\)</span>.</p>
-</section>
+<section id="part-5-calculation-of-system-parameters">
+<h2>Part 5: Calculation of system parameters<a class="headerlink" href="#part-5-calculation-of-system-parameters" title="Permalink to this heading">#</a></h2>
+<p>Adjust the parameters of the 16-ASK transmission system to the following actual data/requirements:</p>
+<ul class="simple">
+<li><p>Width of (baseband) bandwidth <span class="math notranslate nohighlight">\(W = 1 \text{ MHz}\)</span></p></li>
+<li><p>Noise spectrum density <span class="math notranslate nohighlight">\(N_0 = 100 \text{ picowatt/Hz}\)</span> (one-sided)</p></li>
+<li><p><span class="math notranslate nohighlight">\(5 \text{ Mbps}\)</span> transmission rate</p></li>
+<li><p>Tolerable <span class="math notranslate nohighlight">\(BER=2 \text{ Kbps}\)</span></p></li>
+</ul>
+<p>Confirm the specifications in bandwidth and BER.</p>
+<p><strong>Connection with theory</strong>: The required (baseband) bandwidth with Nyquist signaling, is equal to: $<span class="math notranslate nohighlight">\( W = \frac{1}{2T}(1+\alpha) \)</span><span class="math notranslate nohighlight">\( where α the roll-off factor of the Nyquist filter and \)</span> \frac{1}{T} <span class="math notranslate nohighlight">\( the symbol transmission rate (also called Baud Rate). On the other hand, the transmission rate, \)</span>R<span class="math notranslate nohighlight">\( (bits/s), is related to \)</span> \frac{1}{T} <span class="math notranslate nohighlight">\( and the size of the sign constellation, L, with the relation: \)</span><span class="math notranslate nohighlight">\( \frac{R}{\log_2 L} = \frac{l}{T} \)</span>$</p>
+<p><span class="math notranslate nohighlight">\( \frac{1}{T} \)</span> consists the connecting parameter between <span class="math notranslate nohighlight">\(W\)</span> and <span class="math notranslate nohighlight">\(R\)</span>.</p>
 </section>
 </section>
 
@@ -1135,12 +1151,12 @@ $<span class="math notranslate nohighlight">\( \frac{R}{\log_2 L} = \frac{l}{T} 
     <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#part-1-useful-code">Part 1: Useful Code</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#importing-packages-we-will-need-later-in-python">Importing packages we will need later in Python</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#signal-generation-with-nyquist-filters-time-and-frequency-plots">Signal generation with Nyquist filters – Time and frequency plots</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ber-vs-eb-no">2. Υπολογισμός επίδοσης BER vs Eb/No.</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#gray">3. Επίδραση του τρόπου κωδικοποίησης: Gray ή άλλη</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">4. Υπολογισμός παραμέτρων συστήματος</a></li>
 </ul>
 </li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#part-2-signal-generation-with-nyquist-filters-time-and-frequency-plots">Part 2: Signal generation with Nyquist filters – Time and frequency plots</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#part-3-performance-calculation-ber-vs-eb-no">Part 3: Performance calculation: BER vs Eb/No.</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#part-4-the-effect-of-the-coding-method-gray-or-other">Part 4: The effect of the coding method: Gray or other</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#part-5-calculation-of-system-parameters">Part 5: Calculation of system parameters</a></li>
 </ul>
   </nav></div>
 
