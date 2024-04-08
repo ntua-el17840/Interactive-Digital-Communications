@@ -1,0 +1,1376 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Lab Exercise 3: Matched Filters and L-ASK &#8212; Interactive Digital Communtications</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+
+  
+  <link href="../_static/vendor/fontawesome/6.5.1/css/all.min.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.1/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.1/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.1/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=384b581d" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../_static/tabs.css?v=4c969af8" />
+    <link rel="stylesheet" type="text/css" href="../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css?v=0a3b3ea7" />
+    <link rel="stylesheet" type="text/css" href="../_static/custom.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae" />
+  <script src="../_static/vendor/fontawesome/6.5.1/js/all.min.js?digest=8d27b9dea8ad943066ae"></script>
+
+    <script src="../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../_static/doctools.js?v=888ff710"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=efea14e4"></script>
+    <script src="../_static/tabs.js?v=3ee01567"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js?v=36754332"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'content/Digcom_Lab3';</script>
+    <script src="../_static/custom.js?v=8345a7c9"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Lab Exercise 4: Nyquist signaling and L-ASK" href="Digcom_Lab4.html" />
+    <link rel="prev" title="Lab Exercise 2: Digital Filters" href="Digcom_Lab2.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a id="pst-skip-link" class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>
+    Back to top
+  </button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+
+<a class="navbar-brand logo" href="../intro.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../_static/logo.png" class="logo__image only-light" alt="Interactive Digital Communtications - Home"/>
+    <script>document.write(`<img src="../_static/logo.png" class="logo__image only-dark" alt="Interactive Digital Communtications - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn navbar-btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../intro.html">
+                    Welcome to your Jupyter Book
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Intro to Digital Communications</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../digital_communications_intro.html">Interactive python interpreter (IPython) notebook</a></li>
+
+
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Lab Exercises</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="Digcom_Lab1.html">Lab Exercise 1: Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Digcom_Lab2.html">Lab Exercise 2: Digital Filters</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Lab Exercise 3: Matched Filters and L-ASK</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Digcom_Lab4.html">Lab Exercise 4: Nyquist signaling and L-ASK</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Digcom_Lab5.html">Εργαστηριακή Άσκηση 5</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Digcom_Lab6.html">Εργαστηριακή Άσκηση 6</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-launch-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Launch interactive content">
+    <i class="fas fa-rocket"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li>
+<button onclick="initThebeSBT()"
+  class="btn btn-sm btn-launch-thebe dropdown-item"
+  title="Launch Thebe"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-play"></i>
+  </span>
+<span class="btn__text-container">Live Code</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/ntua-el17840/Interactive-Digital-Communications" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/ntua-el17840/Interactive-Digital-Communications/issues/new?title=Issue%20on%20page%20%2Fcontent/Digcom_Lab3.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/content/Digcom_Lab3.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Lab Exercise 3: Matched Filters and L-ASK</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#importing-packages-we-will-need-later-in-python">Importing packages we will need later in Python</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#part-1-theory">Part 1: Theory</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#code-3-3-calculation-of-the-probability-of-erroneous-symbol-for-coherent-ask-with-orthogonal">Code 3.3: Calculation of the probability of erroneous symbol for coherent ASK with orthogonal</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#part-2-simulation-code-exploration">Part 2: Simulation Code Exploration</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#part-3-performance-curves-ber-as-a-function-of-the-signal-to-noise-ratio">Part 3: Performance Curves (BER as a function of the signal-to-noise ratio)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#part-4-implementation-with-convolution-using-other-pulses">Part 4: Implementation with Convolution - Using Other Pulses</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="lab-exercise-3-matched-filters-and-l-ask">
+<h1>Lab Exercise 3: Matched Filters and L-ASK<a class="headerlink" href="#lab-exercise-3-matched-filters-and-l-ask" title="Link to this heading">#</a></h1>
+<p>After studying Chapter 3 and, in particular, Example 3.2 of the notes, copy Code 3.3 of this example into a file named ask_errors.m (the code is repeated here for convenience). Then execute the following:</p>
+<div class="admonition-live-code admonition">
+<p class="admonition-title">Live Code</p>
+<p>Press the following button to make python code interactive. It will connect you to a kernel once it says “ready” (might take a bit, especially the first time it runs).</p>
+</div>
+<div style="text-align: center;">
+  <button title="Launch thebe" class="thebelab-button thebe-launch-button" onclick="initThebe()">Python Interactive Code</button>
+</div>
+<section id="importing-packages-we-will-need-later-in-python">
+<h2>Importing packages we will need later in Python<a class="headerlink" href="#importing-packages-we-will-need-later-in-python" title="Link to this heading">#</a></h2>
+<div class="cell tag_thebe-init docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">scipy</span> <span class="kn">import</span> <span class="n">signal</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">from</span> <span class="nn">scipy.special</span> <span class="kn">import</span> <span class="n">erfc</span>
+<span class="kn">import</span> <span class="nn">ipywidgets</span> <span class="k">as</span> <span class="nn">widgets</span>
+<span class="kn">from</span> <span class="nn">IPython.display</span> <span class="kn">import</span> <span class="n">display</span><span class="p">,</span> <span class="n">clear_output</span>
+<span class="kn">from</span> <span class="nn">scipy.signal</span> <span class="kn">import</span> <span class="n">convolve</span>
+<span class="kn">from</span> <span class="nn">ipywidgets</span> <span class="kn">import</span> <span class="n">Checkbox</span><span class="p">,</span> <span class="n">VBox</span><span class="p">,</span> <span class="n">Button</span><span class="p">,</span> <span class="n">Output</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="part-1-theory">
+<h2>Part 1: Theory<a class="headerlink" href="#part-1-theory" title="Link to this heading">#</a></h2>
+<section id="code-3-3-calculation-of-the-probability-of-erroneous-symbol-for-coherent-ask-with-orthogonal">
+<h3>Code 3.3: Calculation of the probability of erroneous symbol for coherent ASK with orthogonal<a class="headerlink" href="#code-3-3-calculation-of-the-probability-of-erroneous-symbol-for-coherent-ask-with-orthogonal" title="Link to this heading">#</a></h3>
+<div class="admonition-code-3-3 admonition">
+<p class="admonition-title">Code 3.3</p>
+<div class="tab-set docutils">
+<input checked="True" class="tab-input" id="tab-set--0-input--1" name="tab-set--0" type="radio"><label class="tab-label" for="tab-set--0-input--1">Python</label><div class="tab-content docutils">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
+<span class="k">def</span> <span class="nf">ask_errors</span><span class="p">(</span><span class="n">k</span><span class="p">,</span> <span class="n">M</span><span class="p">,</span> <span class="n">nsamp</span><span class="p">,</span> <span class="n">EbN0_db</span><span class="p">):</span>
+    <span class="c1"># L is the number of different amplitude levels (2^k)</span>
+    <span class="n">L</span> <span class="o">=</span> <span class="mi">2</span><span class="o">**</span><span class="n">k</span>
+    <span class="c1"># Calculate SNR in dB adjusting for number of samples and bits per symbol</span>
+    <span class="n">SNR_db</span> <span class="o">=</span> <span class="n">EbN0_db</span> <span class="o">-</span> <span class="mi">10</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">log10</span><span class="p">(</span><span class="n">nsamp</span><span class="o">/</span><span class="mi">2</span><span class="o">/</span><span class="n">k</span><span class="p">)</span>
+    <span class="c1"># Convert SNR from dB to linear scale</span>
+    <span class="n">SNR</span> <span class="o">=</span> <span class="mi">10</span> <span class="o">**</span> <span class="p">(</span><span class="n">SNR_db</span> <span class="o">*</span> <span class="mf">0.1</span><span class="p">)</span>
+    <span class="c1"># Generate a vector of random symbols with amplitudes {±1, ±3, ... ±(L-1)}</span>
+    <span class="n">x</span> <span class="o">=</span> <span class="mi">2</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">floor</span><span class="p">(</span><span class="n">L</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="n">M</span><span class="p">))</span> <span class="o">-</span> <span class="n">L</span> <span class="o">+</span> <span class="mi">1</span>
+    <span class="c1"># Theoretical signal power</span>
+    <span class="n">P_x</span> <span class="o">=</span> <span class="p">(</span><span class="n">L</span><span class="o">**</span><span class="mi">2</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="o">/</span> <span class="mi">3</span>
+    <span class="c1"># Measured signal power (for verification)</span>
+    <span class="n">Measured_x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">x</span><span class="o">*</span><span class="n">x</span><span class="p">)</span><span class="o">/</span><span class="nb">len</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+
+    <span class="c1"># Generate oversampled signal y by repeating each symbol nsamp times</span>
+    <span class="n">y</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">x</span><span class="p">)):</span>
+        <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">nsamp</span><span class="p">):</span>
+            <span class="n">y</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+    <span class="n">y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>
+
+    <span class="c1"># Generate noise with zero mean and variance based on the signal power and SNR</span>
+    <span class="n">noise</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">Measured_x</span><span class="o">/</span><span class="n">SNR</span><span class="p">),</span> <span class="nb">len</span><span class="p">(</span><span class="n">y</span><span class="p">))</span>
+    <span class="c1"># Add noise to the signal</span>
+    <span class="n">y_noisy</span> <span class="o">=</span> <span class="n">y</span> <span class="o">+</span> <span class="n">noise</span>
+
+    <span class="c1"># Reshape the noisy signal for matched filtering</span>
+    <span class="n">y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">y_noisy</span><span class="p">,</span> <span class="p">(</span><span class="n">M</span><span class="p">,</span> <span class="n">nsamp</span><span class="p">))</span>
+    <span class="c1"># Create a matched filter with coefficients all ones</span>
+    <span class="n">matched</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">((</span><span class="n">nsamp</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span>
+    <span class="c1"># Apply matched filter to the signal</span>
+    <span class="n">z</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">matmul</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">matched</span><span class="p">)</span>
+    <span class="n">z</span> <span class="o">=</span> <span class="n">z</span> <span class="o">/</span> <span class="n">nsamp</span>
+    <span class="c1"># Levels for decision making {±1, ±3, ... ±(L-1)}</span>
+    <span class="n">l</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="o">-</span><span class="n">L</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="n">L</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+
+    <span class="c1"># Decision making: for each symbol, find the closest amplitude level</span>
+    <span class="n">z</span> <span class="o">=</span> <span class="n">z</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">]</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">z</span><span class="p">)):</span>
+        <span class="n">differences</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">l</span> <span class="o">-</span> <span class="n">z</span><span class="p">[</span><span class="n">i</span><span class="p">])</span> <span class="c1"># Array of differences from the signal to the levels</span>
+        <span class="n">m</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="n">differences</span><span class="p">)</span>
+        <span class="p">[</span><span class="n">index</span><span class="p">],</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">differences</span> <span class="o">==</span> <span class="n">m</span><span class="p">)</span>
+        <span class="n">z</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">l</span><span class="p">[</span><span class="n">index</span><span class="p">]</span>
+    
+    <span class="c1"># Count errors: compare the decided symbols with the original symbols</span>
+    <span class="n">errors</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">z</span><span class="p">)):</span>
+        <span class="k">if</span> <span class="n">x</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">!=</span> <span class="n">z</span><span class="p">[</span><span class="n">i</span><span class="p">]:</span>
+            <span class="n">errors</span> <span class="o">+=</span> <span class="mi">1</span>
+    
+    <span class="c1"># Return the total number of symbol errors</span>
+    <span class="k">return</span> <span class="n">errors</span>
+
+</pre></div>
+</div>
+</div>
+<input class="tab-input" id="tab-set--0-input--2" name="tab-set--0" type="radio"><label class="tab-label" for="tab-set--0-input--2">Matlab</label><div class="tab-content docutils">
+<div class="highlight-matlab notranslate"><div class="highlight"><pre><span></span><span class="k">function</span><span class="w"> </span>errors<span class="p">=</span><span class="nf">ask_errors</span><span class="p">(</span>k, Nsymb, nsamp, EbNo<span class="p">)</span>
+<span class="c">% This function simulates the generation and decoding</span>
+<span class="c">% of a noisy L-ASK signal and counts the number of erroneous symbols.</span>
+<span class="c">% It returns the number of erroneous symbols (in the variable errors).</span>
+<span class="c">% k is the number of bits/symbol, therefore L=2^k -- the number of</span>
+<span class="c">% different amplitudes</span>
+<span class="c">% Nsymb is the number of generated symbols (length of LASK sequence)</span>
+<span class="c">% nsamp is the number of samples per symbol (oversampling ratio)</span>
+<span class="c">% EbNo is the normalized signal-to-noise ratio Eb/No, in dB</span>
+<span class="c">%</span>
+<span class="n">L</span><span class="p">=</span><span class="mi">2</span>^<span class="n">k</span><span class="p">;</span>
+<span class="n">SNR</span><span class="p">=</span><span class="n">EbNo</span><span class="o">-</span><span class="mi">10</span><span class="o">*</span><span class="nb">log10</span><span class="p">(</span><span class="n">nsamp</span><span class="o">/</span><span class="mi">2</span><span class="o">/</span><span class="n">k</span><span class="p">);</span><span class="w"> </span><span class="c">% SNR per signal sample</span>
+<span class="c">% Vector of random integers {±1, ±3, ... ±(L-1)}. To be verified</span>
+<span class="n">x</span><span class="p">=</span><span class="mi">2</span><span class="o">*</span><span class="nb">floor</span><span class="p">(</span><span class="n">L</span><span class="o">*</span><span class="nb">rand</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="n">Nsymb</span><span class="p">))</span><span class="o">-</span><span class="n">L</span><span class="o">+</span><span class="mi">1</span><span class="p">;</span>
+<span class="n">Px</span><span class="p">=(</span><span class="n">L</span>^<span class="mi">2</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">/</span><span class="mi">3</span><span class="p">;</span><span class="w"> </span><span class="c">% theoretical signal power</span>
+<span class="nb">sum</span><span class="p">(</span><span class="n">x</span><span class="o">.^</span><span class="mi">2</span><span class="p">)</span><span class="o">/</span><span class="nb">length</span><span class="p">(</span><span class="n">x</span><span class="p">);</span><span class="w"> </span><span class="c">% measured signal power (for verification)</span>
+<span class="n">y</span><span class="p">=</span><span class="n">rectpulse</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="n">nsamp</span><span class="p">);</span>
+<span class="n">n</span><span class="p">=</span><span class="n">wgn</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="nb">length</span><span class="p">(</span><span class="n">y</span><span class="p">),</span><span class="w"> </span><span class="mi">10</span><span class="o">*</span><span class="nb">log10</span><span class="p">(</span><span class="n">Px</span><span class="p">)</span><span class="o">-</span><span class="n">SNR</span><span class="p">);</span>
+<span class="n">ynoisy</span><span class="p">=</span><span class="n">y</span><span class="o">+</span><span class="n">n</span><span class="p">;</span><span class="w"> </span><span class="c">% noisy signal</span>
+<span class="n">y</span><span class="p">=</span><span class="nb">reshape</span><span class="p">(</span><span class="n">ynoisy</span><span class="p">,</span><span class="w"> </span><span class="n">nsamp</span><span class="p">,</span><span class="w"> </span><span class="nb">length</span><span class="p">(</span><span class="n">ynoisy</span><span class="p">)</span><span class="o">/</span><span class="n">nsamp</span><span class="p">);</span>
+<span class="n">matched</span><span class="p">=</span><span class="nb">ones</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="n">nsamp</span><span class="p">);</span>
+<span class="n">z</span><span class="p">=</span><span class="n">matched</span><span class="o">*</span><span class="n">y</span><span class="o">/</span><span class="n">nsamp</span><span class="p">;</span>
+<span class="n">A</span><span class="p">=[</span><span class="o">-</span><span class="n">L</span><span class="o">+</span><span class="mi">1</span><span class="p">:</span><span class="mi">2</span><span class="p">:</span><span class="n">L</span><span class="o">-</span><span class="mi">1</span><span class="p">];</span>
+<span class="k">for</span><span class="w"> </span><span class="nb">i</span><span class="p">=</span><span class="mi">1</span><span class="p">:</span><span class="nb">length</span><span class="p">(</span><span class="n">z</span><span class="p">)</span>
+<span class="w">    </span><span class="p">[</span><span class="n">m</span><span class="p">,</span><span class="w"> </span><span class="nb">j</span><span class="p">]=</span><span class="nb">min</span><span class="p">(</span><span class="nb">abs</span><span class="p">(</span><span class="n">A</span><span class="o">-</span><span class="n">z</span><span class="p">(</span><span class="nb">i</span><span class="p">)));</span>
+<span class="w">    </span><span class="n">z</span><span class="p">(</span><span class="nb">i</span><span class="p">)=</span><span class="n">A</span><span class="p">(</span><span class="nb">j</span><span class="p">);</span>
+<span class="k">end</span>
+<span class="n">err</span><span class="p">=</span><span class="n">not</span><span class="p">(</span><span class="n">x</span><span class="o">==</span><span class="n">z</span><span class="p">);</span>
+<span class="n">errors</span><span class="p">=</span><span class="nb">sum</span><span class="p">(</span><span class="n">err</span><span class="p">);</span>
+<span class="k">end</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="part-2-simulation-code-exploration">
+<h2>Part 2: Simulation Code Exploration<a class="headerlink" href="#part-2-simulation-code-exploration" title="Link to this heading">#</a></h2>
+<p>(a) Modify the code so that the L elements of vector x in line 14 take values from the set {±d/2, ±3d/2, ±5d/2…}, where the distance d of the points will be given as a parameter. Using the value d=5, verify by calculation and displaying a relevant histogram, that the elements of vector x indeed follow a uniform distribution. Use k=mod(nnnnn,2)+3, where nnnnn is the last 5-digit part of your registration number.</p>
+<p>Hint: Generate (with command 14) at least 40,000 random integers, and use the command hist(x,A) to calculate and display the histogram, where A is the vector of the L different values of these integers. Modify command 15 appropriately for the theoretical calculation of power and verify with command 16. Similarly, modify command 23 appropriately.</p>
+<div class="cell tag_thebe-init tag_hide-code-cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">generate_histogram</span><span class="p">(</span><span class="n">k</span><span class="p">):</span>
+    <span class="n">M</span> <span class="o">=</span> <span class="mi">40000</span>
+    <span class="n">L</span> <span class="o">=</span> <span class="mi">2</span> <span class="o">**</span> <span class="n">k</span>
+
+    <span class="n">x</span> <span class="o">=</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">floor</span><span class="p">(</span><span class="n">L</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="n">M</span><span class="p">))</span> <span class="o">-</span> <span class="n">L</span> <span class="o">+</span> <span class="mi">1</span>
+    <span class="n">bins</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="o">-</span><span class="n">L</span><span class="p">,</span> <span class="n">L</span> <span class="o">+</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+    <span class="n">A</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="o">-</span><span class="p">(</span><span class="n">L</span> <span class="o">-</span> <span class="mi">1</span><span class="p">),</span> <span class="n">L</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+    
+    <span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">14</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">bins</span><span class="o">=</span><span class="n">bins</span><span class="p">,</span> <span class="n">edgecolor</span><span class="o">=</span><span class="s1">&#39;white&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;#1F77B4&#39;</span><span class="p">)</span>  <span class="c1"># Use ax.hist for compatibility with widgets</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_xticks</span><span class="p">(</span><span class="n">A</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s2">&quot;Integers&quot;</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s2">&quot;Frequency&quot;</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">&quot;Histogram of array x elements&quot;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+
+<span class="n">k_input</span> <span class="o">=</span> <span class="n">widgets</span><span class="o">.</span><span class="n">IntText</span><span class="p">(</span>
+    <span class="n">value</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span>  <span class="c1"># default value</span>
+    <span class="n">description</span><span class="o">=</span><span class="s1">&#39;k:&#39;</span><span class="p">,</span>
+    <span class="n">continuous_update</span><span class="o">=</span><span class="kc">False</span>
+<span class="p">)</span>
+
+<span class="n">ui</span> <span class="o">=</span> <span class="n">widgets</span><span class="o">.</span><span class="n">VBox</span><span class="p">([</span><span class="n">k_input</span><span class="p">])</span>
+<span class="n">out</span> <span class="o">=</span> <span class="n">widgets</span><span class="o">.</span><span class="n">interactive_output</span><span class="p">(</span><span class="n">generate_histogram</span><span class="p">,</span> <span class="p">{</span><span class="s1">&#39;k&#39;</span><span class="p">:</span> <span class="n">k_input</span><span class="p">})</span>
+
+<span class="c1"># Display the UI components</span>
+<span class="n">display</span><span class="p">(</span><span class="n">ui</span><span class="p">,</span> <span class="n">out</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<script type="application/vnd.jupyter.widget-view+json">{"version_major": 2, "version_minor": 0, "model_id": "e9497172b4e84a56bfd2d79553fbd90b"}</script><script type="application/vnd.jupyter.widget-view+json">{"version_major": 2, "version_minor": 0, "model_id": "98ff171701cc4429a4d1c6654e15c0a3"}</script></div>
+</div>
+<p>(b) With parameter values of the function k=4, M=60000, nsamp=20, and EbNo=12, execute commands 11 to 22 and then plot the histogram of z with the command hist(z,200). Repeat the above for EbNo=16 and EbNo=20. What do you observe? Explain the differences in the three diagrams.</p>
+<div class="cell tag_thebe-init tag_hide-code-cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">generate_histogram</span><span class="p">(</span><span class="n">k</span><span class="p">,</span> <span class="n">EbN0_db</span><span class="p">):</span>
+    <span class="n">M</span> <span class="o">=</span> <span class="mi">60000</span>
+    <span class="n">nsamp</span> <span class="o">=</span> <span class="mi">16</span>
+
+    <span class="n">L</span> <span class="o">=</span> <span class="mi">2</span><span class="o">**</span><span class="n">k</span>
+    <span class="n">SNR_db</span> <span class="o">=</span> <span class="n">EbN0_db</span> <span class="o">-</span> <span class="mi">10</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">log10</span><span class="p">(</span><span class="n">nsamp</span><span class="o">/</span><span class="mi">2</span><span class="o">/</span><span class="n">k</span><span class="p">)</span>
+    <span class="n">SNR</span> <span class="o">=</span> <span class="mi">10</span> <span class="o">**</span> <span class="p">(</span><span class="n">SNR_db</span> <span class="o">*</span> <span class="mf">0.1</span><span class="p">)</span>
+    <span class="n">x</span> <span class="o">=</span> <span class="mi">2</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">floor</span><span class="p">(</span><span class="n">L</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="n">M</span><span class="p">))</span> <span class="o">-</span> <span class="n">L</span> <span class="o">+</span> <span class="mi">1</span>
+    <span class="n">P_x</span> <span class="o">=</span> <span class="p">(</span><span class="n">L</span><span class="o">**</span><span class="mi">2</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span> <span class="o">/</span> <span class="mi">3</span>
+    <span class="n">Measured_x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">x</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span><span class="o">/</span><span class="nb">len</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+
+    <span class="n">y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">repeat</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">nsamp</span><span class="p">)</span>
+
+    <span class="n">noise</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">Measured_x</span><span class="o">/</span><span class="n">SNR</span><span class="p">),</span> <span class="nb">len</span><span class="p">(</span><span class="n">y</span><span class="p">))</span>
+    <span class="n">y_noisy</span> <span class="o">=</span> <span class="n">y</span> <span class="o">+</span> <span class="n">noise</span>
+
+    <span class="n">y_reshaped</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">y_noisy</span><span class="p">,</span> <span class="p">(</span><span class="n">M</span><span class="p">,</span> <span class="n">nsamp</span><span class="p">))</span>
+    <span class="n">matched</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">((</span><span class="n">nsamp</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span>
+    <span class="n">z</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">matmul</span><span class="p">(</span><span class="n">y_reshaped</span><span class="p">,</span> <span class="n">matched</span><span class="p">)</span> <span class="o">/</span> <span class="n">nsamp</span>
+
+    <span class="n">A</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="o">-</span><span class="p">(</span><span class="n">L</span><span class="o">-</span><span class="mi">1</span><span class="p">),</span> <span class="n">L</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>  <span class="c1"># Adjusted to use inside plotting</span>
+    
+    <span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">14</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">z</span><span class="p">,</span> <span class="n">bins</span><span class="o">=</span><span class="mi">200</span><span class="p">,</span>  <span class="n">edgecolor</span><span class="o">=</span><span class="s1">&#39;white&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;#1F77B4&#39;</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_xticks</span><span class="p">(</span><span class="n">A</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s2">&quot;Integers&quot;</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s2">&quot;Frequency&quot;</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">([</span><span class="s2">&quot;Eb/N0 = &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">EbN0_db</span><span class="p">)])</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Histogram of the Noisy Signal&#39;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+
+<span class="n">k_input</span> <span class="o">=</span> <span class="n">widgets</span><span class="o">.</span><span class="n">IntText</span><span class="p">(</span>
+    <span class="n">value</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span>  <span class="c1"># default value</span>
+    <span class="n">description</span><span class="o">=</span><span class="s1">&#39;k:&#39;</span><span class="p">,</span>
+    <span class="n">continuous_update</span><span class="o">=</span><span class="kc">False</span>
+<span class="p">)</span>
+
+<span class="n">EbN0_db_slider</span> <span class="o">=</span> <span class="n">widgets</span><span class="o">.</span><span class="n">FloatSlider</span><span class="p">(</span>
+    <span class="n">value</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span>  <span class="c1"># default value</span>
+    <span class="nb">min</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>    <span class="c1"># minimum value</span>
+    <span class="nb">max</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span>   <span class="c1"># maximum value</span>
+    <span class="n">step</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span>   <span class="c1"># step size</span>
+    <span class="n">description</span><span class="o">=</span><span class="s1">&#39;Eb/N0 (dB):&#39;</span><span class="p">,</span>
+    <span class="n">continuous_update</span><span class="o">=</span><span class="kc">False</span>
+<span class="p">)</span>
+
+<span class="n">ui</span> <span class="o">=</span> <span class="n">widgets</span><span class="o">.</span><span class="n">VBox</span><span class="p">([</span><span class="n">k_input</span><span class="p">,</span> <span class="n">EbN0_db_slider</span><span class="p">])</span>
+
+<span class="n">out</span> <span class="o">=</span> <span class="n">widgets</span><span class="o">.</span><span class="n">interactive_output</span><span class="p">(</span><span class="n">generate_histogram</span><span class="p">,</span> <span class="p">{</span><span class="s1">&#39;k&#39;</span><span class="p">:</span> <span class="n">k_input</span><span class="p">,</span> <span class="s1">&#39;EbN0_db&#39;</span><span class="p">:</span> <span class="n">EbN0_db_slider</span><span class="p">})</span>
+
+<span class="c1"># Display the UI components</span>
+<span class="n">display</span><span class="p">(</span><span class="n">ui</span><span class="p">,</span> <span class="n">out</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<script type="application/vnd.jupyter.widget-view+json">{"version_major": 2, "version_minor": 0, "model_id": "1fdf4039390141608013a39b9ec308cb"}</script><script type="application/vnd.jupyter.widget-view+json">{"version_major": 2, "version_minor": 0, "model_id": "f8b31de6f5254ad189c131bbebb851a6"}</script></div>
+</div>
+<p>(c) What does command 20 do and what does command 22 do? What type and dimension are the variables: x in command 14, y in command 17, y in command 20, matched, z, err, and errors?</p>
+<p>(d) Explain the operation of the loop 24-27 of Code 3.3 as a minimum distance detector for L-ASK.</p>
+</section>
+<section id="part-3-performance-curves-ber-as-a-function-of-the-signal-to-noise-ratio">
+<h2>Part 3: Performance Curves (BER as a function of the signal-to-noise ratio)<a class="headerlink" href="#part-3-performance-curves-ber-as-a-function-of-the-signal-to-noise-ratio" title="Link to this heading">#</a></h2>
+<p>Verify the curve of Figure 3.10 of the notes (for convenience repeated below) for L-ASK, with L=2k, k=mod(nnnnn, 2)+3, where nnnnn is the last 5-digit part of your registration number. Plot the theoretical curve and superimpose the simulation results (discrete points), as in the figure. ‘Read’ from the 8-ASK curve and write in the submission file the BER values for Eb/No={8,14,18}db. Conversely, find the appropriate Eb/No value for an 8-ASK system with a transmission rate of R=1Mbps, so that the error rate does not exceed the value {10, 100, 1000} bps.</p>
+<p><img alt="lab3_1.png" src="../_images/lab3_1.png" /></p>
+<p>This should be done in two ways:</p>
+<p>(a) With your main program, which (i) will plot the curve using equation (3.33) of the notes and the approximation BER≈Pe/log2L, and (ii) will appropriately call the function ask_errors() for calculating the discrete points.</p>
+<div class="math notranslate nohighlight">
+\[
+P_e = \frac{L-1}{L} \cdot \text{erfc}\left( \sqrt{\frac{3 \log_2 L  }{L^2 - 1} \cdot \frac{E_{b,av}}{N_o}} \right)
+\]</div>
+<p>(where Pe is the false symbol probability)</p>
+<p>Hint: (a) Call ask_errors(), once for each different value of EbNo, with a sufficiently high value of M (e.g., 20000) and calculate the error rate.</p>
+<p>(b) Using the MATLAB BERTOOL tool. The tool is called by typing the bertool command in the MATLAB command window. In the window that appears, you should make the appropriate settings for each case, as indicated in the boxes below. As explained in Example 3.2 of the notes, bertool calls our function, ask_errors(), through the ask_ber_func.m function of code 3.4, in which appropriate values for the parameters k, Nsymb, and nsamp must be set. The files of both functions must be in the current folder (or in a folder that is in the path) of MATLAB.</p>
+<p><img alt="lab3_2.png" src="../_images/lab3_2.png" /></p>
+<p><img alt="lab3_3.png" src="../_images/lab3_3.png" /></p>
+<div class="admonition-ask-ber-func admonition">
+<p class="admonition-title">ask_ber_func()</p>
+<div class="tab-set docutils">
+<input checked="True" class="tab-input" id="tab-set--1-input--1" name="tab-set--1" type="radio"><label class="tab-label" for="tab-set--1-input--1">Python</label><div class="tab-content docutils">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>
+
+<span class="k">def</span> <span class="nf">ask_ber_func</span><span class="p">(</span><span class="n">EbNo_db</span><span class="p">,</span> <span class="n">maxNumErrs</span><span class="p">,</span> <span class="n">maxNumBits</span><span class="p">):</span>
+    <span class="c1"># Initialize variables related to exit criteria</span>
+    <span class="n">totErr</span> <span class="o">=</span> <span class="mi">0</span>  <span class="c1"># Number of errors observed</span>
+    <span class="n">numBits</span> <span class="o">=</span> <span class="mi">0</span>  <span class="c1"># Number of bits processed</span>
+
+    <span class="c1"># Set up parameters</span>
+    <span class="n">k</span> <span class="o">=</span> <span class="mi">3</span>  <span class="c1"># Number of bits per symbol</span>
+    <span class="n">Nsymb</span> <span class="o">=</span> <span class="mi">2000</span>  <span class="c1"># Number of symbols in each run</span>
+    <span class="n">nsamp</span> <span class="o">=</span> <span class="mi">16</span>  <span class="c1"># Oversampling, i.e., number of samples per T</span>
+    <span class="n">EbNo</span> <span class="o">=</span> <span class="mi">10</span> <span class="o">**</span> <span class="p">(</span><span class="n">EbNo_db</span> <span class="o">/</span> <span class="mi">10</span><span class="p">)</span>  <span class="c1"># Convert EbNo from dB to linear scale</span>
+
+    <span class="c1"># Simulate until the number of errors exceeds maxNumErrs</span>
+    <span class="c1"># or the number of bits processed exceeds maxNumBits</span>
+    <span class="k">while</span> <span class="p">(</span><span class="n">totErr</span> <span class="o">&lt;</span> <span class="n">maxNumErrs</span><span class="p">)</span> <span class="ow">and</span> <span class="p">(</span><span class="n">numBits</span> <span class="o">&lt;</span> <span class="n">maxNumBits</span><span class="p">):</span>
+        <span class="n">errors</span> <span class="o">=</span> <span class="n">ask_errors</span><span class="p">(</span><span class="n">k</span><span class="p">,</span> <span class="n">Nsymb</span><span class="p">,</span> <span class="n">nsamp</span><span class="p">,</span> <span class="n">EbNo</span><span class="p">)</span>
+        <span class="c1"># Assume Gray coding: 1 symbol error ==&gt; 1 bit error</span>
+        <span class="n">totErr</span> <span class="o">+=</span> <span class="n">errors</span>
+        <span class="n">numBits</span> <span class="o">+=</span> <span class="n">k</span> <span class="o">*</span> <span class="n">Nsymb</span>
+
+    <span class="c1"># Compute the BER</span>
+    <span class="n">ber</span> <span class="o">=</span> <span class="n">totErr</span> <span class="o">/</span> <span class="n">numBits</span>
+    <span class="k">return</span> <span class="n">ber</span><span class="p">,</span> <span class="n">numBits</span>
+
+</pre></div>
+</div>
+</div>
+<input class="tab-input" id="tab-set--1-input--2" name="tab-set--1" type="radio"><label class="tab-label" for="tab-set--1-input--2">Matlab</label><div class="tab-content docutils">
+<div class="highlight-matlab notranslate"><div class="highlight"><pre><span></span><span class="k">function</span><span class="w"> </span>[ber,numBits]<span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="nf">ask_ber_func</span><span class="p">(</span>EbNo, maxNumErrs, maxNumBits<span class="p">)</span>
+<span class="c">% Import Java class for BERTool.</span>
+<span class="nb">import</span><span class="w"> </span><span class="n">com</span><span class="p">.</span><span class="n">mathworks</span><span class="p">.</span><span class="n">toolbox</span><span class="p">.</span><span class="n">comm</span><span class="p">.</span><span class="n">BERTool</span><span class="p">;</span>
+<span class="c">% Initialize variables related to exit criteria.</span>
+<span class="n">totErr</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="c">% Number of errors observed</span>
+<span class="n">numBits</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="c">% Number of bits processed</span>
+<span class="c">% --- Set up parameters. ---</span>
+<span class="c">% --- INSERT YOUR CODE HERE.</span>
+<span class="n">k</span><span class="p">=</span><span class="mi">3</span><span class="p">;</span><span class="w"> </span><span class="c">% number of bits per symbol</span>
+<span class="n">Nsymb</span><span class="p">=</span><span class="mi">2000</span><span class="p">;</span><span class="w"> </span><span class="c">% number of symbols in each run</span>
+<span class="n">nsamp</span><span class="p">=</span><span class="mi">16</span><span class="p">;</span><span class="w"> </span><span class="c">% oversampling,i.e. number of samples per T</span>
+<span class="c">% Simulate until number of errors exceeds maxNumErrs</span>
+<span class="c">% or number of bits processed exceeds maxNumBits.</span>
+<span class="k">while</span><span class="p">((</span><span class="n">totErr</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">maxNumErrs</span><span class="p">)</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="p">(</span><span class="n">numBits</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">maxNumBits</span><span class="p">))</span>
+<span class="c">% Check if the user clicked the Stop button of BERTool.</span>
+<span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">BERTool</span><span class="p">.</span><span class="n">getSimulationStop</span><span class="p">)</span>
+<span class="k">break</span><span class="p">;</span>
+<span class="k">end</span>
+<span class="c">% Β. --- INSERT YOUR CODE HERE.</span>
+<span class="n">errors</span><span class="p">=</span><span class="n">ask_errors</span><span class="p">(</span><span class="n">k</span><span class="p">,</span><span class="n">Nsymb</span><span class="p">,</span><span class="n">nsamp</span><span class="p">,</span><span class="n">EbNo</span><span class="p">);</span>
+<span class="c">% Assume Gray coding: 1 symbol error ==&gt; 1 bit error</span>
+<span class="n">totErr</span><span class="p">=</span><span class="n">totErr</span><span class="o">+</span><span class="n">errors</span><span class="p">;</span>
+<span class="n">numBits</span><span class="p">=</span><span class="n">numBits</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">k</span><span class="o">*</span><span class="n">Nsymb</span><span class="p">;</span>
+<span class="k">end</span><span class="w"> </span><span class="c">% End of loop</span>
+<span class="c">% Compute the BER</span>
+<span class="n">ber</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">totErr</span><span class="o">/</span><span class="n">numBits</span><span class="p">;</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell tag_hide-code-cell tag_thebe-init docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">ask_errors</span><span class="p">(</span><span class="n">k</span><span class="p">,</span><span class="n">M</span><span class="p">,</span><span class="n">nsamp</span><span class="p">,</span><span class="n">EbN0_db</span><span class="p">):</span>
+    
+    <span class="n">L</span> <span class="o">=</span> <span class="mi">2</span><span class="o">**</span><span class="n">k</span>
+    <span class="n">SNR_db</span> <span class="o">=</span> <span class="n">EbN0_db</span> <span class="o">-</span> <span class="mi">10</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">log10</span><span class="p">(</span><span class="n">nsamp</span><span class="o">/</span><span class="mi">2</span><span class="o">/</span><span class="n">k</span><span class="p">)</span>
+    <span class="n">SNR</span> <span class="o">=</span> <span class="mi">10</span> <span class="o">**</span> <span class="p">(</span><span class="n">SNR_db</span> <span class="o">*</span> <span class="mf">0.1</span><span class="p">)</span>
+    <span class="n">x</span> <span class="o">=</span> <span class="mi">2</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">floor</span><span class="p">(</span><span class="n">L</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="n">M</span><span class="p">))</span> <span class="o">-</span> <span class="n">L</span> <span class="o">+</span> <span class="mi">1</span>
+    <span class="n">P_x</span> <span class="o">=</span> <span class="p">(</span><span class="n">L</span><span class="o">*</span><span class="n">L</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="o">/</span> <span class="mi">3</span>
+    <span class="n">Measured_x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">x</span><span class="o">*</span><span class="n">x</span><span class="p">)</span><span class="o">/</span><span class="nb">len</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+
+    <span class="n">y</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">x</span><span class="p">)):</span>
+        <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">nsamp</span><span class="p">):</span>
+            <span class="n">y</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+    <span class="n">y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>
+
+    <span class="n">noise</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">Measured_x</span><span class="o">/</span><span class="n">SNR</span><span class="p">),</span><span class="nb">len</span><span class="p">(</span><span class="n">y</span><span class="p">))</span>
+    <span class="n">y_noisy</span> <span class="o">=</span> <span class="n">y</span> <span class="o">+</span> <span class="n">noise</span>
+
+    <span class="n">y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">y_noisy</span><span class="p">,</span> <span class="p">(</span><span class="n">M</span><span class="p">,</span> <span class="n">nsamp</span><span class="p">))</span>
+    <span class="n">matched</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">((</span><span class="n">nsamp</span><span class="p">,</span><span class="mi">1</span><span class="p">))</span>
+    <span class="n">z</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">matmul</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">matched</span><span class="p">)</span>
+    <span class="n">z</span> <span class="o">=</span> <span class="n">z</span> <span class="o">/</span> <span class="n">nsamp</span>
+    <span class="n">l</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="o">-</span><span class="n">L</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span><span class="n">L</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span>
+
+    <span class="n">z</span> <span class="o">=</span> <span class="n">z</span><span class="p">[:,</span><span class="mi">0</span><span class="p">]</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">z</span><span class="p">)):</span>
+        <span class="n">differences</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">l</span><span class="o">-</span><span class="n">z</span><span class="p">[</span><span class="n">i</span><span class="p">])</span> <span class="c1"># Πίνακας με τις διαφορές του σήματος από τα επίπεδα</span>
+        <span class="n">m</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="n">differences</span><span class="p">)</span>
+        <span class="p">[</span><span class="n">index</span><span class="p">],</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">differences</span> <span class="o">==</span> <span class="n">m</span><span class="p">)</span>
+        <span class="n">z</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">l</span><span class="p">[</span><span class="n">index</span><span class="p">]</span>
+    
+    <span class="n">errors</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">z</span><span class="p">)):</span>
+        <span class="k">if</span> <span class="n">x</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">!=</span> <span class="n">z</span><span class="p">[</span><span class="n">i</span><span class="p">]:</span>
+            <span class="n">errors</span> <span class="o">+=</span> <span class="mi">1</span>
+    
+    <span class="k">return</span> <span class="n">errors</span>
+
+
+<span class="n">M</span> <span class="o">=</span> <span class="mi">20000</span>
+<span class="n">nsamp</span> <span class="o">=</span> <span class="mi">16</span>
+<span class="n">EbN0_db</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">16</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<span class="n">EbN0</span> <span class="o">=</span> <span class="mi">10</span><span class="o">**</span><span class="p">(</span><span class="n">EbN0_db</span> <span class="o">/</span> <span class="mi">10</span><span class="p">)</span>
+
+<span class="c1"># Create checkboxes for each modulation level</span>
+<span class="n">checkbox_4qam</span> <span class="o">=</span> <span class="n">Checkbox</span><span class="p">(</span><span class="n">value</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s1">&#39;4-QAM&#39;</span><span class="p">)</span>
+<span class="n">checkbox_8qam</span> <span class="o">=</span> <span class="n">Checkbox</span><span class="p">(</span><span class="n">value</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s1">&#39;8-QAM&#39;</span><span class="p">)</span>
+<span class="n">checkbox_16qam</span> <span class="o">=</span> <span class="n">Checkbox</span><span class="p">(</span><span class="n">value</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s1">&#39;16-QAM&#39;</span><span class="p">)</span>
+
+<span class="n">plot_output</span> <span class="o">=</span> <span class="n">Output</span><span class="p">()</span>
+
+<span class="k">def</span> <span class="nf">plot_selected_modulations</span><span class="p">(</span><span class="n">btn</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="k">with</span> <span class="n">plot_output</span><span class="p">:</span>
+        <span class="n">clear_output</span><span class="p">(</span><span class="n">wait</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">7</span><span class="p">))</span>
+        
+        <span class="c1"># Define colors for each modulation level</span>
+        <span class="n">colors</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="s1">&#39;4-QAM&#39;</span><span class="p">:</span> <span class="p">(</span><span class="s1">&#39;red&#39;</span><span class="p">,</span> <span class="s1">&#39;tomato&#39;</span><span class="p">),</span>
+            <span class="s1">&#39;8-QAM&#39;</span><span class="p">:</span> <span class="p">(</span><span class="s1">&#39;green&#39;</span><span class="p">,</span> <span class="s1">&#39;limegreen&#39;</span><span class="p">),</span>
+            <span class="s1">&#39;16-QAM&#39;</span><span class="p">:</span> <span class="p">(</span><span class="s1">&#39;blue&#39;</span><span class="p">,</span> <span class="s1">&#39;dodgerblue&#39;</span><span class="p">)</span>
+        <span class="p">}</span>
+        
+        <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="p">(</span><span class="n">k</span><span class="p">,</span> <span class="n">checkbox</span><span class="p">)</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="nb">zip</span><span class="p">([</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">],</span> <span class="p">[</span><span class="n">checkbox_4qam</span><span class="p">,</span> <span class="n">checkbox_8qam</span><span class="p">,</span> <span class="n">checkbox_16qam</span><span class="p">])):</span>
+            <span class="k">if</span> <span class="n">checkbox</span><span class="o">.</span><span class="n">value</span><span class="p">:</span>
+                <span class="n">L</span> <span class="o">=</span> <span class="mi">2</span><span class="o">**</span><span class="n">k</span>
+                <span class="n">modulation_name</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">L</span><span class="si">}</span><span class="s1">-QAM&#39;</span>
+                <span class="n">ber</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">EbN0_db</span><span class="p">))</span>
+                <span class="k">for</span> <span class="n">index</span><span class="p">,</span> <span class="n">eb_n0</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">EbN0_db</span><span class="p">):</span>
+                    <span class="c1"># Simulate experimental BER using a placeholder function</span>
+                    <span class="n">ber</span><span class="p">[</span><span class="n">index</span><span class="p">]</span> <span class="o">=</span> <span class="n">ask_errors</span><span class="p">(</span><span class="n">k</span><span class="p">,</span> <span class="n">M</span><span class="p">,</span> <span class="n">nsamp</span><span class="p">,</span> <span class="n">index</span><span class="p">)</span> <span class="o">/</span> <span class="n">M</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">log2</span><span class="p">(</span><span class="n">L</span><span class="p">)</span>
+                
+                <span class="c1"># Plot experimental BER as points without connecting lines, using specific colors</span>
+                <span class="n">plt</span><span class="o">.</span><span class="n">semilogy</span><span class="p">(</span><span class="n">EbN0_db</span><span class="p">,</span> <span class="n">ber</span><span class="p">,</span> <span class="s1">&#39;o&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="sa">f</span><span class="s1">&#39;Experimental </span><span class="si">{</span><span class="n">modulation_name</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="n">colors</span><span class="p">[</span><span class="n">modulation_name</span><span class="p">][</span><span class="mi">0</span><span class="p">])</span>
+                
+                <span class="c1"># Theoretical BER for comparison, with distinct line color</span>
+                <span class="n">ber_theoretical</span> <span class="o">=</span> <span class="p">(((</span><span class="n">L</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">/</span><span class="n">L</span><span class="p">)</span> <span class="o">*</span> <span class="n">erfc</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">EbN0</span> <span class="o">*</span> <span class="p">(</span><span class="mi">3</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">log2</span><span class="p">(</span><span class="n">L</span><span class="p">))</span> <span class="o">/</span> <span class="p">(</span><span class="n">L</span><span class="o">**</span><span class="mi">2</span> <span class="o">-</span> <span class="mi">1</span><span class="p">))))</span> <span class="o">/</span> <span class="n">k</span>
+                <span class="n">plt</span><span class="o">.</span><span class="n">semilogy</span><span class="p">(</span><span class="n">EbN0_db</span><span class="p">,</span> <span class="n">ber_theoretical</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;-&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="sa">f</span><span class="s1">&#39;Theoretical </span><span class="si">{</span><span class="n">modulation_name</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="n">colors</span><span class="p">[</span><span class="n">modulation_name</span><span class="p">][</span><span class="mi">1</span><span class="p">])</span>
+
+        <span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">,</span> <span class="n">which</span><span class="o">=</span><span class="s1">&#39;both&#39;</span><span class="p">)</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;Eb/N0 (dB)&quot;</span><span class="p">)</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;BER&quot;</span><span class="p">)</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+
+<span class="c1"># Button to update the plot</span>
+<span class="n">plot_button</span> <span class="o">=</span> <span class="n">Button</span><span class="p">(</span><span class="n">description</span><span class="o">=</span><span class="s2">&quot;Plot&quot;</span><span class="p">)</span>
+<span class="n">plot_button</span><span class="o">.</span><span class="n">on_click</span><span class="p">(</span><span class="n">plot_selected_modulations</span><span class="p">)</span>
+
+<span class="c1"># Initially plot with default settings</span>
+<span class="n">plot_selected_modulations</span><span class="p">()</span>
+
+<span class="c1"># Displaying the widgets and the output container</span>
+<span class="n">display</span><span class="p">(</span><span class="n">VBox</span><span class="p">([</span><span class="n">checkbox_4qam</span><span class="p">,</span> <span class="n">checkbox_8qam</span><span class="p">,</span> <span class="n">checkbox_16qam</span><span class="p">,</span> <span class="n">plot_button</span><span class="p">]),</span> <span class="n">plot_output</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<script type="application/vnd.jupyter.widget-view+json">{"version_major": 2, "version_minor": 0, "model_id": "0957ba36b05847d39f28c3f2a71f960e"}</script><script type="application/vnd.jupyter.widget-view+json">{"version_major": 2, "version_minor": 0, "model_id": "f0721f0d483e43b3a64d862328aac55d"}</script></div>
+</div>
+</section>
+<section id="part-4-implementation-with-convolution-using-other-pulses">
+<h2>Part 4: Implementation with Convolution - Using Other Pulses<a class="headerlink" href="#part-4-implementation-with-convolution-using-other-pulses" title="Link to this heading">#</a></h2>
+<p>Replace command 17 of Code 3.3 with the following commands</p>
+<div class="tab-set docutils">
+<input checked="True" class="tab-input" id="tab-set--2-input--1" name="tab-set--2" type="radio"><label class="tab-label" for="tab-set--2-input--1">Python</label><div class="tab-content docutils">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>
+<span class="n">h</span><span class="o">=</span><span class="n">ones</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="n">nsamp</span><span class="p">);</span> <span class="n">h</span><span class="o">=</span><span class="n">h</span><span class="o">/</span><span class="n">sqrt</span><span class="p">(</span><span class="n">h</span><span class="o">*</span><span class="n">h</span><span class="s1">&#39;); </span><span class="si">% f</span><span class="s1">ilter impulse response</span>
+<span class="o">%</span> <span class="n">sender</span> <span class="n">side</span> <span class="p">(</span><span class="n">orthogonal</span> <span class="n">pulse</span> <span class="n">of</span> <span class="n">energy</span> <span class="n">equal</span> <span class="n">to</span> <span class="n">one</span><span class="p">)</span>
+<span class="n">y</span><span class="o">=</span><span class="n">upsample</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">nsamp</span><span class="p">);</span> <span class="o">%</span> <span class="n">upsampling</span>
+<span class="n">y</span><span class="o">=</span><span class="n">conv</span><span class="p">(</span><span class="n">y</span><span class="p">,</span><span class="n">h</span><span class="p">);</span> <span class="o">%</span> <span class="n">convolution</span> <span class="n">of</span> <span class="n">signal</span>
+<span class="n">y</span><span class="o">=</span><span class="n">y</span><span class="p">(</span><span class="mi">1</span><span class="p">:</span><span class="n">M</span><span class="o">*</span><span class="n">nsamp</span><span class="p">);</span> <span class="o">%</span> <span class="n">cutting</span> <span class="n">the</span> <span class="n">last</span> <span class="n">elements</span> <span class="n">of</span> <span class="n">convolution</span>
+
+</pre></div>
+</div>
+</div>
+<input class="tab-input" id="tab-set--2-input--2" name="tab-set--2" type="radio"><label class="tab-label" for="tab-set--2-input--2">Matlab</label><div class="tab-content docutils">
+<div class="highlight-matlab notranslate"><div class="highlight"><pre><span></span><span class="n">h</span><span class="p">=</span><span class="nb">ones</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="n">nsamp</span><span class="p">);</span><span class="w"> </span><span class="n">h</span><span class="p">=</span><span class="n">h</span><span class="o">/</span><span class="nb">sqrt</span><span class="p">(</span><span class="n">h</span><span class="o">*</span><span class="n">h</span><span class="o">&#39;</span><span class="p">);</span><span class="w"> </span><span class="c">% filter impulse response</span>
+<span class="c">% transmitter (rectangular pulse of unit energy)</span>
+<span class="n">y</span><span class="p">=</span><span class="n">upsample</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">nsamp</span><span class="p">);</span><span class="w"> </span><span class="c">% conversion to the dense grid</span>
+<span class="n">y</span><span class="p">=</span><span class="nb">conv</span><span class="p">(</span><span class="n">y</span><span class="p">,</span><span class="n">h</span><span class="p">);</span><span class="w"> </span><span class="c">% the signal to be transmitted</span>
+<span class="n">y</span><span class="p">=</span><span class="n">y</span><span class="p">(</span><span class="mi">1</span><span class="p">:</span><span class="n">M</span><span class="o">*</span><span class="n">nsamp</span><span class="p">);</span><span class="w"> </span><span class="c">% tail left by the convolution is truncated</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Also, the noisy signal, ynoisy, should be produced with the command:</p>
+<div class="tab-set docutils">
+<input checked="True" class="tab-input" id="tab-set--3-input--1" name="tab-set--3" type="radio"><label class="tab-label" for="tab-set--3-input--1">Python</label><div class="tab-content docutils">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>
+<span class="n">ynoisy</span><span class="o">=</span><span class="n">awgn</span><span class="p">(</span><span class="n">y</span><span class="p">,</span><span class="n">SNR</span><span class="p">,</span><span class="s1">&#39;measured&#39;</span><span class="p">);</span> <span class="o">%</span> <span class="n">noisy</span> <span class="n">signal</span>
+
+
+<span class="c1"># Assuming y (signal) and SNR (signal-to-noise ratio in dB) are defined</span>
+<span class="c1"># Example: SNR = 10</span>
+<span class="n">y_noisy</span> <span class="o">=</span> <span class="n">add_awgn_noise</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">SNR</span><span class="p">)</span>
+
+</pre></div>
+</div>
+</div>
+<input class="tab-input" id="tab-set--3-input--2" name="tab-set--3" type="radio"><label class="tab-label" for="tab-set--3-input--2">Matlab</label><div class="tab-content docutils">
+<div class="highlight-matlab notranslate"><div class="highlight"><pre><span></span><span class="n">ynoisy</span><span class="p">=</span><span class="n">awgn</span><span class="p">(</span><span class="n">y</span><span class="p">,</span><span class="n">SNR</span><span class="p">,</span><span class="s">&#39;measured&#39;</span><span class="p">);</span><span class="w"> </span><span class="c">% noisy signal</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>and the matched filter (commands 21,22) to be implemented with convolution as:</p>
+<div class="tab-set docutils">
+<input checked="True" class="tab-input" id="tab-set--4-input--1" name="tab-set--4" type="radio"><label class="tab-label" for="tab-set--4-input--1">Python</label><div class="tab-content docutils">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>
+<span class="k">for</span> <span class="n">i</span><span class="o">=</span><span class="mi">1</span><span class="p">:</span><span class="n">nsamp</span> <span class="n">matched</span><span class="p">(</span><span class="n">i</span><span class="p">)</span><span class="o">=</span><span class="n">h</span><span class="p">(</span><span class="n">end</span><span class="o">-</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">);</span> <span class="n">end</span>
+<span class="n">yrx</span><span class="o">=</span><span class="n">conv</span><span class="p">(</span><span class="n">ynoisy</span><span class="p">,</span><span class="n">matched</span><span class="p">);</span>
+<span class="n">z</span> <span class="o">=</span> <span class="n">yrx</span><span class="p">(</span><span class="n">nsamp</span><span class="p">:</span><span class="n">nsamp</span><span class="p">:</span><span class="n">M</span><span class="o">*</span><span class="n">nsamp</span><span class="p">);</span>
+
+</pre></div>
+</div>
+</div>
+<input class="tab-input" id="tab-set--4-input--2" name="tab-set--4" type="radio"><label class="tab-label" for="tab-set--4-input--2">Matlab</label><div class="tab-content docutils">
+<div class="highlight-matlab notranslate"><div class="highlight"><pre><span></span><span class="k">for</span><span class="w"> </span><span class="nb">i</span><span class="p">=</span><span class="mi">1</span><span class="p">:</span><span class="n">nsamp</span><span class="w"> </span><span class="n">matched</span><span class="p">(</span><span class="nb">i</span><span class="p">)=</span><span class="n">h</span><span class="p">(</span><span class="k">end</span><span class="o">-</span><span class="nb">i</span><span class="o">+</span><span class="mi">1</span><span class="p">);</span><span class="w"> </span><span class="k">end</span>
+<span class="n">yrx</span><span class="p">=</span><span class="nb">conv</span><span class="p">(</span><span class="n">ynoisy</span><span class="p">,</span><span class="n">matched</span><span class="p">);</span>
+<span class="n">z</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">yrx</span><span class="p">(</span><span class="n">nsamp</span><span class="p">:</span><span class="n">nsamp</span><span class="p">:</span><span class="n">M</span><span class="o">*</span><span class="n">nsamp</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>(the command that does reshape on the ynoisy signal must, of course, be abolished here).</p>
+<div class="admonition-new-code-3-3 admonition">
+<p class="admonition-title">New Code 3.3</p>
+<div class="tab-set docutils">
+<input checked="True" class="tab-input" id="tab-set--5-input--1" name="tab-set--5" type="radio"><label class="tab-label" for="tab-set--5-input--1">Python</label><div class="tab-content docutils">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">from</span> <span class="nn">scipy.special</span> <span class="kn">import</span> <span class="n">erfc</span>
+<span class="kn">from</span> <span class="nn">scipy.stats</span> <span class="kn">import</span> <span class="n">norm</span>
+<span class="kn">from</span> <span class="nn">scipy.signal</span> <span class="kn">import</span> <span class="n">convolve</span>
+
+<span class="k">def</span> <span class="nf">ask_errors_new</span><span class="p">(</span><span class="n">k</span><span class="p">,</span> <span class="n">M</span><span class="p">,</span> <span class="n">nsamp</span><span class="p">,</span> <span class="n">EbN0_db</span><span class="p">):</span>
+    <span class="n">L</span> <span class="o">=</span> <span class="mi">2</span><span class="o">**</span><span class="n">k</span>
+    <span class="n">SNR_db</span> <span class="o">=</span> <span class="n">EbN0_db</span> <span class="o">-</span> <span class="mi">10</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">log10</span><span class="p">(</span><span class="n">nsamp</span> <span class="o">/</span> <span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">k</span><span class="p">))</span>
+    <span class="n">SNR_linear</span> <span class="o">=</span> <span class="mi">10</span> <span class="o">**</span> <span class="p">(</span><span class="n">SNR_db</span> <span class="o">/</span> <span class="mi">10</span><span class="p">)</span>
+    <span class="n">x</span> <span class="o">=</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">floor</span><span class="p">(</span><span class="n">L</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="n">M</span><span class="p">))</span> <span class="o">-</span> <span class="n">L</span> <span class="o">+</span> <span class="mi">1</span>
+
+    <span class="c1"># Create the filter impulse response</span>
+    <span class="n">h</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="n">nsamp</span><span class="p">)</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">nsamp</span><span class="p">)</span>
+
+    <span class="c1"># Sender side: upsample and then convolve (filter) the signal</span>
+    <span class="n">y</span> <span class="o">=</span> <span class="n">upfirdn</span><span class="p">(</span><span class="n">h</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">up</span><span class="o">=</span><span class="n">nsamp</span><span class="p">)</span>
+    <span class="n">y</span> <span class="o">=</span> <span class="n">y</span><span class="p">[:</span><span class="n">M</span> <span class="o">*</span> <span class="n">nsamp</span><span class="p">]</span>  <span class="c1"># Cutting the last elements of convolution if any</span>
+
+    <span class="c1"># Add noise to the signal. We calculate noise variance from SNR</span>
+    <span class="n">P_x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">y</span> <span class="o">**</span> <span class="mi">2</span><span class="p">)</span>  <span class="c1"># Signal power</span>
+    <span class="n">noise_variance</span> <span class="o">=</span> <span class="n">P_x</span> <span class="o">/</span> <span class="n">SNR_linear</span>
+    <span class="n">noise</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">noise_variance</span><span class="p">),</span> <span class="nb">len</span><span class="p">(</span><span class="n">y</span><span class="p">))</span>
+    <span class="n">y_noisy</span> <span class="o">=</span> <span class="n">y</span> <span class="o">+</span> <span class="n">noise</span>
+
+    <span class="c1"># Receiver side: matched filtering</span>
+    <span class="n">matched</span> <span class="o">=</span> <span class="n">h</span><span class="p">[::</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>  <span class="c1"># Matched filter is a time-reversed version of h</span>
+    <span class="n">yrx</span> <span class="o">=</span> <span class="n">convolve</span><span class="p">(</span><span class="n">y_noisy</span><span class="p">,</span> <span class="n">matched</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="s1">&#39;full&#39;</span><span class="p">)</span>
+    <span class="n">z</span> <span class="o">=</span> <span class="n">yrx</span><span class="p">[</span><span class="n">nsamp</span> <span class="o">-</span> <span class="mi">1</span><span class="p">:</span><span class="n">M</span> <span class="o">*</span> <span class="n">nsamp</span><span class="p">:</span><span class="n">nsamp</span><span class="p">]</span>  <span class="c1"># Sampling at symbol rate after matched filtering</span>
+
+    <span class="c1"># Decision device</span>
+    <span class="n">levels</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="o">-</span><span class="n">L</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="n">L</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+    <span class="n">z_decided</span> <span class="o">=</span> <span class="n">levels</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">levels</span><span class="p">[:,</span> <span class="kc">None</span><span class="p">]</span> <span class="o">-</span> <span class="n">z</span><span class="p">)</span><span class="o">.</span><span class="n">argmin</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)]</span>
+
+    <span class="c1"># Count the errors</span>
+    <span class="n">errors</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">count_nonzero</span><span class="p">(</span><span class="n">x</span> <span class="o">!=</span> <span class="n">z_decided</span><span class="p">)</span>
+    
+    <span class="k">return</span> <span class="n">errors</span>
+
+</pre></div>
+</div>
+</div>
+<input class="tab-input" id="tab-set--5-input--2" name="tab-set--5" type="radio"><label class="tab-label" for="tab-set--5-input--2">Matlab</label><div class="tab-content docutils">
+<div class="highlight-matlab notranslate"><div class="highlight"><pre><span></span><span class="k">function</span><span class="w"> </span>errors<span class="p">=</span><span class="nf">ask_errors</span><span class="p">(</span>k, Nsymb, nsamp, EbNo<span class="p">)</span>
+<span class="c">% This function simulates the generation and decoding</span>
+<span class="c">% of a noisy L-ASK signal and counts the number of erroneous symbols.</span>
+<span class="c">% It returns the number of erroneous symbols (in the variable errors).</span>
+<span class="c">% k is the number of bits/symbol, therefore L=2^k -- the number of</span>
+<span class="c">% different amplitudes</span>
+<span class="c">% Nsymb is the number of generated symbols (length of LASK sequence)</span>
+<span class="c">% nsamp is the number of samples per symbol (oversampling ratio)</span>
+<span class="c">% EbNo is the normalized signal-to-noise ratio Eb/No, in dB</span>
+<span class="c">%</span>
+<span class="n">L</span><span class="p">=</span><span class="mi">2</span>^<span class="n">k</span><span class="p">;</span>
+<span class="n">SNR</span><span class="p">=</span><span class="n">EbNo</span><span class="o">-</span><span class="mi">10</span><span class="o">*</span><span class="nb">log10</span><span class="p">(</span><span class="n">nsamp</span><span class="o">/</span><span class="mi">2</span><span class="o">/</span><span class="n">k</span><span class="p">);</span><span class="w"> </span><span class="c">% SNR per signal sample</span>
+<span class="c">% Vector of random integers {±1, ±3, ... ±(L-1)}. To be verified</span>
+<span class="n">x</span><span class="p">=</span><span class="mi">2</span><span class="o">*</span><span class="nb">floor</span><span class="p">(</span><span class="n">L</span><span class="o">*</span><span class="nb">rand</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="n">Nsymb</span><span class="p">))</span><span class="o">-</span><span class="n">L</span><span class="o">+</span><span class="mi">1</span><span class="p">;</span>
+<span class="n">Px</span><span class="p">=(</span><span class="n">L</span>^<span class="mi">2</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">/</span><span class="mi">3</span><span class="p">;</span><span class="w"> </span><span class="c">% theoretical signal power</span>
+<span class="nb">sum</span><span class="p">(</span><span class="n">x</span><span class="o">.^</span><span class="mi">2</span><span class="p">)</span><span class="o">/</span><span class="nb">length</span><span class="p">(</span><span class="n">x</span><span class="p">);</span><span class="w"> </span><span class="c">% measured signal power (for verification)</span>
+<span class="n">h</span><span class="p">=</span><span class="nb">ones</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="n">nsamp</span><span class="p">);</span><span class="w"> </span><span class="n">h</span><span class="p">=</span><span class="n">h</span><span class="o">/</span><span class="nb">sqrt</span><span class="p">(</span><span class="n">h</span><span class="o">*</span><span class="n">h</span><span class="o">&#39;</span><span class="p">);</span><span class="w"> </span><span class="c">% filter impulse response</span>
+<span class="c">% transmitter (rectangular pulse of unit energy)</span>
+<span class="n">y</span><span class="p">=</span><span class="n">upsample</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">nsamp</span><span class="p">);</span><span class="w"> </span><span class="c">% conversion to the dense grid</span>
+<span class="n">y</span><span class="p">=</span><span class="nb">conv</span><span class="p">(</span><span class="n">y</span><span class="p">,</span><span class="n">h</span><span class="p">);</span><span class="w"> </span><span class="c">% the signal to be transmitted</span>
+<span class="n">y</span><span class="p">=</span><span class="n">y</span><span class="p">(</span><span class="mi">1</span><span class="p">:</span><span class="n">M</span><span class="o">*</span><span class="n">nsamp</span><span class="p">);</span><span class="w"> </span><span class="c">% tail left by the convolution is truncated</span>
+<span class="n">n</span><span class="p">=</span><span class="n">wgn</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="nb">length</span><span class="p">(</span><span class="n">y</span><span class="p">),</span><span class="w"> </span><span class="mi">10</span><span class="o">*</span><span class="nb">log10</span><span class="p">(</span><span class="n">Px</span><span class="p">)</span><span class="o">-</span><span class="n">SNR</span><span class="p">);</span>
+<span class="n">ynoisy</span><span class="p">=</span><span class="n">awgn</span><span class="p">(</span><span class="n">y</span><span class="p">,</span><span class="n">SNR</span><span class="p">,</span><span class="s">&#39;measured&#39;</span><span class="p">);</span><span class="w"> </span><span class="c">% noisy signal</span>
+<span class="k">for</span><span class="w"> </span><span class="nb">i</span><span class="p">=</span><span class="mi">1</span><span class="p">:</span><span class="n">nsamp</span><span class="w"> </span><span class="n">matched</span><span class="p">(</span><span class="nb">i</span><span class="p">)=</span><span class="n">h</span><span class="p">(</span><span class="k">end</span><span class="o">-</span><span class="nb">i</span><span class="o">+</span><span class="mi">1</span><span class="p">);</span><span class="w"> </span><span class="k">end</span>
+<span class="n">yrx</span><span class="p">=</span><span class="nb">conv</span><span class="p">(</span><span class="n">ynoisy</span><span class="p">,</span><span class="n">matched</span><span class="p">);</span>
+<span class="n">z</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">yrx</span><span class="p">(</span><span class="n">nsamp</span><span class="p">:</span><span class="n">nsamp</span><span class="p">:</span><span class="n">M</span><span class="o">*</span><span class="n">nsamp</span><span class="p">);</span>
+<span class="n">A</span><span class="p">=[</span><span class="o">-</span><span class="n">L</span><span class="o">+</span><span class="mi">1</span><span class="p">:</span><span class="mi">2</span><span class="p">:</span><span class="n">L</span><span class="o">-</span><span class="mi">1</span><span class="p">];</span>
+<span class="k">for</span><span class="w"> </span><span class="nb">i</span><span class="p">=</span><span class="mi">1</span><span class="p">:</span><span class="nb">length</span><span class="p">(</span><span class="n">z</span><span class="p">)</span>
+<span class="w">    </span><span class="p">[</span><span class="n">m</span><span class="p">,</span><span class="w"> </span><span class="nb">j</span><span class="p">]=</span><span class="nb">min</span><span class="p">(</span><span class="nb">abs</span><span class="p">(</span><span class="n">A</span><span class="o">-</span><span class="n">z</span><span class="p">(</span><span class="nb">i</span><span class="p">)));</span>
+<span class="w">    </span><span class="n">z</span><span class="p">(</span><span class="nb">i</span><span class="p">)=</span><span class="n">A</span><span class="p">(</span><span class="nb">j</span><span class="p">);</span>
+<span class="k">end</span>
+<span class="n">err</span><span class="p">=</span><span class="n">not</span><span class="p">(</span><span class="n">x</span><span class="o">==</span><span class="n">z</span><span class="p">);</span>
+<span class="n">errors</span><span class="p">=</span><span class="nb">sum</span><span class="p">(</span><span class="n">err</span><span class="p">);</span>
+<span class="k">end</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<p>(a) Confirm that the modified code produces the same results as Code 3.3.</p>
+<div class="cell tag_hide-code-cell tag_thebe-init docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">from</span> <span class="nn">scipy.special</span> <span class="kn">import</span> <span class="n">erfc</span>
+<span class="kn">from</span> <span class="nn">scipy.signal</span> <span class="kn">import</span> <span class="n">upfirdn</span><span class="p">,</span> <span class="n">convolve</span>
+<span class="kn">from</span> <span class="nn">ipywidgets</span> <span class="kn">import</span> <span class="n">Checkbox</span><span class="p">,</span> <span class="n">Button</span><span class="p">,</span> <span class="n">Output</span><span class="p">,</span> <span class="n">VBox</span><span class="p">,</span> <span class="n">HBox</span><span class="p">,</span> <span class="n">Dropdown</span>
+<span class="kn">from</span> <span class="nn">IPython.display</span> <span class="kn">import</span> <span class="n">clear_output</span>
+
+<span class="k">def</span> <span class="nf">ask_errors_new</span><span class="p">(</span><span class="n">k</span><span class="p">,</span> <span class="n">M</span><span class="p">,</span> <span class="n">nsamp</span><span class="p">,</span> <span class="n">EbN0_db</span><span class="p">):</span>
+    <span class="n">L</span> <span class="o">=</span> <span class="mi">2</span><span class="o">**</span><span class="n">k</span>
+    <span class="n">SNR_db</span> <span class="o">=</span> <span class="n">EbN0_db</span> <span class="o">-</span> <span class="mi">10</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">log10</span><span class="p">(</span><span class="n">nsamp</span> <span class="o">/</span> <span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">k</span><span class="p">))</span>
+    <span class="n">SNR_linear</span> <span class="o">=</span> <span class="mi">10</span> <span class="o">**</span> <span class="p">(</span><span class="n">SNR_db</span> <span class="o">/</span> <span class="mi">10</span><span class="p">)</span>
+    <span class="n">x</span> <span class="o">=</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">floor</span><span class="p">(</span><span class="n">L</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="n">M</span><span class="p">))</span> <span class="o">-</span> <span class="n">L</span> <span class="o">+</span> <span class="mi">1</span>
+
+    <span class="c1"># Create the filter impulse response</span>
+    <span class="n">h</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="n">nsamp</span><span class="p">)</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">nsamp</span><span class="p">)</span>
+
+    <span class="c1"># Sender side: upsample and then convolve (filter) the signal</span>
+    <span class="n">y</span> <span class="o">=</span> <span class="n">upfirdn</span><span class="p">(</span><span class="n">h</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">up</span><span class="o">=</span><span class="n">nsamp</span><span class="p">)</span>
+    <span class="n">y</span> <span class="o">=</span> <span class="n">y</span><span class="p">[:</span><span class="n">M</span> <span class="o">*</span> <span class="n">nsamp</span><span class="p">]</span>  <span class="c1"># Cutting the last elements of convolution if any</span>
+
+    <span class="c1"># Add noise to the signal. We calculate noise variance from SNR</span>
+    <span class="n">P_x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">y</span> <span class="o">**</span> <span class="mi">2</span><span class="p">)</span>  <span class="c1"># Signal power</span>
+    <span class="n">noise_variance</span> <span class="o">=</span> <span class="n">P_x</span> <span class="o">/</span> <span class="n">SNR_linear</span>
+    <span class="n">noise</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">noise_variance</span><span class="p">),</span> <span class="nb">len</span><span class="p">(</span><span class="n">y</span><span class="p">))</span>
+    <span class="n">y_noisy</span> <span class="o">=</span> <span class="n">y</span> <span class="o">+</span> <span class="n">noise</span>
+
+    <span class="c1"># Receiver side: matched filtering</span>
+    <span class="n">matched</span> <span class="o">=</span> <span class="n">h</span><span class="p">[::</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>  <span class="c1"># Matched filter is a time-reversed version of h</span>
+    <span class="n">yrx</span> <span class="o">=</span> <span class="n">convolve</span><span class="p">(</span><span class="n">y_noisy</span><span class="p">,</span> <span class="n">matched</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="s1">&#39;full&#39;</span><span class="p">)</span>
+    <span class="n">z</span> <span class="o">=</span> <span class="n">yrx</span><span class="p">[</span><span class="n">nsamp</span> <span class="o">-</span> <span class="mi">1</span><span class="p">:</span><span class="n">M</span> <span class="o">*</span> <span class="n">nsamp</span><span class="p">:</span><span class="n">nsamp</span><span class="p">]</span>  <span class="c1"># Sampling at symbol rate after matched filtering</span>
+
+    <span class="c1"># Decision device</span>
+    <span class="n">levels</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="o">-</span><span class="n">L</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="n">L</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+    <span class="n">z_decided</span> <span class="o">=</span> <span class="n">levels</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">levels</span><span class="p">[:,</span> <span class="kc">None</span><span class="p">]</span> <span class="o">-</span> <span class="n">z</span><span class="p">)</span><span class="o">.</span><span class="n">argmin</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)]</span>
+
+    <span class="c1"># Count the errors</span>
+    <span class="n">errors</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">count_nonzero</span><span class="p">(</span><span class="n">x</span> <span class="o">!=</span> <span class="n">z_decided</span><span class="p">)</span>
+    
+    <span class="k">return</span> <span class="n">errors</span>
+
+
+
+<span class="n">M</span> <span class="o">=</span> <span class="mi">20000</span>
+<span class="n">EbN0_db</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">16</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+
+<span class="c1"># Initialize the widgets</span>
+<span class="n">checkbox_4qam</span> <span class="o">=</span> <span class="n">Checkbox</span><span class="p">(</span><span class="n">value</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s1">&#39;4-QAM&#39;</span><span class="p">)</span>
+<span class="n">checkbox_8qam</span> <span class="o">=</span> <span class="n">Checkbox</span><span class="p">(</span><span class="n">value</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s1">&#39;8-QAM&#39;</span><span class="p">)</span>
+<span class="n">checkbox_16qam</span> <span class="o">=</span> <span class="n">Checkbox</span><span class="p">(</span><span class="n">value</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s1">&#39;16-QAM&#39;</span><span class="p">)</span>
+<span class="n">nsamp_dropdown</span> <span class="o">=</span> <span class="n">Dropdown</span><span class="p">(</span><span class="n">options</span><span class="o">=</span><span class="p">[</span><span class="mi">4</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">16</span><span class="p">,</span> <span class="mi">32</span><span class="p">,</span> <span class="mi">64</span><span class="p">],</span> <span class="n">value</span><span class="o">=</span><span class="mi">16</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s1">&#39;Samples per Symbol:&#39;</span><span class="p">,</span> <span class="n">style</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;description_width&#39;</span><span class="p">:</span> <span class="s1">&#39;initial&#39;</span><span class="p">})</span>
+
+<span class="n">plot_output</span> <span class="o">=</span> <span class="n">Output</span><span class="p">()</span>
+
+<span class="k">def</span> <span class="nf">plot_selected_modulations</span><span class="p">(</span><span class="n">btn</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="k">with</span> <span class="n">plot_output</span><span class="p">:</span>
+        <span class="n">clear_output</span><span class="p">(</span><span class="n">wait</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+        <span class="n">nsamp</span> <span class="o">=</span> <span class="n">nsamp_dropdown</span><span class="o">.</span><span class="n">value</span>  <span class="c1"># Get the selected value from the dropdown</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">7</span><span class="p">))</span>
+        
+        <span class="c1"># Define colors for each modulation level</span>
+        <span class="n">colors</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="s1">&#39;4-QAM&#39;</span><span class="p">:</span> <span class="s1">&#39;red&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;8-QAM&#39;</span><span class="p">:</span> <span class="s1">&#39;green&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;16-QAM&#39;</span><span class="p">:</span> <span class="s1">&#39;blue&#39;</span>
+        <span class="p">}</span>
+        
+        <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">checkbox</span><span class="p">,</span> <span class="n">color</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">([</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">],</span> <span class="p">[</span><span class="n">checkbox_4qam</span><span class="p">,</span> <span class="n">checkbox_8qam</span><span class="p">,</span> <span class="n">checkbox_16qam</span><span class="p">],</span> <span class="n">colors</span><span class="o">.</span><span class="n">values</span><span class="p">()):</span>
+            <span class="k">if</span> <span class="n">checkbox</span><span class="o">.</span><span class="n">value</span><span class="p">:</span>
+                <span class="n">L</span> <span class="o">=</span> <span class="mi">2</span><span class="o">**</span><span class="n">k</span>
+                <span class="n">modulation_name</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">L</span><span class="si">}</span><span class="s1">-QAM&#39;</span>
+                <span class="n">ber</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">EbN0_db</span><span class="p">))</span>
+                <span class="k">for</span> <span class="n">index</span><span class="p">,</span> <span class="n">eb_n0</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">EbN0_db</span><span class="p">):</span>
+                    <span class="c1"># Simulate experimental BER</span>
+                    <span class="n">ber</span><span class="p">[</span><span class="n">index</span><span class="p">]</span> <span class="o">=</span> <span class="n">ask_errors_new</span><span class="p">(</span><span class="n">k</span><span class="p">,</span> <span class="n">M</span><span class="p">,</span> <span class="n">nsamp</span><span class="p">,</span> <span class="n">eb_n0</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="n">M</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">log2</span><span class="p">(</span><span class="n">L</span><span class="p">))</span>
+                
+                <span class="c1"># Plot experimental BER</span>
+                <span class="n">plt</span><span class="o">.</span><span class="n">semilogy</span><span class="p">(</span><span class="n">EbN0_db</span><span class="p">,</span> <span class="n">ber</span><span class="p">,</span> <span class="s1">&#39;o&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="sa">f</span><span class="s1">&#39;Experimental </span><span class="si">{</span><span class="n">modulation_name</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="n">color</span><span class="p">)</span>
+                
+                <span class="c1"># Theoretical BER for comparison</span>
+                <span class="n">ber_theoretical</span> <span class="o">=</span> <span class="p">(((</span><span class="n">L</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">/</span><span class="n">L</span><span class="p">)</span> <span class="o">*</span> <span class="n">erfc</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mi">10</span><span class="o">**</span><span class="p">(</span><span class="n">EbN0_db</span> <span class="o">/</span> <span class="mi">10</span><span class="p">)</span> <span class="o">*</span> <span class="p">(</span><span class="mi">3</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">log2</span><span class="p">(</span><span class="n">L</span><span class="p">))</span> <span class="o">/</span> <span class="p">(</span><span class="n">L</span><span class="o">**</span><span class="mi">2</span> <span class="o">-</span> <span class="mi">1</span><span class="p">))))</span> <span class="o">/</span> <span class="n">k</span>
+                <span class="n">plt</span><span class="o">.</span><span class="n">semilogy</span><span class="p">(</span><span class="n">EbN0_db</span><span class="p">,</span> <span class="n">ber_theoretical</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;-&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="sa">f</span><span class="s1">&#39;Theoretical </span><span class="si">{</span><span class="n">modulation_name</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="n">color</span><span class="p">)</span>
+        
+        <span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">,</span> <span class="n">which</span><span class="o">=</span><span class="s1">&#39;both&#39;</span><span class="p">)</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;Eb/N0 (dB)&quot;</span><span class="p">)</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;BER&quot;</span><span class="p">)</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+
+<span class="c1"># Button to update the plot based on the selected nsamp</span>
+<span class="n">plot_button</span> <span class="o">=</span> <span class="n">Button</span><span class="p">(</span><span class="n">description</span><span class="o">=</span><span class="s2">&quot;Plot&quot;</span><span class="p">)</span>
+<span class="n">plot_button</span><span class="o">.</span><span class="n">on_click</span><span class="p">(</span><span class="n">plot_selected_modulations</span><span class="p">)</span>
+
+<span class="c1"># Display the widgets and the output container</span>
+<span class="n">display</span><span class="p">(</span><span class="n">HBox</span><span class="p">([</span><span class="n">nsamp_dropdown</span><span class="p">]),</span> <span class="n">VBox</span><span class="p">([</span><span class="n">checkbox_4qam</span><span class="p">,</span> <span class="n">checkbox_8qam</span><span class="p">,</span> <span class="n">checkbox_16qam</span><span class="p">,</span> <span class="n">plot_button</span><span class="p">]),</span> <span class="n">plot_output</span><span class="p">)</span>
+
+<span class="c1"># Call the function initially to display the plot</span>
+<span class="n">plot_selected_modulations</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<script type="application/vnd.jupyter.widget-view+json">{"version_major": 2, "version_minor": 0, "model_id": "ad565780158c4b0f9bd4eab9ece71640"}</script><script type="application/vnd.jupyter.widget-view+json">{"version_major": 2, "version_minor": 0, "model_id": "ab2113e3e7b549269dafc3ddc97b2a56"}</script><script type="application/vnd.jupyter.widget-view+json">{"version_major": 2, "version_minor": 0, "model_id": "9aa672aadee346f782cb3c2f35c53cc2"}</script></div>
+</div>
+<p>(b) After executing the body of the modified function ask_errors() without adding noise (i.e., with ynoisy=y), plot a section of the signals x, y, and yrx.</p>
+<div class="cell tag_remove-input docutils container">
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">NameError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
+<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">6</span><span class="p">],</span> <span class="n">line</span> <span class="mi">37</span>
+<span class="g g-Whitespace">     </span><span class="mi">34</span> <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="g g-Whitespace">     </span><span class="mi">36</span> <span class="c1"># Get the signal parts</span>
+<span class="ne">---&gt; </span><span class="mi">37</span> <span class="n">x_part</span><span class="p">,</span> <span class="n">y_part</span><span class="p">,</span> <span class="n">yrx_part</span> <span class="o">=</span> <span class="n">ask_errors_modified</span><span class="p">(</span><span class="n">k</span><span class="p">,</span> <span class="n">M</span><span class="p">,</span> <span class="n">nsamp</span><span class="p">,</span> <span class="n">add_noise</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="g g-Whitespace">     </span><span class="mi">39</span> <span class="c1"># Create a figure and a set of subplots</span>
+<span class="g g-Whitespace">     </span><span class="mi">40</span> <span class="n">fig</span><span class="p">,</span> <span class="n">axs</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">14</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>
+
+<span class="ne">NameError</span>: name &#39;k&#39; is not defined
+</pre></div>
+</div>
+</div>
+</div>
+<p>Write a brief explanation of the second and third diagrams.</p>
+<p>(c) Replace the rectangular pulse h with another, e.g., a cosine of one period:
+$<span class="math notranslate nohighlight">\(
+h=cos(2*pi*(1:nsamp)/nsamp); h=h/sqrt(h*h’);
+\)</span>$</p>
+<p>Execute the simulation again with bertool. What is the conclusion about the performance of the new L-ASK system? If we revert the command matched=h for the matched filter, we will observe that we do not get correct results, especially for small values of nsamp (e.g., nsamp=8). Explain this, after observing the shape of the pulse h in the two cases (rectangular pulse and sine pulse), plotting it with stems (stem(h)). Repeat the experiment for nsamp=32 and 64.</p>
+<div class="cell tag_hide-code-cell tag_thebe-init docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">scipy.signal</span> <span class="kn">import</span> <span class="n">convolve</span><span class="p">,</span> <span class="n">upfirdn</span>
+
+<span class="k">def</span> <span class="nf">ask_errors_sin</span><span class="p">(</span><span class="n">k</span><span class="p">,</span> <span class="n">M</span><span class="p">,</span> <span class="n">nsamp</span><span class="p">,</span> <span class="n">EbN0_db</span><span class="p">):</span>
+    <span class="n">L</span> <span class="o">=</span> <span class="mi">2</span><span class="o">**</span><span class="n">k</span>
+    <span class="n">SNR_db</span> <span class="o">=</span> <span class="n">EbN0_db</span> <span class="o">-</span> <span class="mi">10</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">log10</span><span class="p">(</span><span class="n">nsamp</span> <span class="o">/</span> <span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">k</span><span class="p">))</span>
+    <span class="n">SNR_linear</span> <span class="o">=</span> <span class="mi">10</span> <span class="o">**</span> <span class="p">(</span><span class="n">SNR_db</span> <span class="o">/</span> <span class="mi">10</span><span class="p">)</span>
+    <span class="n">x</span> <span class="o">=</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">floor</span><span class="p">(</span><span class="n">L</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="n">M</span><span class="p">))</span> <span class="o">-</span> <span class="n">L</span> <span class="o">+</span> <span class="mi">1</span>
+
+    <span class="c1"># Create the sinusoidal filter impulse response</span>
+    <span class="n">h</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">nsamp</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="o">/</span> <span class="n">nsamp</span><span class="p">)</span>
+    <span class="n">h</span> <span class="o">=</span> <span class="n">h</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">h</span><span class="p">,</span> <span class="n">h</span><span class="o">.</span><span class="n">T</span><span class="p">))</span>
+
+    <span class="c1"># Sender side: upsample and then convolve (filter) the signal</span>
+    <span class="n">y</span> <span class="o">=</span> <span class="n">upfirdn</span><span class="p">(</span><span class="n">h</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">up</span><span class="o">=</span><span class="n">nsamp</span><span class="p">)</span>
+    <span class="n">y</span> <span class="o">=</span> <span class="n">y</span><span class="p">[:</span><span class="n">M</span> <span class="o">*</span> <span class="n">nsamp</span><span class="p">]</span>  <span class="c1"># Cutting the last elements of convolution if any</span>
+
+    <span class="c1"># Add noise to the signal. We calculate noise variance from SNR</span>
+    <span class="n">P_x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">y</span> <span class="o">**</span> <span class="mi">2</span><span class="p">)</span>  <span class="c1"># Signal power</span>
+    <span class="n">noise_variance</span> <span class="o">=</span> <span class="n">P_x</span> <span class="o">/</span> <span class="n">SNR_linear</span>
+    <span class="n">noise</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">noise_variance</span><span class="p">),</span> <span class="nb">len</span><span class="p">(</span><span class="n">y</span><span class="p">))</span>
+    <span class="n">y_noisy</span> <span class="o">=</span> <span class="n">y</span> <span class="o">+</span> <span class="n">noise</span>
+
+    <span class="c1"># Receiver side: matched filtering</span>
+    <span class="n">matched</span> <span class="o">=</span> <span class="n">h</span><span class="p">[::</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>  <span class="c1"># Matched filter is a time-reversed version of h</span>
+    <span class="n">yrx</span> <span class="o">=</span> <span class="n">convolve</span><span class="p">(</span><span class="n">y_noisy</span><span class="p">,</span> <span class="n">matched</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="s1">&#39;full&#39;</span><span class="p">)</span>
+    <span class="n">z</span> <span class="o">=</span> <span class="n">yrx</span><span class="p">[</span><span class="n">nsamp</span> <span class="o">-</span> <span class="mi">1</span><span class="p">:</span><span class="n">M</span> <span class="o">*</span> <span class="n">nsamp</span><span class="p">:</span><span class="n">nsamp</span><span class="p">]</span>  <span class="c1"># Sampling at symbol rate after matched filtering</span>
+
+    <span class="c1"># Decision device</span>
+    <span class="n">levels</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="o">-</span><span class="n">L</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="n">L</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+    <span class="n">z_decided</span> <span class="o">=</span> <span class="n">levels</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">levels</span><span class="p">[:,</span> <span class="kc">None</span><span class="p">]</span> <span class="o">-</span> <span class="n">z</span><span class="p">)</span><span class="o">.</span><span class="n">argmin</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)]</span>
+
+    <span class="c1"># Count the errors</span>
+    <span class="n">errors</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">count_nonzero</span><span class="p">(</span><span class="n">x</span> <span class="o">!=</span> <span class="n">z_decided</span><span class="p">)</span>
+    
+    <span class="k">return</span> <span class="n">errors</span>
+
+
+
+
+<span class="n">M</span> <span class="o">=</span> <span class="mi">20000</span>
+<span class="n">EbN0_db</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">16</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+
+<span class="c1"># Initialize the widgets</span>
+<span class="n">checkbox_4qam3</span> <span class="o">=</span> <span class="n">Checkbox</span><span class="p">(</span><span class="n">value</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s1">&#39;4-QAM&#39;</span><span class="p">)</span>
+<span class="n">checkbox_8qam3</span> <span class="o">=</span> <span class="n">Checkbox</span><span class="p">(</span><span class="n">value</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s1">&#39;8-QAM&#39;</span><span class="p">)</span>
+<span class="n">checkbox_16qam3</span> <span class="o">=</span> <span class="n">Checkbox</span><span class="p">(</span><span class="n">value</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s1">&#39;16-QAM&#39;</span><span class="p">)</span>
+<span class="n">nsamp_dropdown3</span> <span class="o">=</span> <span class="n">Dropdown</span><span class="p">(</span><span class="n">options</span><span class="o">=</span><span class="p">[</span><span class="mi">4</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">16</span><span class="p">,</span> <span class="mi">32</span><span class="p">,</span> <span class="mi">64</span><span class="p">],</span> <span class="n">value</span><span class="o">=</span><span class="mi">16</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s1">&#39;Samples per Symbol:&#39;</span><span class="p">,</span> <span class="n">style</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;description_width&#39;</span><span class="p">:</span> <span class="s1">&#39;initial&#39;</span><span class="p">})</span>
+
+<span class="n">plot_output3</span> <span class="o">=</span> <span class="n">Output</span><span class="p">()</span>
+
+<span class="k">def</span> <span class="nf">plot_selected_modulations3</span><span class="p">(</span><span class="n">btn</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="k">with</span> <span class="n">plot_output3</span><span class="p">:</span>
+        <span class="n">clear_output</span><span class="p">(</span><span class="n">wait</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+        <span class="n">nsamp</span> <span class="o">=</span> <span class="n">nsamp_dropdown3</span><span class="o">.</span><span class="n">value</span>  <span class="c1"># Get the selected value from the dropdown</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">7</span><span class="p">))</span>
+        
+        <span class="c1"># Define colors for each modulation level</span>
+        <span class="n">colors</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="s1">&#39;4-QAM&#39;</span><span class="p">:</span> <span class="s1">&#39;red&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;8-QAM&#39;</span><span class="p">:</span> <span class="s1">&#39;green&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;16-QAM&#39;</span><span class="p">:</span> <span class="s1">&#39;blue&#39;</span>
+        <span class="p">}</span>
+        
+        <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">checkbox</span><span class="p">,</span> <span class="n">color</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">([</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">],</span> <span class="p">[</span><span class="n">checkbox_4qam3</span><span class="p">,</span> <span class="n">checkbox_8qam3</span><span class="p">,</span> <span class="n">checkbox_16qam3</span><span class="p">],</span> <span class="n">colors</span><span class="o">.</span><span class="n">values</span><span class="p">()):</span>
+            <span class="k">if</span> <span class="n">checkbox</span><span class="o">.</span><span class="n">value</span><span class="p">:</span>
+                <span class="n">L</span> <span class="o">=</span> <span class="mi">2</span><span class="o">**</span><span class="n">k</span>
+                <span class="n">modulation_name</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">L</span><span class="si">}</span><span class="s1">-QAM&#39;</span>
+                <span class="n">ber</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">EbN0_db</span><span class="p">))</span>
+                <span class="k">for</span> <span class="n">index</span><span class="p">,</span> <span class="n">eb_n0</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">EbN0_db</span><span class="p">):</span>
+                    <span class="c1"># Simulate experimental BER</span>
+                    <span class="n">ber</span><span class="p">[</span><span class="n">index</span><span class="p">]</span> <span class="o">=</span> <span class="n">ask_errors_sin</span><span class="p">(</span><span class="n">k</span><span class="p">,</span> <span class="n">M</span><span class="p">,</span> <span class="n">nsamp</span><span class="p">,</span> <span class="n">eb_n0</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="n">M</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">log2</span><span class="p">(</span><span class="n">L</span><span class="p">))</span>
+                
+                <span class="c1"># Plot experimental BER</span>
+                <span class="n">plt</span><span class="o">.</span><span class="n">semilogy</span><span class="p">(</span><span class="n">EbN0_db</span><span class="p">,</span> <span class="n">ber</span><span class="p">,</span> <span class="s1">&#39;o&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="sa">f</span><span class="s1">&#39;Experimental </span><span class="si">{</span><span class="n">modulation_name</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="n">color</span><span class="p">)</span>
+                
+                <span class="c1"># Theoretical BER for comparison</span>
+                <span class="n">ber_theoretical</span> <span class="o">=</span> <span class="p">(((</span><span class="n">L</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">/</span><span class="n">L</span><span class="p">)</span> <span class="o">*</span> <span class="n">erfc</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mi">10</span><span class="o">**</span><span class="p">(</span><span class="n">EbN0_db</span> <span class="o">/</span> <span class="mi">10</span><span class="p">)</span> <span class="o">*</span> <span class="p">(</span><span class="mi">3</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">log2</span><span class="p">(</span><span class="n">L</span><span class="p">))</span> <span class="o">/</span> <span class="p">(</span><span class="n">L</span><span class="o">**</span><span class="mi">2</span> <span class="o">-</span> <span class="mi">1</span><span class="p">))))</span> <span class="o">/</span> <span class="n">k</span>
+                <span class="n">plt</span><span class="o">.</span><span class="n">semilogy</span><span class="p">(</span><span class="n">EbN0_db</span><span class="p">,</span> <span class="n">ber_theoretical</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;-&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="sa">f</span><span class="s1">&#39;Theoretical </span><span class="si">{</span><span class="n">modulation_name</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="n">color</span><span class="p">)</span>
+        
+        <span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">,</span> <span class="n">which</span><span class="o">=</span><span class="s1">&#39;both&#39;</span><span class="p">)</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;Eb/N0 (dB)&quot;</span><span class="p">)</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;BER&quot;</span><span class="p">)</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+
+<span class="c1"># Button to update the plot based on the selected nsamp</span>
+<span class="n">plot_button3</span> <span class="o">=</span> <span class="n">Button</span><span class="p">(</span><span class="n">description</span><span class="o">=</span><span class="s2">&quot;Plot&quot;</span><span class="p">)</span>
+<span class="n">plot_button3</span><span class="o">.</span><span class="n">on_click</span><span class="p">(</span><span class="n">plot_selected_modulations3</span><span class="p">)</span>
+
+<span class="c1"># Display the widgets and the output container</span>
+<span class="n">display</span><span class="p">(</span><span class="n">HBox</span><span class="p">([</span><span class="n">nsamp_dropdown3</span><span class="p">]),</span> <span class="n">VBox</span><span class="p">([</span><span class="n">checkbox_4qam3</span><span class="p">,</span> <span class="n">checkbox_8qam3</span><span class="p">,</span> <span class="n">checkbox_16qam3</span><span class="p">,</span> <span class="n">plot_button3</span><span class="p">]),</span> <span class="n">plot_output3</span><span class="p">)</span>
+
+
+
+<span class="c1"># Call the function initially to display the plot</span>
+<span class="n">plot_selected_modulations3</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<script type="application/vnd.jupyter.widget-view+json">{"model_id": "b55976ccc22c40d6afdfdfe696257a5c", "version_major": 2, "version_minor": 0}</script><script type="application/vnd.jupyter.widget-view+json">{"model_id": "edd2129dd81b488d80552b8f94cf7fca", "version_major": 2, "version_minor": 0}</script><script type="application/vnd.jupyter.widget-view+json">{"model_id": "bb9faa84d69f420882413d1bd061ee4e", "version_major": 2, "version_minor": 0}</script></div>
+</div>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "ntua-el17840/Interactive-Digital-Communications",
+            ref: "main",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./content"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="Digcom_Lab2.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Lab Exercise 2: Digital Filters</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="Digcom_Lab4.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Lab Exercise 4: Nyquist signaling and L-ASK</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#importing-packages-we-will-need-later-in-python">Importing packages we will need later in Python</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#part-1-theory">Part 1: Theory</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#code-3-3-calculation-of-the-probability-of-erroneous-symbol-for-coherent-ask-with-orthogonal">Code 3.3: Calculation of the probability of erroneous symbol for coherent ASK with orthogonal</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#part-2-simulation-code-exploration">Part 2: Simulation Code Exploration</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#part-3-performance-curves-ber-as-a-function-of-the-signal-to-noise-ratio">Part 3: Performance Curves (BER as a function of the signal-to-noise ratio)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#part-4-implementation-with-convolution-using-other-pulses">Part 4: Implementation with Convolution - Using Other Pulses</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By ECE - NTUA
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
