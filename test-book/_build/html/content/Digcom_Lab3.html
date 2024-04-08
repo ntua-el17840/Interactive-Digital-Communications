@@ -1,12 +1,13 @@
 
+
 <!DOCTYPE html>
 
 
-<html lang="en" data-content_root="../" >
+<html lang="en" data-content_root="" >
 
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
     <title>Lab Exercise 3: Matched Filters and L-ASK &#8212; Interactive Digital Communtications</title>
   
@@ -18,52 +19,56 @@
   </script>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="../_static/styles/theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
-<link href="../_static/styles/bootstrap.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
-<link href="../_static/styles/pydata-sphinx-theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+  <link href="../_static/styles/theme.css?digest=5b4479735964841361fd" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=5b4479735964841361fd" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=5b4479735964841361fd" rel="stylesheet" />
 
   
-  <link href="../_static/vendor/fontawesome/6.5.1/css/all.min.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
-  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.1/webfonts/fa-solid-900.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.1/webfonts/fa-brands-400.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.1/webfonts/fa-regular-400.woff2" />
+  <link href="../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=5b4479735964841361fd" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
 
-    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=fa44fd50" />
-    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=384b581d" />
-    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
-    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
-    <link rel="stylesheet" type="text/css" href="../_static/tabs.css?v=4c969af8" />
-    <link rel="stylesheet" type="text/css" href="../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css?v=0a3b3ea7" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/tabs.css" />
     <link rel="stylesheet" type="text/css" href="../_static/custom.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
   
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae" />
-<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae" />
-  <script src="../_static/vendor/fontawesome/6.5.1/js/all.min.js?digest=8d27b9dea8ad943066ae"></script>
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=5b4479735964841361fd" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=5b4479735964841361fd" />
+  <script src="../_static/vendor/fontawesome/6.1.2/js/all.min.js?digest=5b4479735964841361fd"></script>
 
-    <script src="../_static/documentation_options.js?v=9eb32ce0"></script>
-    <script src="../_static/doctools.js?v=888ff710"></script>
-    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
-    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
-    <script src="../_static/copybutton.js?v=f281be69"></script>
-    <script src="../_static/scripts/sphinx-book-theme.js?v=efea14e4"></script>
-    <script src="../_static/tabs.js?v=3ee01567"></script>
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script src="../_static/tabs.js"></script>
     <script>let toggleHintShow = 'Click to show';</script>
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
-    <script src="../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script src="../_static/togglebutton.js"></script>
+    <script src="../_static/custom.js"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
-    <script src="../_static/design-tabs.js?v=36754332"></script>
-    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
-    <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
-    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
-    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script src="../_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
     <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'content/Digcom_Lab3';</script>
-    <script src="../_static/custom.js?v=8345a7c9"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="Lab Exercise 4: Nyquist signaling and L-ASK" href="Digcom_Lab4.html" />
@@ -77,9 +82,10 @@
 
   
   
-  <a id="pst-skip-link" class="skip-link" href="#main-content">Skip to main content</a>
+  <a class="skip-link" href="#main-content">Skip to main content</a>
   
   <div id="pst-scroll-pixel-helper"></div>
+
   
   <button type="button" class="btn rounded-pill" id="pst-back-to-top">
     <i class="fa-solid fa-arrow-up"></i>
@@ -120,14 +126,11 @@
 </form></div>
   </div>
   
-    <header class="bd-header navbar navbar-expand-lg bd-navbar">
-    </header>
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+    </nav>
   
-
   <div class="bd-container">
     <div class="bd-container__inner bd-page-width">
-      
-      
       
       <div class="bd-sidebar-primary bd-sidebar">
         
@@ -161,18 +164,7 @@
   
   
 </a></div>
-        <div class="sidebar-primary-item">
-
- <script>
- document.write(`
-   <button class="btn navbar-btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <i class="fa-solid fa-magnifying-glass"></i>
-    <span class="search-button__default-text">Search</span>
-    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
-   </button>
- `);
- </script></div>
-        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
     <div class="bd-toc-item navbar-nav active">
         
         <ul class="nav bd-sidenav bd-sidenav__home-link">
@@ -422,7 +414,10 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#importing-packages-we-will-need-later-in-python">Importing packages we will need later in Python</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#setup">Setup</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#importing-packages-we-will-need-later-in-python">Importing packages we will need later in Python</a></li>
+</ul>
+</li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#part-1-theory">Part 1: Theory</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#code-3-3-calculation-of-the-probability-of-erroneous-symbol-for-coherent-ask-with-orthogonal">Code 3.3: Calculation of the probability of erroneous symbol for coherent ASK with orthogonal</a></li>
 </ul>
@@ -439,11 +434,13 @@ document.write(`
               
                 
 <div id="searchbox"></div>
-                <article class="bd-article">
+                <article class="bd-article" role="main">
                   
   <section class="tex2jax_ignore mathjax_ignore" id="lab-exercise-3-matched-filters-and-l-ask">
-<h1>Lab Exercise 3: Matched Filters and L-ASK<a class="headerlink" href="#lab-exercise-3-matched-filters-and-l-ask" title="Link to this heading">#</a></h1>
+<h1>Lab Exercise 3: Matched Filters and L-ASK<a class="headerlink" href="#lab-exercise-3-matched-filters-and-l-ask" title="Permalink to this heading">#</a></h1>
 <p>After studying Chapter 3 and, in particular, Example 3.2 of the notes, copy Code 3.3 of this example into a file named ask_errors.m (the code is repeated here for convenience). Then execute the following:</p>
+<section id="setup">
+<h2>Setup<a class="headerlink" href="#setup" title="Permalink to this heading">#</a></h2>
 <div class="admonition-live-code admonition">
 <p class="admonition-title">Live Code</p>
 <p>Press the following button to make python code interactive. It will connect you to a kernel once it says “ready” (might take a bit, especially the first time it runs).</p>
@@ -452,7 +449,7 @@ document.write(`
   <button title="Launch thebe" class="thebelab-button thebe-launch-button" onclick="initThebe()">Python Interactive Code</button>
 </div>
 <section id="importing-packages-we-will-need-later-in-python">
-<h2>Importing packages we will need later in Python<a class="headerlink" href="#importing-packages-we-will-need-later-in-python" title="Link to this heading">#</a></h2>
+<h3>Importing packages we will need later in Python<a class="headerlink" href="#importing-packages-we-will-need-later-in-python" title="Permalink to this heading">#</a></h3>
 <div class="cell tag_thebe-init docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">scipy</span> <span class="kn">import</span> <span class="n">signal</span>
@@ -463,15 +460,18 @@ document.write(`
 <span class="kn">from</span> <span class="nn">IPython.display</span> <span class="kn">import</span> <span class="n">display</span><span class="p">,</span> <span class="n">clear_output</span>
 <span class="kn">from</span> <span class="nn">scipy.signal</span> <span class="kn">import</span> <span class="n">convolve</span>
 <span class="kn">from</span> <span class="nn">ipywidgets</span> <span class="kn">import</span> <span class="n">Checkbox</span><span class="p">,</span> <span class="n">VBox</span><span class="p">,</span> <span class="n">Button</span><span class="p">,</span> <span class="n">Output</span>
+<span class="kn">import</span> <span class="nn">warnings</span>
+<span class="n">warnings</span><span class="o">.</span><span class="n">filterwarnings</span><span class="p">(</span><span class="s1">&#39;ignore&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 </div>
 </section>
+</section>
 <section id="part-1-theory">
-<h2>Part 1: Theory<a class="headerlink" href="#part-1-theory" title="Link to this heading">#</a></h2>
+<h2>Part 1: Theory<a class="headerlink" href="#part-1-theory" title="Permalink to this heading">#</a></h2>
 <section id="code-3-3-calculation-of-the-probability-of-erroneous-symbol-for-coherent-ask-with-orthogonal">
-<h3>Code 3.3: Calculation of the probability of erroneous symbol for coherent ASK with orthogonal<a class="headerlink" href="#code-3-3-calculation-of-the-probability-of-erroneous-symbol-for-coherent-ask-with-orthogonal" title="Link to this heading">#</a></h3>
+<h3>Code 3.3: Calculation of the probability of erroneous symbol for coherent ASK with orthogonal<a class="headerlink" href="#code-3-3-calculation-of-the-probability-of-erroneous-symbol-for-coherent-ask-with-orthogonal" title="Permalink to this heading">#</a></h3>
 <div class="admonition-code-3-3 admonition">
 <p class="admonition-title">Code 3.3</p>
 <div class="tab-set docutils">
@@ -574,7 +574,7 @@ document.write(`
 </section>
 </section>
 <section id="part-2-simulation-code-exploration">
-<h2>Part 2: Simulation Code Exploration<a class="headerlink" href="#part-2-simulation-code-exploration" title="Link to this heading">#</a></h2>
+<h2>Part 2: Simulation Code Exploration<a class="headerlink" href="#part-2-simulation-code-exploration" title="Permalink to this heading">#</a></h2>
 <p>(a) Modify the code so that the L elements of vector x in line 14 take values from the set {±d/2, ±3d/2, ±5d/2…}, where the distance d of the points will be given as a parameter. Using the value d=5, verify by calculation and displaying a relevant histogram, that the elements of vector x indeed follow a uniform distribution. Use k=mod(nnnnn,2)+3, where nnnnn is the last 5-digit part of your registration number.</p>
 <p>Hint: Generate (with command 14) at least 40,000 random integers, and use the command hist(x,A) to calculate and display the histogram, where A is the vector of the L different values of these integers. Modify command 15 appropriately for the theoretical calculation of power and verify with command 16. Similarly, modify command 23 appropriately.</p>
 <div class="cell tag_thebe-init tag_hide-code-cell docutils container">
@@ -610,7 +610,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<script type="application/vnd.jupyter.widget-view+json">{"version_major": 2, "version_minor": 0, "model_id": "e9497172b4e84a56bfd2d79553fbd90b"}</script><script type="application/vnd.jupyter.widget-view+json">{"version_major": 2, "version_minor": 0, "model_id": "98ff171701cc4429a4d1c6654e15c0a3"}</script></div>
+<script type="application/vnd.jupyter.widget-view+json">{"version_major": 2, "version_minor": 0, "model_id": "0681b7b13bb14ae3a92c1bc5a68c81fe"}</script><script type="application/vnd.jupyter.widget-view+json">{"version_major": 2, "version_minor": 0, "model_id": "28900ddd5d474d45beed2fcec70a1998"}</script></div>
 </div>
 <p>(b) With parameter values of the function k=4, M=60000, nsamp=20, and EbNo=12, execute commands 11 to 22 and then plot the histogram of z with the command hist(z,200). Repeat the above for EbNo=16 and EbNo=20. What do you observe? Explain the differences in the three diagrams.</p>
 <div class="cell tag_thebe-init tag_hide-code-cell docutils container">
@@ -671,13 +671,13 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<script type="application/vnd.jupyter.widget-view+json">{"version_major": 2, "version_minor": 0, "model_id": "1fdf4039390141608013a39b9ec308cb"}</script><script type="application/vnd.jupyter.widget-view+json">{"version_major": 2, "version_minor": 0, "model_id": "f8b31de6f5254ad189c131bbebb851a6"}</script></div>
+<script type="application/vnd.jupyter.widget-view+json">{"version_major": 2, "version_minor": 0, "model_id": "ba5a672c519544b5bca5b908f1dcd7e0"}</script><script type="application/vnd.jupyter.widget-view+json">{"version_major": 2, "version_minor": 0, "model_id": "92d9b8e71890445e82593eb982a1ced6"}</script></div>
 </div>
 <p>(c) What does command 20 do and what does command 22 do? What type and dimension are the variables: x in command 14, y in command 17, y in command 20, matched, z, err, and errors?</p>
 <p>(d) Explain the operation of the loop 24-27 of Code 3.3 as a minimum distance detector for L-ASK.</p>
 </section>
 <section id="part-3-performance-curves-ber-as-a-function-of-the-signal-to-noise-ratio">
-<h2>Part 3: Performance Curves (BER as a function of the signal-to-noise ratio)<a class="headerlink" href="#part-3-performance-curves-ber-as-a-function-of-the-signal-to-noise-ratio" title="Link to this heading">#</a></h2>
+<h2>Part 3: Performance Curves (BER as a function of the signal-to-noise ratio)<a class="headerlink" href="#part-3-performance-curves-ber-as-a-function-of-the-signal-to-noise-ratio" title="Permalink to this heading">#</a></h2>
 <p>Verify the curve of Figure 3.10 of the notes (for convenience repeated below) for L-ASK, with L=2k, k=mod(nnnnn, 2)+3, where nnnnn is the last 5-digit part of your registration number. Plot the theoretical curve and superimpose the simulation results (discrete points), as in the figure. ‘Read’ from the 8-ASK curve and write in the submission file the BER values for Eb/No={8,14,18}db. Conversely, find the appropriate Eb/No value for an 8-ASK system with a transmission rate of R=1Mbps, so that the error rate does not exceed the value {10, 100, 1000} bps.</p>
 <p><img alt="lab3_1.png" src="../_images/lab3_1.png" /></p>
 <p>This should be done in two ways:</p>
@@ -855,11 +855,11 @@ P_e = \frac{L-1}{L} \cdot \text{erfc}\left( \sqrt{\frac{3 \log_2 L  }{L^2 - 1} \
 </div>
 </div>
 <div class="cell_output docutils container">
-<script type="application/vnd.jupyter.widget-view+json">{"version_major": 2, "version_minor": 0, "model_id": "0957ba36b05847d39f28c3f2a71f960e"}</script><script type="application/vnd.jupyter.widget-view+json">{"version_major": 2, "version_minor": 0, "model_id": "f0721f0d483e43b3a64d862328aac55d"}</script></div>
+<script type="application/vnd.jupyter.widget-view+json">{"version_major": 2, "version_minor": 0, "model_id": "241ae97d8a184d5d9de1d8e8477fa8d4"}</script><script type="application/vnd.jupyter.widget-view+json">{"version_major": 2, "version_minor": 0, "model_id": "3ade52ccf1594a3f8893156eaa489ef1"}</script></div>
 </div>
 </section>
 <section id="part-4-implementation-with-convolution-using-other-pulses">
-<h2>Part 4: Implementation with Convolution - Using Other Pulses<a class="headerlink" href="#part-4-implementation-with-convolution-using-other-pulses" title="Link to this heading">#</a></h2>
+<h2>Part 4: Implementation with Convolution - Using Other Pulses<a class="headerlink" href="#part-4-implementation-with-convolution-using-other-pulses" title="Permalink to this heading">#</a></h2>
 <p>Replace command 17 of Code 3.3 with the following commands</p>
 <div class="tab-set docutils">
 <input checked="True" class="tab-input" id="tab-set--2-input--1" name="tab-set--2" type="radio"><label class="tab-label" for="tab-set--2-input--1">Python</label><div class="tab-content docutils">
@@ -1114,7 +1114,7 @@ P_e = \frac{L-1}{L} \cdot \text{erfc}\left( \sqrt{\frac{3 \log_2 L  }{L^2 - 1} \
 </div>
 </div>
 <div class="cell_output docutils container">
-<script type="application/vnd.jupyter.widget-view+json">{"version_major": 2, "version_minor": 0, "model_id": "ad565780158c4b0f9bd4eab9ece71640"}</script><script type="application/vnd.jupyter.widget-view+json">{"version_major": 2, "version_minor": 0, "model_id": "ab2113e3e7b549269dafc3ddc97b2a56"}</script><script type="application/vnd.jupyter.widget-view+json">{"version_major": 2, "version_minor": 0, "model_id": "9aa672aadee346f782cb3c2f35c53cc2"}</script></div>
+<script type="application/vnd.jupyter.widget-view+json">{"version_major": 2, "version_minor": 0, "model_id": "8d1295750b274ec3a745f9240f762ddb"}</script><script type="application/vnd.jupyter.widget-view+json">{"version_major": 2, "version_minor": 0, "model_id": "0aa3ecff36ad43fb83ccd3311f3e6884"}</script><script type="application/vnd.jupyter.widget-view+json">{"version_major": 2, "version_minor": 0, "model_id": "0e41727948264127b463a15d5b86d85a"}</script></div>
 </div>
 <p>(b) After executing the body of the modified function ask_errors() without adding noise (i.e., with ynoisy=y), plot a section of the signals x, y, and yrx.</p>
 <div class="cell tag_remove-input docutils container">
@@ -1304,14 +1304,16 @@ h=cos(2*pi*(1:nsamp)/nsamp); h=h/sqrt(h*h’);
               
                 <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
 
-
   <div class="sidebar-secondary-item">
   <div class="page-toc tocsection onthispage">
     <i class="fa-solid fa-list"></i> Contents
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#importing-packages-we-will-need-later-in-python">Importing packages we will need later in Python</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#setup">Setup</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#importing-packages-we-will-need-later-in-python">Importing packages we will need later in Python</a></li>
+</ul>
+</li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#part-1-theory">Part 1: Theory</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#code-3-3-calculation-of-the-probability-of-erroneous-symbol-for-coherent-ask-with-orthogonal">Code 3.3: Calculation of the probability of erroneous symbol for coherent ASK with orthogonal</a></li>
 </ul>
@@ -1343,7 +1345,7 @@ By ECE - NTUA
 
   <p class="copyright">
     
-      © Copyright 2023.
+      © Copyright 2022.
       <br/>
     
   </p>
@@ -1367,8 +1369,8 @@ By ECE - NTUA
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="../_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae"></script>
-<script src="../_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae"></script>
+  <script src="../_static/scripts/bootstrap.js?digest=5b4479735964841361fd"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=5b4479735964841361fd"></script>
 
   <footer class="bd-footer">
   </footer>
