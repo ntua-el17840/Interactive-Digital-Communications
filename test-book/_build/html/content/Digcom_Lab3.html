@@ -9,7 +9,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
-    <title>Lab Exercise 3 &#8212; Interactive Digital Communtications</title>
+    <title>Lab Exercise 3: Matched Filters and L-ASK &#8212; Interactive Digital Communtications</title>
   
   
   
@@ -72,8 +72,8 @@ const thebe_selector_output = ".output, .cell_output"
     <script>DOCUMENTATION_OPTIONS.pagename = 'content/Digcom_Lab3';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Εργαστηριακή Άσκηση 4" href="Digcom_Lab4.html" />
-    <link rel="prev" title="Lab Exercise 2" href="Digcom_Lab2.html" />
+    <link rel="next" title="Εργαστηριακή Άσκηση 4: Nyquist signaling and L-ASK" href="Digcom_Lab4.html" />
+    <link rel="prev" title="Lab Exercise 2: Digital Filters" href="Digcom_Lab2.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -183,10 +183,10 @@ const thebe_selector_output = ".output, .cell_output"
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Lab Exercises</span></p>
 <ul class="current nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="Digcom_Lab1.html">Lab Exercise 1</a></li>
-<li class="toctree-l1"><a class="reference internal" href="Digcom_Lab2.html">Lab Exercise 2</a></li>
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">Lab Exercise 3</a></li>
-<li class="toctree-l1"><a class="reference internal" href="Digcom_Lab4.html">Εργαστηριακή Άσκηση 4</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Digcom_Lab1.html">Lab Exercise 1: Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Digcom_Lab2.html">Lab Exercise 2: Digital Filters</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Lab Exercise 3: Matched Filters and L-ASK</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Digcom_Lab4.html">Εργαστηριακή Άσκηση 4: Nyquist signaling and L-ASK</a></li>
 <li class="toctree-l1"><a class="reference internal" href="Digcom_Lab5.html">Εργαστηριακή Άσκηση 5</a></li>
 <li class="toctree-l1"><a class="reference internal" href="Digcom_Lab6.html">Εργαστηριακή Άσκηση 6</a></li>
 </ul>
@@ -405,7 +405,7 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Lab Exercise 3</h1>
+    <h1>Lab Exercise 3: Matched Filters and L-ASK</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -415,10 +415,7 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#custom-filters-and-l-ask">Custom Filters and L-ASK</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#importing-packages-we-will-need-later-in-python">Importing packages we will need later in Python</a></li>
-</ul>
-</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#importing-packages-we-will-need-later-in-python">Importing packages we will need later in Python</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#part-1-theory">Part 1: Theory</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#code-3-3-calculation-of-the-probability-of-erroneous-symbol-for-coherent-ask-with-orthogonal">Code 3.3: Calculation of the probability of erroneous symbol for coherent ASK with orthogonal</a></li>
 </ul>
@@ -437,10 +434,8 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article" role="main">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="lab-exercise-3">
-<h1>Lab Exercise 3<a class="headerlink" href="#lab-exercise-3" title="Permalink to this heading">#</a></h1>
-<section id="custom-filters-and-l-ask">
-<h2>Custom Filters and L-ASK<a class="headerlink" href="#custom-filters-and-l-ask" title="Permalink to this heading">#</a></h2>
+  <section class="tex2jax_ignore mathjax_ignore" id="lab-exercise-3-matched-filters-and-l-ask">
+<h1>Lab Exercise 3: Matched Filters and L-ASK<a class="headerlink" href="#lab-exercise-3-matched-filters-and-l-ask" title="Permalink to this heading">#</a></h1>
 <p>After studying Chapter 3 and, in particular, Example 3.2 of the notes, copy Code 3.3 of this example into a file named ask_errors.m (the code is repeated here for convenience). Then execute the following:</p>
 <div class="admonition-live-code admonition">
 <p class="admonition-title">Live Code</p>
@@ -450,7 +445,7 @@ document.write(`
   <button title="Launch thebe" class="thebelab-button thebe-launch-button" onclick="initThebe()">Python Interactive Code</button>
 </div>
 <section id="importing-packages-we-will-need-later-in-python">
-<h3>Importing packages we will need later in Python<a class="headerlink" href="#importing-packages-we-will-need-later-in-python" title="Permalink to this heading">#</a></h3>
+<h2>Importing packages we will need later in Python<a class="headerlink" href="#importing-packages-we-will-need-later-in-python" title="Permalink to this heading">#</a></h2>
 <div class="cell tag_thebe-init docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">scipy</span> <span class="kn">import</span> <span class="n">signal</span>
@@ -465,7 +460,6 @@ document.write(`
 </div>
 </div>
 </div>
-</section>
 </section>
 <section id="part-1-theory">
 <h2>Part 1: Theory<a class="headerlink" href="#part-1-theory" title="Permalink to this heading">#</a></h2>
@@ -1024,7 +1018,7 @@ document.write(`
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">Lab Exercise 2</p>
+        <p class="prev-next-title">Lab Exercise 2: Digital Filters</p>
       </div>
     </a>
     <a class="right-next"
@@ -1032,7 +1026,7 @@ document.write(`
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Εργαστηριακή Άσκηση 4</p>
+        <p class="prev-next-title">Εργαστηριακή Άσκηση 4: Nyquist signaling and L-ASK</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -1051,10 +1045,7 @@ document.write(`
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#custom-filters-and-l-ask">Custom Filters and L-ASK</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#importing-packages-we-will-need-later-in-python">Importing packages we will need later in Python</a></li>
-</ul>
-</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#importing-packages-we-will-need-later-in-python">Importing packages we will need later in Python</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#part-1-theory">Part 1: Theory</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#code-3-3-calculation-of-the-probability-of-erroneous-symbol-for-coherent-ask-with-orthogonal">Code 3.3: Calculation of the probability of erroneous symbol for coherent ASK with orthogonal</a></li>
 </ul>
