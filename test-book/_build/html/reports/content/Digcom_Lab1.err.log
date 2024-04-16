@@ -1,0 +1,121 @@
+Traceback (most recent call last):
+  File "C:\Users\Sotiris\anaconda3\envs\digital_communications\lib\site-packages\jupyter_cache\executors\utils.py", line 58, in single_nb_execution
+    executenb(
+  File "C:\Users\Sotiris\anaconda3\envs\digital_communications\lib\site-packages\nbclient\client.py", line 1305, in execute
+    return NotebookClient(nb=nb, resources=resources, km=km, **kwargs).execute()
+  File "C:\Users\Sotiris\anaconda3\envs\digital_communications\lib\site-packages\jupyter_core\utils\__init__.py", line 173, in wrapped
+    return loop.run_until_complete(inner)
+  File "C:\Users\Sotiris\anaconda3\envs\digital_communications\lib\asyncio\base_events.py", line 616, in run_until_complete
+    return future.result()
+  File "C:\Users\Sotiris\anaconda3\envs\digital_communications\lib\site-packages\nbclient\client.py", line 705, in async_execute
+    await self.async_execute_cell(
+  File "C:\Users\Sotiris\anaconda3\envs\digital_communications\lib\site-packages\nbclient\client.py", line 1058, in async_execute_cell
+    await self._check_raise_for_error(cell, cell_index, exec_reply)
+  File "C:\Users\Sotiris\anaconda3\envs\digital_communications\lib\site-packages\nbclient\client.py", line 914, in _check_raise_for_error
+    raise CellExecutionError.from_cell_and_msg(cell, exec_reply_content)
+nbclient.exceptions.CellExecutionError: An error occurred while executing the following cell:
+------------------
+# Callback function to update graphs
+# Updated callback function to accept three frequency inputs
+
+# Create three IntText widgets for input frequencies
+freq1_input = widgets.IntText(value=500, description='Freq 1 (Hz):', continuous_update=False)
+freq2_input = widgets.IntText(value=1000, description='Freq 2 (Hz):', continuous_update=False)
+freq3_input = widgets.IntText(value=1500, description='Freq 3 (Hz):', continuous_update=False)
+
+# Fourier transform
+    def nextpow2(i):
+        n = 1
+        while n < i:
+            n *= 2
+        return n
+
+def update_graph(freq1, freq2, freq3):
+    Fs = 8000  # Hardcoded for simplicity, adjust as needed
+    Ts = 1 / Fs
+    L = Fs
+    T = L * Ts
+    t = np.arange(0, L) * Ts  # Adjusted to include the last sample
+
+    
+
+    
+    global new_x
+    new_x = np.sin(2 * np.pi * freq1 * t) \
+            + 0.8 * np.sin(2 * np.pi * freq2 * t) \
+            + np.sin(2 * np.pi * freq3 * t)
+
+    
+    # Plotting
+    fig, axs = plt.subplots(4, 1, figsize=(12, 20))
+    
+    # Calculate the midpoint of the arrays
+    point = len(new_x) // 10
+
+    # Plotting only the first half of new_x
+    axs[0].plot(t[:point], new_x[:point], color='#00CC96')
+    axs[0].set_title('Time domain plot of x')
+    axs[0].set_xlabel('t (sec)')
+    axs[0].set_ylabel('Amplitude')
+    axs[0].grid(True)
+
+    N = nextpow2(L)                 # Length of Fourier transform
+    Fo = Fs / N                     # Frequency resolution
+    f = np.arange(0, N) * Fo        # Frequency vector
+    X = np.fft.fft(new_x, N)            # Compute DFT for N points
+
+    # Frequency domain plot
+    axs[1].plot(f[1:N], abs(X[1:N]), color='#1F77B4')
+    axs[1].set_title('Frequency domain plot of x')
+    axs[1].set_xlabel('f (Hz)')
+    axs[1].set_ylabel('Amplitude')
+    axs[1].grid(True)
+
+    # Shift frequencies to center
+    f = f - Fs / 2
+    X = np.fft.fftshift(X)
+
+    # Two-sided spectrum of x
+    f_shifted = f 
+
+    # Two-sided spectrum plot
+    axs[2].plot(f_shifted, abs(X), color='#1F77B4')
+    axs[2].set_title('Two sided spectrum of x')
+    axs[2].set_xlabel('f (Hz)')
+    axs[2].set_ylabel('Amplitude')
+    axs[2].grid(True)
+
+    # Calculate power
+    power = np.multiply(X, np.conj(X)) / N / L
+
+    # Periodogram plot
+    axs[3].plot(f_shifted, power.real, color='#1F77B4')
+    axs[3].set_title('Periodogram')
+    axs[3].set_xlabel('Frequency (Hz)')
+    axs[3].set_ylabel('Power')
+    axs[3].grid(True)
+
+    plt.tight_layout()
+    plt.show()
+
+
+
+
+ui = widgets.VBox([freq1_input, freq2_input, freq3_input])
+
+# Adjusted to map the new frequency inputs
+out = widgets.interactive_output(update_graph, {'freq1': freq1_input, 'freq2': freq2_input, 'freq3': freq3_input})
+
+# Display the widgets and output
+clear_output(wait=True)  # Clear the previous plot
+display(ui, out)
+
+------------------
+
+
+[1;36m  Cell [1;32mIn[19], line 10[1;36m[0m
+[1;33m    def nextpow2(i):[0m
+[1;37m    ^[0m
+[1;31mIndentationError[0m[1;31m:[0m unexpected indent
+
+
