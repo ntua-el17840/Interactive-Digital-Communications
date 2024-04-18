@@ -4,7 +4,7 @@
 format: jb-book
 root: intro
 parts:
-- caption: Intro to Digital Communications
+- caption: About
   chapters:
   - file: digital_communications_intro
 - caption: Lab Exercises
