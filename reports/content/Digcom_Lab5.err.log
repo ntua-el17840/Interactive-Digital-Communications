@@ -1,44 +1,167 @@
 Traceback (most recent call last):
-  File "C:\Users\lampr\AppData\Roaming\Python\Python311\site-packages\nbclient\client.py", line 782, in _async_poll_for_reply
-    msg = await ensure_async(self.kc.shell_channel.get_msg(timeout=new_timeout))
-          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "C:\Users\lampr\AppData\Roaming\Python\Python311\site-packages\jupyter_core\utils\__init__.py", line 198, in ensure_async
-    result = await obj
-             ^^^^^^^^^
-  File "C:\Users\lampr\AppData\Roaming\Python\Python311\site-packages\jupyter_client\channels.py", line 315, in get_msg
-    raise Empty
-_queue.Empty
-
-During handling of the above exception, another exception occurred:
-
-Traceback (most recent call last):
-  File "C:\Users\lampr\AppData\Roaming\Python\Python311\site-packages\jupyter_cache\executors\utils.py", line 58, in single_nb_execution
+  File "C:\Users\Sotiris\anaconda3\envs\digital_communications\lib\site-packages\jupyter_cache\executors\utils.py", line 58, in single_nb_execution
     executenb(
-  File "C:\Users\lampr\AppData\Roaming\Python\Python311\site-packages\nbclient\client.py", line 1314, in execute
+  File "C:\Users\Sotiris\anaconda3\envs\digital_communications\lib\site-packages\nbclient\client.py", line 1305, in execute
     return NotebookClient(nb=nb, resources=resources, km=km, **kwargs).execute()
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "C:\Users\lampr\AppData\Roaming\Python\Python311\site-packages\jupyter_core\utils\__init__.py", line 165, in wrapped
+  File "C:\Users\Sotiris\anaconda3\envs\digital_communications\lib\site-packages\jupyter_core\utils\__init__.py", line 173, in wrapped
     return loop.run_until_complete(inner)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "C:\Users\lampr\anaconda3\Lib\asyncio\base_events.py", line 653, in run_until_complete
+  File "C:\Users\Sotiris\anaconda3\envs\digital_communications\lib\asyncio\base_events.py", line 616, in run_until_complete
     return future.result()
-           ^^^^^^^^^^^^^^^
-  File "C:\Users\lampr\AppData\Roaming\Python\Python311\site-packages\nbclient\client.py", line 709, in async_execute
+  File "C:\Users\Sotiris\anaconda3\envs\digital_communications\lib\site-packages\nbclient\client.py", line 705, in async_execute
     await self.async_execute_cell(
-  File "C:\Users\lampr\AppData\Roaming\Python\Python311\site-packages\nbclient\client.py", line 1005, in async_execute_cell
-    exec_reply = await self.task_poll_for_reply
-                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "C:\Users\lampr\AppData\Roaming\Python\Python311\site-packages\nbclient\client.py", line 806, in _async_poll_for_reply
-    error_on_timeout_execute_reply = await self._async_handle_timeout(timeout, cell)
-                                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "C:\Users\lampr\AppData\Roaming\Python\Python311\site-packages\nbclient\client.py", line 856, in _async_handle_timeout
-    raise CellTimeoutError.error_from_timeout_and_cell(
-nbclient.exceptions.CellTimeoutError: A cell timed out while it was being executed, after 30 seconds.
-The message was: Cell execution timed out.
-Here is a preview of the cell contents:
--------------------
-['def rootRaisedCosine(nsamp, roll_off, delay):', '    F0 = 0.5 / nsamp', '    Fd = 1', '    Fs = Fd * nsamp', '    Td = 1 / Fd']
-...
-["plt.xlabel('Eb/N0(db)')", "plt.ylabel('Bit Error Probability')", "plt.title('BER curve for 64-QAM')", "plt.grid(which='both')", 'plt.show()']
--------------------
+  File "C:\Users\Sotiris\anaconda3\envs\digital_communications\lib\site-packages\nbclient\client.py", line 1058, in async_execute_cell
+    await self._check_raise_for_error(cell, cell_index, exec_reply)
+  File "C:\Users\Sotiris\anaconda3\envs\digital_communications\lib\site-packages\nbclient\client.py", line 914, in _check_raise_for_error
+    raise CellExecutionError.from_cell_and_msg(cell, exec_reply_content)
+nbclient.exceptions.CellExecutionError: An error occurred while executing the following cell:
+------------------
+def rootRaisedCosine(nsamp, roll_off, delay):
+    F0 = 0.5 / nsamp
+    Fd = 1
+    Fs = Fd * nsamp
+    Td = 1 / Fd
+    Ts = 1 / Fs
+    F1 = F0 * (1 - roll_off)
+    F2 = F0 * (1 + roll_off)
+    filter_order = 2 * nsamp * delay
+
+    t = np.arange(0, filter_order, Td)
+    h = []
+    for i in range(len(t)):
+        t_shifted = t[i] - filter_order / 2
+        if t_shifted == 0:
+            h.append(np.sqrt(2 * F0) *(1 + roll_off * ((4 / np.pi) - 1)))
+        elif t_shifted == 1 / 8 / roll_off / F0 or t_shifted == - 1 / 8 / roll_off / F0 :
+            h.append((roll_off * np.sqrt(F0)) * ((1 + 2 / np.pi) * np.sin(np.pi / 4 / roll_off) + (1 - 2 / np.pi) * np.cos(np.pi / 4 / roll_off)))
+        else:
+            factor1 = np.sqrt(2 * F0) / (1 - 64 * roll_off* roll_off * F0 * F0 * t_shifted * t_shifted)
+            factor2 = np.sin(2 * np.pi * F1 * t_shifted) / (2 * np.pi * F0 * t_shifted)
+            factor3 = (4 * roll_off / np.pi) * np.cos(2 * np.pi * F2 * t_shifted) 
+            h.append(factor1 * (factor2 + factor3))
+
+
+  #  plt.plot(t,h)
+   # plt.grid()
+    #plt.show()
+    
+    return h
+
+def ber_64qam(EbNo):
+    a=0.25
+    L=8
+    l=np.log2(L)
+    k=2*l
+    M=64
+    Nsymb=30000
+    # προσομοίωση πομπού
+    nsamp=16
+    fc=4
+    SNR=EbNo-10*np.log10(nsamp/k/2) #σε db
+    core=[1+1j,1-1j,-1+1j,-1-1j]
+    mapping=core[:]
+    if(l>1):
+        for j in range(1,int(l)):
+            mapping=(list(map(lambda x:x+j*2*core[0],mapping)))
+            conj_arr=np.conj(mapping)
+            mapping= mapping + conj_arr.tolist()
+            conj_arr=-np.conj(mapping)
+            mapping= mapping + conj_arr.tolist()
+            
+    #παράγουμε τυχαία ακολουθία
+    x=np.floor(2*np.random.rand(int(k*Nsymb),1))
+    x_temp=np.reshape(x,(int(len(x)/(k)),int(k)))
+    xsym=[]
+
+    # χωρίζω τη λίστα σε επιμέρους λίστες και βάζω τα περιεχόμενα 
+    #της καθεμίας σε ένα string ώστε με την εντολή int() να 
+    # μετατραπεί από binary σε decimal
+    for i in range(0,len(x_temp)):
+        my_str=''
+        y=x_temp[i]
+        for j in range(0,int(np.log2(M))):
+            my_str=my_str+str(int(y[j]))
+        a=int(my_str, 2)
+        xsym=xsym+[a]
+
+    y=[]
+    for n in range(0,len(xsym)):
+        y=y + [mapping[xsym[n]]]
+    
+    delay=10
+    filtorder= delay*nsamp*2
+    rolloff=0.25
+
+    shaping_filter=rootRaisedCosine(nsamp, rolloff, delay)
+    ytx=upfirdn([1], y, nsamp) #upsample
+    ytx=np.convolve(ytx,shaping_filter)
+    m=np.arange(1,len(ytx)+1)
+    s=np.real(np.multiply(ytx,np.exp(1j*2*np.pi*fc*m/nsamp)))
+    
+    s_matrix=np.matrix(s) #ανάστροφος
+    s_matrix=s_matrix.getH()
+    s_list=s_matrix.tolist()
+    Ps=10*np.log10(np.matmul(s,s_list)/len(s)) #ισχύς μιγαδικού σήματος σε db
+    Pn=Ps-SNR
+
+    n=np.sqrt(10**(Pn/10))*np.random.randn(1,len(ytx))
+    snoisy=s+n
+    
+    #δέκτης
+    yrx=2*np.multiply(snoisy,np.exp(-1j*2*np.pi*fc*m/nsamp))
+    yrx=yrx[0,:]
+    yrx=np.convolve(yrx,shaping_filter)
+    yrx=yrx[::nsamp] #downsample 
+    
+    yrx=yrx[2*delay+0:len(yrx)-2*delay]
+    
+    yi=yrx.copy()
+    yq=np.imag(yi)
+    yi=np.real(yi)
+    
+    xrx=[]
+    q=np.arange(-L+1,L,2)
+
+    for n in range(len(yrx)):
+        differences = np.abs(q-yi[n]) # Πίνακας με τις διαφορές του σήματος από τα επίπεδα
+        m = min(differences)
+        [index], = np.where(differences == m)
+        yi[n] = q[index]
+        differences = np.abs(q-yq[n]) # Πίνακας με τις διαφορές του σήματος από τα επίπεδα
+        m = min(differences)
+        [index], = np.where(differences == m)
+        yq[n] = q[index]
+    error = 0
+    for i in range(len(yrx)):
+        if y[i] != yi[i]+yq[i]*1j:
+            error += 1 
+    return (error/len(x))
+    
+ber_exp=[]
+ber_th=[]
+for i in range(1,15):
+    ber_exp=ber_exp+[ber_64qam(i)]
+    ber_th = ber_th +[((L - 1) /(L*np.log2(L)) * scipy.special.erfc(np.sqrt(3 * np.log2(L) / (L * L - 1) * 10**(i/10))))]
+
+plt.figure(figsize=(18, 16))
+plt.semilogy(ber_exp,'o')
+plt.semilogy(ber_th)
+plt.legend(['Simulation', 'Theoretical'])
+plt.xlabel('Eb/N0(db)')
+plt.ylabel('Bit Error Probability')
+plt.title('BER curve for 64-QAM')
+plt.grid(which='both')
+plt.show()
+------------------
+
+
+[1;31m---------------------------------------------------------------------------[0m
+[1;31mNameError[0m                                 Traceback (most recent call last)
+Cell [1;32mIn[4], line 126[0m
+[0;32m    124[0m [38;5;28;01mfor[39;00m i [38;5;129;01min[39;00m [38;5;28mrange[39m([38;5;241m1[39m,[38;5;241m15[39m):
+[0;32m    125[0m     ber_exp[38;5;241m=[39mber_exp[38;5;241m+[39m[ber_64qam(i)]
+[1;32m--> 126[0m     ber_th [38;5;241m=[39m ber_th [38;5;241m+[39m[(([43mL[49m [38;5;241m-[39m [38;5;241m1[39m) [38;5;241m/[39m(L[38;5;241m*[39mnp[38;5;241m.[39mlog2(L)) [38;5;241m*[39m scipy[38;5;241m.[39mspecial[38;5;241m.[39merfc(np[38;5;241m.[39msqrt([38;5;241m3[39m [38;5;241m*[39m np[38;5;241m.[39mlog2(L) [38;5;241m/[39m (L [38;5;241m*[39m L [38;5;241m-[39m [38;5;241m1[39m) [38;5;241m*[39m [38;5;241m10[39m[38;5;241m*[39m[38;5;241m*[39m(i[38;5;241m/[39m[38;5;241m10[39m))))]
+[0;32m    128[0m plt[38;5;241m.[39mfigure(figsize[38;5;241m=[39m([38;5;241m18[39m, [38;5;241m16[39m))
+[0;32m    129[0m plt[38;5;241m.[39msemilogy(ber_exp,[38;5;124m'[39m[38;5;124mo[39m[38;5;124m'[39m)
+
+[1;31mNameError[0m: name 'L' is not defined
 
