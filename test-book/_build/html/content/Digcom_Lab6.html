@@ -69,7 +69,7 @@ const thebe_selector_output = ".output, .cell_output"
     <script>DOCUMENTATION_OPTIONS.pagename = 'content/Digcom_Lab6';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="prev" title="Lab Exercise 5" href="Digcom_Lab5.html" />
+    <link rel="prev" title="Lab Exercise 5: QAM-PSK" href="Digcom_Lab5.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -181,7 +181,7 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l1"><a class="reference internal" href="Digcom_Lab2.html">Lab Exercise 2: Digital Filters</a></li>
 <li class="toctree-l1"><a class="reference internal" href="Digcom_Lab3.html">Lab Exercise 3: Matched Filters and L-ASK</a></li>
 <li class="toctree-l1"><a class="reference internal" href="Digcom_Lab4.html">Lab Exercise 4: Nyquist signaling and L-ASK</a></li>
-<li class="toctree-l1"><a class="reference internal" href="Digcom_Lab5.html">Lab Exercise 5</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Digcom_Lab5.html">Lab Exercise 5: QAM-PSK</a></li>
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">Lab Exercise 6: FSK-MSK</a></li>
 </ul>
 
@@ -409,6 +409,10 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#setup">Setup</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#importing-packages-we-will-need-later-in-python">Importing packages we will need later in Python</a></li>
+</ul>
+</li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#part-1">Part 1:</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#part-2">Part 2:</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#part-3">Part 3:</a></li>
@@ -431,6 +435,39 @@ document.write(`
                   
   <section class="tex2jax_ignore mathjax_ignore" id="lab-exercise-6-fsk-msk">
 <h1>Lab Exercise 6: FSK-MSK<a class="headerlink" href="#lab-exercise-6-fsk-msk" title="Permalink to this heading">#</a></h1>
+<p>The purpose of this lab exercise is to simulate and analyze Frequency Shift Keying (FSK) and Minimum Shift Keying (MSK) systems. Students will compare coherent and non-coherent demodulation, calculate bit error rates, and examine the spectral properties of these modulation schemes. The exercise also includes an optional task to compare MSK and QPSK systems in terms of bit error rate and bandwidth.</p>
+<section id="setup">
+<h2>Setup<a class="headerlink" href="#setup" title="Permalink to this heading">#</a></h2>
+<div class="admonition-live-code admonition">
+<p class="admonition-title">Live Code</p>
+<p>Press the following button to make python code interactive. It will connect you to a kernel once it says “ready” (might take a bit, especially the first time it runs).</p>
+</div>
+<div style="text-align: center;">
+  <button title="Launch thebe" class="thebelab-button thebe-launch-button" onclick="initThebe()">Python Interactive Code</button>
+</div><section id="importing-packages-we-will-need-later-in-python">
+<h3>Importing packages we will need later in Python<a class="headerlink" href="#importing-packages-we-will-need-later-in-python" title="Permalink to this heading">#</a></h3>
+<div class="cell tag_thebe-init tag_remove-output docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">random</span>
+<span class="kn">import</span> <span class="nn">scipy.signal</span>
+<span class="kn">from</span> <span class="nn">scipy.signal</span> <span class="kn">import</span> <span class="n">welch</span>
+<span class="kn">import</span> <span class="nn">scipy.special</span>
+<span class="kn">from</span> <span class="nn">scipy.special</span> <span class="kn">import</span> <span class="n">erfc</span>
+<span class="kn">import</span> <span class="nn">math</span>
+<span class="kn">from</span> <span class="nn">math</span> <span class="kn">import</span> <span class="n">log</span><span class="p">,</span> <span class="n">log2</span><span class="p">,</span> <span class="n">sqrt</span>
+<span class="kn">import</span> <span class="nn">ipywidgets</span> <span class="k">as</span> <span class="nn">widgets</span>
+<span class="kn">from</span> <span class="nn">ipywidgets</span> <span class="kn">import</span> <span class="n">IntSlider</span><span class="p">,</span> <span class="n">FloatSlider</span><span class="p">,</span> <span class="n">interactive</span><span class="p">,</span> <span class="n">Layout</span><span class="p">,</span> <span class="n">Dropdown</span><span class="p">,</span> <span class="n">IntText</span><span class="p">,</span> <span class="n">HBox</span><span class="p">,</span> <span class="n">VBox</span><span class="p">,</span> <span class="n">Output</span>
+<span class="kn">from</span> <span class="nn">IPython.display</span> <span class="kn">import</span> <span class="n">display</span><span class="p">,</span> <span class="n">clear_output</span>
+<span class="kn">import</span> <span class="nn">time</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Libraries added successfully!&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
 <section id="part-1">
 <h2>Part 1:<a class="headerlink" href="#part-1" title="Permalink to this heading">#</a></h2>
 <p>Run code 6.1 of the notes (step-by-step, not by calling the function) for M=16 and
@@ -444,57 +481,127 @@ Code 6.1<div class="sd-summary-down docutils">
 <svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-up" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M18.78 15.28a.75.75 0 000-1.06l-6.25-6.25a.75.75 0 00-1.06 0l-6.25 6.25a.75.75 0 101.06 1.06L12 9.56l5.72 5.72a.75.75 0 001.06 0z"></path></svg></div>
 </summary><div class="sd-summary-content sd-card-body docutils">
 <div class="tab-set docutils">
-<input checked="True" class="tab-input" id="tab-set--0-input--1" name="tab-set--0" type="radio"><label class="tab-label" for="tab-set--0-input--1">Matlab</label><div class="tab-content docutils">
+<input checked="True" class="tab-input" id="tab-set--0-input--1" name="tab-set--0" type="radio"><label class="tab-label" for="tab-set--0-input--1">Python</label><div class="tab-content docutils">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">fsk_errors</span><span class="p">(</span><span class="n">bps</span><span class="p">,</span> <span class="n">Nsymb</span><span class="p">,</span> <span class="n">ns</span><span class="p">,</span> <span class="n">EbNo_dB</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Calculate the number of errors for an FSK modulation scheme.</span>
+
+<span class="sd">    Parameters:</span>
+<span class="sd">    bps (int): bits per symbol</span>
+<span class="sd">    Nsymb (int): number of simulated symbols</span>
+<span class="sd">    ns (int): number of samples per symbol (oversampling)</span>
+<span class="sd">    EbNo_dB (float): normalized signal-to-noise ratio in dB</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">    int: number of errors</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">M</span> <span class="o">=</span> <span class="mi">2</span> <span class="o">**</span> <span class="n">bps</span>  <span class="c1"># number of different symbols</span>
+    <span class="n">BR</span> <span class="o">=</span> <span class="mi">1</span>  <span class="c1"># Baud Rate</span>
+    <span class="n">fc</span> <span class="o">=</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">M</span> <span class="o">*</span> <span class="n">BR</span>  <span class="c1"># RF frequency</span>
+
+    <span class="c1"># Derived parameters</span>
+    <span class="n">nb</span> <span class="o">=</span> <span class="n">bps</span> <span class="o">*</span> <span class="n">Nsymb</span>  <span class="c1"># number of simulated data bits</span>
+    <span class="n">T</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">/</span> <span class="n">BR</span>  <span class="c1"># one symbol period</span>
+    <span class="n">Ts</span> <span class="o">=</span> <span class="n">T</span> <span class="o">/</span> <span class="n">ns</span>  <span class="c1"># oversampling period</span>
+    <span class="c1"># M frequencies in &quot;non-coherent&quot; distance (BR)</span>
+    <span class="n">f</span> <span class="o">=</span> <span class="n">fc</span> <span class="o">+</span> <span class="n">BR</span> <span class="o">*</span> <span class="p">((</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">M</span> <span class="o">+</span> <span class="mi">1</span><span class="p">))</span> <span class="o">-</span> <span class="p">(</span><span class="n">M</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="o">/</span> <span class="mi">2</span><span class="p">)</span>
+
+    <span class="c1"># awgn_channel</span>
+    <span class="n">SNR_dB</span> <span class="o">=</span> <span class="n">EbNo_dB</span> <span class="o">+</span> <span class="mi">10</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">log10</span><span class="p">(</span><span class="n">bps</span><span class="p">)</span> <span class="o">-</span> <span class="mi">10</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">log10</span><span class="p">(</span><span class="n">ns</span> <span class="o">/</span> <span class="mi">2</span><span class="p">)</span>  <span class="c1"># in dB</span>
+    <span class="n">SNR</span> <span class="o">=</span> <span class="mi">10</span> <span class="o">**</span> <span class="p">(</span><span class="n">SNR_dB</span> <span class="o">/</span> <span class="mi">10</span><span class="p">)</span>
+
+    <span class="c1"># input data bits</span>
+    <span class="n">y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">nb</span><span class="p">)</span>
+    <span class="n">x</span> <span class="o">=</span> <span class="n">y</span><span class="o">.</span><span class="n">reshape</span><span class="p">((</span><span class="n">Nsymb</span><span class="p">,</span> <span class="n">bps</span><span class="p">))</span>
+
+    <span class="n">t</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">Nsymb</span> <span class="o">*</span> <span class="n">T</span><span class="p">,</span> <span class="n">T</span><span class="p">)</span>  <span class="c1"># time vector on the T grid</span>
+    <span class="n">tks</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">T</span><span class="p">,</span> <span class="n">Ts</span><span class="p">)</span>
+
+    <span class="c1"># FSK signal</span>
+    <span class="n">s</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">A</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mi">2</span> <span class="o">/</span> <span class="n">T</span> <span class="o">/</span> <span class="n">ns</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">Nsymb</span><span class="p">):</span>
+        <span class="n">fk</span> <span class="o">=</span> <span class="n">f</span><span class="p">[</span><span class="nb">int</span><span class="p">(</span><span class="s2">&quot;&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="nb">str</span><span class="p">,</span> <span class="n">x</span><span class="p">[</span><span class="n">k</span><span class="p">,</span> <span class="p">:])),</span> <span class="mi">2</span><span class="p">)]</span>
+        <span class="n">tk</span> <span class="o">=</span> <span class="p">(</span><span class="n">k</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span> <span class="o">*</span> <span class="n">T</span> <span class="o">+</span> <span class="n">tks</span>
+        <span class="n">s</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">A</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span> <span class="o">*</span> <span class="n">fk</span> <span class="o">*</span> <span class="n">tk</span><span class="p">))</span>
+    <span class="n">s</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">(</span><span class="n">s</span><span class="p">)</span>
+
+    <span class="c1"># Add noise to the FSK (passband) signal</span>
+    <span class="n">noise</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mi">1</span> <span class="o">/</span> <span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">SNR</span><span class="p">))</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">s</span><span class="p">))</span>
+    <span class="n">s_noisy</span> <span class="o">=</span> <span class="n">s</span> <span class="o">+</span> <span class="n">noise</span>
+
+    <span class="c1"># FSK receiver</span>
+    <span class="c1"># coherent demodulation</span>
+    <span class="n">xr</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">Nsymb</span><span class="p">):</span>
+        <span class="n">tk</span> <span class="o">=</span> <span class="p">(</span><span class="n">k</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span> <span class="o">*</span> <span class="n">T</span> <span class="o">+</span> <span class="n">tks</span>
+        <span class="n">sk</span> <span class="o">=</span> <span class="n">s_noisy</span><span class="p">[(</span><span class="n">k</span> <span class="o">*</span> <span class="n">ns</span><span class="p">):(</span><span class="n">k</span> <span class="o">*</span> <span class="n">ns</span> <span class="o">+</span> <span class="n">ns</span><span class="p">)]</span>
+        <span class="n">smi</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="n">fi</span> <span class="ow">in</span> <span class="n">f</span><span class="p">:</span>
+            <span class="n">si</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span> <span class="o">*</span> <span class="n">fi</span> <span class="o">*</span> <span class="n">tk</span><span class="p">)</span>
+            <span class="n">smi</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">sk</span> <span class="o">*</span> <span class="n">si</span><span class="p">))</span>
+        <span class="n">j</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">argmax</span><span class="p">(</span><span class="n">smi</span><span class="p">)</span>
+        <span class="n">xr</span><span class="o">.</span><span class="n">append</span><span class="p">([</span><span class="nb">int</span><span class="p">(</span><span class="n">b</span><span class="p">)</span> <span class="k">for</span> <span class="n">b</span> <span class="ow">in</span> <span class="nb">bin</span><span class="p">(</span><span class="n">j</span><span class="p">)[</span><span class="mi">2</span><span class="p">:]</span><span class="o">.</span><span class="n">zfill</span><span class="p">(</span><span class="n">bps</span><span class="p">)])</span>
+    <span class="n">xr</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">xr</span><span class="p">)</span>
+
+    <span class="c1"># count errors</span>
+    <span class="n">err</span> <span class="o">=</span> <span class="n">x</span> <span class="o">!=</span> <span class="n">xr</span>
+    <span class="n">errors</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">err</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">errors</span>
+</pre></div>
+</div>
+</div>
+<input class="tab-input" id="tab-set--0-input--2" name="tab-set--0" type="radio"><label class="tab-label" for="tab-set--0-input--2">Matlab</label><div class="tab-content docutils">
 <div class="highlight-matlab notranslate"><div class="highlight"><pre><span></span><span class="k">function</span><span class="w"> </span>errors<span class="p">=</span><span class="nf">fsk_errors</span><span class="p">(</span>bps,Nsymb,ns,EBNo<span class="p">)</span>
-<span class="c">%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%</span>
-<span class="c">% Input parameters</span>
-<span class="c">% bps: bits per symbol, Nsymb: numb of simulated symbols</span>
-<span class="c">% ns: number of samples per symbol (oversampling)</span>
-<span class="c">% EbNo: normalized signal-to-noise ratio, in dB</span>
-<span class="n">M</span><span class="p">=</span><span class="mi">2</span>^<span class="n">bps</span><span class="p">;</span><span class="w">					</span><span class="c">% number of different symbols</span>
-<span class="n">BR</span><span class="p">=</span><span class="mi">1</span><span class="p">;</span><span class="w"> </span><span class="c">% Baud Rate			% Baud Rate</span>
-<span class="n">fc</span><span class="p">=</span><span class="mi">2</span><span class="o">*</span><span class="n">M</span><span class="o">*</span><span class="n">BR</span><span class="p">;</span><span class="w"> </span><span class="c">% RF Frequency	% RF frequency</span>
-<span class="c">%% Derived parameters</span>
-<span class="n">nb</span><span class="p">=</span><span class="n">bps</span><span class="o">*</span><span class="n">Nsymb</span><span class="p">;</span><span class="w"> 				</span><span class="c">% number of simulated data bits</span>
-<span class="n">T</span><span class="p">=</span><span class="mi">1</span><span class="o">/</span><span class="n">BR</span><span class="p">;</span><span class="w"> 					</span><span class="c">% one symbol period</span>
-<span class="n">Ts</span><span class="p">=</span><span class="n">T</span><span class="o">/</span><span class="n">ns</span><span class="p">;</span><span class="w"> 					</span><span class="c">% oversampling period</span>
-<span class="c">% M frequencies in &quot;non-coherent&quot; distance (BR)</span>
-<span class="n">f</span><span class="p">=</span><span class="n">fc</span><span class="o">+</span><span class="n">BR</span><span class="o">*</span><span class="p">((</span><span class="mi">1</span><span class="p">:</span><span class="n">M</span><span class="p">)</span><span class="o">-</span><span class="p">(</span><span class="n">M</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span><span class="o">/</span><span class="mi">2</span><span class="p">);</span>
-<span class="c">% awgn_channel</span>
-<span class="n">SNR</span><span class="p">=</span><span class="n">EbNo</span><span class="o">+</span><span class="mi">10</span><span class="o">*</span><span class="nb">log10</span><span class="p">(</span><span class="n">bps</span><span class="p">)</span><span class="o">-</span><span class="mi">10</span><span class="o">*</span><span class="nb">log10</span><span class="p">(</span><span class="n">ns</span><span class="o">/</span><span class="mi">2</span><span class="p">);</span><span class="w"> </span><span class="c">% in dB</span>
-<span class="c">% input data bits</span>
-<span class="n">y</span><span class="p">=</span><span class="n">randint</span><span class="p">(</span><span class="n">nb</span><span class="p">,</span><span class="mi">1</span><span class="p">);</span>
-<span class="n">x</span><span class="p">=</span><span class="nb">reshape</span><span class="p">(</span><span class="n">y</span><span class="p">,</span><span class="n">bps</span><span class="p">,</span><span class="nb">length</span><span class="p">(</span><span class="n">y</span><span class="p">)</span><span class="o">/</span><span class="n">bps</span><span class="p">)</span><span class="o">&#39;</span><span class="p">;</span>
-<span class="n">t</span><span class="p">=</span><span class="mi">0</span><span class="p">:</span><span class="n">T</span><span class="p">:</span><span class="nb">length</span><span class="p">(</span><span class="n">x</span><span class="p">(:,</span><span class="mi">1</span><span class="p">))</span><span class="o">*</span><span class="n">T</span><span class="p">]</span><span class="o">&#39;</span><span class="p">;</span><span class="w"> </span><span class="c">% time vector on the T grid</span>
-<span class="n">tks</span><span class="p">=[</span><span class="mi">0</span><span class="p">:</span><span class="n">Ts</span><span class="p">:</span><span class="n">T</span><span class="o">-</span><span class="n">Ts</span><span class="p">]</span><span class="o">&#39;</span><span class="p">;</span>
-<span class="c">% FSK signal</span>
-<span class="n">s</span><span class="p">=[];</span>
-<span class="n">A</span><span class="p">=</span><span class="nb">sqrt</span><span class="p">(</span><span class="mi">2</span><span class="o">/</span><span class="n">T</span><span class="o">/</span><span class="n">ns</span><span class="p">);</span>
-<span class="k">for</span><span class="w"> </span><span class="n">k</span><span class="p">=</span><span class="mi">1</span><span class="p">:</span><span class="nb">length</span><span class="p">(</span><span class="n">x</span><span class="p">(:,</span><span class="mi">1</span><span class="p">))</span>
-<span class="w">    </span><span class="n">fk</span><span class="p">=</span><span class="n">f</span><span class="p">(</span><span class="n">bi2de</span><span class="p">(</span><span class="n">x</span><span class="p">(</span><span class="n">k</span><span class="p">,:))</span><span class="o">+</span><span class="mi">1</span><span class="p">);</span>
-<span class="w">    </span><span class="n">tk</span><span class="p">=(</span><span class="n">k</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">*</span><span class="n">T</span><span class="o">+</span><span class="n">tks</span><span class="p">;</span>
-<span class="w">    </span><span class="n">s</span><span class="p">=[</span><span class="n">s</span><span class="p">;</span><span class="w"> </span><span class="nb">sin</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="nb">pi</span><span class="o">*</span><span class="n">fk</span><span class="o">*</span><span class="n">tk</span><span class="p">)];</span>
-<span class="k">end</span>
-<span class="c">% add noise to the FSK (passband) signal</span>
-<span class="n">s</span><span class="p">=</span><span class="n">awgn</span><span class="p">(</span><span class="n">s</span><span class="p">,</span><span class="n">SNR</span><span class="p">,</span><span class="w"> </span><span class="s">&#39;measured&#39;</span><span class="p">);</span>
-<span class="c">%% FSK receiver</span>
-<span class="c">% coherent demodulation</span>
-<span class="n">th</span><span class="p">=</span><span class="mi">0</span><span class="p">;</span>
-<span class="n">xr</span><span class="p">=[];</span>
-<span class="k">for</span><span class="w"> </span><span class="n">k</span><span class="p">=</span><span class="mi">1</span><span class="p">:</span><span class="nb">length</span><span class="p">(</span><span class="n">s</span><span class="p">)</span><span class="o">/</span><span class="n">ns</span>
-<span class="w">    </span><span class="n">tk</span><span class="p">=(</span><span class="n">k</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">*</span><span class="n">T</span><span class="o">+</span><span class="n">tks</span><span class="p">;</span>
-<span class="w">    </span><span class="n">sk</span><span class="p">=</span><span class="n">s</span><span class="p">((</span><span class="n">k</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">*</span><span class="n">ns</span><span class="o">+</span><span class="mi">1</span><span class="p">:</span><span class="n">k</span><span class="o">*</span><span class="n">ns</span><span class="p">);</span>
-<span class="w">    </span><span class="n">smi</span><span class="p">=[];</span>
-<span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="nb">i</span><span class="p">=</span><span class="mi">1</span><span class="p">:</span><span class="n">M</span>
-<span class="w">        </span><span class="n">si</span><span class="p">=</span><span class="nb">sin</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="nb">pi</span><span class="o">*</span><span class="n">f</span><span class="p">(</span><span class="nb">i</span><span class="p">)</span><span class="o">*</span><span class="n">tk</span><span class="p">);</span>
-<span class="w">        </span><span class="n">smi</span><span class="p">(</span><span class="nb">i</span><span class="p">)=</span><span class="nb">sum</span><span class="p">(</span><span class="n">sk</span><span class="o">.*</span><span class="n">si</span><span class="p">);</span>
+<span class="w">    </span><span class="c">%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%</span>
+<span class="w">    </span><span class="c">% Input parameters</span>
+<span class="w">    </span><span class="c">% bps: bits per symbol, Nsymb: numb of simulated symbols</span>
+<span class="w">    </span><span class="c">% ns: number of samples per symbol (oversampling)</span>
+<span class="w">    </span><span class="c">% EbNo: normalized signal-to-noise ratio, in dB</span>
+<span class="w">    </span><span class="n">M</span><span class="p">=</span><span class="mi">2</span>^<span class="n">bps</span><span class="p">;</span><span class="w">					</span><span class="c">% number of different symbols</span>
+<span class="w">    </span><span class="n">BR</span><span class="p">=</span><span class="mi">1</span><span class="p">;</span><span class="w"> </span><span class="c">% Baud Rate			% Baud Rate</span>
+<span class="w">    </span><span class="n">fc</span><span class="p">=</span><span class="mi">2</span><span class="o">*</span><span class="n">M</span><span class="o">*</span><span class="n">BR</span><span class="p">;</span><span class="w"> </span><span class="c">% RF Frequency	% RF frequency</span>
+<span class="w">    </span><span class="c">%% Derived parameters</span>
+<span class="w">    </span><span class="n">nb</span><span class="p">=</span><span class="n">bps</span><span class="o">*</span><span class="n">Nsymb</span><span class="p">;</span><span class="w"> 				</span><span class="c">% number of simulated data bits</span>
+<span class="w">    </span><span class="n">T</span><span class="p">=</span><span class="mi">1</span><span class="o">/</span><span class="n">BR</span><span class="p">;</span><span class="w"> 					</span><span class="c">% one symbol period</span>
+<span class="w">    </span><span class="n">Ts</span><span class="p">=</span><span class="n">T</span><span class="o">/</span><span class="n">ns</span><span class="p">;</span><span class="w"> 					</span><span class="c">% oversampling period</span>
+<span class="w">    </span><span class="c">% M frequencies in &quot;non-coherent&quot; distance (BR)</span>
+<span class="w">    </span><span class="n">f</span><span class="p">=</span><span class="n">fc</span><span class="o">+</span><span class="n">BR</span><span class="o">*</span><span class="p">((</span><span class="mi">1</span><span class="p">:</span><span class="n">M</span><span class="p">)</span><span class="o">-</span><span class="p">(</span><span class="n">M</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span><span class="o">/</span><span class="mi">2</span><span class="p">);</span>
+<span class="w">    </span><span class="c">% awgn_channel</span>
+<span class="w">    </span><span class="n">SNR</span><span class="p">=</span><span class="n">EbNo</span><span class="o">+</span><span class="mi">10</span><span class="o">*</span><span class="nb">log10</span><span class="p">(</span><span class="n">bps</span><span class="p">)</span><span class="o">-</span><span class="mi">10</span><span class="o">*</span><span class="nb">log10</span><span class="p">(</span><span class="n">ns</span><span class="o">/</span><span class="mi">2</span><span class="p">);</span><span class="w"> </span><span class="c">% in dB</span>
+<span class="w">    </span><span class="c">% input data bits</span>
+<span class="w">    </span><span class="n">y</span><span class="p">=</span><span class="n">randint</span><span class="p">(</span><span class="n">nb</span><span class="p">,</span><span class="mi">1</span><span class="p">);</span>
+<span class="w">    </span><span class="n">x</span><span class="p">=</span><span class="nb">reshape</span><span class="p">(</span><span class="n">y</span><span class="p">,</span><span class="n">bps</span><span class="p">,</span><span class="nb">length</span><span class="p">(</span><span class="n">y</span><span class="p">)</span><span class="o">/</span><span class="n">bps</span><span class="p">)</span><span class="o">&#39;</span><span class="p">;</span>
+<span class="w">    </span><span class="n">t</span><span class="p">=</span><span class="mi">0</span><span class="p">:</span><span class="n">T</span><span class="p">:</span><span class="nb">length</span><span class="p">(</span><span class="n">x</span><span class="p">(:,</span><span class="mi">1</span><span class="p">))</span><span class="o">*</span><span class="n">T</span><span class="p">]</span><span class="o">&#39;</span><span class="p">;</span><span class="w"> </span><span class="c">% time vector on the T grid</span>
+<span class="w">    </span><span class="n">tks</span><span class="p">=[</span><span class="mi">0</span><span class="p">:</span><span class="n">Ts</span><span class="p">:</span><span class="n">T</span><span class="o">-</span><span class="n">Ts</span><span class="p">]</span><span class="o">&#39;</span><span class="p">;</span>
+<span class="w">    </span><span class="c">% FSK signal</span>
+<span class="w">    </span><span class="n">s</span><span class="p">=[];</span>
+<span class="w">    </span><span class="n">A</span><span class="p">=</span><span class="nb">sqrt</span><span class="p">(</span><span class="mi">2</span><span class="o">/</span><span class="n">T</span><span class="o">/</span><span class="n">ns</span><span class="p">);</span>
+<span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="n">k</span><span class="p">=</span><span class="mi">1</span><span class="p">:</span><span class="nb">length</span><span class="p">(</span><span class="n">x</span><span class="p">(:,</span><span class="mi">1</span><span class="p">))</span>
+<span class="w">        </span><span class="n">fk</span><span class="p">=</span><span class="n">f</span><span class="p">(</span><span class="n">bi2de</span><span class="p">(</span><span class="n">x</span><span class="p">(</span><span class="n">k</span><span class="p">,:))</span><span class="o">+</span><span class="mi">1</span><span class="p">);</span>
+<span class="w">        </span><span class="n">tk</span><span class="p">=(</span><span class="n">k</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">*</span><span class="n">T</span><span class="o">+</span><span class="n">tks</span><span class="p">;</span>
+<span class="w">        </span><span class="n">s</span><span class="p">=[</span><span class="n">s</span><span class="p">;</span><span class="w"> </span><span class="nb">sin</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="nb">pi</span><span class="o">*</span><span class="n">fk</span><span class="o">*</span><span class="n">tk</span><span class="p">)];</span>
 <span class="w">    </span><span class="k">end</span>
-<span class="w">    </span><span class="p">[</span><span class="n">m</span><span class="p">,</span><span class="nb">j</span><span class="p">]=</span><span class="nb">max</span><span class="p">(</span><span class="n">smi</span><span class="p">);</span>
-<span class="w">    </span><span class="n">xr</span><span class="p">=[</span><span class="n">xr</span><span class="p">;</span><span class="n">de2bi</span><span class="p">(</span><span class="nb">j</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="n">bps</span><span class="p">)];</span>
-<span class="k">end</span>
-<span class="c">% count errors</span>
-<span class="n">err</span><span class="p">=</span><span class="n">not</span><span class="p">(</span><span class="n">x</span><span class="o">==</span><span class="n">xr</span><span class="p">);</span>
-<span class="n">errors</span><span class="p">=</span><span class="nb">sum</span><span class="p">(</span><span class="nb">sum</span><span class="p">(</span><span class="n">err</span><span class="p">));</span>
+<span class="w">    </span><span class="c">% add noise to the FSK (passband) signal</span>
+<span class="w">    </span><span class="n">s</span><span class="p">=</span><span class="n">awgn</span><span class="p">(</span><span class="n">s</span><span class="p">,</span><span class="n">SNR</span><span class="p">,</span><span class="w"> </span><span class="s">&#39;measured&#39;</span><span class="p">);</span>
+<span class="w">    </span><span class="c">%% FSK receiver</span>
+<span class="w">    </span><span class="c">% coherent demodulation</span>
+<span class="w">    </span><span class="n">th</span><span class="p">=</span><span class="mi">0</span><span class="p">;</span>
+<span class="w">    </span><span class="n">xr</span><span class="p">=[];</span>
+<span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="n">k</span><span class="p">=</span><span class="mi">1</span><span class="p">:</span><span class="nb">length</span><span class="p">(</span><span class="n">s</span><span class="p">)</span><span class="o">/</span><span class="n">ns</span>
+<span class="w">        </span><span class="n">tk</span><span class="p">=(</span><span class="n">k</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">*</span><span class="n">T</span><span class="o">+</span><span class="n">tks</span><span class="p">;</span>
+<span class="w">        </span><span class="n">sk</span><span class="p">=</span><span class="n">s</span><span class="p">((</span><span class="n">k</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">*</span><span class="n">ns</span><span class="o">+</span><span class="mi">1</span><span class="p">:</span><span class="n">k</span><span class="o">*</span><span class="n">ns</span><span class="p">);</span>
+<span class="w">        </span><span class="n">smi</span><span class="p">=[];</span>
+<span class="w">        </span><span class="k">for</span><span class="w"> </span><span class="nb">i</span><span class="p">=</span><span class="mi">1</span><span class="p">:</span><span class="n">M</span>
+<span class="w">            </span><span class="n">si</span><span class="p">=</span><span class="nb">sin</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="nb">pi</span><span class="o">*</span><span class="n">f</span><span class="p">(</span><span class="nb">i</span><span class="p">)</span><span class="o">*</span><span class="n">tk</span><span class="p">);</span>
+<span class="w">            </span><span class="n">smi</span><span class="p">(</span><span class="nb">i</span><span class="p">)=</span><span class="nb">sum</span><span class="p">(</span><span class="n">sk</span><span class="o">.*</span><span class="n">si</span><span class="p">);</span>
+<span class="w">        </span><span class="k">end</span>
+<span class="w">        </span><span class="p">[</span><span class="n">m</span><span class="p">,</span><span class="nb">j</span><span class="p">]=</span><span class="nb">max</span><span class="p">(</span><span class="n">smi</span><span class="p">);</span>
+<span class="w">        </span><span class="n">xr</span><span class="p">=[</span><span class="n">xr</span><span class="p">;</span><span class="n">de2bi</span><span class="p">(</span><span class="nb">j</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="n">bps</span><span class="p">)];</span>
+<span class="w">    </span><span class="k">end</span>
+<span class="w">    </span><span class="c">% count errors</span>
+<span class="w">    </span><span class="n">err</span><span class="p">=</span><span class="n">not</span><span class="p">(</span><span class="n">x</span><span class="o">==</span><span class="n">xr</span><span class="p">);</span>
+<span class="w">    </span><span class="n">errors</span><span class="p">=</span><span class="nb">sum</span><span class="p">(</span><span class="nb">sum</span><span class="p">(</span><span class="n">err</span><span class="p">));</span>
 <span class="k">end</span>
 </pre></div>
 </div>
@@ -509,83 +616,189 @@ Code 6.1<div class="sd-summary-down docutils">
 <p class="admonition-title">Tip</p>
 <p>Add random phase to the received signal, before demodulation.</p>
 </div>
-</section>
+<details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
+<summary class="sd-summary-title sd-card-header">
+Code 6.2<div class="sd-summary-down docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-down" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M5.22 8.72a.75.75 0 000 1.06l6.25 6.25a.75.75 0 001.06 0l6.25-6.25a.75.75 0 00-1.06-1.06L12 14.44 6.28 8.72a.75.75 0 00-1.06 0z"></path></svg></div>
+<div class="sd-summary-up docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-up" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M18.78 15.28a.75.75 0 000-1.06l-6.25-6.25a.75.75 0 00-1.06 0l-6.25 6.25a.75.75 0 101.06 1.06L12 9.56l5.72 5.72a.75.75 0 001.06 0z"></path></svg></div>
+</summary><div class="sd-summary-content sd-card-body docutils">
+<div class="tab-set docutils">
+<input checked="True" class="tab-input" id="tab-set--1-input--1" name="tab-set--1" type="radio"><label class="tab-label" for="tab-set--1-input--1">Python</label><div class="tab-content docutils">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">fsk_errors</span><span class="p">(</span><span class="n">bps</span><span class="p">,</span> <span class="n">Nsymb</span><span class="p">,</span> <span class="n">ns</span><span class="p">,</span> <span class="n">EbNo_dB</span><span class="p">,</span> <span class="n">non_coherent</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Calculate the number of errors for an FSK modulation scheme.</span>
+
+<span class="sd">    Parameters:</span>
+<span class="sd">    bps (int): bits per symbol</span>
+<span class="sd">    Nsymb (int): number of simulated symbols</span>
+<span class="sd">    ns (int): number of samples per symbol (oversampling)</span>
+<span class="sd">    EbNo_dB (float): normalized signal-to-noise ratio in dB</span>
+<span class="sd">    non_coherent (bool): flag to simulate non-coherent FSK demodulation</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">    int: number of errors</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">M</span> <span class="o">=</span> <span class="mi">2</span> <span class="o">**</span> <span class="n">bps</span>  <span class="c1"># number of different symbols</span>
+    <span class="n">BR</span> <span class="o">=</span> <span class="mi">1</span>  <span class="c1"># Baud Rate</span>
+    <span class="n">fc</span> <span class="o">=</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">M</span> <span class="o">*</span> <span class="n">BR</span>  <span class="c1"># RF frequency</span>
+
+    <span class="c1"># Derived parameters</span>
+    <span class="n">nb</span> <span class="o">=</span> <span class="n">bps</span> <span class="o">*</span> <span class="n">Nsymb</span>  <span class="c1"># number of simulated data bits</span>
+    <span class="n">T</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">/</span> <span class="n">BR</span>  <span class="c1"># one symbol period</span>
+    <span class="n">Ts</span> <span class="o">=</span> <span class="n">T</span> <span class="o">/</span> <span class="n">ns</span>  <span class="c1"># oversampling period</span>
+    <span class="c1"># M frequencies in &quot;non-coherent&quot; distance (BR)</span>
+    <span class="n">f</span> <span class="o">=</span> <span class="n">fc</span> <span class="o">+</span> <span class="n">BR</span> <span class="o">*</span> <span class="p">((</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">M</span> <span class="o">+</span> <span class="mi">1</span><span class="p">))</span> <span class="o">-</span> <span class="p">(</span><span class="n">M</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="o">/</span> <span class="mi">2</span><span class="p">)</span>
+
+    <span class="c1"># awgn_channel</span>
+    <span class="n">SNR_dB</span> <span class="o">=</span> <span class="n">EbNo_dB</span> <span class="o">+</span> <span class="mi">10</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">log10</span><span class="p">(</span><span class="n">bps</span><span class="p">)</span> <span class="o">-</span> <span class="mi">10</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">log10</span><span class="p">(</span><span class="n">ns</span> <span class="o">/</span> <span class="mi">2</span><span class="p">)</span>  <span class="c1"># in dB</span>
+    <span class="n">SNR</span> <span class="o">=</span> <span class="mi">10</span> <span class="o">**</span> <span class="p">(</span><span class="n">SNR_dB</span> <span class="o">/</span> <span class="mi">10</span><span class="p">)</span>
+
+    <span class="c1"># input data bits</span>
+    <span class="n">y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">nb</span><span class="p">)</span>
+    <span class="n">x</span> <span class="o">=</span> <span class="n">y</span><span class="o">.</span><span class="n">reshape</span><span class="p">((</span><span class="n">Nsymb</span><span class="p">,</span> <span class="n">bps</span><span class="p">))</span>
+
+    <span class="n">tks</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">T</span><span class="p">,</span> <span class="n">Ts</span><span class="p">)</span>
+
+    <span class="c1"># FSK signal</span>
+    <span class="n">s</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">A</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mi">2</span> <span class="o">/</span> <span class="n">T</span> <span class="o">/</span> <span class="n">ns</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">Nsymb</span><span class="p">):</span>
+        <span class="n">fk</span> <span class="o">=</span> <span class="n">f</span><span class="p">[</span><span class="nb">int</span><span class="p">(</span><span class="s2">&quot;&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="nb">str</span><span class="p">,</span> <span class="n">x</span><span class="p">[</span><span class="n">k</span><span class="p">,</span> <span class="p">:])),</span> <span class="mi">2</span><span class="p">)]</span>
+        <span class="n">tk</span> <span class="o">=</span> <span class="p">(</span><span class="n">k</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span> <span class="o">*</span> <span class="n">T</span> <span class="o">+</span> <span class="n">tks</span>
+        <span class="n">s</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">A</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span> <span class="o">*</span> <span class="n">fk</span> <span class="o">*</span> <span class="n">tk</span><span class="p">))</span>
+    <span class="n">s</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">(</span><span class="n">s</span><span class="p">)</span>
+
+    <span class="c1"># Add noise to the FSK (passband) signal</span>
+    <span class="n">noise</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mi">1</span> <span class="o">/</span> <span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">SNR</span><span class="p">))</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">s</span><span class="p">))</span>
+    <span class="n">s_noisy</span> <span class="o">=</span> <span class="n">s</span> <span class="o">+</span> <span class="n">noise</span>
+
+    <span class="k">if</span> <span class="n">non_coherent</span><span class="p">:</span>
+        <span class="c1"># Add random phase shift to the received signal for non-coherent demodulation</span>
+        <span class="n">phase_shift</span> <span class="o">=</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">rand</span><span class="p">()</span>
+        <span class="n">s_noisy</span> <span class="o">=</span> <span class="n">s_noisy</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">phase_shift</span><span class="p">)</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">phase_shift</span><span class="p">)</span>
+
+    <span class="c1"># FSK receiver</span>
+    <span class="c1"># coherent demodulation</span>
+    <span class="n">xr</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">Nsymb</span><span class="p">):</span>
+        <span class="n">tk</span> <span class="o">=</span> <span class="p">(</span><span class="n">k</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span> <span class="o">*</span> <span class="n">T</span> <span class="o">+</span> <span class="n">tks</span>
+        <span class="n">sk</span> <span class="o">=</span> <span class="n">s_noisy</span><span class="p">[(</span><span class="n">k</span> <span class="o">*</span> <span class="n">ns</span><span class="p">):(</span><span class="n">k</span> <span class="o">*</span> <span class="n">ns</span> <span class="o">+</span> <span class="n">ns</span><span class="p">)]</span>
+        <span class="n">smi</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="n">fi</span> <span class="ow">in</span> <span class="n">f</span><span class="p">:</span>
+            <span class="n">si</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span> <span class="o">*</span> <span class="n">fi</span> <span class="o">*</span> <span class="n">tk</span><span class="p">)</span>
+            <span class="n">smi</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">sk</span> <span class="o">*</span> <span class="n">si</span><span class="p">))</span>
+        <span class="n">j</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">argmax</span><span class="p">(</span><span class="n">smi</span><span class="p">)</span>
+        <span class="n">xr</span><span class="o">.</span><span class="n">append</span><span class="p">([</span><span class="nb">int</span><span class="p">(</span><span class="n">b</span><span class="p">)</span> <span class="k">for</span> <span class="n">b</span> <span class="ow">in</span> <span class="nb">bin</span><span class="p">(</span><span class="n">j</span><span class="p">)[</span><span class="mi">2</span><span class="p">:]</span><span class="o">.</span><span class="n">zfill</span><span class="p">(</span><span class="n">bps</span><span class="p">)])</span>
+    <span class="n">xr</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">xr</span><span class="p">)</span>
+
+    <span class="c1"># count errors</span>
+    <span class="n">err</span> <span class="o">=</span> <span class="n">x</span> <span class="o">!=</span> <span class="n">xr</span>
+    <span class="n">errors</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">err</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">errors</span>
+</pre></div>
+</div>
+</div>
+<input class="tab-input" id="tab-set--1-input--2" name="tab-set--1" type="radio"><label class="tab-label" for="tab-set--1-input--2">Matlab</label><div class="tab-content docutils">
+<div class="highlight-matlab notranslate"><div class="highlight"><pre><span></span><span class="k">function</span><span class="w"> </span>errors<span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="nf">fsk_errors</span><span class="p">(</span>bps, Nsymb, ns, EbNo, non_coherent<span class="p">)</span>
+<span class="w">    </span><span class="c">%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%</span>
+<span class="w">    </span><span class="c">% Input parameters</span>
+<span class="w">    </span><span class="c">% bps: bits per symbol, Nsymb: number of simulated symbols</span>
+<span class="w">    </span><span class="c">% ns: number of samples per symbol (oversampling)</span>
+<span class="w">    </span><span class="c">% EbNo: normalized signal-to-noise ratio, in dB</span>
+<span class="w">    </span><span class="c">% non_coherent: flag to simulate non-coherent FSK demodulation</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="nb">nargin</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mi">5</span>
+<span class="w">        </span><span class="n">non_coherent</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="nb">false</span><span class="p">;</span><span class="w"> </span><span class="c">% default to coherent demodulation</span>
+<span class="w">    </span><span class="k">end</span>
+<span class="w">    </span>
+<span class="w">    </span><span class="n">M</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="mi">2</span>^<span class="n">bps</span><span class="p">;</span><span class="w"> </span><span class="c">% number of different symbols</span>
+<span class="w">    </span><span class="n">BR</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span><span class="w"> </span><span class="c">% Baud Rate</span>
+<span class="w">    </span><span class="n">fc</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="mi">2</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">M</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">BR</span><span class="p">;</span><span class="w"> </span><span class="c">% RF frequency</span>
+<span class="w">    </span>
+<span class="w">    </span><span class="c">% Derived parameters</span>
+<span class="w">    </span><span class="n">nb</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">bps</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">Nsymb</span><span class="p">;</span><span class="w"> </span><span class="c">% number of simulated data bits</span>
+<span class="w">    </span><span class="n">T</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">BR</span><span class="p">;</span><span class="w"> </span><span class="c">% one symbol period</span>
+<span class="w">    </span><span class="n">Ts</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">T</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">ns</span><span class="p">;</span><span class="w"> </span><span class="c">% oversampling period</span>
+<span class="w">    </span>
+<span class="w">    </span><span class="c">% M frequencies in &quot;non-coherent&quot; distance (BR)</span>
+<span class="w">    </span><span class="n">f</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">fc</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">BR</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="p">((</span><span class="mi">1</span><span class="p">:</span><span class="n">M</span><span class="p">)</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="p">(</span><span class="n">M</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="mi">2</span><span class="p">);</span>
+<span class="w">    </span>
+<span class="w">    </span><span class="c">% awgn_channel</span>
+<span class="w">    </span><span class="n">SNR</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">EbNo</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">10</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="nb">log10</span><span class="p">(</span><span class="n">bps</span><span class="p">)</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">10</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="nb">log10</span><span class="p">(</span><span class="n">ns</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="mi">2</span><span class="p">);</span><span class="w"> </span><span class="c">% in dB</span>
+<span class="w">    </span>
+<span class="w">    </span><span class="c">% input data bits</span>
+<span class="w">    </span><span class="n">y</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="nb">randi</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">],</span><span class="w"> </span><span class="n">nb</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">);</span>
+<span class="w">    </span><span class="n">x</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="nb">reshape</span><span class="p">(</span><span class="n">y</span><span class="p">,</span><span class="w"> </span><span class="n">bps</span><span class="p">,</span><span class="w"> </span><span class="nb">length</span><span class="p">(</span><span class="n">y</span><span class="p">)</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">bps</span><span class="p">)</span><span class="o">&#39;</span><span class="p">;</span>
+<span class="w">    </span>
+<span class="w">    </span><span class="c">% time vector on the T grid</span>
+<span class="w">    </span><span class="n">tks</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="mi">0</span><span class="p">:</span><span class="n">Ts</span><span class="p">:</span><span class="n">T</span><span class="o">-</span><span class="n">Ts</span><span class="p">;</span>
+<span class="w">    </span>
+<span class="w">    </span><span class="c">% FSK signal</span>
+<span class="w">    </span><span class="n">s</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="p">[];</span>
+<span class="w">    </span><span class="n">A</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="nb">sqrt</span><span class="p">(</span><span class="mi">2</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">T</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">ns</span><span class="p">);</span>
+<span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="n">k</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="mi">1</span><span class="p">:</span><span class="nb">length</span><span class="p">(</span><span class="n">x</span><span class="p">(:,</span><span class="mi">1</span><span class="p">))</span>
+<span class="w">        </span><span class="n">fk</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">f</span><span class="p">(</span><span class="n">bi2de</span><span class="p">(</span><span class="n">x</span><span class="p">(</span><span class="n">k</span><span class="p">,:))</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="p">);</span>
+<span class="w">        </span><span class="n">tk</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="p">(</span><span class="n">k</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">T</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">tks</span><span class="p">;</span>
+<span class="w">        </span><span class="n">s</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="p">[</span><span class="n">s</span><span class="p">,</span><span class="w"> </span><span class="n">A</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="nb">sin</span><span class="p">(</span><span class="mi">2</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="nb">pi</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">fk</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">tk</span><span class="p">)];</span>
+<span class="w">    </span><span class="k">end</span>
+<span class="w">    </span>
+<span class="w">    </span><span class="c">% add noise to the FSK (passband) signal</span>
+<span class="w">    </span><span class="n">s_noisy</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">awgn</span><span class="p">(</span><span class="n">s</span><span class="p">,</span><span class="w"> </span><span class="n">SNR</span><span class="p">,</span><span class="w"> </span><span class="s">&#39;measured&#39;</span><span class="p">);</span>
+<span class="w">    </span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="n">non_coherent</span>
+<span class="w">        </span><span class="c">% Add random phase shift to the received signal for non-coherent demodulation</span>
+<span class="w">        </span><span class="n">phase_shift</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="mi">2</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="nb">pi</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="nb">rand</span><span class="p">;</span>
+<span class="w">        </span><span class="n">s_noisy</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">s_noisy</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="nb">cos</span><span class="p">(</span><span class="n">phase_shift</span><span class="p">)</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="nb">sin</span><span class="p">(</span><span class="n">phase_shift</span><span class="p">);</span>
+<span class="w">    </span><span class="k">end</span>
+<span class="w">    </span>
+<span class="w">    </span><span class="c">% FSK receiver</span>
+<span class="w">    </span><span class="c">% coherent demodulation</span>
+<span class="w">    </span><span class="n">xr</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="p">[];</span>
+<span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="n">k</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="mi">1</span><span class="p">:</span><span class="n">Nsymb</span>
+<span class="w">        </span><span class="n">tk</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="p">(</span><span class="n">k</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">T</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">tks</span><span class="p">;</span>
+<span class="w">        </span><span class="n">sk</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">s_noisy</span><span class="p">((</span><span class="n">k</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">ns</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="p">:</span><span class="n">k</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">ns</span><span class="p">);</span>
+<span class="w">        </span><span class="n">smi</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="p">[];</span>
+<span class="w">        </span><span class="k">for</span><span class="w"> </span><span class="nb">i</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="mi">1</span><span class="p">:</span><span class="n">M</span>
+<span class="w">            </span><span class="n">si</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="nb">sin</span><span class="p">(</span><span class="mi">2</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="nb">pi</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">f</span><span class="p">(</span><span class="nb">i</span><span class="p">)</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">tk</span><span class="p">);</span>
+<span class="w">            </span><span class="n">smi</span><span class="p">(</span><span class="nb">i</span><span class="p">)</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="nb">sum</span><span class="p">(</span><span class="n">sk</span><span class="w"> </span><span class="o">.*</span><span class="w"> </span><span class="n">si</span><span class="p">);</span>
+<span class="w">        </span><span class="k">end</span>
+<span class="w">        </span><span class="p">[</span><span class="o">~</span><span class="p">,</span><span class="w"> </span><span class="nb">j</span><span class="p">]</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="nb">max</span><span class="p">(</span><span class="n">smi</span><span class="p">);</span>
+<span class="w">        </span><span class="n">xr</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="p">[</span><span class="n">xr</span><span class="p">;</span><span class="w"> </span><span class="n">de2bi</span><span class="p">(</span><span class="nb">j</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="n">bps</span><span class="p">)];</span>
+<span class="w">    </span><span class="k">end</span>
+<span class="w">    </span>
+<span class="w">    </span><span class="c">% count errors</span>
+<span class="w">    </span><span class="n">err</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="o">~</span><span class="nb">isequal</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="n">xr</span><span class="p">);</span>
+<span class="w">    </span><span class="n">errors</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="nb">sum</span><span class="p">(</span><span class="nb">sum</span><span class="p">(</span><span class="n">err</span><span class="p">));</span>
+<span class="k">end</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</details></section>
 <section id="part-3">
 <h2>Part 3:<a class="headerlink" href="#part-3" title="Permalink to this heading">#</a></h2>
 <p>Use your new function to simulate a 16-FSK system and plot the Pb vs Eb/No curves
 for coherent and non-coherent demodulation (theoretical and from simulation).</p>
-</section>
-<section id="part-4">
-<h2>Part 4:<a class="headerlink" href="#part-4" title="Permalink to this heading">#</a></h2>
-<p>Plot the spectrum of the bandpass signal of question 3.</p>
-</section>
-<section id="part-5">
-<h2>Part 5<a class="headerlink" href="#part-5" title="Permalink to this heading">#</a></h2>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>Optional. Bonus 10% to Lab grade</p>
-</div>
-<section id="step-1">
-<h3>Step 1:<a class="headerlink" href="#step-1" title="Permalink to this heading">#</a></h3>
-<p>Based on Code 6.2 of the notes, simulate an MSK transmission system on a
-bandpass channel with a center frequency of 8 MHz and a transmission rate
-of 2 Mbps. Plot the spectrum of the bandpass signal and calculate
-(theoretically and by simulation) the BER, when Eb/No=10db.</p>
-</section>
-<section id="step-2">
-<h3>Step 2:<a class="headerlink" href="#step-2" title="Permalink to this heading">#</a></h3>
-<p>For the data of the previous question, find the values of the parameters of an
-equivalent (in terms of bit rate) QPSK system. Compare the two systems in
-terms of BER and bandwidth.</p>
-<div class="admonition tip">
-<p class="admonition-title">Tip</p>
-<p>According to the figure below, for each odd k, the new bi (valid from the
-next even k) and bq are calculated. Based on these, the two new bits are calculated,
-xr(k)=bi_1<em>bq and xr(k+1)=bi</em>bq. With precoding, bit xr_1 of the previous period (k-1) is
-also used.</p>
-</div>
-<p><img alt="lab6_1.png" src="../_images/lab6_1.png" /></p>
-<div class="cell docutils container">
+<div class="cell tag_thebe-init tag_hide-code-cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">math</span>
-<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
-<span class="kn">import</span> <span class="nn">random</span>
-<span class="kn">import</span> <span class="nn">scipy.signal</span>
-<span class="kn">from</span> <span class="nn">math</span> <span class="kn">import</span> <span class="n">log</span>
-<span class="kn">import</span> <span class="nn">array</span>
-<span class="kn">from</span> <span class="nn">scipy.signal</span> <span class="kn">import</span> <span class="n">upfirdn</span><span class="p">,</span><span class="n">decimate</span>
-<span class="kn">from</span> <span class="nn">scipy.special</span> <span class="kn">import</span> <span class="n">erfc</span>
-<span class="kn">from</span> <span class="nn">scipy</span> <span class="kn">import</span> <span class="n">signal</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">bin2int</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+<span class="kn">from</span> <span class="nn">scipy.signal</span> <span class="kn">import</span> <span class="n">welch</span>
+
+<span class="k">def</span> <span class="nf">bin2int</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
     <span class="n">y</span> <span class="o">=</span> <span class="mi">0</span>
     <span class="k">for</span> <span class="n">i</span><span class="p">,</span><span class="n">j</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
         <span class="n">y</span> <span class="o">+=</span> <span class="n">j</span><span class="o">&lt;&lt;</span><span class="n">i</span>
     <span class="k">return</span> <span class="n">y</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">method</span><span class="p">(</span><span class="n">byte</span><span class="p">,</span><span class="n">bps</span><span class="p">):</span>
+
+<span class="k">def</span> <span class="nf">method</span><span class="p">(</span><span class="n">byte</span><span class="p">,</span><span class="n">bps</span><span class="p">):</span>
     <span class="n">arr</span> <span class="o">=</span> <span class="p">[]</span>
     <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">bps</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">):</span>
         <span class="n">arr</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="n">byte</span> <span class="o">&amp;</span> <span class="mi">1</span><span class="o">&lt;&lt;</span><span class="n">i</span><span class="p">)</span><span class="o">&gt;&gt;</span><span class="n">i</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">arr</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">maxInd</span><span class="p">(</span><span class="n">p</span><span class="p">):</span>
+
+<span class="k">def</span> <span class="nf">maxInd</span><span class="p">(</span><span class="n">p</span><span class="p">):</span>
     <span class="n">b</span><span class="o">=</span><span class="nb">max</span><span class="p">(</span><span class="n">p</span><span class="p">)</span>
     <span class="n">k</span><span class="o">=</span><span class="mi">0</span>
     
@@ -595,25 +808,14 @@ also used.</p>
     
     
     <span class="k">return</span> <span class="n">k</span>
-        
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">bi2de</span><span class="p">(</span><span class="n">test_list</span><span class="p">):</span>
+
+<span class="k">def</span> <span class="nf">bi2de</span><span class="p">(</span><span class="n">test_list</span><span class="p">):</span>
     <span class="n">res</span> <span class="o">=</span> <span class="mi">0</span>
     <span class="k">for</span> <span class="n">ele</span> <span class="ow">in</span> <span class="n">test_list</span><span class="p">:</span> 
         <span class="n">res</span> <span class="o">=</span> <span class="p">(</span><span class="n">res</span> <span class="o">&lt;&lt;</span> <span class="mi">1</span><span class="p">)</span> <span class="o">|</span> <span class="n">ele</span>    
     <span class="k">return</span> <span class="n">res</span> 
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">addAWGN</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">SNR_dB</span><span class="p">):</span>
+
+<span class="k">def</span> <span class="nf">addAWGN</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">SNR_dB</span><span class="p">):</span>
     
     <span class="n">L</span><span class="o">=</span><span class="nb">len</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
     <span class="n">SNR</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">power</span><span class="p">(</span><span class="mi">10</span><span class="p">,(</span><span class="n">SNR_dB</span><span class="o">/</span><span class="mi">10</span><span class="p">))</span> <span class="c1">#SNR to linear scale</span>
@@ -628,14 +830,9 @@ also used.</p>
        
     <span class="n">y</span> <span class="o">=</span> <span class="n">x</span> <span class="o">+</span> <span class="n">n</span>  <span class="c1">#received signal    </span>
     <span class="k">return</span> <span class="n">y</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#Simulation of errors in MFSK </span>
-<span class="k">def</span> <span class="nf">fsk_errors1</span><span class="p">(</span><span class="n">coherence</span><span class="p">,</span><span class="n">bps</span><span class="p">,</span><span class="n">Nsymb</span><span class="p">,</span><span class="n">nsamp</span><span class="p">,</span><span class="n">EbNo</span><span class="p">):</span>
+    
+<span class="c1">#Simulation of errors in MFSK </span>
+<span class="k">def</span> <span class="nf">fsk_errors</span><span class="p">(</span><span class="n">coherence</span><span class="p">,</span><span class="n">bps</span><span class="p">,</span><span class="n">Nsymb</span><span class="p">,</span><span class="n">nsamp</span><span class="p">,</span><span class="n">EbNo</span><span class="p">):</span>
     <span class="c1">#coherence=True   </span>
     <span class="c1">#bps=4</span>
     <span class="c1">#Nsymb=2000</span>
@@ -745,7 +942,7 @@ also used.</p>
                 <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="n">M</span><span class="p">):</span>
                     <span class="n">si</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">*</span><span class="n">f</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">*</span><span class="n">tk</span><span class="p">)</span>
                     <span class="n">sq</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">*</span><span class="n">f</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">*</span><span class="n">tk</span><span class="p">)</span>
-                    <span class="n">sm</span><span class="p">[</span><span class="mi">0</span><span class="p">:]</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">power</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">power</span><span class="p">(</span><span class="nb">sum</span><span class="p">([</span><span class="n">np</span><span class="o">.</span><span class="n">multiply</span><span class="p">(</span><span class="n">sk</span><span class="p">,</span><span class="n">si</span><span class="p">)]),</span><span class="mi">2</span><span class="p">)</span><span class="o">+</span><span class="n">np</span><span class="o">.</span><span class="n">power</span><span class="p">(</span><span class="nb">sum</span><span class="p">([</span><span class="n">np</span><span class="o">.</span><span class="n">multiply</span><span class="p">(</span><span class="n">sk</span><span class="p">,</span><span class="n">sq</span><span class="p">)]),</span><span class="mi">2</span><span class="p">),</span><span class="mf">0.5</span><span class="p">)</span>
+                    <span class="n">smi</span><span class="p">[</span><span class="mi">0</span><span class="p">:]</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">power</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">power</span><span class="p">(</span><span class="nb">sum</span><span class="p">([</span><span class="n">np</span><span class="o">.</span><span class="n">multiply</span><span class="p">(</span><span class="n">sk</span><span class="p">,</span><span class="n">si</span><span class="p">)]),</span><span class="mi">2</span><span class="p">)</span><span class="o">+</span><span class="n">np</span><span class="o">.</span><span class="n">power</span><span class="p">(</span><span class="nb">sum</span><span class="p">([</span><span class="n">np</span><span class="o">.</span><span class="n">multiply</span><span class="p">(</span><span class="n">sk</span><span class="p">,</span><span class="n">sq</span><span class="p">)]),</span><span class="mi">2</span><span class="p">),</span><span class="mf">0.5</span><span class="p">)</span>
 
             <span class="n">p</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">transpose</span><span class="p">(</span><span class="n">smi</span><span class="p">)</span>
             <span class="n">j</span><span class="o">=</span><span class="n">maxInd</span><span class="p">(</span><span class="n">p</span><span class="p">)</span>
@@ -767,65 +964,113 @@ also used.</p>
         
     
 
-    <span class="k">return</span> <span class="n">errors</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">scipy.special</span> <span class="kn">import</span> <span class="n">erfc</span>
+    <span class="k">return</span> <span class="n">errors</span><span class="p">,</span> <span class="n">s</span><span class="p">,</span> <span class="n">snoisy</span>
 
-<span class="n">coherence</span><span class="o">=</span><span class="kc">True</span>   
-<span class="n">bps</span><span class="o">=</span><span class="mi">4</span>
-<span class="n">L</span> <span class="o">=</span> <span class="mi">2</span><span class="o">**</span><span class="n">bps</span>
-<span class="n">Nsymb</span><span class="o">=</span><span class="mi">2500</span>
-<span class="n">nsamp</span><span class="o">=</span><span class="mi">16</span>
 
-<span class="n">ber</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="mi">18</span><span class="p">)</span>
-<span class="k">for</span> <span class="n">index</span> <span class="ow">in</span> <span class="nb">range</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">18</span><span class="p">):</span>
-    <span class="n">ber</span><span class="p">[</span><span class="n">index</span><span class="p">]</span> <span class="o">=</span> <span class="n">fsk_errors1</span><span class="p">(</span><span class="n">coherence</span><span class="p">,</span><span class="n">bps</span><span class="p">,</span><span class="n">Nsymb</span><span class="p">,</span><span class="n">nsamp</span><span class="p">,</span><span class="n">index</span><span class="p">)</span><span class="o">/</span><span class="p">(</span><span class="n">bps</span><span class="o">*</span><span class="n">Nsymb</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">semilogy</span><span class="p">(</span><span class="n">ber</span><span class="p">,</span><span class="s1">&#39;o&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">,</span><span class="n">which</span><span class="o">=</span><span class="s1">&#39;both&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;Eb/N0 (dB)&quot;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;BER&quot;</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">theoretical_ber_coherent</span><span class="p">(</span><span class="n">M</span><span class="p">,</span> <span class="n">EbNo</span><span class="p">):</span>
+    <span class="k">return</span> <span class="mf">0.5</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="n">EbNo</span> <span class="o">/</span> <span class="mi">2</span><span class="p">)</span>
 
-<span class="n">EbN0_db</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">18</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
-<span class="n">EbN0</span> <span class="o">=</span> <span class="mi">10</span><span class="o">**</span><span class="p">(</span><span class="n">EbN0_db</span><span class="o">/</span><span class="mi">10</span><span class="p">)</span>
-<span class="c1">#ber_theoretical = (((L-1)/L)*erfc(np.sqrt(EbN0*(3*np.log2(L))/(L**2-1))))/k</span>
-<span class="c1">#plt.semilogy(ber_theoretical)</span>
+<span class="k">def</span> <span class="nf">theoretical_ber_non_coherent</span><span class="p">(</span><span class="n">M</span><span class="p">,</span> <span class="n">EbNo</span><span class="p">):</span>
+    <span class="k">return</span> <span class="mf">0.5</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="n">EbNo</span> <span class="o">/</span> <span class="p">(</span><span class="n">M</span> <span class="o">+</span> <span class="mi">1</span><span class="p">))</span>
 
-<span class="c1">#plt.legend([&#39;Experimental&#39;,&#39;Theoretical&#39;])</span>
+<span class="c1"># Simulation parameters</span>
+<span class="n">bps</span> <span class="o">=</span> <span class="mi">4</span>  <span class="c1"># for 16-FSK</span>
+<span class="n">Nsymb</span> <span class="o">=</span> <span class="mi">2000</span>  <span class="c1"># Reduced number of symbols to be simulated</span>
+<span class="n">nsamp</span> <span class="o">=</span> <span class="mi">16</span>
+<span class="n">EbNo_dB_range</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">15</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>  <span class="c1"># Reduced number of points</span>
 
+<span class="n">ber_coherent_sim</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">ber_non_coherent_sim</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">ber_coherent_theory</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">ber_non_coherent_theory</span> <span class="o">=</span> <span class="p">[]</span>
+
+<span class="k">for</span> <span class="n">EbNo_dB</span> <span class="ow">in</span> <span class="n">EbNo_dB_range</span><span class="p">:</span>
+    <span class="n">errors_coherent</span><span class="p">,</span> <span class="n">s_coherent</span><span class="p">,</span> <span class="n">snoisy_coherent</span> <span class="o">=</span> <span class="n">fsk_errors</span><span class="p">(</span><span class="kc">True</span><span class="p">,</span> <span class="n">bps</span><span class="p">,</span> <span class="n">Nsymb</span><span class="p">,</span> <span class="n">nsamp</span><span class="p">,</span> <span class="n">EbNo_dB</span><span class="p">)</span>
+    <span class="n">errors_non_coherent</span><span class="p">,</span> <span class="n">s_non_coherent</span><span class="p">,</span> <span class="n">snoisy_non_coherent</span> <span class="o">=</span> <span class="n">fsk_errors</span><span class="p">(</span><span class="kc">False</span><span class="p">,</span> <span class="n">bps</span><span class="p">,</span> <span class="n">Nsymb</span><span class="p">,</span> <span class="n">nsamp</span><span class="p">,</span> <span class="n">EbNo_dB</span><span class="p">)</span>
+    
+    <span class="n">ber_coherent_sim</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">errors_coherent</span> <span class="o">/</span> <span class="p">(</span><span class="n">Nsymb</span> <span class="o">*</span> <span class="n">bps</span><span class="p">))</span>
+    <span class="n">ber_non_coherent_sim</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">errors_non_coherent</span> <span class="o">/</span> <span class="p">(</span><span class="n">Nsymb</span> <span class="o">*</span> <span class="n">bps</span><span class="p">))</span>
+    
+    <span class="n">EbNo</span> <span class="o">=</span> <span class="mi">10</span> <span class="o">**</span> <span class="p">(</span><span class="n">EbNo_dB</span> <span class="o">/</span> <span class="mi">10</span><span class="p">)</span>
+    <span class="n">ber_coherent_theory</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">theoretical_ber_coherent</span><span class="p">(</span><span class="mi">16</span><span class="p">,</span> <span class="n">EbNo</span><span class="p">))</span>
+    <span class="n">ber_non_coherent_theory</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">theoretical_ber_non_coherent</span><span class="p">(</span><span class="mi">16</span><span class="p">,</span> <span class="n">EbNo</span><span class="p">))</span>
+
+<span class="c1"># Plotting the results</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">semilogy</span><span class="p">(</span><span class="n">EbNo_dB_range</span><span class="p">,</span> <span class="n">ber_coherent_sim</span><span class="p">,</span> <span class="s1">&#39;o-&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Coherent FSK (Simulation)&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">semilogy</span><span class="p">(</span><span class="n">EbNo_dB_range</span><span class="p">,</span> <span class="n">ber_non_coherent_sim</span><span class="p">,</span> <span class="s1">&#39;s-&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Non-Coherent FSK (Simulation)&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">semilogy</span><span class="p">(</span><span class="n">EbNo_dB_range</span><span class="p">,</span> <span class="n">ber_coherent_theory</span><span class="p">,</span> <span class="s1">&#39;o--&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Coherent FSK (Theory)&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">semilogy</span><span class="p">(</span><span class="n">EbNo_dB_range</span><span class="p">,</span> <span class="n">ber_non_coherent_theory</span><span class="p">,</span> <span class="s1">&#39;s--&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Non-Coherent FSK (Theory)&#39;</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Eb/No (dB)&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Bit Error Rate (BER)&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;BER vs. Eb/No for 16-FSK&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">,</span> <span class="n">which</span><span class="o">=</span><span class="s1">&#39;both&#39;</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;--&#39;</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mf">0.5</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/244259b956ab3edeef8d088d544eaf1f12360a8acdcc79557ebbc2adbc8256c3.png" src="../_images/244259b956ab3edeef8d088d544eaf1f12360a8acdcc79557ebbc2adbc8256c3.png" />
+<img alt="../_images/e4864d07404ea0f8ad6acb8ee96c36f1088a67a4a0c0ef10cf019f64c8f33666.png" src="../_images/e4864d07404ea0f8ad6acb8ee96c36f1088a67a4a0c0ef10cf019f64c8f33666.png" />
 </div>
 </div>
-<div class="cell docutils container">
+</section>
+<section id="part-4">
+<h2>Part 4:<a class="headerlink" href="#part-4" title="Permalink to this heading">#</a></h2>
+<p>Plot the spectrum of the bandpass signal of question 3.</p>
+<div class="cell tag_thebe-init tag_hide-code-cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># N</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ber</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">Ts</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">/</span> <span class="n">nsamp</span>  <span class="c1"># oversampling period</span>
+<span class="n">Fs</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">/</span> <span class="n">Ts</span>  <span class="c1"># sampling frequency</span>
+
+<span class="c1"># Plotting the spectrum of the bandpass signal</span>
+<span class="n">f_coherent</span><span class="p">,</span> <span class="n">Pxx_coherent</span> <span class="o">=</span> <span class="n">welch</span><span class="p">(</span><span class="n">s_coherent</span><span class="o">.</span><span class="n">flatten</span><span class="p">(),</span> <span class="n">Fs</span><span class="p">,</span> <span class="n">nperseg</span><span class="o">=</span><span class="mi">1024</span><span class="p">)</span>
+<span class="n">f_non_coherent</span><span class="p">,</span> <span class="n">Pxx_non_coherent</span> <span class="o">=</span> <span class="n">welch</span><span class="p">(</span><span class="n">s_non_coherent</span><span class="o">.</span><span class="n">flatten</span><span class="p">(),</span> <span class="n">Fs</span><span class="p">,</span> <span class="n">nperseg</span><span class="o">=</span><span class="mi">1024</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">semilogy</span><span class="p">(</span><span class="n">f_coherent</span><span class="p">,</span> <span class="n">Pxx_coherent</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Coherent FSK Spectrum&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">semilogy</span><span class="p">(</span><span class="n">f_non_coherent</span><span class="p">,</span> <span class="n">Pxx_non_coherent</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Non-Coherent FSK Spectrum&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Frequency (Hz)&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Power Spectral Density (V^2/Hz)&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Power Spectral Density of the Bandpass Signal&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([0.2351, 0.2352, 0.2349, 0.2356, 0.2342, 0.2344, 0.2343, 0.232 ,
-       0.2335, 0.234 , 0.2366, 0.2348, 0.2343, 0.2338, 0.2315, 0.2339,
-       0.2343, 0.2337])
-</pre></div>
+<img alt="../_images/2305907aea580238745c9f2182fa30113282fdd3331549dc6ed8cc32683bfc85.png" src="../_images/2305907aea580238745c9f2182fa30113282fdd3331549dc6ed8cc32683bfc85.png" />
 </div>
 </div>
+</section>
+<section id="part-5">
+<h2>Part 5<a class="headerlink" href="#part-5" title="Permalink to this heading">#</a></h2>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Optional. Bonus 10% to Lab grade</p>
 </div>
+<section id="step-1">
+<h3>Step 1:<a class="headerlink" href="#step-1" title="Permalink to this heading">#</a></h3>
+<p>Based on Code 6.2 of the notes, simulate an MSK transmission system on a
+bandpass channel with a center frequency of 8 MHz and a transmission rate
+of 2 Mbps. Plot the spectrum of the bandpass signal and calculate
+(theoretically and by simulation) the BER, when Eb/No=10db.</p>
+</section>
+<section id="step-2">
+<h3>Step 2:<a class="headerlink" href="#step-2" title="Permalink to this heading">#</a></h3>
+<p>For the data of the previous question, find the values of the parameters of an
+equivalent (in terms of bit rate) QPSK system. Compare the two systems in
+terms of BER and bandwidth.</p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>According to the figure below, for each odd k, the new bi (valid from the
+next even k) and bq are calculated. Based on these, the two new bits are calculated,
+xr(k)=bi_1<em>bq and xr(k+1)=bi</em>bq. With precoding, bit xr_1 of the previous period (k-1) is
+also used.</p>
+</div>
+<p><img alt="lab6_1.png" src="../_images/lab6_1.png" /></p>
 </section>
 </section>
 </section>
@@ -866,7 +1111,7 @@ also used.</p>
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">Lab Exercise 5</p>
+        <p class="prev-next-title">Lab Exercise 5: QAM-PSK</p>
       </div>
     </a>
 </div>
@@ -884,6 +1129,10 @@ also used.</p>
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#setup">Setup</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#importing-packages-we-will-need-later-in-python">Importing packages we will need later in Python</a></li>
+</ul>
+</li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#part-1">Part 1:</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#part-2">Part 2:</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#part-3">Part 3:</a></li>
