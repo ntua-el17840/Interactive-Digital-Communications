@@ -3,5 +3,5 @@ scipy==1.10.1
 matplotlib
 ipython
 ipywidgets==7.7.2
-sounddevice
 requests
+sk_dsp_comm.sigsys
