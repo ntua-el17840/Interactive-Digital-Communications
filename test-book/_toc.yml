@@ -15,3 +15,6 @@ parts:
   - file: content/Digcom_Lab4
   - file: content/Digcom_Lab5
   - file: content/Digcom_Lab6
+- caption: Bit Error Rate Tool
+  chapters:
+  - file: content/Digcom_Lab_BerTool
