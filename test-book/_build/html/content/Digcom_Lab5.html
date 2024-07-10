@@ -570,7 +570,7 @@ the codeword “1 0 0” at point (3,3) of the figure with font size 6].</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<script type="application/vnd.jupyter.widget-view+json">{"version_major": 2, "version_minor": 0, "model_id": "764876c1de1d441e8526e86b6ad1474d"}</script></div>
+<script type="application/vnd.jupyter.widget-view+json">{"version_major": 2, "version_minor": 0, "model_id": "d35acd3c6a7347e283a56559a2ea5846"}</script></div>
 </div>
 <p><font size="3"> 2)We have available the 6.75-9.25 MHz bandpass channel and want to transmit
 at a rate of 10 Mbps. Select a complete rectangular constellation and Nyquist
@@ -581,23 +581,84 @@ theoretically and experimentally. The sampling frequency must be sufficiently
 high so that the signals of all modulation-demodulation stages can be
 represented without aliasing.</font></p>
 <p>Connection with theory: The transmission rate, R (bits/s), is related to the symbol rate, 1/Τ
-(also called baud rate) and the size of the signal constellation, M, with the relation
-$$</p>
-<p>\frac{R}{\log_2 L} = \frac{l}{T}</p>
-<div class="math notranslate nohighlight">
-\[On the other hand, the required bandwidth for bandpass transmission with Nyquist signaling
-is equal to
-\]</div>
-<p>W = \frac{1}{T}(1+\alpha)</p>
+(also called baud rate) and the size of the signal constellation, M, with the relation</p>
 <div class="math notranslate nohighlight">
 \[
-where α is the roll-off factor of the Nyquist filter used. Combining the
-above relations, we conclude that the size of the constellation must satisfy the inequality: 
+\frac{R}{\log_2 L} = \frac{l}{T} 
 \]</div>
-<p>log_2 M &gt;= \frac{R}{W}(1+\alpha), 0&lt;a&lt;=1</p>
-<p>$$</p>
+<p>On the other hand, the required bandwidth for bandpass transmission with Nyquist signaling
+is equal to</p>
+<div class="math notranslate nohighlight">
+\[
+W = \frac{1}{T}(1+\alpha)
+\]</div>
+<p>where α is the roll-off factor of the Nyquist filter used. Combining the
+above relations, we conclude that the size of the constellation must satisfy the inequality:</p>
+<div class="math notranslate nohighlight">
+\[
+log_2 M &gt;= \frac{R}{W}(1+\alpha), 0&lt;a&lt;=1
+\]</div>
 <img alt="../_images/Lab5_1.png" class="align-center" src="../_images/Lab5_1.png" />
-<div class="cell docutils container">
+<div class="cell tag_thebe-init tag_hide-code-cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">ipywidgets</span> <span class="k">as</span> <span class="nn">widgets</span>
+<span class="kn">from</span> <span class="nn">IPython.display</span> <span class="kn">import</span> <span class="n">display</span><span class="p">,</span> <span class="n">HTML</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
+<span class="c1"># Function to calculate roll-off factor</span>
+<span class="k">def</span> <span class="nf">calculate_rolloff</span><span class="p">(</span><span class="n">W1</span><span class="p">,</span> <span class="n">W2</span><span class="p">,</span> <span class="n">R</span><span class="p">):</span>
+    <span class="n">W</span> <span class="o">=</span> <span class="p">(</span><span class="n">W2</span> <span class="o">-</span> <span class="n">W1</span><span class="p">)</span> <span class="o">*</span> <span class="p">(</span><span class="mi">10</span> <span class="o">**</span> <span class="mi">6</span><span class="p">)</span>
+    <span class="n">R</span> <span class="o">=</span> <span class="n">R</span> <span class="o">*</span> <span class="p">(</span><span class="mi">10</span> <span class="o">**</span> <span class="mi">6</span><span class="p">)</span>
+    <span class="n">M</span> <span class="o">=</span> <span class="mi">64</span>  <span class="c1"># Fixed value for a full orthogonal grid</span>
+    <span class="n">a</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">log2</span><span class="p">(</span><span class="n">M</span><span class="p">)</span> <span class="o">*</span> <span class="n">W</span> <span class="o">/</span> <span class="n">R</span> <span class="o">-</span> <span class="mi">1</span>
+    <span class="k">return</span> <span class="n">a</span>
+
+<span class="c1"># Widgets for inputs</span>
+<span class="n">W1_input</span> <span class="o">=</span> <span class="n">widgets</span><span class="o">.</span><span class="n">FloatText</span><span class="p">(</span><span class="n">description</span><span class="o">=</span><span class="s1">&#39;W1 (MHz):&#39;</span><span class="p">,</span> <span class="n">value</span><span class="o">=</span><span class="mf">6.75</span><span class="p">)</span>
+<span class="n">W2_input</span> <span class="o">=</span> <span class="n">widgets</span><span class="o">.</span><span class="n">FloatText</span><span class="p">(</span><span class="n">description</span><span class="o">=</span><span class="s1">&#39;W2 (MHz):&#39;</span><span class="p">,</span> <span class="n">value</span><span class="o">=</span><span class="mf">9.25</span><span class="p">)</span>
+<span class="n">R_input</span> <span class="o">=</span> <span class="n">widgets</span><span class="o">.</span><span class="n">FloatText</span><span class="p">(</span><span class="n">description</span><span class="o">=</span><span class="s1">&#39;R (Mbps):&#39;</span><span class="p">,</span> <span class="n">value</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
+
+<span class="c1"># Output widget</span>
+<span class="n">output_a</span> <span class="o">=</span> <span class="n">widgets</span><span class="o">.</span><span class="n">Output</span><span class="p">()</span>
+
+<span class="c1"># Function to update the result</span>
+<span class="k">def</span> <span class="nf">update_result</span><span class="p">(</span><span class="n">change</span><span class="p">):</span>
+    <span class="k">with</span> <span class="n">output_a</span><span class="p">:</span>
+        <span class="n">output_a</span><span class="o">.</span><span class="n">clear_output</span><span class="p">()</span>
+        <span class="n">W1</span> <span class="o">=</span> <span class="n">W1_input</span><span class="o">.</span><span class="n">value</span>
+        <span class="n">W2</span> <span class="o">=</span> <span class="n">W2_input</span><span class="o">.</span><span class="n">value</span>
+        <span class="n">R</span> <span class="o">=</span> <span class="n">R_input</span><span class="o">.</span><span class="n">value</span>
+        <span class="n">a</span> <span class="o">=</span> <span class="n">calculate_rolloff</span><span class="p">(</span><span class="n">W1</span><span class="p">,</span> <span class="n">W2</span><span class="p">,</span> <span class="n">R</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Result: a = </span><span class="si">{</span><span class="n">a</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="c1"># Observers to update the result when any input changes</span>
+<span class="n">W1_input</span><span class="o">.</span><span class="n">observe</span><span class="p">(</span><span class="n">update_result</span><span class="p">,</span> <span class="n">names</span><span class="o">=</span><span class="s1">&#39;value&#39;</span><span class="p">)</span>
+<span class="n">W2_input</span><span class="o">.</span><span class="n">observe</span><span class="p">(</span><span class="n">update_result</span><span class="p">,</span> <span class="n">names</span><span class="o">=</span><span class="s1">&#39;value&#39;</span><span class="p">)</span>
+<span class="n">R_input</span><span class="o">.</span><span class="n">observe</span><span class="p">(</span><span class="n">update_result</span><span class="p">,</span> <span class="n">names</span><span class="o">=</span><span class="s1">&#39;value&#39;</span><span class="p">)</span>
+
+
+
+<span class="c1"># Display the widgets</span>
+<span class="n">ui</span> <span class="o">=</span> <span class="n">widgets</span><span class="o">.</span><span class="n">VBox</span><span class="p">([</span><span class="n">W1_input</span><span class="p">,</span> <span class="n">W2_input</span><span class="p">,</span> <span class="n">R_input</span><span class="p">,</span> <span class="n">output</span><span class="p">])</span>
+<span class="n">display</span><span class="p">(</span><span class="n">ui</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">NameError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
+<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">3</span><span class="p">],</span> <span class="n">line</span> <span class="mi">39</span>
+<span class="g g-Whitespace">     </span><span class="mi">34</span> <span class="n">R_input</span><span class="o">.</span><span class="n">observe</span><span class="p">(</span><span class="n">update_result</span><span class="p">,</span> <span class="n">names</span><span class="o">=</span><span class="s1">&#39;value&#39;</span><span class="p">)</span>
+<span class="g g-Whitespace">     </span><span class="mi">38</span> <span class="c1"># Display the widgets</span>
+<span class="ne">---&gt; </span><span class="mi">39</span> <span class="n">ui</span> <span class="o">=</span> <span class="n">widgets</span><span class="o">.</span><span class="n">VBox</span><span class="p">([</span><span class="n">W1_input</span><span class="p">,</span> <span class="n">W2_input</span><span class="p">,</span> <span class="n">R_input</span><span class="p">,</span> <span class="n">output</span><span class="p">])</span>
+<span class="g g-Whitespace">     </span><span class="mi">40</span> <span class="n">display</span><span class="p">(</span><span class="n">ui</span><span class="p">)</span>
+
+<span class="ne">NameError</span>: name &#39;output&#39; is not defined
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell tag_hide-code-cell tag_thebe-init docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">rootRaisedCosine</span><span class="p">(</span><span class="n">nsamp</span><span class="p">,</span> <span class="n">roll_off</span><span class="p">,</span> <span class="n">delay</span><span class="p">):</span>
     <span class="n">F0</span> <span class="o">=</span> <span class="mf">0.5</span> <span class="o">/</span> <span class="n">nsamp</span>
@@ -761,7 +822,7 @@ other signaling parameters. What is the maximum baud rate now? Plot the
 power spectrum density of your signals again and see if there are any
 differences. Examine if a less fall back in a non-rectangular grid system could
 satisfy the required transmission quality..</font></p>
-<div class="cell docutils container">
+<div class="cell tag_hide-code-cell tag_thebe-init docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">rootRaisedCosine</span><span class="p">(</span><span class="n">nsamp</span><span class="p">,</span> <span class="n">roll_off</span><span class="p">,</span> <span class="n">delay</span><span class="p">):</span>
     <span class="n">F0</span> <span class="o">=</span> <span class="mf">0.5</span> <span class="o">/</span> <span class="n">nsamp</span>
@@ -889,7 +950,7 @@ satisfy the required transmission quality..</font></p>
 </div>
 <p><font size="3">4) How much can the bit rate in question 3 be increased if the roll-off of the
 Nyquist filter can be reduced by 50%;</font></p>
-<div class="cell docutils container">
+<div class="cell tag_hide-code-cell tag_thebe-init docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">ipywidgets</span> <span class="k">as</span> <span class="nn">widgets</span>
 <span class="kn">from</span> <span class="nn">IPython.display</span> <span class="kn">import</span> <span class="n">display</span><span class="p">,</span> <span class="n">HTML</span>
@@ -982,7 +1043,7 @@ Course Notes, with the help of the code:</font></p>
 </div>
 </div>
 </div>
-<div class="cell docutils container">
+<div class="cell tag_hide-code-cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">gray_coding_psk</span><span class="p">(</span><span class="n">M</span><span class="p">):</span>
     <span class="n">k</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">log2</span><span class="p">(</span><span class="n">M</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">int</span><span class="p">)</span>

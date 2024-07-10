@@ -1025,11 +1025,29 @@ for coherent and non-coherent demodulation (theoretical and from simulation).</p
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>C:\Users\lampr\AppData\Local\Temp\ipykernel_24172\1001522890.py:165: DeprecationWarning: Insufficient bit width provided. This behavior will raise an error in the future.
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>C:\Users\lampr\AppData\Local\Temp\ipykernel_22320\1001522890.py:165: DeprecationWarning: Insufficient bit width provided. This behavior will raise an error in the future.
   r=int(np.binary_repr(j, width=bps))
 </pre></div>
 </div>
-<img alt="../_images/7d5d463a0be0d1bd910b3735adf856fc06b3375d13a845262633be802679a8e8.png" src="../_images/7d5d463a0be0d1bd910b3735adf856fc06b3375d13a845262633be802679a8e8.png" />
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">KeyboardInterrupt</span><span class="g g-Whitespace">                         </span>Traceback (most recent call last)
+<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="n">line</span> <span class="mi">205</span>
+<span class="g g-Whitespace">    </span><span class="mi">203</span> <span class="k">for</span> <span class="n">EbNo_dB</span> <span class="ow">in</span> <span class="n">EbNo_dB_range</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">204</span>     <span class="n">errors_coherent</span><span class="p">,</span> <span class="n">s_coherent</span><span class="p">,</span> <span class="n">snoisy_coherent</span> <span class="o">=</span> <span class="n">fsk_errors</span><span class="p">(</span><span class="kc">True</span><span class="p">,</span> <span class="n">bps</span><span class="p">,</span> <span class="n">Nsymb</span><span class="p">,</span> <span class="n">nsamp</span><span class="p">,</span> <span class="n">EbNo_dB</span><span class="p">)</span>
+<span class="ne">--&gt; </span><span class="mi">205</span>     <span class="n">errors_non_coherent</span><span class="p">,</span> <span class="n">s_non_coherent</span><span class="p">,</span> <span class="n">snoisy_non_coherent</span> <span class="o">=</span> <span class="n">fsk_errors</span><span class="p">(</span><span class="kc">False</span><span class="p">,</span> <span class="n">bps</span><span class="p">,</span> <span class="n">Nsymb</span><span class="p">,</span> <span class="n">nsamp</span><span class="p">,</span> <span class="n">EbNo_dB</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">207</span>     <span class="n">ber_coherent_sim</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">errors_coherent</span> <span class="o">/</span> <span class="p">(</span><span class="n">Nsymb</span> <span class="o">*</span> <span class="n">bps</span><span class="p">))</span>
+<span class="g g-Whitespace">    </span><span class="mi">208</span>     <span class="n">ber_non_coherent_sim</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">errors_non_coherent</span> <span class="o">/</span> <span class="p">(</span><span class="n">Nsymb</span> <span class="o">*</span> <span class="n">bps</span><span class="p">))</span>
+
+<span class="nn">Cell In[2], line 168,</span> in <span class="ni">fsk_errors</span><span class="nt">(coherence, bps, Nsymb, nsamp, EbNo)</span>
+<span class="g g-Whitespace">    </span><span class="mi">164</span>         <span class="n">j</span><span class="o">=</span><span class="n">maxInd</span><span class="p">(</span><span class="n">p</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">165</span>         <span class="n">r</span><span class="o">=</span><span class="nb">int</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">binary_repr</span><span class="p">(</span><span class="n">j</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="n">bps</span><span class="p">))</span>
+<span class="ne">--&gt; </span><span class="mi">168</span>         <span class="n">xr</span><span class="p">[</span><span class="n">k</span><span class="p">:]</span> <span class="o">=</span> <span class="n">method</span><span class="p">(</span><span class="n">r</span><span class="p">,</span><span class="n">bps</span><span class="p">)</span> <span class="c1"># convert in demodulation to binary </span>
+<span class="g g-Whitespace">    </span><span class="mi">170</span> <span class="n">errors</span><span class="o">=</span><span class="mi">0</span>
+<span class="g g-Whitespace">    </span><span class="mi">171</span> <span class="c1">#print(xr.shape)</span>
+
+<span class="ne">KeyboardInterrupt</span>: 
+</pre></div>
+</div>
 </div>
 </div>
 </section>
@@ -1058,7 +1076,7 @@ for coherent and non-coherent demodulation (theoretical and from simulation).</p
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/b1bb61e1bfe6ae7cff59f61a9ac7f822f0f120ecb11a87aaa51e52b8d4be5b17.png" src="../_images/b1bb61e1bfe6ae7cff59f61a9ac7f822f0f120ecb11a87aaa51e52b8d4be5b17.png" />
+<img alt="../_images/d0b55d74fc026a6fddd00fa7ba2f50b85b2af76ac49f34ac97598b73e2f180c6.png" src="../_images/d0b55d74fc026a6fddd00fa7ba2f50b85b2af76ac49f34ac97598b73e2f180c6.png" />
 </div>
 </div>
 </section>
