@@ -1,47 +1,49 @@
 Traceback (most recent call last):
-  File "C:\Users\Sotiris\anaconda3\envs\digital_communications\lib\site-packages\jupyter_cache\executors\utils.py", line 58, in single_nb_execution
+  File "C:\Users\lampr\AppData\Roaming\Python\Python311\site-packages\jupyter_cache\executors\utils.py", line 58, in single_nb_execution
     executenb(
-  File "C:\Users\Sotiris\anaconda3\envs\digital_communications\lib\site-packages\nbclient\client.py", line 1305, in execute
+  File "C:\Users\lampr\AppData\Roaming\Python\Python311\site-packages\nbclient\client.py", line 1314, in execute
     return NotebookClient(nb=nb, resources=resources, km=km, **kwargs).execute()
-  File "C:\Users\Sotiris\anaconda3\envs\digital_communications\lib\site-packages\jupyter_core\utils\__init__.py", line 173, in wrapped
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\lampr\AppData\Roaming\Python\Python311\site-packages\jupyter_core\utils\__init__.py", line 165, in wrapped
     return loop.run_until_complete(inner)
-  File "C:\Users\Sotiris\anaconda3\envs\digital_communications\lib\asyncio\base_events.py", line 616, in run_until_complete
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\lampr\anaconda3\Lib\asyncio\base_events.py", line 653, in run_until_complete
     return future.result()
-  File "C:\Users\Sotiris\anaconda3\envs\digital_communications\lib\site-packages\nbclient\client.py", line 705, in async_execute
+           ^^^^^^^^^^^^^^^
+  File "C:\Users\lampr\AppData\Roaming\Python\Python311\site-packages\nbclient\client.py", line 709, in async_execute
     await self.async_execute_cell(
-  File "C:\Users\Sotiris\anaconda3\envs\digital_communications\lib\site-packages\nbclient\client.py", line 1058, in async_execute_cell
+  File "C:\Users\lampr\AppData\Roaming\Python\Python311\site-packages\nbclient\client.py", line 1062, in async_execute_cell
     await self._check_raise_for_error(cell, cell_index, exec_reply)
-  File "C:\Users\Sotiris\anaconda3\envs\digital_communications\lib\site-packages\nbclient\client.py", line 914, in _check_raise_for_error
+  File "C:\Users\lampr\AppData\Roaming\Python\Python311\site-packages\nbclient\client.py", line 918, in _check_raise_for_error
     raise CellExecutionError.from_cell_and_msg(cell, exec_reply_content)
 nbclient.exceptions.CellExecutionError: An error occurred while executing the following cell:
 ------------------
-Ts = 1 / nsamp  # oversampling period
-Fs = 1 / Ts  # sampling frequency
-
-# Plotting the spectrum of the bandpass signal
-f_coherent, Pxx_coherent = welch(s_coherent.flatten(), Fs, nperseg=1024)
-f_non_coherent, Pxx_non_coherent = welch(s_non_coherent.flatten(), Fs, nperseg=1024)
-
-plt.figure(figsize=(10, 6))
-plt.semilogy(f_coherent, Pxx_coherent, label='Coherent FSK Spectrum')
-plt.semilogy(f_non_coherent, Pxx_non_coherent, label='Non-Coherent FSK Spectrum')
-plt.xlabel('Frequency (Hz)')
-plt.ylabel('Power Spectral Density (V^2/Hz)')
-plt.title('Power Spectral Density of the Bandpass Signal')
-plt.grid(True)
-plt.legend()
-plt.show()
+import numpy as np
+import matplotlib.pyplot as plt
+import random
+import scipy.signal
+from scipy.signal import welch
+import scipy.special
+from scipy.special import erfc
+import math
+from math import log, log2, sqrt
+import ipywidgets as widgets
+from ipywidgets import IntSlider, FloatSlider, interactive, Layout, Dropdown, IntText, HBox, VBox, Output
+from IPython.display import display, clear_output
+from sk_dsp_comm.sigsys import cpx_awgn
+import time
+print("Libraries added successfully!")
 ------------------
 
 
 [1;31m---------------------------------------------------------------------------[0m
-[1;31mNameError[0m                                 Traceback (most recent call last)
-Cell [1;32mIn[5], line 5[0m
-[0;32m      2[0m Fs [38;5;241m=[39m [38;5;241m1[39m [38;5;241m/[39m Ts  [38;5;66;03m# sampling frequency[39;00m
-[0;32m      4[0m [38;5;66;03m# Plotting the spectrum of the bandpass signal[39;00m
-[1;32m----> 5[0m f_coherent, Pxx_coherent [38;5;241m=[39m welch([43ms_coherent[49m[38;5;241m.[39mflatten(), Fs, nperseg[38;5;241m=[39m[38;5;241m1024[39m)
-[0;32m      6[0m f_non_coherent, Pxx_non_coherent [38;5;241m=[39m welch(s_non_coherent[38;5;241m.[39mflatten(), Fs, nperseg[38;5;241m=[39m[38;5;241m1024[39m)
-[0;32m      8[0m plt[38;5;241m.[39mfigure(figsize[38;5;241m=[39m([38;5;241m10[39m, [38;5;241m6[39m))
+[1;31mModuleNotFoundError[0m                       Traceback (most recent call last)
+Cell [1;32mIn[1], line 13[0m
+[0;32m     11[0m [38;5;28;01mfrom[39;00m [38;5;21;01mipywidgets[39;00m [38;5;28;01mimport[39;00m IntSlider, FloatSlider, interactive, Layout, Dropdown, IntText, HBox, VBox, Output
+[0;32m     12[0m [38;5;28;01mfrom[39;00m [38;5;21;01mIPython[39;00m[38;5;21;01m.[39;00m[38;5;21;01mdisplay[39;00m [38;5;28;01mimport[39;00m display, clear_output
+[1;32m---> 13[0m [38;5;28;01mfrom[39;00m [38;5;21;01msk_dsp_comm[39;00m[38;5;21;01m.[39;00m[38;5;21;01msigsys[39;00m [38;5;28;01mimport[39;00m cpx_awgn
+[0;32m     14[0m [38;5;28;01mimport[39;00m [38;5;21;01mtime[39;00m
+[0;32m     15[0m [38;5;28mprint[39m([38;5;124m"[39m[38;5;124mLibraries added successfully![39m[38;5;124m"[39m)
 
-[1;31mNameError[0m: name 's_coherent' is not defined
+[1;31mModuleNotFoundError[0m: No module named 'sk_dsp_comm'
 
