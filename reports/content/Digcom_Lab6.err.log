@@ -15,33 +15,139 @@ Traceback (most recent call last):
     raise CellExecutionError.from_cell_and_msg(cell, exec_reply_content)
 nbclient.exceptions.CellExecutionError: An error occurred while executing the following cell:
 ------------------
-Ts = 1 / nsamp  # oversampling period
-Fs = 1 / Ts  # sampling frequency
+def msk_errors(Nbits, nsamp, EbNo):
+    # Defined parameters
+    n = Nbits  # number of data bits
+    R = 270833  # bit rate
+    fc = 3 * R  # carrier frequency
+    ns = nsamp  # oversampling factor
+    
+    # AWGN channel
+    SNR = EbNo - 10 * np.log10(ns / 2)  # in dB
+    
+    # Derived parameters
+    T = 1 / R  # 1-bit period (= basic period)
+    Ts = T / ns  # sampling frequency
+    
+    # Input sequence
+    y = np.concatenate(([1], np.sign(np.random.rand(n - 1) - 0.5)))  # random numbers, -1 or 1
+    
+    # Precoding
+    x = np.ones(n)
+    for i in range(1, len(y)):
+        x[i] = y[i] * y[i - 1]
+    
+    g = np.ones(ns)
+    xx = upfirdn(g, x, up=ns)  # NRZ polar pulse train samples
+    
+    # Time grid
+    ts = np.arange(0, len(xx) * Ts, Ts)  # of length ns*(n+1)
+    
+    ## MSK TRANSMITTER
+    xs = xx
+    theta = np.cumsum(xs) * np.pi / 2 / ns
+    xs_i = np.cos(theta)  # in-phase component
+    xs_i = np.append(xs_i, xs_i[-1])  # one-sample extension
+    xs_q = np.sin(theta)  # quadrature component
+    xs_q = np.append(xs_q, xs_q[-1])  # one-sample extension
+    
+    # Modulation
+    s = xs_i * np.cos(2 * np.pi * fc * ts) - xs_q * np.sin(2 * np.pi * fc * ts)
+    
+    # Addition of noise
+    s = awgn(s, SNR)
+    
+    ## MSK RECEIVER
+    xs_i = s * np.cos(2 * np.pi * fc * ts)
+    xs_q = -s * np.sin(2 * np.pi * fc * ts)
+    
+    # LP (Parks-McClellan) filter
+    f1 = 0.75 / ns
+    f2 = 4 * f1
+    order = 4 * ns
+    fpts = [0, f1, f2, 1]
+    mag = [1, 1, 0, 0]
+    wt = [1, 1]
+    b = firwin(order + 1, [f1, f2], pass_zero=False, fs=1.0)
+    a = 1
+    
+    len_xs_i = len(xs_i)
+    dummy = np.concatenate((xs_i, np.zeros(order)))
+    dummy1 = scipy.signal.lfilter(b, a, dummy)
+    delay = order // 2
+    xs_i = dummy1[delay:delay + len_xs_i]
+    
+    dummy = np.concatenate((xs_q, np.zeros(order)))
+    dummy1 = scipy.signal.lfilter(b, a, dummy)
+    xs_q = dummy1[delay:delay + len_xs_i]
+    
+    bi = 1
+    xr_1 = 1
+    xr = np.zeros(n)
+    for k in range(0, n - 1, 2):
+        li = np.arange(k * ns, (k + 2) * ns)
+        lq = np.arange((k - 1) * ns, (k + 1) * ns)
+        xi = xs_i[li]
+        xq = xs_q[lq]
+        gmi = np.cos(np.pi / 2 / T * Ts * li)  # matched-filter pulse
+        gmq = -gmi  # =sin(pi/2/T*Ts*lq);
+        bi_1 = bi
+        bi = np.sign(np.sum(xi * gmi))
+        bq = np.sign(np.sum(xq * gmq))
+        # Without precoding: de-comment next 2 lines
+        # xr[k] = bi_1 * bq
+        # xr[k + 1] = bi * bq
+        # With precoding: de-comment next 2 lines
+        xr[k] = xr_1 * bi_1 * bq
+        xr[k + 1] = xr[k] * bi * bq
+        xr_1 = xr[k + 1]
+    
+    xr = xr.reshape(-1)
+    err = np.not_equal(y, xr)  # de-comment, with pre-coding
+    errors = np.sum(err)
+    return errors
 
-# Plotting the spectrum of the bandpass signal
-f_coherent, Pxx_coherent = welch(s_coherent.flatten(), Fs, nperseg=1024)
-f_non_coherent, Pxx_non_coherent = welch(s_non_coherent.flatten(), Fs, nperseg=1024)
 
+# Define the test parameters
+Nbits = 1000
+nsamp = 10
+EbNo_range = np.arange(0, 11, 1)  # Eb/No range from 0 to 10 dB
+
+# Initialize arrays to store results
+ber = np.zeros(len(EbNo_range))
+
+# Run the test
+for i, EbNo in enumerate(EbNo_range):
+    errors = msk_errors(Nbits, nsamp, EbNo)
+    ber[i] = errors / Nbits
+
+# Plot the BER results
 plt.figure(figsize=(10, 6))
-plt.semilogy(f_coherent, Pxx_coherent, label='Coherent FSK Spectrum')
-plt.semilogy(f_non_coherent, Pxx_non_coherent, label='Non-Coherent FSK Spectrum')
-plt.xlabel('Frequency (Hz)')
-plt.ylabel('Power Spectral Density (V^2/Hz)')
-plt.title('Power Spectral Density of the Bandpass Signal')
-plt.grid(True)
+plt.semilogy(EbNo_range, ber, 'o-', label='MSK')
+plt.xlabel('Eb/No (dB)')
+plt.ylabel('Bit Error Rate (BER)')
+plt.title('BER vs. Eb/No for MSK')
+plt.grid(True, which='both', linestyle='--')
 plt.legend()
 plt.show()
 ------------------
 
 
-[1;31m---------------------------------------------------------[0m
-[1;31mNameError[0m               Traceback (most recent call last)
-Cell [1;32mIn[5], line 5[0m
-[0;32m      2[0m Fs [38;5;241m=[39m [38;5;241m1[39m [38;5;241m/[39m Ts  [38;5;66;03m# sampling frequency[39;00m
-[0;32m      4[0m [38;5;66;03m# Plotting the spectrum of the bandpass signal[39;00m
-[1;32m----> 5[0m f_coherent, Pxx_coherent [38;5;241m=[39m welch([43ms_coherent[49m[38;5;241m.[39mflatten(), Fs, nperseg[38;5;241m=[39m[38;5;241m1024[39m)
-[0;32m      6[0m f_non_coherent, Pxx_non_coherent [38;5;241m=[39m welch(s_non_coherent[38;5;241m.[39mflatten(), Fs, nperseg[38;5;241m=[39m[38;5;241m1024[39m)
-[0;32m      8[0m plt[38;5;241m.[39mfigure(figsize[38;5;241m=[39m([38;5;241m10[39m, [38;5;241m6[39m))
+[1;31m---------------------------------------------------------------------------[0m
+[1;31mValueError[0m                                Traceback (most recent call last)
+Cell [1;32mIn[5], line 104[0m
+[0;32m    102[0m [38;5;66;03m# Run the test[39;00m
+[0;32m    103[0m [38;5;28;01mfor[39;00m i, EbNo [38;5;129;01min[39;00m [38;5;28menumerate[39m(EbNo_range):
+[1;32m--> 104[0m     errors [38;5;241m=[39m [43mmsk_errors[49m[43m([49m[43mNbits[49m[43m,[49m[43m [49m[43mnsamp[49m[43m,[49m[43m [49m[43mEbNo[49m[43m)[49m
+[0;32m    105[0m     ber[i] [38;5;241m=[39m errors [38;5;241m/[39m Nbits
+[0;32m    107[0m [38;5;66;03m# Plot the BER results[39;00m
 
-[1;31mNameError[0m: name 's_coherent' is not defined
+Cell [1;32mIn[5], line 38[0m, in [0;36mmsk_errors[1;34m(Nbits, nsamp, EbNo)[0m
+[0;32m     35[0m xs_q [38;5;241m=[39m np[38;5;241m.[39mappend(xs_q, xs_q[[38;5;241m-[39m[38;5;241m1[39m])  [38;5;66;03m# one-sample extension[39;00m
+[0;32m     37[0m [38;5;66;03m# Modulation[39;00m
+[1;32m---> 38[0m s [38;5;241m=[39m [43mxs_i[49m[43m [49m[38;5;241;43m*[39;49m[43m [49m[43mnp[49m[38;5;241;43m.[39;49m[43mcos[49m[43m([49m[38;5;241;43m2[39;49m[43m [49m[38;5;241;43m*[39;49m[43m [49m[43mnp[49m[38;5;241;43m.[39;49m[43mpi[49m[43m [49m[38;5;241;43m*[39;49m[43m [49m[43mfc[49m[43m [49m[38;5;241;43m*[39;49m[43m [49m[43mts[49m[43m)[49m [38;5;241m-[39m xs_q [38;5;241m*[39m np[38;5;241m.[39msin([38;5;241m2[39m [38;5;241m*[39m np[38;5;241m.[39mpi [38;5;241m*[39m fc [38;5;241m*[39m ts)
+[0;32m     40[0m [38;5;66;03m# Addition of noise[39;00m
+[0;32m     41[0m s [38;5;241m=[39m awgn(s, SNR)
+
+[1;31mValueError[0m: operands could not be broadcast together with shapes (10001,) (10000,) 
 
